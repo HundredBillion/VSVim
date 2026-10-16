@@ -60,6 +60,13 @@ function M.setup()
     checker = { enabled = false },
     change_detection = { enabled = false },
   })
+  local sprite_ok, sprite = pcall(require, 'sprite')
+  local tree_ok, tree = pcall(require, 'svgtree')
+  if not sprite_ok or type(sprite.available) ~= 'function'
+    or not tree_ok or type(tree.toggle) ~= 'function'
+    or vim.fn.exists(':SvgTreeToggle') ~= 2 then
+    error('VSVim required plugins unavailable; check the plugin installation errors and retry')
+  end
   vim.keymap.set('n', '<leader>e', '<cmd>SvgTreeToggle<cr>', { desc = 'Explorer' })
   vim.keymap.set('n', '<C-b>', '<cmd>SvgTreeToggle<cr>', { desc = 'Explorer' })
   local user = vim.fn.stdpath('config') .. '/user.lua'

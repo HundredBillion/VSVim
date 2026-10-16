@@ -54,6 +54,16 @@ class IntegrationTest(unittest.TestCase):
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa')
             self.assertIn('VSVim smoke passed', output)
             self.assertEqual(sentinel.read_bytes(), original)
+            for name in ('sprite.nvim', 'svgtree.nvim'):
+                shutil.rmtree(root / 'data/vsvim/lazy' / name)
+            git = tools / 'git'
+            git.write_text('#!/bin/sh\necho "simulated offline clone failure" >&2\nexit 1\n')
+            git.chmod(0o755)
+            failed = subprocess.run([str(ROOT / 'bin/vsvim'), '--headless', '+qa'],
+                                    cwd=root, env=env, text=True,
+                                    capture_output=True, timeout=30)
+            self.assertNotEqual(failed.returncode, 0, failed.stderr)
+            self.assertIn('VSVim required plugins unavailable', failed.stderr)
 
 
 if __name__ == '__main__':

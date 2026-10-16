@@ -33,6 +33,15 @@ sys.exit(23)
                                             'file with spaces.lua', '+set number'])
             self.assertEqual(Path(record['cwd']).resolve(), root.resolve())
             self.assertEqual(record['home'], os.environ['HOME'])
+            links = root / 'launch links'
+            links.mkdir()
+            (links / 'target').symlink_to(ROOT / 'bin/vsvim')
+            (links / 'vsvim').symlink_to('target')
+            result = subprocess.run(
+                [str(links / 'vsvim'), 'file with spaces.lua', '+set number'],
+                env=env, cwd=root, text=True, capture_output=True)
+            self.assertEqual(result.returncode, 23, result.stderr)
+            self.assertEqual(json.loads(result.stdout), record)
 
 if __name__ == '__main__':
     unittest.main()
