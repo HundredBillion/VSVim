@@ -46,7 +46,10 @@ Theme): charcoal editor, gray sidebars, orange keywords, green strings, and
 blue functions. See [theme sources and font setup](docs/themes/jb-theme.md).
 For the matching Menlo 12 font in Sprite, launch with
 `sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout. Click file tabs to switch
-buffers. The explorer opens by default in interactive sessions; put
+buffers, click × (or middle-click a tab) to close, and use the arrows to reach
+overflowing tabs. Modified files show a dot and ask before closing. File-type
+symbols work with Menlo; full SVG tab icons and VS Code’s taller native tab bar
+are not yet supported by Sprite’s editor-grid adapter. The explorer opens by default in interactive sessions; put
 `vim.g.vsvim_auto_explorer = false` in `user.lua` to disable that behavior.
 User overrides run after appearance setup, so a different colorscheme can be
 selected there.

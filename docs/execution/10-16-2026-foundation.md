@@ -143,3 +143,16 @@ Created the previously absent ~/.config/sprite/config.toml from that profile and
 reloaded it in the live window. Runtime inspection confirms Menlo 12, editor
 #1e1f22, native sidebar #2b2d30 and the new colorscheme. Physical screenshot
 comparison remains unavailable; TextMate-to-Neovim scope mapping is approximate.
+
+## File-tab presentation
+
+Replaced plain labels with file-type symbols, padded labels, explicit close
+buttons, separators, active-tab styling, and overflow controls that keep the
+current buffer visible. Duplicate basenames include parent labels. Closing a
+modified buffer prompts for save/discard/cancel; editor splits survive closing.
+
+Four integration tests pass (17.446s). Appearance tests additionally cover
+explicit discard under nohidden after independent review identified that edge
+case; the fix and regression pass independent re-review. Live Sprite tabline was
+hot-reloaded. This remains a one-row Neovim tabline: taller native VS Code tabs,
+SVG file icons and hover-only buttons require Sprite adapter/renderer support.
