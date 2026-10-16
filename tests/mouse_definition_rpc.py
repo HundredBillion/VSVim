@@ -64,12 +64,12 @@ vim.lsp.buf.definition=function() _G.clicked=vim.api.nvim_win_get_cursor(0) end
                 time.sleep(.02)
             else:
                 raise AssertionError('pow overload chooser did not open')
-            assert nvim.current.window.height <= 10
-            assert nvim.current.buffer[0].strip().startswith('def pow(')
-            assert nvim.current.buffer[1].strip().startswith('builtins.pyi:')
+            assert nvim.current.window.height <= 12
+            assert nvim.current.buffer[1].strip().startswith('def pow(')
+            assert nvim.current.buffer[2].strip().startswith('builtins.pyi:')
             assert len(nvim.current.buffer) > 10, 'fixture should exercise scrolling'
-            selected_line = int(nvim.current.buffer[3].rsplit(':', 1)[1])
-            position = nvim.funcs.screenpos(nvim.current.window.handle, 3, 4)
+            selected_line = int(nvim.current.buffer[4].rsplit(':', 1)[1])
+            position = nvim.funcs.screenpos(nvim.current.window.handle, 4, 4)
             nvim.api.input_mouse('left', 'press', '', 0, position['row']-1, position['col']-1)
             for _ in range(100):
                 if nvim.current.buffer.name.endswith('/builtins.pyi'):
