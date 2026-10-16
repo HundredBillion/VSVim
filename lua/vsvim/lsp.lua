@@ -38,10 +38,7 @@ function M.definition()
     end
     if #items == 1 then jump(items[1])
     elseif #items > 1 then
-      vim.ui.select(items, { prompt = 'Go to definition', format_item = function(item)
-        return vim.fn.fnamemodify(item.filename or vim.api.nvim_buf_get_name(item.bufnr), ':~:.')
-          .. ':' .. item.lnum .. '  ' .. (item.text or '')
-      end }, jump)
+      require('vsvim.definition_picker').open(items, jump)
     end
   end })
 end

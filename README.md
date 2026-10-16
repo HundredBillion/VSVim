@@ -38,7 +38,9 @@ this milestone lists repository changes using SCM's default-branch baseline.
 Command-left-click (macOS) or Super-left-click (Linux) on a function or method
 opens its definition and places the cursor at column one of that line. `gd`
 performs the same action at the cursor; `Ctrl-o` returns to the previous location.
-Multiple distinct definitions open a chooser. Ordinary terminals can use `gd`
+Multiple distinct definitions open a compact floating chooser with method signatures
+above muted filenames and line numbers. Five choices fit at once; use arrows or
+`j`/`k` to browse, Enter or a click to open, and Esc to cancel. Ordinary terminals can use `gd`
 even when they do not forward Command/Super mouse events.
 
 VSVim includes pinned Mason, mason-lspconfig, and nvim-lspconfig plugins. The first

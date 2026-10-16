@@ -11,7 +11,7 @@ root = Path(__file__).resolve().parents[1]
 real = '--real' in sys.argv
 with tempfile.TemporaryDirectory(prefix='vsvim-mouse-') as directory:
     fixture = Path(directory)
-    (fixture / 'main.py').write_text('from helper import hello\nhello()\n')
+    (fixture / 'main.py').write_text('from helper import hello\nhello()\npow(2, 3)\n')
     (fixture / 'helper.py').write_text('def hello():\n    return 42\n')
     (fixture / 'pyproject.toml').write_text('')
     args = [shutil.which(os.environ.get('VSVIM_NVIM', 'nvim-nightly')), '--embed', '-n']
@@ -54,6 +54,30 @@ vim.lsp.buf.definition=function() _G.clicked=vim.api.nvim_win_get_cursor(0) end
         nvim.api.input_mouse('left', 'release', 'D', 0, position['row']-1, position['col']-1)
         if real:
             assert nvim.current.window.cursor == (1, 0), 'release changed the definition location'
+        if real:
+            nvim.command('edit ' + nvim.funcs.fnameescape(str(fixture / 'main.py')))
+            nvim.current.window.cursor = (3, 1)
+            nvim.exec_lua("require('vsvim.lsp').definition()")
+            for _ in range(300):
+                if nvim.api.win_get_config(nvim.current.window.handle).get('relative'):
+                    break
+                time.sleep(.02)
+            else:
+                raise AssertionError('pow overload chooser did not open')
+            assert nvim.current.window.height <= 10
+            assert nvim.current.buffer[0].strip().startswith('def pow(')
+            assert nvim.current.buffer[1].strip().startswith('builtins.pyi:')
+            assert len(nvim.current.buffer) > 10, 'fixture should exercise scrolling'
+            selected_line = int(nvim.current.buffer[3].rsplit(':', 1)[1])
+            position = nvim.funcs.screenpos(nvim.current.window.handle, 3, 4)
+            nvim.api.input_mouse('left', 'press', '', 0, position['row']-1, position['col']-1)
+            for _ in range(100):
+                if nvim.current.buffer.name.endswith('/builtins.pyi'):
+                    break
+                time.sleep(.02)
+            assert nvim.current.buffer.name.endswith('/builtins.pyi')
+            assert nvim.current.window.cursor == (selected_line, 0)
+            print('Real pow overload chooser and mouse selection passed')
         print('Command/Super mouse RPC passed' + (' with real Python LSP' if real else ''))
     finally:
         try:

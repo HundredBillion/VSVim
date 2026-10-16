@@ -57,6 +57,10 @@ class IntegrationTest(unittest.TestCase):
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(definition_script) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
             self.assertIn('VSVim definition navigation passed', output)
+            picker_script = str(ROOT / 'tests/definition_picker.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(picker_script) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('VSVim compact definition picker passed', output)
             setup_script = str(ROOT / 'tests/lsp_setup.lua')
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(setup_script) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')

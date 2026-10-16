@@ -23,8 +23,9 @@ local before_edit = pending
 vim.api.nvim_buf_set_lines(source, 1, 2, false, {'new_symbol()'})
 before_edit({items={{filename=path,lnum=2}}})
 assert(vim.api.nvim_get_current_buf() == source, 'edited source ignores delayed response')
-local old_select, choices, choose = vim.ui.select
-vim.ui.select = function(items, _, cb) choices=items; choose=cb end
+local picker = require('vsvim.definition_picker')
+local old_select, choices, choose = picker.open
+picker.open = function(items, cb) choices=items; choose=cb end
 lsp.definition()
 pending({items={{filename=path,lnum=2},{filename=path,lnum=2},{filename=path,lnum=3}}})
 assert(#choices == 2, 'duplicate definitions removed')
@@ -34,7 +35,20 @@ lsp.definition()
 pending({items={{filename=path,lnum=2},{filename=path,lnum=3}}})
 choose(choices[2])
 assert(vim.deep_equal(vim.api.nvim_win_get_cursor(0), {3,0}))
-vim.ui.select = old_select
+picker.open = old_select
+vim.api.nvim_set_current_buf(source)
+lsp.definition()
+pending({items={{filename=path,lnum=2,text='def hello():'},{filename=path,lnum=3,text='pass'}}})
+local picker_win = vim.api.nvim_get_current_win()
+vim.api.nvim_buf_set_lines(source, 0, 1, false, {'changed()'})
+vim.fn.maparg('<CR>', 'n', false, true).callback()
+assert(not vim.api.nvim_win_is_valid(picker_win))
+assert(vim.api.nvim_get_current_buf() == source, 'edited source rejects selection from open picker')
+lsp.definition()
+pending({items={{filename=path,lnum=2,text='def hello():'},{filename=path,lnum=3,text='pass'}}})
+vim.fn.maparg('<CR>', 'n', false, true).callback()
+assert(vim.api.nvim_buf_get_name(0) == path, 'real picker restores origin before jumping')
+assert(vim.deep_equal(vim.api.nvim_win_get_cursor(0), {2,0}))
 vim.lsp.buf.definition = original
 vim.fn.delete(path)
 assert(vim.fn.maparg('<D-LeftMouse>', 'n') ~= '')
