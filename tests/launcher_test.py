@@ -21,7 +21,7 @@ sys.exit(23)
 ''')
             executable.chmod(0o755)
             env = dict(os.environ, PATH=str(root) + os.pathsep + os.environ['PATH'],
-                       NVIM_APPNAME='existing-app', VSVIM_NVIM=str(executable))
+                       NVIM_APPNAME='existing-app', VSVIM_NVIM=str(executable), VSVIM_NATIVE='0')
             result = subprocess.run(
                 ['sh', str(ROOT / 'bin/vsvim'), 'file with spaces.lua', '+set number'],
                 env=env, cwd=root, text=True, capture_output=True)
@@ -42,6 +42,35 @@ sys.exit(23)
                 env=env, cwd=root, text=True, capture_output=True)
             self.assertEqual(result.returncode, 23, result.stderr)
             self.assertEqual(json.loads(result.stdout), record)
+
+    def test_sprite_uses_nightly_adapter_but_batch_and_nested_launches_do_not(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            adapter = root / 'vsvim/lazy/sprite.nvim/lua/sprite/adapter.lua'
+            adapter.parent.mkdir(parents=True)
+            adapter.write_text('')
+            executable = root / 'nightly'
+            executable.write_text('#!/usr/bin/env python3\nimport json,sys\nprint(json.dumps(sys.argv[1:]))\n')
+            executable.chmod(0o755)
+            env = dict(os.environ, VSVIM_NVIM=str(executable), XDG_DATA_HOME=str(root),
+                       SPRITE_SURFACE_SOCKET='/test/socket', SPRITE_SURFACE_KEY='test-only',
+                       SPRITE_PANE='0')
+            env.pop('NVIM', None)
+            env.pop('VSVIM_NATIVE', None)
+            base = ['-u', str(ROOT / 'init.lua')]
+            for args, native in [(['a b.lua'], True), (['--headless', '+qa'], False),
+                                 (['--version'], False), (['--embed'], False),
+                                 (['-l', 'script.lua'], False)]:
+                with self.subTest(args=args):
+                    result = subprocess.run([str(ROOT / 'bin/vsvim'), *args], env=env,
+                                            capture_output=True, text=True)
+                    self.assertEqual(result.returncode, 0, result.stderr)
+                    prefix = ['-l', str(adapter)] if native else []
+                    self.assertEqual(json.loads(result.stdout), prefix + base + args)
+            env['NVIM'] = '/nested/editor'
+            result = subprocess.run([str(ROOT / 'bin/vsvim'), 'file.lua'], env=env,
+                                    capture_output=True, text=True)
+            self.assertEqual(json.loads(result.stdout), base + ['file.lua'])
 
 if __name__ == '__main__':
     unittest.main()

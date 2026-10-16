@@ -53,6 +53,10 @@ class IntegrationTest(unittest.TestCase):
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(script) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa')
             self.assertIn('VSVim smoke passed', output)
+            appearance = str(ROOT / 'tests/appearance.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(appearance) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('VSVim appearance passed', output)
             self.assertEqual(sentinel.read_bytes(), original)
             for name in ('sprite.nvim', 'svgtree.nvim'):
                 shutil.rmtree(root / 'data/vsvim/lazy' / name)

@@ -59,6 +59,7 @@ function M.setup()
     lockfile = data .. '/lazy-lock.json',
     checker = { enabled = false },
     change_detection = { enabled = false },
+    performance = { rtp = { paths = { vim.env.VSVIM_ROOT } } },
   })
   local sprite_ok, sprite = pcall(require, 'sprite')
   local tree_ok, tree = pcall(require, 'svgtree')
@@ -69,6 +70,7 @@ function M.setup()
   end
   vim.keymap.set('n', '<leader>e', '<cmd>SvgTreeToggle<cr>', { desc = 'Explorer' })
   vim.keymap.set('n', '<C-b>', '<cmd>SvgTreeToggle<cr>', { desc = 'Explorer' })
+  require('vsvim.appearance').setup()
   local user = vim.fn.stdpath('config') .. '/user.lua'
   if vim.uv.fs_stat(user) then
     dofile(user)
