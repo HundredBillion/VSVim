@@ -45,6 +45,7 @@ function M.setup()
   vim.opt.laststatus = 3
   vim.opt.showmode = false
   vim.opt.cursorline = true
+  vim.opt.wrap = false
   vim.opt.signcolumn = 'yes'
   vim.opt.fillchars:append({ eob = ' ' })
   vim.opt.shortmess:append('I')
