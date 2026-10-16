@@ -11,7 +11,7 @@ function M.statusline()
   local label = ({ n = 'NORMAL', i = 'INSERT', v = 'VISUAL', V = 'VISUAL',
     ['\22'] = 'VISUAL', c = 'COMMAND', R = 'REPLACE', t = 'TERMINAL' })[mode] or 'NORMAL'
   local filetype = vim.bo.filetype ~= '' and vim.bo.filetype or 'Plain Text'
-  return '%#VSVimMode#  ' .. label .. '  %#StatusLine#  %f %m%r%='
+  return '%#VSVimMode#  ' .. label .. '  %#StatusLine# %m%r%='
     .. 'Ln %l, Col %c   Spaces: ' .. vim.bo.shiftwidth .. '   '
     .. escape(vim.bo.fileencoding ~= '' and vim.bo.fileencoding or vim.o.encoding)
     .. '   ' .. escape(filetype) .. '  '
