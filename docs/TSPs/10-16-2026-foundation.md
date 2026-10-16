@@ -6,7 +6,7 @@
 
 **Architecture:** A small launcher chooses VSVim's application namespace before starting Neovim. A Lua entry point loads pinned plugins and user overrides. This is milestone 1a of the release PRD; it is a working editor foundation, not the finished batteries-included release.
 
-**Tech Stack:** POSIX shell, Lua, Neovim 0.11+, Git, lazy.nvim (plugin manager only), svgtree.nvim, sprite.nvim. Python 3 is a development test dependency only.
+**Tech Stack:** POSIX shell, Lua, Neovim 0.13 nightly, Git, lazy.nvim (plugin manager only), svgtree.nvim, sprite.nvim. Python 3 is a development test dependency only.
 
 ## Global constraints
 
@@ -35,7 +35,7 @@ Inspected on 2026-10-16:
 
 | Decision | Evidence and compatibility |
 | --- | --- |
-| Namespace with `NVIM_APPNAME=vsvim` | Installed Neovim 0.12.2 help, `share/nvim/runtime/doc/starting.txt`, NVIM_APPNAME section, documents separate standard directories. Public reference: https://neovim.io/doc/user/starting/#%24NVIM_APPNAME. Runtime acceptance must also pass on 0.11. |
+| Namespace with `NVIM_APPNAME=vsvim` | Installed Neovim 0.12.2 help, `share/nvim/runtime/doc/starting.txt`, NVIM_APPNAME section, documents separate standard directories. Public reference: https://neovim.io/doc/user/starting/#%24NVIM_APPNAME. VSVim runtime acceptance targets 0.13 nightly. |
 | Bootstrap lazy.nvim | Official installation: https://lazy.folke.io/installation. Use its documented runtime-path and setup pattern, but pin the manager and fail clearly instead of accepting partial bootstrap. |
 | Plugin commits and configuration | https://lazy.folke.io/spec and https://lazy.folke.io/configuration. Remote stable tag resolved to `332b4cbc8bf61589b6ff58ce42fca80173154669`. |
 | svgtree | Local clean checkout `13567cc93a71a49eedcf5b82b68fda93874b286e`; existing `setup`, `SvgTreeToggle`, and native mapping configuration. Verify the commit is fetchable from its remote during installation. |
@@ -64,6 +64,9 @@ test suite requires Neovim 0.13 nightly; stable Neovim uses supported fallbacks.
 | `tests/smoke.lua` | Verify a real installed editor's identity, plugins, mappings, and override behavior. |
 | `README.md` | Explain clone-and-run setup, prerequisites, customization, and current limits. |
 
+Runtime selection: `VSVIM_NVIM` is an optional executable path; default
+`nvim-nightly`. Never fall back silently to stable Neovim.
+
 Runtime variables: `VSVIM_ROOT` is set by the launcher to the checkout root;
 `NVIM_APPNAME` is set to `vsvim`. Neither replaces HOME or XDG base directories.
 User configuration is `stdpath('config') .. '/user.lua'`. Plugin data and the
@@ -75,7 +78,7 @@ manager lockfile live beneath VSVim's data directory, not the working project.
 
 **Files:** Create `bin/vsvim`, `tests/launcher_test.py`.
 
-**Interfaces:** Consumes `nvim` on PATH and arbitrary Neovim arguments. Produces
+**Interfaces:** Consumes `VSVIM_NVIM` or `nvim-nightly` on PATH and arbitrary Neovim arguments. Produces
 a child process with `NVIM_APPNAME=vsvim`, absolute `VSVIM_ROOT`, and an explicit
 VSVim init path. Preserves the working directory and exit status.
 
@@ -95,7 +98,7 @@ class LauncherTest(unittest.TestCase):
     def test_isolation_arguments_and_exit(self):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
-            executable = root / 'nvim'
+            executable = root / 'nvim-nightly'
             executable.write_text('''#!/usr/bin/env python3
 import json, os, sys
 print(json.dumps({'args': sys.argv[1:], 'app': os.environ['NVIM_APPNAME'],
@@ -105,7 +108,7 @@ sys.exit(23)
 ''')
             executable.chmod(0o755)
             env = dict(os.environ, PATH=str(root) + os.pathsep + os.environ['PATH'],
-                       NVIM_APPNAME='existing-app')
+                       NVIM_APPNAME='existing-app', VSVIM_NVIM=str(executable))
             result = subprocess.run(
                 ['sh', str(ROOT / 'bin/vsvim'), 'file with spaces.lua', '+set number'],
                 env=env, cwd=root, text=True, capture_output=True)
@@ -144,7 +147,7 @@ done
 VSVIM_ROOT=$(CDPATH= cd -- "$(dirname "$self")/.." && pwd -P)
 export VSVIM_ROOT
 export NVIM_APPNAME=vsvim
-exec nvim -u "$VSVIM_ROOT/init.lua" "$@"
+exec "${VSVIM_NVIM:-nvim-nightly}" -u "$VSVIM_ROOT/init.lua" "$@"
 ```
 
 - [ ] Run `chmod +x bin/vsvim`, then `python3 tests/launcher_test.py` and `sh -n bin/vsvim`; expect one passing test and no shell syntax error.
@@ -156,7 +159,7 @@ exec nvim -u "$VSVIM_ROOT/init.lua" "$@"
 
 **Files:** Create `init.lua`, `lua/vsvim/init.lua`, `tests/smoke.lua`.
 
-**Interfaces:** Consumes `VSVIM_ROOT`, `NVIM_APPNAME`, Git, and Neovim 0.11+.
+**Interfaces:** Consumes `VSVIM_ROOT`, `NVIM_APPNAME`, Git, and Neovim 0.13 nightly.
 Produces `require('vsvim').setup()`, configured svgtree, leader-e and Ctrl-b
 explorer mappings, and a post-defaults `user.lua` customization point.
 
@@ -181,8 +184,12 @@ print('VSVim smoke passed')
 - [ ] Create `init.lua`:
 
 ```lua
-if vim.fn.has('nvim-0.11') ~= 1 then
-  error('VSVim requires Neovim 0.11 or newer')
+local version = vim.version()
+if version.major == 0 and version.minor < 13 then
+  error('VSVim requires Neovim 0.13 nightly; set VSVIM_NVIM to its executable')
+end
+if not (vim.ui and vim.ui.img) then
+  error('VSVim requires a nightly build with vim.ui.img for SVGTree')
 end
 local root = assert(vim.env.VSVIM_ROOT, 'Start VSVim with bin/vsvim')
 vim.opt.runtimepath:prepend(root)
@@ -307,7 +314,8 @@ PR review, agent following, and the reviewer conversation are not implemented ye
 
 ## Run from a checkout
 
-Install Neovim 0.11 or newer and Git, then run `./bin/vsvim` from this checkout.
+Install Neovim 0.13 nightly and Git, then run `./bin/vsvim` from this checkout.
+The launcher uses `nvim-nightly`; set `VSVIM_NVIM` to an alternate nightly executable.
 The first launch downloads pinned plugins. Later launches reuse them.
 The launcher can also be placed on PATH through a symlink to `bin/vsvim`.
 
@@ -357,5 +365,6 @@ required; a dynamic-library loader failure happens before VSVim can start.
 
 Proceed inline with executing-plans. The user has already approved the product
 and architecture and asked to advance; do not reopen the execution-style choice.
-The first task uses a fake executable for process-level checks. The repaired
-Homebrew Neovim 0.12.6 runtime is available for Task 2.
+The first task uses a fake executable for process-level checks. The installed
+Neovim 0.13 nightly runtime is available for Task 2; repaired Homebrew stable
+is not the VSVim runtime.
