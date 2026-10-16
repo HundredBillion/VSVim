@@ -71,3 +71,10 @@ interfaces rather than adding a rendering framework.
 - macOS window screenshot capture returned `could not create image from window`.
   No screenshot-based fidelity claim is made. Native font metrics, tab border
   geometry, activity rail, and full VS Code layout remain visual follow-up work.
+
+Visual follow-up review identified a tab-selection error in split editors.
+Commit `e3d3ab6` preserves the current ordinary editor window and uses a fallback
+only from sidebar focus. The right-split regression failed before the fix and
+passed afterward; independent re-review found no remaining Important issues.
+Final suite: four tests passed in 14.580 seconds. Screen-capture preflight is
+false on this host, confirming why screenshot comparison remains unavailable.
