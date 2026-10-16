@@ -47,7 +47,7 @@ function M.setup()
     },
     {
       'HundredBillion/scm.nvim',
-      commit = 'f2ba987bdd921a6563174bf4051a823ceadf601d',
+      commit = '8aeb27e3e9b5edd824c0abe31e55f328c06ea5ef',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
       opts = { renderer = 'auto' },
@@ -88,6 +88,7 @@ function M.setup()
   vim.keymap.set('n', '<C-b>', explorer, { desc = 'Explorer' })
   vim.keymap.set('n', '<leader>gs', scm.toggle, { desc = 'Source Control' })
   vim.keymap.set('n', '<C-S-g>', scm.toggle, { desc = 'Source Control' })
+  require('vsvim.navigation').setup()
   require('vsvim.appearance').setup()
   local user = vim.fn.stdpath('config') .. '/user.lua'
   if vim.uv.fs_stat(user) then

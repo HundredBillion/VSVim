@@ -25,6 +25,8 @@ opens source control (`:ScmToggle` also works). Space-g-s works in terminals
 that cannot distinguish Ctrl-Shift-g. In SCM, Enter opens a file, h/l collapses
 or expands a repository, r refreshes, Escape returns to editing, and q closes.
 Space-e or Ctrl-b switches from SCM to SVGTree. These shortcuts also work while the native Sprite explorer is focused.
+Ctrl-h and Ctrl-l move focus left and right between editor splits and either
+sidebar, including native Sprite docks.
 
 SCM uses a native Sprite dock when available and a normal split elsewhere.
 It refreshes after editor writes, focus return, terminal exit, or r. Full live

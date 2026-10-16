@@ -112,3 +112,17 @@ patched pin: the fresh-install suite exercises Explorer -> SCM -> Explorer -> SC
 through both real plugin controllers with a fake Sprite transport. Four VSVim
 tests pass (13.646s); the complete SVGTree suite passes. Independent review's
 Space normalization and pin findings are addressed. Linux remains unverified.
+
+## Bidirectional sidebar focus
+
+Added normal-mode Ctrl-h/l navigation: move to a neighboring Neovim window first,
+then focus a native dock on that side at the editor edge. SVGTree already exposes
+native focus; SCM now exposes focus(side) and handles Ctrl-l even during a pending
+row update. Explicit editor focus prevents the initial row acknowledgement from
+stealing focus back. Pinned SCM 8aeb27e3e9b5edd824c0abe31e55f328c06ea5ef.
+
+Regressions reproduced missing Ctrl-h routing and missing SCM Ctrl-l handling.
+All five SCM test scripts pass. Four VSVim clean-install tests pass (16.871s),
+including native and terminal roundtrips for both plugins and editor split
+navigation. Independent review found no Important issues. Live Sprite focus
+requests are also exercised after hot-loading the updated mappings/plugin.
