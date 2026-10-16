@@ -70,7 +70,8 @@ VSVim uses an installed Homebrew Ruby when PATH otherwise selects Apple's old
 The real-server integration check is `VSVIM_TEST_LANGUAGE=python ./bin/vsvim
 --headless '+lua dofile("tests/lsp_servers.lua")' '+qa!'` (repeat with ruby, go,
 rust, typescript, javascript). The mouse RPC check is
-`uv run --with pynvim python tests/mouse_definition_rpc.py`.
+`uv run --with pynvim python tests/mouse_definition_rpc.py`; add `--real` to
+exercise the installed Python server and mouse-release behavior together.
 
 ## Sprite
 
