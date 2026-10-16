@@ -46,3 +46,28 @@ configuration and sibling plugin repositories were not modified.
 
 SCM replacement, the rest of the editing defaults, prism.nvim, agent-follow,
 reviewer integrations, and native editor presentation remain separate milestones.
+
+## Dark Modern and native Sprite follow-up
+
+The user approved moving directly to the visual slice after trying the initial
+foundation. This bounded change uses the existing Sprite adapter and SVGTree
+interfaces rather than adding a rendering framework.
+
+- Palette reference: VS Code `extensions/theme-defaults/themes/dark_modern.json`,
+  with inherited Dark+ syntax colors, inspected from the local VS Code source.
+- Added a reloadable colorscheme, clickable file tabs, compact status line, and
+  automatic interactive explorer opening. User configuration remains last.
+- Sprite sessions launch the installed adapter with the selected nightly binary.
+  First-use bootstrap installs the adapter before starting it. Noninteractive
+  and nested Neovim invocations retain the terminal path. `VSVIM_NATIVE=0`
+  explicitly disables the adapter.
+- Lazy runtime-path reset initially hid the new appearance module; including
+  the distro root in lazy's runtime paths fixed the observed startup failure.
+- Four automated tests pass, including native-route argument forwarding and
+  evaluated tab rendering with percent signs in filenames, buffer selection,
+  colorscheme reloading, and opening/closing the terminal explorer.
+- A real Sprite test window reports `g:sprite_session` present, the Dark Modern
+  colorscheme active, and SVGTree's public root set to the demo workspace.
+- macOS window screenshot capture returned `could not create image from window`.
+  No screenshot-based fidelity claim is made. Native font metrics, tab border
+  geometry, activity rail, and full VS Code layout remain visual follow-up work.
