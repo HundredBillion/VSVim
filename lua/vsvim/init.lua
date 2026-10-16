@@ -47,17 +47,17 @@ function M.setup()
     },
     {
       'HundredBillion/scm.nvim',
-      commit = '8aeb27e3e9b5edd824c0abe31e55f328c06ea5ef',
+      commit = 'ca4c8148e2eceb366ff7695d23bf98d303b4acb8',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
-      opts = { renderer = 'auto' },
+      opts = { renderer = 'auto', native = { colors = require('vsvim.theme').native_colors } },
     },
     {
       'HundredBillion/svgtree.nvim',
-      commit = 'd33176b24600dd36521fe1137ff8e40e84b40f71',
+      commit = '6ae2a488b9fc22901b0042340c86aaf9da2d3094',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
-      opts = { native = { mappings = {
+      opts = { native = { colors = require('vsvim.theme').native_colors, mappings = {
         ['<Space>e'] = 'close', ['<C-b>'] = 'close',
         ['<Space>gs'] = function() require('scm').toggle() end,
         ['<C-S-g>'] = function() require('scm').toggle() end,

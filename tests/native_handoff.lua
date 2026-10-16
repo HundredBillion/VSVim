@@ -10,6 +10,7 @@ package.loaded.sprite={
   on_resume=function() return function() end end,
   open=function(opts,cb)
     local dock={opts=opts,closed=false}
+    assert(opts.description.root.colors.background=='#2b2d30', 'native sidebar uses JB background')
     for _,name in ipairs({'assets','rows','state','update','focus','focus_editor'}) do
       dock[name]=function(_,...)
         if name=='focus' then focused=dock end

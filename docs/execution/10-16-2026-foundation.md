@@ -126,3 +126,20 @@ All five SCM test scripts pass. Four VSVim clean-install tests pass (16.871s),
 including native and terminal roundtrips for both plugins and editor split
 navigation. Independent review found no Important issues. Live Sprite focus
 requests are also exercised after hot-loading the updated mappings/plugin.
+
+## JB Theme default
+
+User selected the installed `kenethriera.jb-theme` and confirmed matching VS Code's
+Menlo font. Active variant: JetBrains Dark Theme, extension 1.0.35, CC0-1.0.
+Added `vsvim-jb-dark`, source notes, and a Menlo 12 Sprite profile. The previous
+colorscheme remains available. Native palette overrides are opt-in for both
+plugins, pinned to SVGTree 6ae2a488b9fc22901b0042340c86aaf9da2d3094 and SCM
+ca4c8148e2eceb366ff7695d23bf98d303b4acb8.
+
+Four VSVim tests pass (13.792s), including native background and syntax palette
+checks. Both plugins' targeted native view tests pass; independent palette review
+found no material errors. Sprite parsed the bundled config without complaints.
+Created the previously absent ~/.config/sprite/config.toml from that profile and
+reloaded it in the live window. Runtime inspection confirms Menlo 12, editor
+#1e1f22, native sidebar #2b2d30 and the new colorscheme. Physical screenshot
+comparison remains unavailable; TextMate-to-Neovim scope mapping is approximate.

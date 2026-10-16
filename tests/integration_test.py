@@ -8,10 +8,10 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 NIGHTLY = shutil.which(os.environ.get('VSVIM_NVIM', 'nvim-nightly'))
 PINS = {
-    'scm.nvim': '8aeb27e3e9b5edd824c0abe31e55f328c06ea5ef',
+    'scm.nvim': 'ca4c8148e2eceb366ff7695d23bf98d303b4acb8',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
     'sprite.nvim': '05adda83c090da78f4faf30bdae3b678990d2b0e',
-    'svgtree.nvim': 'd33176b24600dd36521fe1137ff8e40e84b40f71',
+    'svgtree.nvim': '6ae2a488b9fc22901b0042340c86aaf9da2d3094',
 }
 
 

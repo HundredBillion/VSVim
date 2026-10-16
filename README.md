@@ -2,7 +2,7 @@
 
 An independent Neovim distribution for reading and reviewing agent-written code.
 
-This development milestone provides isolated startup, a VS Code Dark Modern
+This development milestone provides isolated startup, a JetBrains Dark Theme
 theme, file tabs, status line, the svgtree explorer, and a Snacks-free SCM sidebar.
 PR review, agent following, and the reviewer conversation are not implemented yet.
 
@@ -41,8 +41,11 @@ the adapter before opening the editor. Other terminals retain normal Neovim
 rendering. Set `VSVIM_NATIVE=0` to force the terminal path. Headless, embedded,
 script, help, and version invocations bypass the native adapter.
 
-The palette follows VS Code Dark Modern: dark gray editor, darker sidebar and
-tabs, blue mode accent, and familiar syntax colors. Click file tabs to switch
+The palette follows the VS Code extension `kenethriera.jb-theme` (JetBrains Dark
+Theme): charcoal editor, gray sidebars, orange keywords, green strings, and
+blue functions. See [theme sources and font setup](docs/themes/jb-theme.md).
+For the matching Menlo 12 font in Sprite, launch with
+`sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout. Click file tabs to switch
 buffers. The explorer opens by default in interactive sessions; put
 `vim.g.vsvim_auto_explorer = false` in `user.lua` to disable that behavior.
 User overrides run after appearance setup, so a different colorscheme can be

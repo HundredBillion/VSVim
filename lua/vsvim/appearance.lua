@@ -40,7 +40,7 @@ function M.statusline()
 end
 
 function M.setup()
-  vim.cmd('colorscheme vsvim-dark-modern')
+  vim.cmd('colorscheme vsvim-jb-dark')
   vim.opt.showtabline = 2
   vim.opt.laststatus = 3
   vim.opt.showmode = false
