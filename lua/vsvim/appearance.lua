@@ -52,6 +52,10 @@ function M.setup()
   vim.opt.statusline = "%!v:lua.require('vsvim.appearance').statusline()"
   _G.VSVimSelectBuffer = function(buffer, _, button)
     if button ~= 'l' or not vim.api.nvim_buf_is_valid(buffer) then return end
+    if vim.bo.buftype == '' then
+      vim.api.nvim_set_current_buf(buffer)
+      return
+    end
     for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
       if vim.bo[vim.api.nvim_win_get_buf(win)].buftype == '' then
         vim.api.nvim_set_current_win(win)
