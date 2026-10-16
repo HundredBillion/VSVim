@@ -33,6 +33,45 @@ It refreshes after editor writes, focus return, terminal exit, or r. Full live
 PR diffs, deleted-file history and instant external-change watching await prism;
 this milestone lists repository changes using SCM's default-branch baseline.
 
+## Go to definition and languages
+
+Command-left-click (macOS) or Super-left-click (Linux) on a function or method
+opens its definition and places the cursor at column one of that line. `gd`
+performs the same action at the cursor; `Ctrl-o` returns to the previous location.
+Multiple distinct definitions open a chooser. Ordinary terminals can use `gd`
+even when they do not forward Command/Super mouse events.
+
+VSVim includes pinned Mason, mason-lspconfig, and nvim-lspconfig plugins. The first
+interactive launch installs these servers in VSVim's own data directory:
+
+| Languages | Server |
+| --- | --- |
+| Python | Pyright |
+| Ruby | Ruby LSP |
+| Go | gopls |
+| Rust | rust-analyzer |
+| TypeScript, JavaScript (including TSX/JSX) | TypeScript language server |
+
+Server downloads and first project indexing take time. Use `:Mason` to inspect
+installation progress, `:VSVimInstallLsp` to retry installation, and
+`:checkhealth vim.lsp` to inspect attached servers. Headless startup does not
+install servers automatically; the install command also works for provisioning.
+Server releases come from Mason's registry; plugin revisions are pinned, but
+server releases are not frozen by the distro.
+
+Language runtimes/toolchains still need to be available: Node/npm (the tested
+TypeScript server requires Node 22.22.2 or newer), modern Ruby/Bundler, Go, and
+Rust/Cargo with rust-src. Projects need their normal dependencies and configuration.
+Ruby projects with a Gemfile need a Gemfile.lock (`bundle install`). Ruby LSP's
+support bundle uses VSVim's data directory unless `BUNDLE_PATH` is set. On macOS,
+VSVim uses an installed Homebrew Ruby when PATH otherwise selects Apple's old
+`/usr/bin/ruby`; it preserves Ruby version managers already selected on PATH.
+
+The real-server integration check is `VSVIM_TEST_LANGUAGE=python ./bin/vsvim
+--headless '+lua dofile("tests/lsp_servers.lua")' '+qa!'` (repeat with ruby, go,
+rust, typescript, javascript). The mouse RPC check is
+`uv run --with pynvim python tests/mouse_definition_rpc.py`.
+
 ## Sprite
 
 Inside an eligible Sprite pane, the launcher automatically starts the native

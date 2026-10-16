@@ -8,6 +8,9 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 NIGHTLY = shutil.which(os.environ.get('VSVIM_NVIM', 'nvim-nightly'))
 PINS = {
+    'nvim-lspconfig': '45a3a444b710511c39abca3b60bb6e23a21e3de5',
+    'mason.nvim': '2a6940af80375532e5e9e7c1f2fc6319a1b7a69d',
+    'mason-lspconfig.nvim': '00b5473cca4db5b410ff4bae724e3b6e21f2687f',
     'scm.nvim': 'ca4c8148e2eceb366ff7695d23bf98d303b4acb8',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
     'sprite.nvim': '4a389e776010ef5c0bb31544061f666739c5c08e',
@@ -50,6 +53,14 @@ class IntegrationTest(unittest.TestCase):
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(scm_script) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
             self.assertIn('VSVim SCM passed', output)
+            definition_script = str(ROOT / 'tests/definition.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(definition_script) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('VSVim definition navigation passed', output)
+            setup_script = str(ROOT / 'tests/lsp_setup.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(setup_script) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('VSVim LSP installation lifecycle passed', output)
             native_script = str(ROOT / 'tests/native_handoff.lua')
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(native_script) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
