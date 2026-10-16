@@ -41,12 +41,17 @@ Inspected on 2026-10-16:
 | svgtree | Local clean checkout `13567cc93a71a49eedcf5b82b68fda93874b286e`; existing `setup`, `SvgTreeToggle`, and native mapping configuration. Verify the commit is fetchable from its remote during installation. |
 | sprite.nvim | Local clean checkout `05adda83c090da78f4faf30bdae3b678990d2b0e`; existing Lua API and separate `bin/sprite-nvim` executable. Loading the plugin alone does not activate its native grid adapter. |
 
-The installed `/opt/homebrew/bin/nvim` currently aborts before startup because
-its Neovim 0.12.2 binary references missing `libtree-sitter.0.26.dylib`; installed
-Tree-sitter is 0.27.1. This is an environment precondition, not a VSVim failure.
-Use a verified isolated Neovim runtime on PATH for implementation checks, or
-repair the installed package through its package manager. Do not fake ABI
-compatibility with a dylib symlink. No Lua execution has been verified yet.
+The original Homebrew Neovim 0.12.2 binary failed because it referenced
+Tree-sitter 0.26 while Homebrew linked 0.27. On 2026-10-16, upgrading Neovim
+through Homebrew installed 0.12.6 linked against Tree-sitter 0.27. Both
+`nvim --version` and a clean headless Lua Tree-sitter parse now pass. No ABI
+symlink workaround was used. The foundation's proposed Lua code still requires
+its own implementation checks.
+
+The svgtree remote was fetched on the same date: tag `v2.0.0` and remote master
+both resolve to the pinned `13567cc93a71a49eedcf5b82b68fda93874b286e`. The local
+checkout and installed Neovim plugin match that revision. Its full image-capable
+test suite requires Neovim 0.13 nightly; stable Neovim uses supported fallbacks.
 
 ## Files and interfaces
 
@@ -352,5 +357,5 @@ required; a dynamic-library loader failure happens before VSVim can start.
 
 Proceed inline with executing-plans. The user has already approved the product
 and architecture and asked to advance; do not reopen the execution-style choice.
-The first task has no dependency on the broken Neovim binary and can be tested
-with the fake executable while an isolated runtime is prepared for Task 2.
+The first task uses a fake executable for process-level checks. The repaired
+Homebrew Neovim 0.12.6 runtime is available for Task 2.
