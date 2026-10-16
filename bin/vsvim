@@ -1,0 +1,19 @@
+#!/bin/sh
+set -eu
+self=$0
+case "$self" in
+  /*) ;;
+  */*) self="$PWD/$self" ;;
+  *) self=$(command -v "$self") ;;
+esac
+while [ -L "$self" ]; do
+  link=$(readlink "$self")
+  case "$link" in
+    /*) self=$link ;;
+    *) self="$(dirname "$self")/$link" ;;
+  esac
+done
+VSVIM_ROOT=$(CDPATH= cd -- "$(dirname "$self")/.." && pwd -P)
+export VSVIM_ROOT
+export NVIM_APPNAME=vsvim
+exec "${VSVIM_NVIM:-nvim-nightly}" -u "$VSVIM_ROOT/init.lua" "$@"
