@@ -54,7 +54,7 @@ function M.setup()
     },
     {
       'HundredBillion/svgtree.nvim',
-      commit = '6ae2a488b9fc22901b0042340c86aaf9da2d3094',
+      commit = 'cbf3302905e20cd9b7ec7a15c31287e2d51e681e',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
       opts = { native = { colors = require('vsvim.theme').native_colors, mappings = {

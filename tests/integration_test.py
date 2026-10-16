@@ -11,7 +11,7 @@ PINS = {
     'scm.nvim': 'ca4c8148e2eceb366ff7695d23bf98d303b4acb8',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
     'sprite.nvim': '4a389e776010ef5c0bb31544061f666739c5c08e',
-    'svgtree.nvim': '6ae2a488b9fc22901b0042340c86aaf9da2d3094',
+    'svgtree.nvim': 'cbf3302905e20cd9b7ec7a15c31287e2d51e681e',
 }
 
 
