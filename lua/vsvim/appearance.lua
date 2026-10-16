@@ -21,6 +21,7 @@ function M.setup()
   vim.cmd('colorscheme vsvim-jb-dark')
   vim.opt.showtabline = 2
   vim.opt.laststatus = 3
+  vim.opt.cmdheight = 0
   vim.opt.showmode = false
   vim.opt.cursorline = true
   vim.opt.wrap = false
