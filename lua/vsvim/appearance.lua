@@ -7,9 +7,11 @@ end
 function M.tabline()
   local parts = {}
   for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-    if vim.bo[vim.api.nvim_win_get_buf(win)].filetype == 'svgtree' then
+    local ft = vim.bo[vim.api.nvim_win_get_buf(win)].filetype
+    if ft == 'svgtree' or ft == 'scm' then
       local width = vim.api.nvim_win_get_width(win)
-      parts[#parts + 1] = '%#TabLineFill# EXPLORER' .. string.rep(' ', math.max(0, width - 8))
+      local label = ft == 'scm' and 'SOURCE CONTROL' or 'EXPLORER'
+      parts[#parts + 1] = '%#TabLineFill# ' .. label .. string.rep(' ', math.max(0, width - #label))
       break
     end
   end

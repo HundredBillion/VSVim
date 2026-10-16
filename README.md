@@ -3,7 +3,7 @@
 An independent Neovim distribution for reading and reviewing agent-written code.
 
 This development milestone provides isolated startup, a VS Code Dark Modern
-theme, file tabs, status line, and the svgtree explorer.
+theme, file tabs, status line, the svgtree explorer, and a Snacks-free SCM sidebar.
 PR review, agent following, and the reviewer conversation are not implemented yet.
 
 ## Run from a checkout
@@ -20,7 +20,17 @@ configuration directory. Create `user.lua` there for settings loaded after defau
 ## Controls
 
 Use normal Neovim editing modes. Space is the leader. Press Space then e,
-or Ctrl-b, to toggle the explorer. `:SvgTreeToggle` is also available.
+or Ctrl-b, to toggle the explorer. From the editor, Space-g-s or Ctrl-Shift-g
+opens source control (`:ScmToggle` also works). Space-g-s works in terminals
+that cannot distinguish Ctrl-Shift-g. In SCM, Enter opens a file, h/l collapses
+or expands a repository, r refreshes, Escape returns to editing, and q closes.
+Space-e or Ctrl-b switches from SCM to SVGTree. From the native explorer,
+return focus to the editor before using the SCM shortcut.
+
+SCM uses a native Sprite dock when available and a normal split elsewhere.
+It refreshes after editor writes, focus return, terminal exit, or r. Full live
+PR diffs, deleted-file history and instant external-change watching await prism;
+this milestone lists repository changes using SCM's default-branch baseline.
 
 ## Sprite
 

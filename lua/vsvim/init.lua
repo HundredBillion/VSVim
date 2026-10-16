@@ -46,6 +46,13 @@ function M.setup()
       lazy = false,
     },
     {
+      'HundredBillion/scm.nvim',
+      commit = 'f2ba987bdd921a6563174bf4051a823ceadf601d',
+      lazy = false,
+      dependencies = { 'HundredBillion/sprite.nvim' },
+      opts = { renderer = 'auto' },
+    },
+    {
       'HundredBillion/svgtree.nvim',
       commit = '13567cc93a71a49eedcf5b82b68fda93874b286e',
       lazy = false,
@@ -63,13 +70,22 @@ function M.setup()
   })
   local sprite_ok, sprite = pcall(require, 'sprite')
   local tree_ok, tree = pcall(require, 'svgtree')
+  local scm_ok, scm = pcall(require, 'scm')
   if not sprite_ok or type(sprite.available) ~= 'function'
     or not tree_ok or type(tree.toggle) ~= 'function'
-    or vim.fn.exists(':SvgTreeToggle') ~= 2 then
+    or vim.fn.exists(':SvgTreeToggle') ~= 2
+    or not scm_ok or type(scm.handoff) ~= 'function'
+    or vim.fn.exists(':ScmToggle') ~= 2 then
     error('VSVim required plugins unavailable; check the plugin installation errors and retry')
   end
-  vim.keymap.set('n', '<leader>e', '<cmd>SvgTreeToggle<cr>', { desc = 'Explorer' })
-  vim.keymap.set('n', '<C-b>', '<cmd>SvgTreeToggle<cr>', { desc = 'Explorer' })
+  local function explorer()
+    local root = tree.root() or require('scm.scope').current()
+    scm.handoff(function() tree.toggle(root) end)
+  end
+  vim.keymap.set('n', '<leader>e', explorer, { desc = 'Explorer' })
+  vim.keymap.set('n', '<C-b>', explorer, { desc = 'Explorer' })
+  vim.keymap.set('n', '<leader>gs', scm.toggle, { desc = 'Source Control' })
+  vim.keymap.set('n', '<C-S-g>', scm.toggle, { desc = 'Source Control' })
   require('vsvim.appearance').setup()
   local user = vim.fn.stdpath('config') .. '/user.lua'
   if vim.uv.fs_stat(user) then

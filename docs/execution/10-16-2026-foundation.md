@@ -78,3 +78,23 @@ only from sidebar focus. The right-split regression failed before the fix and
 passed afterward; independent re-review found no remaining Important issues.
 Final suite: four tests passed in 14.580 seconds. Screen-capture preflight is
 false on this host, confirming why screenshot comparison remains unavailable.
+
+## SCM integration (milestone 1b)
+
+Bundled scm.nvim f2ba987bdd921a6563174bf4051a823ceadf601d, published on
+HundredBillion/scm.nvim feat/standalone-sidebar (draft PR #1). Opts select the
+Snacks-free auto renderer. Space-g-s / Ctrl-Shift-g open source control;
+Space-e / Ctrl-b hand off to SVGTree. Terminal tabline identifies SOURCE CONTROL.
+
+The new clean-install integration check lists real Git changes, checks mutual
+exclusion with SVGTree and no Snacks loading, and preserves the captured repo
+root when cwd changes before returning to explorer. Required command/API checks
+include SCM. The installed local VSVim profile has been synced to the pin.
+
+SCM's separate five-script suite passed. A live Sprite dock acknowledged nine
+repository/file rows without error. Independent integration review found no
+Important issues; the subsequent cwd-change regression failed before its fix
+and passed after. Linux runtime and screenshot comparison remain unverified.
+Full live PR diffs, deleted-file history, instant filesystem watching, CRP and
+agent following remain later milestones; current refresh triggers are writes,
+focus return, terminal exit and r.

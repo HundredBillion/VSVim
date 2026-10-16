@@ -8,6 +8,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 NIGHTLY = shutil.which(os.environ.get('VSVIM_NVIM', 'nvim-nightly'))
 PINS = {
+    'scm.nvim': 'f2ba987bdd921a6563174bf4051a823ceadf601d',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
     'sprite.nvim': '05adda83c090da78f4faf30bdae3b678990d2b0e',
     'svgtree.nvim': '13567cc93a71a49eedcf5b82b68fda93874b286e',
@@ -44,6 +45,11 @@ class IntegrationTest(unittest.TestCase):
                     ['git', '-C', str(root / 'data/vsvim/lazy' / name),
                      'rev-parse', 'HEAD'], text=True).strip()
                 self.assertEqual(actual, commit, name)
+            import json
+            scm_script = str(ROOT / 'tests/scm.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(scm_script) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('VSVim SCM passed', output)
             tools = root / 'bin'
             tools.mkdir()
             (tools / 'dirname').symlink_to(shutil.which('dirname'))
@@ -58,7 +64,7 @@ class IntegrationTest(unittest.TestCase):
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
             self.assertIn('VSVim appearance passed', output)
             self.assertEqual(sentinel.read_bytes(), original)
-            for name in ('sprite.nvim', 'svgtree.nvim'):
+            for name in ('sprite.nvim', 'svgtree.nvim', 'scm.nvim'):
                 shutil.rmtree(root / 'data/vsvim/lazy' / name)
             git = tools / 'git'
             git.write_text('#!/bin/sh\necho "simulated offline clone failure" >&2\nexit 1\n')
