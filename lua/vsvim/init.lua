@@ -42,7 +42,7 @@ function M.setup()
     { 'folke/lazy.nvim', commit = '85c7ff3711b730b4030d03144f6db6375044ae82' },
     {
       'HundredBillion/sprite.nvim',
-      commit = '05adda83c090da78f4faf30bdae3b678990d2b0e',
+      commit = '4a389e776010ef5c0bb31544061f666739c5c08e',
       lazy = false,
     },
     {

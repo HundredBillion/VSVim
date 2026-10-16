@@ -45,11 +45,15 @@ The palette follows the VS Code extension `kenethriera.jb-theme` (JetBrains Dark
 Theme): charcoal editor, gray sidebars, orange keywords, green strings, and
 blue functions. See [theme sources and font setup](docs/themes/jb-theme.md).
 For the matching Menlo 12 font in Sprite, launch with
-`sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout. Click file tabs to switch
-buffers, click × (or middle-click a tab) to close, and use the arrows to reach
-overflowing tabs. Modified files show a dot and ask before closing. File-type
-symbols work with Menlo; full SVG tab icons and VS Code’s taller native tab bar
-are not yet supported by Sprite’s editor-grid adapter. The explorer opens by default in interactive sessions; put
+`sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout.
+Sprite builds advertising `grid-tabs-v1` show 35-pixel native file tabs with
+SVGTree's SVG icons and the JB palette. Click a tab to select its buffer; click
+its close control to close it. Modified files ask before closing. Scroll the
+strip horizontally when tabs overflow; selecting a buffer keeps its tab visible.
+Ordinary terminals and older Sprite versions keep the one-row tabline with
+Menlo-compatible symbols, close controls, and overflow arrows. After upgrading
+Sprite, open a new Sprite process to use the native strip; existing windows
+keep running with their original host. The explorer opens by default; put
 `vim.g.vsvim_auto_explorer = false` in `user.lua` to disable that behavior.
 User overrides run after appearance setup, so a different colorscheme can be
 selected there.

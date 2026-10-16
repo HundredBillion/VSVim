@@ -54,3 +54,14 @@ assert(narrow:find('overflow%-12.lua'), 'active tab remains visible during overf
 assert(narrow:find('×',1,true), 'file tabs have close buttons')
 vim.o.columns=saved_columns
 print('VSVim appearance passed')
+local native = require('vsvim.tabs').native_snapshot()
+assert(native.height == 35)
+assert(native.colors.active_background == '#1e1f22')
+local found_icon = false
+for _, item in ipairs(native.items) do
+  if item.label:find('lua', 1, true) and item.icon then
+    assert(item.icon:find('<svg', 1, true), 'native tabs use SVG source')
+    found_icon = true
+  end
+end
+assert(found_icon, 'native tabs resolve SVGTree icons')

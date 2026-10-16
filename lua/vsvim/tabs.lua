@@ -128,7 +128,41 @@ function M.render()
   if last<#all then parts[#parts+1]='%#TabLine#%'..all[last+1].bufnr..'@v:lua.VSVimSelectBuffer@ › %T' end
   return table.concat(parts)..'%#TabLineFill#%='
 end
+local svg_cache = {}
+local function svg_icon(name)
+  local config = require('svgtree.config').resolved()
+  if not config or not config.theme then return nil end
+  local pack = require('svgtree.pack')
+  local id = pack.resolve(config.theme, vim.fn.fnamemodify(name, ':t'), 'file', false,
+    { parent = vim.fn.fnamemodify(name, ':h:t') })
+  local path = id and pack.icon_svg(config.theme, config.dir, id)
+  if not path then return nil end
+  if svg_cache[path] == nil then
+    local stat = vim.uv.fs_stat(path)
+    local file = stat and stat.size <= 65536 and io.open(path, 'rb')
+    svg_cache[path] = file and file:read('*a') or false
+    if file then file:close() end
+  end
+  return svg_cache[path] or nil
+end
+function M.native_snapshot()
+  if vim.bo.buftype == '' then last_editor_buffer = vim.api.nvim_get_current_buf() end
+  local items = {}
+  for _, b in ipairs(buffers()) do
+    local ok, icon = pcall(svg_icon, b.name)
+    items[#items + 1] = { buffer = b.bufnr, label = b.label,
+      modified = vim.bo[b.bufnr].modified, icon = ok and icon or nil }
+  end
+  return { items = items, active = last_editor_buffer, height = 35,
+    colors = require('vsvim.theme').tab_colors }
+end
 function M.setup()
+  local ok, native = pcall(require, 'sprite.tabs')
+  if ok then
+    native.setup({ snapshot = M.native_snapshot,
+      select = function(buffer) M.select(buffer, nil, 'l') end,
+      close = M.close })
+  end
   _G.VSVimSelectBuffer=M.select
   _G.VSVimCloseBuffer=M.close
   local function highlights()
