@@ -54,11 +54,13 @@ function M.setup()
     },
     {
       'HundredBillion/svgtree.nvim',
-      commit = '13567cc93a71a49eedcf5b82b68fda93874b286e',
+      commit = 'd33176b24600dd36521fe1137ff8e40e84b40f71',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
       opts = { native = { mappings = {
         ['<Space>e'] = 'close', ['<C-b>'] = 'close',
+        ['<Space>gs'] = function() require('scm').toggle() end,
+        ['<C-S-g>'] = function() require('scm').toggle() end,
       } } },
     },
   }, {

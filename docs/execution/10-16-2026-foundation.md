@@ -98,3 +98,17 @@ and passed after. Linux runtime and screenshot comparison remain unverified.
 Full live PR diffs, deleted-file history, instant filesystem watching, CRP and
 agent following remain later milestones; current refresh triggers are writes,
 focus return, terminal exit and r.
+
+## Native sidebar shortcut correction
+
+The native SVGTree dock did not receive Neovim mappings. Added callback mappings
+for Space-g-s / Ctrl-Shift-g and pinned SVGTree d33176b24600dd36521fe1137ff8e40e84b40f71
+(draft svgtree.nvim PR #24). SVGTree accepts callbacks during normal and pending
+structure updates and normalizes Space key events consistently. No SCM behavior
+change was needed.
+
+Regression tests first reproduced missing native handoff, then passed with the
+patched pin: the fresh-install suite exercises Explorer -> SCM -> Explorer -> SCM
+through both real plugin controllers with a fake Sprite transport. Four VSVim
+tests pass (13.646s); the complete SVGTree suite passes. Independent review's
+Space normalization and pin findings are addressed. Linux remains unverified.

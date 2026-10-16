@@ -11,7 +11,7 @@ PINS = {
     'scm.nvim': 'f2ba987bdd921a6563174bf4051a823ceadf601d',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
     'sprite.nvim': '05adda83c090da78f4faf30bdae3b678990d2b0e',
-    'svgtree.nvim': '13567cc93a71a49eedcf5b82b68fda93874b286e',
+    'svgtree.nvim': 'd33176b24600dd36521fe1137ff8e40e84b40f71',
 }
 
 
@@ -50,6 +50,10 @@ class IntegrationTest(unittest.TestCase):
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(scm_script) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
             self.assertIn('VSVim SCM passed', output)
+            native_script = str(ROOT / 'tests/native_handoff.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(native_script) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('VSVim native handoff passed', output)
             tools = root / 'bin'
             tools.mkdir()
             (tools / 'dirname').symlink_to(shutil.which('dirname'))
