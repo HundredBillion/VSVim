@@ -26,7 +26,7 @@ From this VSVim checkout, run the first-rows benchmark with an explicit SVGTree 
 
 It emits five JSON records (one initial opening and four warm openings). `first_rows_ms` measures the first rows request and `focus_request_ms` observes the focus request, not its acknowledgement or visible paint. The Sprite API is a scheduled fake host; no Sprite process or sprite.nvim checkout is required. Use the same root and runtime to compare revisions. Initial opening does not mean an OS-cold filesystem. Each trial closes immediately at the focus request, potentially cancelling background refresh; controller regressions separately cover refresh completion.
 
-Recorded revisions: SVGTree `cbf3302` → `bb38c8c`, SCM `ca4c814` → `1fd6895`, sprite.nvim `24d0ea0` → `010f898`. Timings came from one local macOS Projects directory with 28 rows and Neovim `v0.13.0-dev-761+g0639f6e41a`; they are illustrative samples, not latency guarantees.
+Recorded revisions: SVGTree `cbf3302` → `bb38c8c`, SCM `ca4c814` → `1fd6895`, sprite.nvim `24d0ea0` → `4fae5bd`. Timings came from one local macOS Projects directory with 28 rows and Neovim `v0.13.0-dev-761+g0639f6e41a`; they are illustrative samples, not latency guarantees.
 
 Use the actual Neovim 0.13 nightly binary with `-u NONE -i NONE`, rather than a wrapper that loads VSVim implicitly.
 

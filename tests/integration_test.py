@@ -13,7 +13,7 @@ PINS = {
     'mason-lspconfig.nvim': '00b5473cca4db5b410ff4bae724e3b6e21f2687f',
     'scm.nvim': '1fd6895a7b495796c469fd3a5c5ee306dcae3382',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
-    'sprite.nvim': '010f898b7ac2a9a46078168700e5cffbbfbea220',
+    'sprite.nvim': '4fae5bdaf18504cfde83c75e9743b93f0fd21058',
     'svgtree.nvim': 'bb38c8c837b2e077da861500cf1e5f8f18f0d41d',
 }
 
