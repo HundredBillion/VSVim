@@ -56,7 +56,11 @@ function M.setup()
       commit = 'ca4c8148e2eceb366ff7695d23bf98d303b4acb8',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
-      opts = { renderer = 'auto', native = { colors = require('vsvim.theme').native_colors } },
+      opts = {
+        renderer = 'auto',
+        on_explorer = function(root) require('vsvim.sidebar').explorer(root) end,
+        native = { colors = require('vsvim.theme').native_colors },
+      },
     },
     {
       'HundredBillion/svgtree.nvim',
@@ -64,9 +68,10 @@ function M.setup()
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
       opts = { native = { colors = require('vsvim.theme').native_colors, mappings = {
-        ['<Space>e'] = 'close', ['<C-b>'] = 'close',
-        ['<Space>gs'] = function() require('scm').toggle() end,
-        ['<C-S-g>'] = function() require('scm').toggle() end,
+        ['<Space>e'] = function() require('vsvim.sidebar').explorer() end,
+        ['<C-b>'] = function() require('vsvim.sidebar').explorer() end,
+        ['<Space>gs'] = function() require('vsvim.sidebar').scm() end,
+        ['<C-S-g>'] = function() require('vsvim.sidebar').scm() end,
       } } },
     },
   }, {
@@ -86,14 +91,11 @@ function M.setup()
     or vim.fn.exists(':ScmToggle') ~= 2 then
     error('VSVim required plugins unavailable; check the plugin installation errors and retry')
   end
-  local function explorer()
-    local root = tree.root() or require('scm.scope').current()
-    scm.handoff(function() tree.toggle(root) end)
-  end
-  vim.keymap.set('n', '<leader>e', explorer, { desc = 'Explorer' })
-  vim.keymap.set('n', '<C-b>', explorer, { desc = 'Explorer' })
-  vim.keymap.set('n', '<leader>gs', scm.toggle, { desc = 'Source Control' })
-  vim.keymap.set('n', '<C-S-g>', scm.toggle, { desc = 'Source Control' })
+  local sidebar = require('vsvim.sidebar')
+  vim.keymap.set('n', '<leader>e', sidebar.explorer, { desc = 'Explorer' })
+  vim.keymap.set('n', '<C-b>', sidebar.explorer, { desc = 'Explorer' })
+  vim.keymap.set('n', '<leader>gs', sidebar.scm, { desc = 'Source Control' })
+  vim.keymap.set('n', '<C-S-g>', sidebar.scm, { desc = 'Source Control' })
   require('vsvim.lsp').setup()
   require('vsvim.navigation').setup()
   require('vsvim.appearance').setup()

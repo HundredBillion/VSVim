@@ -48,9 +48,7 @@ function M.setup()
       require('vsvim.welcome').open_on_startup()
       if vim.g.vsvim_auto_explorer == false or #vim.api.nvim_list_uis() == 0 then return end
       vim.schedule(function()
-        local win = vim.api.nvim_get_current_win()
-        require('svgtree').open(vim.fn.getcwd())
-        if vim.api.nvim_win_is_valid(win) then vim.api.nvim_set_current_win(win) end
+        require('vsvim.sidebar').explorer(vim.fn.getcwd(), {open=true, focus=false})
       end)
     end,
   })

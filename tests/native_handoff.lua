@@ -3,6 +3,7 @@ vim.fn.mkdir(root,'p')
 vim.fn.writefile({'return true'},root..'/sample.lua')
 local docks={}
 local focused
+local held
 local function done(cb) if type(cb)=='function' then vim.schedule(function() cb(nil) end) end end
 package.loaded.sprite={
   available=function(cb) vim.schedule(function() cb(nil,{features={'owned-dock-v1','virtual-list-v1','svg-assets-v1','dock-resize-v1'}}) end); return function() end end,
@@ -20,7 +21,8 @@ package.loaded.sprite={
     end
     function dock:close() self.closed=true; opts.on_close({kind='requested'}) end
     docks[#docks+1]=dock
-    vim.schedule(function() cb(nil,dock) end)
+    if held then held[#held+1]=function() cb(nil,dock) end
+    else vim.schedule(function() cb(nil,dock) end) end
     return function() end
   end,
 }
@@ -68,6 +70,49 @@ assert(scm.closed,'explorer closes native SCM')
 keys(explorer,{'space','g','s'})
 scm=wait_for('SOURCE CONTROL')
 assert(explorer.closed,'second switch closes explorer')
-require('scm').handoff(function() end)
+local function mapped(key) vim.fn.maparg(key,'n',false,true).callback() end
+keys(scm,{'space','e'})
+mapped('<leader>gs')
+scm=wait_for('SOURCE CONTROL')
+assert(tree.root()==nil, 'latest SCM request cancels deferred Explorer handoff')
+for _,dock in ipairs(docks) do
+  assert(dock==scm or dock.closed, 'only latest requested sidebar survives')
+end
+assert(not require('vsvim.sidebar').focus('right'), 'left native sidebar rejects right focus')
+local editor=vim.api.nvim_get_current_win()
+vim.cmd.cd(vim.env.VSVIM_ROOT)
+mapped('<leader>e')
+explorer=wait_for('EXPLORER')
+assert(tree.root()==vim.uv.fs_realpath(root), 'native handoff preserves root after cwd changes')
+roundtrip(explorer)
+assert(vim.api.nvim_get_current_win()==editor, 'native roundtrip preserves editor target')
+keys(explorer,{'space','e'})
+assert(vim.wait(1000,function() return explorer.closed end), 'native Explorer action closes Explorer')
+mapped('<leader>e')
+explorer=wait_for('EXPLORER')
+assert(tree.root()==vim.uv.fs_realpath(root), 'Explorer reopens at remembered root')
+mapped('<leader>gs')
+scm=wait_for('SOURCE CONTROL')
+mapped('<leader>gs')
+assert(scm.closed, 'SCM toggles closed')
+held={}
+mapped('<leader>e')
+assert(vim.wait(1000,function() return #held==1 end), 'Explorer open callback is pending')
+mapped('<leader>gs')
+assert(vim.wait(1000,function() return #held==2 end), 'SCM open callback is pending')
+mapped('<leader>e')
+assert(vim.wait(1000,function() return #held==3 end), 'replacement Explorer callback is pending')
+local callbacks=held
+held=nil
+for i=#callbacks,1,-1 do callbacks[i]() end
+explorer=wait_for('EXPLORER')
+for _,dock in ipairs(docks) do
+  assert(dock==explorer or dock.closed, 'late open callbacks cannot revive replaced sidebars')
+end
+assert(tree.root()==vim.uv.fs_realpath(root), 'rapid requests preserve root')
+roundtrip(explorer)
+require('vsvim.sidebar').explorer()
+assert(vim.wait(1000,function() return tree.root()==nil end), 'coordinator closes Explorer')
+
 vim.fn.delete(root,'rf')
 print('VSVim native handoff passed')

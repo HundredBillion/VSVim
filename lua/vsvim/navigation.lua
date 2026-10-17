@@ -6,8 +6,7 @@ function M.setup()
       vim.cmd('wincmd ' .. direction)
       if vim.api.nvim_get_current_win() ~= before then return end
       local side=direction=='h' and 'left' or 'right'
-      if require('svgtree').focus(side) then return end
-      require('scm').focus(side)
+      require('vsvim.sidebar').focus(side)
     end, {desc=direction=='h' and 'Focus left' or 'Focus right'})
   end
 end
