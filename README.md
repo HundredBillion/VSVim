@@ -114,6 +114,9 @@ Run `python3 -m unittest discover -s tests -p '*_test.py'` with Neovim nightly
 and Git on PATH. Integration checks download pinned plugins into a temporary
 profile, verify the explorer and user overrides, then check cached startup
 without Git. They do not use your normal Neovim configuration.
+Use `VSVIM_NVIM=/path/to/nvim` to select an actual nightly binary.
+See [performance evidence and reproduction](docs/performance.md) for the
+Explorer benchmark and plugin job-count checks.
 
 Tested locally on macOS with Neovim `0.13.0-dev-761+g0639f6e41a`. Linux runtime
 validation has not run. Native Sprite startup was exercised, but screenshot
