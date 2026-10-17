@@ -3,6 +3,11 @@ family = "Menlo"
 size = 12
 line_height = 1.5
 
+[surface_font]
+family = "Menlo"
+size = 12
+line_height = 1.5
+
 [colors]
 background = "#1e1f22"
 foreground = "#bcbec4"

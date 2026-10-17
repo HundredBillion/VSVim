@@ -13,10 +13,18 @@ retain the existing VS Code-style defaults.
 
 The extension specifies no font. With no VS Code font override, macOS uses
 Menlo 12; Linux uses Droid Sans Mono 14 with monospace fallback. Sprite owns the
-editor font; Neovim cannot change an ordinary terminal's font. The bundled
-`extras/sprite-jb.toml` selects Menlo 12 with a 1.5 line-height ratio (18-pixel rows), matching VS Code
-on macOS. Code wrapping is disabled by default; use `:set wrap` to enable it. Choose an installed
-monospace family on Linux. Native sidebar text retains the system UI font,
-matching VS Code's workbench.
+native grid font through `[surface_font]`; `[font]` controls the terminal, including
+Neovim running as an ordinary terminal program. The bundled `extras/sprite-jb.toml`
+sets both sections to Menlo 12 with a 1.5 line-height ratio (18-pixel rows), matching
+VS Code on macOS. Choose an installed monospace family on Linux.
+
+To change native editor text independently, edit `[surface_font]` and reload
+Sprite's configuration. Removing the entire section makes native grids inherit
+`[font]`. An explicit section uses Sprite's font defaults for omitted fields:
+a discovered monospace family, size 14, and line height 8/7. Window zoom adds the
+same size delta to both configured fonts; reset restores both configured sizes.
+Native sidebar and other UI labels retain their system UI font.
+
+Code wrapping is disabled by default; use `:set wrap` to enable it.
 
 The previous theme remains available as `:colorscheme vsvim-dark-modern`.
