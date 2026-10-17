@@ -7,6 +7,7 @@ end
 function M.tabline() return require('vsvim.tabs').render() end
 
 function M.statusline()
+  if vim.bo.filetype == 'vsvim_welcome' then return '%#StatusLine#  VSVim%=%#Comment#Ready  ' end
   local mode = vim.fn.mode():sub(1, 1)
   local label = ({ n = 'NORMAL', i = 'INSERT', v = 'VISUAL', V = 'VISUAL',
     ['\22'] = 'VISUAL', c = 'COMMAND', R = 'REPLACE', t = 'TERMINAL' })[mode] or 'NORMAL'
@@ -44,6 +45,7 @@ function M.setup()
   })
   vim.api.nvim_create_autocmd('VimEnter', {
     group = group, once = true, callback = function()
+      require('vsvim.welcome').open_on_startup()
       if vim.g.vsvim_auto_explorer == false or #vim.api.nvim_list_uis() == 0 then return end
       vim.schedule(function()
         local win = vim.api.nvim_get_current_win()
