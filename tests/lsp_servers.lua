@@ -2,6 +2,8 @@ local root = vim.fn.tempname()
 vim.fn.mkdir(root, 'p')
 root = vim.uv.fs_realpath(root)
 local cases = {
+  { name='lua', server='lua_ls', main='main.lua', target='helper.lua', line=2, col=8,
+    files={ ['main.lua']={'local helper = require("helper")', 'helper.hello()'}, ['helper.lua']={'local function hello() return 42 end', 'return { hello = hello }'}, ['.luarc.json']={'{}'} } },
   { name='python', server='pyright', main='main.py', target='helper.py', line=2, col=1,
     files={ ['main.py']={'from helper import hello', 'hello()'}, ['helper.py']={'def hello():', '    return 42'}, ['pyproject.toml']={} } },
   { name='ruby', server='ruby_lsp', main='main.rb', target='helper.rb', line=2, col=12, target_line=2,
@@ -16,7 +18,12 @@ local cases = {
     files={ ['main.js']={'const { hello } = require("./helper");', 'hello();'}, ['helper.js']={'exports.hello = function hello() { return 42; };'}, ['jsconfig.json']={'{"compilerOptions":{"module":"NodeNext","moduleResolution":"NodeNext","allowJs":true}}'}, ['package.json']={'{}'} } },
 }
 local navigate = require('vsvim.lsp').definition
-vim.ui.select = function(items, _, done) done(items[1]) end
+require('vsvim.definition_picker').open = function(items, done)
+  for _, item in ipairs(items) do
+    if (item.text or ''):find('function', 1, true) then done(item); return end
+  end
+  done(items[1])
+end
 for _, case in ipairs(cases) do
   if not vim.env.VSVIM_TEST_LANGUAGE or vim.env.VSVIM_TEST_LANGUAGE == case.name then
   local dir = root .. '/' .. case.name
@@ -47,6 +54,23 @@ for _, case in ipairs(cases) do
   assert(reached, case.name .. ' did not resolve cross-file definition; current=' .. vim.api.nvim_buf_get_name(0) .. ' cursor=' .. vim.inspect(vim.api.nvim_win_get_cursor(0)))
   assert(vim.deep_equal(vim.api.nvim_win_get_cursor(0), {case.target_line or 1,0}), case.name .. ' wrong landing position')
   print(case.name .. ': cross-file definition passed')
+  if case.name == 'lua' then
+    vim.api.nvim_set_current_buf(buf)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, { 'local hl = vim.api.nvim_get_hl(0, {})' })
+    local api_path = vim.env.VIMRUNTIME .. '/lua/vim/_meta/api.gen.lua'
+    local resolved = false
+    for _ = 1, 20 do
+      vim.api.nvim_set_current_buf(buf)
+      vim.api.nvim_win_set_cursor(0, { 1, 23 })
+      navigate()
+      resolved = vim.wait(2000, function() return vim.api.nvim_buf_get_name(0) == api_path end, 20)
+      if resolved then break end
+    end
+    assert(resolved, 'Neovim API definition was not resolved')
+    assert(vim.api.nvim_get_current_line():find('function vim.api.nvim_get_hl(', 1, true))
+    assert(vim.api.nvim_win_get_cursor(0)[2] == 0)
+    print('lua: Neovim API definition passed')
+  end
   for _, client in ipairs(vim.lsp.get_clients()) do client:stop(true) end
   end
 end

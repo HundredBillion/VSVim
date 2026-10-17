@@ -52,6 +52,7 @@ interactive launch installs these servers in VSVim's own data directory:
 
 | Languages | Server |
 | --- | --- |
+| Lua / Neovim configuration | Lua Language Server |
 | Python | Pyright |
 | Ruby | Ruby LSP |
 | Go | gopls |
@@ -74,7 +75,7 @@ VSVim uses an installed Homebrew Ruby when PATH otherwise selects Apple's old
 `/usr/bin/ruby`; it preserves Ruby version managers already selected on PATH.
 
 The real-server integration check is `VSVIM_TEST_LANGUAGE=python ./bin/vsvim
---headless '+lua dofile("tests/lsp_servers.lua")' '+qa!'` (repeat with ruby, go,
+--headless '+lua dofile("tests/lsp_servers.lua")' '+qa!'` (repeat with lua, ruby, go,
 rust, typescript, javascript). The mouse RPC check is
 `uv run --with pynvim python tests/mouse_definition_rpc.py`; add `--real` to
 exercise the installed Python server and mouse-release behavior together.
@@ -119,3 +120,7 @@ validation has not run. Native Sprite startup was exercised, but screenshot
 comparison is still pending because macOS denied window capture.
 Plugin revisions are fixed in the distribution; `:Lazy sync` preserves those
 revisions. Updates to bundled versions ship as changes to VSVim's pins.
+
+Lua support includes Neovim's annotated API library, so `gd` and Cmd/Super-click
+on calls such as `vim.api.nvim_get_hl` resolve to their Lua API declarations.
+LuaJIT is the default runtime; projects can override Lua settings in `.luarc.json`.

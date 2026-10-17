@@ -1,5 +1,5 @@
 local M = {}
-M.servers = { 'pyright', 'ruby_lsp', 'gopls', 'rust_analyzer', 'ts_ls' }
+M.servers = { 'pyright', 'ruby_lsp', 'gopls', 'rust_analyzer', 'ts_ls', 'lua_ls' }
 local generation = 0
 
 function M.definition()
@@ -70,13 +70,17 @@ function M.setup()
       env = { BUNDLE_PATH = vim.env.BUNDLE_PATH or (vim.fn.stdpath('data') .. '/ruby-lsp/bundle') },
     })
   end })
+  vim.lsp.config('lua_ls', { settings = { Lua = {
+    runtime = { version = 'LuaJIT', path = { '?.lua', '?/init.lua', 'lua/?.lua', 'lua/?/init.lua' } },
+    workspace = { checkThirdParty = false, library = { vim.env.VIMRUNTIME .. '/lua' } },
+  } } })
   require('mason').setup()
   require('mason-lspconfig').setup({ ensure_installed = {}, automatic_enable = M.servers })
   local function install()
     local registry = require('mason-registry')
     registry.refresh(vim.schedule_wrap(function(ok)
       if not ok then vim.notify('Language server registry unavailable; retry :VSVimInstallLsp', vim.log.levels.ERROR); return end
-      for _, name in ipairs({ 'pyright', 'ruby-lsp', 'gopls', 'rust-analyzer', 'typescript-language-server' }) do
+      for _, name in ipairs({ 'pyright', 'ruby-lsp', 'gopls', 'rust-analyzer', 'typescript-language-server', 'lua-language-server' }) do
         local pkg = registry.get_package(name)
         if not pkg:is_installed() and not pkg:is_installing() then
           pkg:install({}, vim.schedule_wrap(function(success)
