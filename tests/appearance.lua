@@ -57,8 +57,25 @@ print('VSVim appearance passed')
 local native = require('vsvim.tabs').native_snapshot()
 assert(native.height == 35)
 assert(native.colors.active_background == '#1e1f22')
+local function named_buffer(path)
+  local buffer=vim.api.nvim_create_buf(true,false)
+  vim.api.nvim_buf_set_name(buffer,path)
+  return buffer
+end
+local collision_a=named_buffer('/tmp/vsvim-left/src/main.lua')
+local collision_b=named_buffer('/tmp/vsvim-right/src/main.lua')
+local unique=named_buffer('/tmp/vsvim-only/unique.lua')
+local unnamed=vim.api.nvim_create_buf(true,false)
+local labels={}
+for _,item in ipairs(require('vsvim.tabs').native_snapshot().items) do
+  labels[item.buffer]=item.label
+end
+assert(labels[collision_a]~=labels[collision_b], 'same basename and parent labels include another path component')
+assert(labels[collision_a]:find('vsvim%-left') and labels[collision_b]:find('vsvim%-right'), 'colliding labels identify the distinct ancestor')
+assert(labels[unique]=='unique.lua', 'unique basenames stay unchanged')
+assert(labels[unnamed]=='Untitled', 'unnamed buffers keep their existing label')
 local found_icon = false
-for _, item in ipairs(native.items) do
+for _, item in ipairs(require('vsvim.tabs').native_snapshot().items) do
   if item.label:find('lua', 1, true) and item.icon then
     assert(item.icon:find('<svg', 1, true), 'native tabs use SVG source')
     found_icon = true

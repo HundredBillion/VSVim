@@ -7,19 +7,55 @@ local icons = {
   go={'go','#26c6da'}, toml={'≡','#ef5350'}, yaml={'≡','#ef5350'}, yml={'≡','#ef5350'},
 }
 local function buffers()
-  local result, counts = {}, {}
+  local result, depths = {}, {}
   for _, b in ipairs(vim.fn.getbufinfo({buflisted=1})) do
     if vim.bo[b.bufnr].buftype=='' then
       b.label=vim.fn.fnamemodify(b.name, ':t')
       if b.label=='' then b.label='Untitled' end
-      counts[b.label]=(counts[b.label] or 0)+1
+      depths[b.bufnr]=0
       result[#result+1]=b
     end
   end
-  for _,b in ipairs(result) do
-    if counts[b.label]>1 and b.name~='' then
-      b.label=b.label .. ' · ' .. vim.fn.fnamemodify(b.name, ':h:t')
+
+  local function component(name, depth, bufnr)
+    local path=name
+    for _=1,depth do
+      local parent=vim.fn.fnamemodify(path, ':h')
+      if parent==path then return '#'..bufnr end
+      path=parent
     end
+    local part=vim.fn.fnamemodify(path, ':t')
+    return part~='' and part or path
+  end
+  local function update_labels()
+    for _,b in ipairs(result) do
+      if b.name~='' then
+        b.label=vim.fn.fnamemodify(b.name, ':t')
+        if b.label=='' then b.label='Untitled' end
+        for depth=1,depths[b.bufnr] do
+          b.label=b.label .. ' · ' .. component(b.name, depth, b.bufnr)
+        end
+      end
+    end
+  end
+  update_labels()
+  while true do
+    local groups={}
+    for _,b in ipairs(result) do
+      if b.name~='' then
+        groups[b.label]=groups[b.label] or {}
+        groups[b.label][#groups[b.label]+1]=b
+      end
+    end
+    local collided=false
+    for _,group in pairs(groups) do
+      if #group>1 then
+        collided=true
+        for _,b in ipairs(group) do depths[b.bufnr]=depths[b.bufnr]+1 end
+      end
+    end
+    if not collided then break end
+    update_labels()
   end
   return result
 end
