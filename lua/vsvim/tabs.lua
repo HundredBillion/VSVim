@@ -7,12 +7,13 @@ local icons = {
   go={'go','#26c6da'}, toml={'≡','#ef5350'}, yaml={'≡','#ef5350'}, yml={'≡','#ef5350'},
 }
 local function buffers()
-  local result, depths = {}, {}
+  local result, depths, basenames = {}, {}, {}
   for _, b in ipairs(vim.fn.getbufinfo({buflisted=1})) do
     if vim.bo[b.bufnr].buftype=='' then
       b.label=vim.fn.fnamemodify(b.name, ':t')
       if b.label=='' then b.label='Untitled' end
       depths[b.bufnr]=0
+      if b.name~='' then basenames[b.label]=(basenames[b.label] or 0)+1 end
       result[#result+1]=b
     end
   end
@@ -38,6 +39,9 @@ local function buffers()
       end
     end
   end
+  for _,b in ipairs(result) do
+    if b.name~='' and basenames[b.label]>1 then depths[b.bufnr]=1 end
+  end
   update_labels()
   while true do
     local groups={}
@@ -51,7 +55,9 @@ local function buffers()
     for _,group in pairs(groups) do
       if #group>1 then
         collided=true
-        for _,b in ipairs(group) do depths[b.bufnr]=depths[b.bufnr]+1 end
+        for _,b in ipairs(group) do
+          if depths[b.bufnr]>0 then depths[b.bufnr]=depths[b.bufnr]+1 end
+        end
       end
     end
     if not collided then break end

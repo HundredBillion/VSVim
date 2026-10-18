@@ -74,6 +74,15 @@ assert(labels[collision_a]~=labels[collision_b], 'same basename and parent label
 assert(labels[collision_a]:find('vsvim%-left') and labels[collision_b]:find('vsvim%-right'), 'colliding labels identify the distinct ancestor')
 assert(labels[unique]=='unique.lua', 'unique basenames stay unchanged')
 assert(labels[unnamed]=='Untitled', 'unnamed buffers keep their existing label')
+local expanded_a=named_buffer('/tmp/a/foo')
+local expanded_b=named_buffer('/tmp/b/foo')
+local reserved=named_buffer('/tmp/z/foo · a')
+labels={}
+for _,item in ipairs(require('vsvim.tabs').native_snapshot().items) do
+  labels[item.buffer]=item.label
+end
+assert(labels[reserved]=='foo · a', 'unique basename remains unchanged when it matches an expanded label')
+assert(labels[expanded_a]~='foo · a' and labels[expanded_b]=='foo · b', 'only expanded labels deepen to resolve a later collision')
 local found_icon = false
 for _, item in ipairs(require('vsvim.tabs').native_snapshot().items) do
   if item.label:find('lua', 1, true) and item.icon then
