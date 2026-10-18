@@ -11,10 +11,10 @@ PINS = {
     'nvim-lspconfig': '45a3a444b710511c39abca3b60bb6e23a21e3de5',
     'mason.nvim': '2a6940af80375532e5e9e7c1f2fc6319a1b7a69d',
     'mason-lspconfig.nvim': '00b5473cca4db5b410ff4bae724e3b6e21f2687f',
-    'scm.nvim': '1fd6895a7b495796c469fd3a5c5ee306dcae3382',
+    'scm.nvim': 'c6946caa84c49054f37bf9097b7f59bcadf2bfa7',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
-    'sprite.nvim': '4fae5bdaf18504cfde83c75e9743b93f0fd21058',
-    'svgtree.nvim': 'bb38c8c837b2e077da861500cf1e5f8f18f0d41d',
+    'sprite.nvim': '21c96d6e15cfea741eba145284461b7256d7d159',
+    'svgtree.nvim': 'b1781a04d6147292ccd240cac8b73f6b31c679e3',
 }
 
 
