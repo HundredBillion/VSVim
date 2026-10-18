@@ -1,0 +1,40 @@
+#!/bin/sh
+set -eu
+self=$0
+case "$self" in
+  /*) ;;
+  */*) self="$PWD/$self" ;;
+  *) self=$(command -v "$self") ;;
+esac
+while [ -L "$self" ]; do
+  link=$(readlink "$self")
+  case "$link" in
+    /*) self=$link ;;
+    *) self="$(dirname "$self")/$link" ;;
+  esac
+done
+VSVIM_ROOT=$(CDPATH= cd -- "$(dirname "$self")/.." && pwd -P)
+export VSVIM_ROOT
+export NVIM_APPNAME=vsvim
+native=1
+for argument in "$@"; do
+  case "$argument" in
+    --) break ;;
+    --headless | --embed | --version | -v | --help | -h | --api-info | -l | -es | -Es)
+      native=0 ;;
+  esac
+done
+if [ "$native" = 1 ] && [ "${VSVIM_NATIVE:-1}" != 0 ] \
+  && [ -n "${SPRITE_SURFACE_SOCKET:-}" ] && [ -n "${SPRITE_SURFACE_KEY:-}" ] \
+  && [ -n "${SPRITE_PANE:-}" ] && [ -z "${NVIM:-}" ]; then
+  adapter="${XDG_DATA_HOME:-$HOME/.local/share}/vsvim/lazy/sprite.nvim/lua/sprite/adapter.lua"
+  if [ ! -f "$adapter" ]; then
+    "${VSVIM_NVIM:-nvim-nightly}" --headless -u "$VSVIM_ROOT/init.lua" +qa
+  fi
+  if [ ! -f "$adapter" ]; then
+    echo 'VSVim: Sprite adapter was not installed successfully' >&2
+    exit 1
+  fi
+  exec "${VSVIM_NVIM:-nvim-nightly}" -l "$adapter" -u "$VSVIM_ROOT/init.lua" "$@"
+fi
+exec "${VSVIM_NVIM:-nvim-nightly}" -u "$VSVIM_ROOT/init.lua" "$@"
