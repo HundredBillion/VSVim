@@ -1,0 +1,137 @@
+local root = vim.fn.tempname()
+vim.fn.mkdir(root, 'p'); root = vim.uv.fs_realpath(root)
+vim.env.XDG_STATE_HOME = root .. '/state'
+package.loaded.mason = { setup = function() end }
+package.loaded['mason-lspconfig'] = { setup = function() end }
+local manager = require('vsvim.lsp.manager')
+local env = require('vsvim.lsp.environment')
+local pending, resolutions = {}, 0
+local original = env.resolve
+env.resolve = function(ctx, done) resolutions = resolutions + 1; pending[#pending + 1] = { ctx = ctx, done = done } end
+local notifications = {}
+vim.notify = function(message) notifications[#notifications + 1] = message end
+vim.g.vsvim_lsp_start_timeout = 100
+manager.setup()
+local function buffer(project, name)
+  local dir = root .. '/' .. project; vim.fn.mkdir(dir, 'p')
+  if not vim.uv.fs_stat(dir .. '/.luarc.json') then vim.fn.writefile({ '{}' }, dir .. '/.luarc.json') end
+  local b = vim.fn.bufadd(dir .. '/' .. name); vim.fn.bufload(b); vim.bo[b].filetype = 'lua'
+  return b, dir
+end
+local function status(dir)
+  return assert(manager.status()[dir .. ':lua_ls'])
+end
+local a, dir = buffer('one', 'a.lua')
+manager.ensure(a, true); manager.ensure(a, true)
+assert(resolutions == 1, 'duplicate opens share resolution')
+local b = buffer('one', 'b.lua'); manager.ensure(b, true)
+assert(resolutions == 1)
+local c, other = buffer('two', 'c.lua'); manager.ensure(c, true)
+assert(resolutions == 2, 'independent projects resolve independently')
+local stale = table.remove(pending, 1)
+vim.api.nvim_buf_set_name(a, other .. '/moved.lua')
+stale.done({ runtime = 'stale', config = { cmd = { '/bin/cat' } } })
+assert(status(dir).state == 'starting', 'a valid waiting sibling starts even when the original buffer was renamed')
+assert(#vim.lsp.get_clients({ bufnr = a }) == 0, 'renamed buffer is not attached to the old project')
+vim.api.nvim_buf_set_name(a, dir .. '/a.lua')
+vim.fn.writefile({ '{"runtime.version":"Lua 5.4"}' }, dir .. '/.luarc.json')
+manager.ensure(a, true)
+assert(resolutions == 3, 'changed configuration gets a fresh generation')
+local changed = table.remove(pending)
+changed.done(nil, 'fixture incompatible runtime')
+assert(status(dir).state == 'unavailable' and status(dir).reason:find('incompatible'))
+manager.ensure(a, true)
+assert(resolutions == 4, 'explicit retry resets failure budget')
+local retry = table.remove(pending)
+retry.done({ runtime = 'missing binary', config = { cmd = { '/definitely/not/a/server' } } })
+assert(vim.wait(3000, function() return resolutions == 5 end), 'startup failure permits one recovery')
+local recovery = table.remove(pending)
+recovery.done({ runtime = 'missing binary', config = { cmd = { '/definitely/not/a/server' } } })
+assert(status(dir).attempts == 2)
+manager.ensure(a, false)
+assert(resolutions == 5, 'unchanged failures stop at two automatic attempts')
+assert(#notifications == 0, vim.inspect(notifications))
+local dead, deleted = buffer('deleted', 'd.lua')
+manager.ensure(dead, true)
+local gone = table.remove(pending)
+vim.fn.delete(deleted, 'rf')
+env.resolve = original
+gone.done({ runtime = 'deleted', config = { cmd = { '/bin/cat' } } })
+assert(status(deleted).state == 'unavailable', 'deleted directories fail quietly')
+assert(#notifications == 0)
+
+local script = root .. '/server.py'
+vim.fn.writefile(vim.split([[
+import json, sys, time, os
+if len(sys.argv) > 2:
+    with open(sys.argv[2], "w") as f: f.write(os.getcwd())
+mode = sys.argv[1]
+if mode == 'crash': sys.exit(23)
+if mode == 'hang': time.sleep(30); sys.exit(0)
+while True:
+    headers = {}
+    while True:
+        line = sys.stdin.buffer.readline()
+        if not line: sys.exit(0)
+        if line == b'\r\n': break
+        key, value = line.decode().split(':', 1)
+        headers[key.lower()] = value.strip()
+    data = json.loads(sys.stdin.buffer.read(int(headers['content-length'])))
+    if data.get('method') == 'initialize':
+        time.sleep(0.15)
+        response = json.dumps({'jsonrpc': '2.0', 'id': data['id'], 'result': {'capabilities': {}}}).encode()
+        sys.stdout.buffer.write(('Content-Length: %d\r\n\r\n' % len(response)).encode() + response)
+        sys.stdout.buffer.flush()
+]], '\n', { plain = true }), script)
+local modes = {}
+env.resolve = function(ctx, done)
+  resolutions = resolutions + 1
+  done({ runtime = 'fixture', config = { cmd = { '/usr/bin/python3', script, modes[ctx.root] or 'ready', root .. '/cwd-' .. vim.fn.sha256(ctx.root):sub(1, 8) } } })
+end
+vim.g.vsvim_lsp_start_timeout = 1000
+local first, ready_dir = buffer('ready', 'first.lua')
+local second = buffer('ready', 'second.lua')
+manager.ensure(first, true); manager.ensure(second, true)
+assert(vim.wait(4000, function() return status(ready_dir).state == 'ready' end), vim.inspect(status(ready_dir)))
+local clients = vim.lsp.get_clients({ bufnr = first })
+assert(#clients == 1 and #vim.lsp.get_clients({ bufnr = second }) == 1, 'both project buffers attach')
+assert(clients[1].id == vim.lsp.get_clients({ bufnr = second })[1].id, 'matching project reuses client')
+local old, stale_dir = buffer('stale-init', 'old.lua')
+manager.ensure(old, true)
+vim.api.nvim_buf_set_name(old, ready_dir .. '/renamed.lua')
+vim.wait(700, function() return false end)
+for _, client in ipairs(vim.lsp.get_clients({ bufnr = old })) do
+  assert(client.config.root_dir ~= stale_dir, 'in-flight initialization cannot attach the old project to a renamed buffer')
+end
+local crash, crash_dir = buffer('crash', 'c.lua'); modes[crash_dir] = 'crash'
+manager.ensure(crash, true)
+assert(vim.wait(4000, function() return status(crash_dir).attempts == 2 and status(crash_dir).state == 'unavailable' end))
+assert(status(crash_dir).reason:find('code=23', 1, true), 'true server exit code is inspectable')
+local log = table.concat(vim.fn.readfile(status(crash_dir).log), '\n')
+assert(log:find('code=23', 1, true))
+vim.g.vsvim_lsp_start_timeout = 50
+local hang, hang_dir = buffer('hang', 'h.lua'); modes[hang_dir] = 'hang'
+manager.ensure(hang, true)
+assert(vim.wait(4000, function() return status(hang_dir).attempts == 2 and status(hang_dir).state == 'unavailable' end))
+assert(status(hang_dir).reason:find('timed out') or status(hang_dir).reason:find('signal=15'))
+assert(#notifications == 0, 'managed failures never notify: ' .. vim.inspect(notifications))
+vim.notify('unrelated editor warning')
+assert(#notifications == 1, 'unrelated warnings remain available')
+for _, client in ipairs(vim.lsp.get_clients()) do client:stop(true) end
+
+vim.g.vsvim_lsp_start_timeout = 1000
+local custom = root .. '/custom-root'; vim.fn.mkdir(custom, 'p')
+local callback_ran = false
+vim.lsp.config('lua_ls', { root_dir = function(_, done)
+  vim.defer_fn(function() callback_ran = true; done(custom) end, 10)
+end, cmd_cwd = root })
+local custom_buffer = buffer('explicit-root', 'root.lua')
+manager.ensure(custom_buffer, true)
+assert(not callback_ran, 'explicit root callback remains asynchronous')
+assert(vim.wait(4000, function() return manager.status()[custom .. ':lua_ls'] and status(custom).state == 'ready' end))
+local custom_client = vim.lsp.get_clients({ bufnr = custom_buffer })[1]
+assert(custom_client.config.root_dir == custom, 'explicit root function wins marker inference')
+assert(vim.fn.readfile(root .. '/cwd-' .. vim.fn.sha256(custom):sub(1, 8))[1] == root, 'explicit server cwd is preserved')
+custom_client:stop(true)
+print('LSP lifecycle passed: deduplication, generations, stale buffers, crash recovery, startup timeout, quiet logs, explicit root/cwd')
+vim.fn.delete(root, 'rf')
