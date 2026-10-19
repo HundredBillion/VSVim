@@ -203,6 +203,10 @@ refresh=function()
       if not live or not active or active.target~=identity then return true end
       edited(first,last,newlast)
     end,
+    on_changedtick=function()
+      -- Undo/redo bumps the tick again after on_lines; restart work guarded by its earlier tick.
+      if live and active and active.target==identity and cancel_source then rebuild(false) end
+    end,
     on_detach=function() vim.schedule(function() if active and active.target==identity then hide(); refresh() end end) end,
   })
   stop_git=source.watch(buffer,function(value)
