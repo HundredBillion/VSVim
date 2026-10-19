@@ -106,10 +106,11 @@ operations contain the target and generation required by the contract. Pull
 returns nil while scheduled work is incomplete and changed() notifies when it
 is ready. A nil response ends that drain, preventing a busy loop.
 
-`M.input` accepts only the existing Input.call methods: nvim_input,
-nvim_input_mouse, nvim_paste, nvim_ui_try_resize, nvim_ui_set_focus. Do not
-expose arbitrary `vim.api[untrusted_method]` evaluation. Non-input resize/focus
-calls leave preserved selection alone. Unknown calls return false.
+`M.input` accepts only the existing editing Input.call methods: nvim_input,
+nvim_input_mouse, and nvim_paste. Do not expose arbitrary
+`vim.api[untrusted_method]` evaluation. Neovim exposes nvim_ui_try_resize and
+nvim_ui_set_focus only over RPC, so resize/focus/blur retain the adapter's direct
+RPC route and leave preserved selection alone. Unknown wrapper calls return false.
 
 ---
 
@@ -357,8 +358,7 @@ T.eq(received, 0)
   A replacement provider stops the previous one and emits hide. Input wrapper:
 
 ```lua
-local allowed = { nvim_input=true, nvim_input_mouse=true, nvim_paste=true,
-  nvim_ui_try_resize=true, nvim_ui_set_focus=true }
+local allowed = { nvim_input=true, nvim_input_mouse=true, nvim_paste=true }
 function M.input(method, args, event)
   if not allowed[method] then return false end
   if provider and provider.before_input then provider.before_input(event) end
@@ -374,9 +374,9 @@ end
   pull once; forward result then request the next using a scheduled continuation,
   yielding between chunks. Coalesce notifications while pending. Ignore any
   response after disable/disconnect. Route minimap_action to dispatch through
-  the same ordered editor RPC stream. With the capability present, route input
-  through M.input in one RPC notification rather than a callback followed by
-  a second input call that could reorder keys:
+  the same ordered editor RPC stream. With the capability present, route editing
+  input, mouse, and paste through M.input in one RPC notification rather than a
+  callback followed by a second input call that could reorder keys:
 
 ```lua
 rpc:notify('nvim_exec_lua', {
