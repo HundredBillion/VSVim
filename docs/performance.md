@@ -42,6 +42,6 @@ The reported Cmd+E action is not yet identified. No `<D-e>` mapping was present 
 
 ## Independent fonts
 
-Sprite's `[font]` controls terminal text. Optional `[surface_font]` controls native editor text. If omitted, native editor text follows `[font]`; an explicit section has its own defaults for omitted fields. VSVim's bundled profile sets both to Menlo 12 with line height 1.5. Native UI labels retain their system font. Reload and zoom tests cover independent geometry; physical macOS IME-panel appearance and Linux runtime remain unverified.
+Sprite's `[font]` controls terminal text. Optional `[surface_font]` controls native editor text. If omitted, native editor text follows `[font]`; an explicit section has its own defaults for omitted fields. VSVim's bundled profile uses Menlo 12 with line height 1.65 for native editor grids (20-pixel rows) and 1.5 for terminal text (18-pixel rows). Native UI labels retain their system font. Reload and zoom tests cover independent geometry; physical macOS IME-panel appearance and Linux runtime remain unverified.
 
 Tracking: [VSVim issue 4](https://github.com/HundredBillion/VSVim/issues/4).
