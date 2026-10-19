@@ -355,6 +355,29 @@ provider.next()''', floating)
                 self.assertEqual([self.nvim.funcs.getreg('"'), self.nvim.funcs.getregtype('"')], expected)
                 self.assertEqual(self.nvim.options['selection'], changed)
 
+    def test_changed_selection_option_does_not_leak_into_later_batched_commands(self):
+        for keys, expected_yanks, expected_first in [
+                ('ygg0v3ly', [['word'], ['wor']], 'word first line'),
+                ('Q', [['word'], ['wor']], 'd first line'),
+                ('dgg0v3ly', [['word'], [' fi']], ' first line'),
+                ('cX<Esc>gg0v3ly', [['word'], ['X f']], 'X first line')]:
+            with self.subTest(keys=keys):
+                self.nvim.current.buffer[:] = self.original
+                self.nvim.options['selection'] = 'inclusive'
+                self.nvim.exec_lua('''_G.yanks={}
+vim.keymap.set('x','Q','ygg0v3ld')
+vim.api.nvim_create_autocmd('TextYankPost',{group=vim.api.nvim_create_augroup('TestYanks',{clear=true}),
+ callback=function() _G.yanks[#_G.yanks+1]=vim.deepcopy(vim.v.event.regcontents) end})''')
+                self.nvim.input('gg0v3l')
+                self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
+                self.browse()
+                self.nvim.options['selection'] = 'exclusive'
+                self.nvim.exec_lua("local keys=...; selection.before_input({type='input',key=keys}); vim.api.nvim_input(keys)", keys)
+                self.wait_for(lambda: self.nvim.funcs.mode() == 'n')
+                self.assertEqual(self.nvim.exec_lua('return _G.yanks'), expected_yanks)
+                self.assertEqual(self.nvim.current.buffer[0], expected_first)
+                self.assertEqual(self.nvim.options['selection'], 'exclusive')
+
     def test_raw_host_escape_names_clear_without_restoring(self):
         for raw in ('escape', 'ctrl-['):
             with self.subTest(raw=raw):

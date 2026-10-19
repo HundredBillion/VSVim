@@ -121,9 +121,12 @@ activate = function(win)
   if group then vim.api.nvim_del_augroup_by_id(group) end
   owner = win
   group = vim.api.nvim_create_augroup('VSVimMinimapSelection', {clear=true})
+  vim.api.nvim_create_autocmd('ModeChanged', {group=group, callback=function()
+    -- A mapping can start another selection before scheduled callbacks run.
+    if not visual[vim.v.event.new_mode:sub(1,1)] then release_selection_option() end
+  end})
   vim.api.nvim_create_autocmd({'CursorMoved','CursorMovedI','ModeChanged'}, {
     group=group, callback=function() vim.schedule(function()
-      if not visual[vim.fn.mode()] then release_selection_option() end
       if owner then update(owner) end
     end) end})
   vim.api.nvim_create_autocmd({'TextChanged','TextChangedI','BufEnter','WinEnter','WinClosed','BufWipeout'}, {
