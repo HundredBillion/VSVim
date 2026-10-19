@@ -54,5 +54,13 @@
     "type": "markdown",
     "kind": "hide",
     "revision": 3
+  },
+  "focus": {
+    "type": "markdown_action",
+    "revision": 2,
+    "window": 1000,
+    "buffer": 1,
+    "generation": 3,
+    "action": "focus"
   }
 }
