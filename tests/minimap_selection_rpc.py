@@ -159,6 +159,16 @@ class SelectionTest(unittest.TestCase):
         self.nvim.exec_lua("selection.before_input({type='paste'}); vim.api.nvim_paste('PASTE',true,-1)")
         self.assertEqual(self.nvim.current.buffer[0], 'PASTE first line')
 
+    def test_wheel_press_preserves_selection_before_native_scroll(self):
+        self.nvim.input('gg0v3l')
+        self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
+        self.browse()
+        self.nvim.exec_lua("selection.before_input({type='mouse',button='wheel',action='press'}); vim.api.nvim_input_mouse('wheel','down','',0,1,1)")
+        self.send('y')
+        self.wait_for(lambda: self.nvim.funcs.mode() == 'n')
+        self.assertEqual(self.nvim.funcs.getreg('"'), 'word')
+        self.assertEqual(self.nvim.current.buffer[:], self.original)
+
     def test_command_shortcuts_use_restored_selection(self):
         self.nvim.exec_lua('''require('vsvim.editing').setup()
 _G.clip = {{'replacement'},'v'}
@@ -185,7 +195,7 @@ vim.g.clipboard = {name='test',cache_enabled=0,
             self.assertEqual(self.nvim.funcs.maparg(key, 'x'), '')
 
     def test_escape_click_and_external_edit_clear_preserved_selection(self):
-        for event in [{'type': 'input', 'key': '<Esc>'}, {'type': 'mouse', 'action': 'press'}]:
+        for event in [{'type': 'input', 'key': '<Esc>'}, {'type': 'mouse', 'button': 'left', 'action': 'press'}]:
             self.nvim.input('<Esc>gg0v3l')
             self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
             self.browse()
@@ -249,7 +259,7 @@ vim.g.clipboard = {name='test',cache_enabled=0,
         self.browse()
         self.nvim.exec_lua("selection.before_input({type='focus'}); selection.before_input({type='resize'}); selection.before_input({type='mouse',action='move'})")
         self.assertEqual(self.nvim.exec_lua('return selection.state(0).selection'), [1, 1])
-        self.nvim.exec_lua("selection.before_input({type='mouse',action='press'})")
+        self.nvim.exec_lua("selection.before_input({type='mouse',button='left',action='press'})")
         self.nvim.api.input_mouse('left', 'press', '', 0, 1, 2)
         self.wait_for(lambda: self.nvim.funcs.line('.') >= 500)
         self.assertIsNone(self.nvim.exec_lua('return selection.state(0).selection'))

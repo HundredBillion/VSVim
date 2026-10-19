@@ -185,7 +185,8 @@ function M.before_input(event)
   local key = (event.key or event.keys or ''):lower()
   local escape = key == 'escape' or key == 'ctrl-[' or key:match('^<esc>')
     or key:match('^<c%-%[>') or key:sub(1,1) == '\27'
-  if (event.type == 'mouse' and event.action == 'press')
+  if (event.type == 'mouse' and event.action == 'press'
+    and (event.button == 'left' or event.button == 'right' or event.button == 'middle'))
     or (event.type == 'input' and escape) then
     M.clear(); return
   end
