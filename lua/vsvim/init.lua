@@ -13,6 +13,11 @@ function M.setup()
   vim.opt.tabstop = 2
   vim.opt.ignorecase = true
   vim.opt.smartcase = true
+  vim.opt.confirm = true
+  vim.opt.hidden = true
+  vim.opt.swapfile = true
+  vim.opt.updatetime = 1000
+  vim.opt.undofile = true
   local data = vim.fn.stdpath('data')
   local manager = data .. '/lazy/lazy.nvim'
   if not vim.uv.fs_stat(manager) then
@@ -98,6 +103,7 @@ function M.setup()
   vim.keymap.set('n', '<C-S-g>', sidebar.scm, { desc = 'Source Control' })
   require('vsvim.lsp').setup()
   require('vsvim.navigation').setup()
+  require('vsvim.editing').setup()
   require('vsvim.appearance').setup()
   local user = vim.fn.stdpath('config') .. '/user.lua'
   if vim.uv.fs_stat(user) then
