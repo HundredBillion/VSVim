@@ -1,7 +1,7 @@
 # Markdown preview in one buffer
 
-Status: product design approved in conversation on 2026-10-19. Written PRD
-awaiting user review. Production implementation has not started.
+Status: product design and written PRD approved in conversation on 2026-10-19.
+Implementation in progress on coordinated `feat/markdown-preview` branches.
 
 ## Outcome
 
