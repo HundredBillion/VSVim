@@ -116,9 +116,10 @@ the adapter before opening the editor. Other terminals retain normal Neovim
 rendering. Set `VSVIM_NATIVE=0` to force the terminal path. Headless, embedded,
 script, help, and version invocations bypass the native adapter.
 
-The palette follows the VS Code extension `kenethriera.jb-theme` (JetBrains Dark
-Theme): charcoal editor, gray sidebars, orange keywords, green strings, and
-blue functions. See [theme sources and font setup](docs/themes/jb-theme.md).
+The default `vsvim-one-dark` syntax palette follows Zed’s One Dark: purple
+keywords, blue functions, teal types, green strings, and red properties. It uses
+the existing charcoal editor and gray sidebars. See [One Dark syntax](docs/themes/one-dark.md)
+and [window colors and font setup](docs/themes/jb-theme.md).
 For the matching Menlo 12 font in Sprite, launch with
 `sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout.
 Sprite builds advertising `grid-tabs-v1` show 35-pixel native file tabs with
@@ -133,6 +134,40 @@ keep running with their original host. The explorer opens by default; put
 User overrides run after appearance setup, so a different colorscheme can be
 selected there.
 
+Sprite hosts advertising `grid-minimap-v1` can show a 160-pixel native minimap
+beside the editor. It displays real source text and colors, the current viewport,
+selection, matching whole words, and live changes against the file in Git HEAD.
+Unsaved edits are included. Saving or staging leaves those change markers in
+place; committing establishes the next baseline. New files appear as added.
+Files outside Git still show their source without change markers.
+
+The minimap is enabled by default on supported hosts. Set
+`vim.g.vsvim_minimap = false` in `user.lua` to disable it, or run
+`:VSVimMinimapToggle` to toggle it for the current session. Disabling removes the
+strip and stops its source and Git work. Terminals, headless runs, and older
+hosts keep their full editor width and do no minimap source or Git work.
+After upgrading Sprite, open a new Sprite process to use the new capability.
+
+Click the minimap to browse or drag its viewport to scroll. Browsing preserves
+the original selection and its matching-word highlights. Vim operators and Cmd
+copy, cut, and paste act on that selection. Escape, an editor click, or an edit
+clears the saved selection. Switching to another file clears its overlays;
+focusing a sidebar retains the last file's minimap.
+
+Rows are clipped to 256 display columns. Files exceeding 1,000,000 lines or
+64 MiB of prepared source, and overlays exceeding the protocol bounds, hide the
+minimap with one warning for that buffer. Editing a file can retry preparation.
+
+The native minimap requires a Sprite host advertising `grid-minimap-v1`.
+VSVim pins the published sprite.nvim commit containing the matching adapter.
+The tested host feature branch is published for review; use a build containing
+the revision below and open a new Sprite process. Development checks use
+isolated copies, leaving installed plugins unchanged.
+Tested revisions are sprite.nvim `bb309536778274f9e2d9519f6a25d9e8f28baecf`
+and Sprite `386f8c599eb5c7d37c91fab15132bbc09ea9442a`.
+[Execution evidence](docs/execution/10-19-2026-native-minimap.md) records the
+final passing measurements and the physical-display/configuration limits.
+
 Sprite controls font metrics and native panel geometry. This is an initial
 visual implementation, not a claim of pixel-identical VS Code rendering.
 
@@ -143,6 +178,14 @@ shortcuts, quit choices, unnamed-file saves, failed-save preservation, saved
 undo history, and recovery after killing an editor process. Clipboard checks
 use an isolated provider and leave the desktop clipboard alone. Set
 `VSVIM_NVIM` to the underlying Neovim executable if `nvim-nightly` is a wrapper.
+
+Run `uv run --with pynvim python tests/minimap_integration_rpc.py` to exercise
+full setup with supported and older fake hosts through the real local adapter.
+It copies cached plugins into a temporary profile and replaces only that
+profile's sprite.nvim with the sibling checkout. Set `VSVIM_SPRITE_SOURCE` and
+`VSVIM_PLUGIN_CACHE` to choose other checkout/cache locations. Source, Git, and
+selection checks live in `tests/minimap_source.lua`, `tests/minimap_git.py`, and
+`tests/minimap_selection_rpc.py`.
 
 Run `python3 -m unittest discover -s tests -p '*_test.py'` with Neovim nightly
 and Git on PATH. Integration checks download pinned plugins into a temporary

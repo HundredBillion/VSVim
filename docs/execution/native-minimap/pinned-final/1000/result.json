@@ -1,0 +1,2599 @@
+{
+  "lines": 1000,
+  "revisions": {
+    "vsvim": "5d325858efad90232d93c64f274809436c69aa28",
+    "adapter": "4f572f48c0af53d01476544ff53471ce4a6c4bc4",
+    "host": "45b9a4e0aa13b739f409b4b7d2098f2d49a1455c"
+  },
+  "samples": {
+    "initial_cold": 1,
+    "initial_warm": 1,
+    "prewarm_scroll": 30,
+    "scroll": 30,
+    "paint": 32,
+    "edit": 1
+  },
+  "analysis_quiet": {
+    "reached": true,
+    "timeout_seconds": 30,
+    "quiet_seconds": 1,
+    "observations": [
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 14%: Loading workspace: 27/189, Loading workspace: 26/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 14%: Loading workspace: 28/189, Loading workspace: 27/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 16%: Loading workspace: 31/189, Loading workspace: 30/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 16%: Loading workspace: 32/189, Loading workspace: 31/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 17%: Loading workspace: 34/189, Loading workspace: 33/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 18%: Loading workspace: 35/189, Loading workspace: 34/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 19%: Loading workspace: 36/189, Loading workspace: 35/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 19%: Loading workspace: 37/189, Loading workspace: 36/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 20%: Loading workspace: 38/189, Loading workspace: 37/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 21%: Loading workspace: 40/189, Loading workspace: 39/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 22%: Loading workspace: 42/189, Loading workspace: 41/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 23%: Loading workspace: 44/189, Loading workspace: 43/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 23%: Loading workspace: 45/189, Loading workspace: 44/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 24%: Loading workspace: 46/189, Loading workspace: 45/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 25%: Loading workspace: 48/189, Loading workspace: 47/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 25%: Loading workspace: 49/189, Loading workspace: 48/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 26%: Loading workspace: 50/189, Loading workspace: 49/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 27%: Loading workspace: 52/189, Loading workspace: 51/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 28%: Loading workspace: 53/189, Loading workspace: 52/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 29%: Loading workspace: 55/189, Loading workspace: 54/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 30%: Loading workspace: 58/189, Loading workspace: 57/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 31%: Loading workspace: 59/189, Loading workspace: 58/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 32%: Loading workspace: 62/189, Loading workspace: 61/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 33%: Loading workspace: 64/189, Loading workspace: 63/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 34%: Loading workspace: 65/189, Loading workspace: 64/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 35%: Loading workspace: 67/189, Loading workspace: 66/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 35%: Loading workspace: 68/189, Loading workspace: 67/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 36%: Loading workspace: 69/189, Loading workspace: 68/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 37%: Loading workspace: 71/189, Loading workspace: 70/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 38%: Loading workspace: 73/189, Loading workspace: 72/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 39%: Loading workspace: 74/189, Loading workspace: 73/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 41%: Loading workspace: 78/189, Loading workspace: 77/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 41%: Loading workspace: 79/189, Loading workspace: 78/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 42%: Loading workspace: 80/189, Loading workspace: 79/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 43%: Loading workspace: 83/189, Loading workspace: 82/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 45%: Loading workspace: 86/189, Loading workspace: 85/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 48%: Loading workspace: 91/189, Loading workspace: 90/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 50%: Loading workspace: 96/189, Loading workspace: 95/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 53%: Loading workspace: 102/189, Loading workspace: 101/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 55%: Loading workspace: 104/189, Loading workspace: 103/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 55%: Loading workspace: 105/189, Loading workspace: 104/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 56%: Loading workspace: 106/189, Loading workspace: 105/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 56%: Loading workspace: 107/189, Loading workspace: 107/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 57%: Loading workspace: 108/189, Loading workspace: 107/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 58%: Loading workspace: 110/189, Loading workspace: 109/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 58%: Loading workspace: 111/189, Loading workspace: 110/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 59%: Loading workspace: 112/189, Loading workspace: 111/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 60%: Loading workspace: 114/189, Loading workspace: 113/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 60%: Loading workspace: 115/189, Loading workspace: 114/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 61%: Loading workspace: 116/189, Loading workspace: 116/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 61%: Loading workspace: 117/189, Loading workspace: 116/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 62%: Loading workspace: 119/189, Loading workspace: 118/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 63%: Loading workspace: 120/189, Loading workspace: 119/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 64%: Loading workspace: 121/189, Loading workspace: 120/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 66%: Loading workspace: 125/189, Loading workspace: 124/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 66%: Loading workspace: 126/189, Loading workspace: 125/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 67%: Loading workspace: 128/189, Loading workspace: 127/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 68%: Loading workspace: 129/189, Loading workspace: 128/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 68%: Loading workspace: 130/189, Loading workspace: 129/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 69%: Loading workspace: 131/189, Loading workspace: 130/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 70%: Loading workspace: 133/189, Loading workspace: 132/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 71%: Loading workspace: 136/189, Loading workspace: 135/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 73%: Loading workspace: 138/189, Loading workspace: 137/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 73%: Loading workspace: 139/189, Loading workspace: 138/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 74%: Loading workspace: 140/189, Loading workspace: 139/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 74%: Loading workspace: 141/189, Loading workspace: 140/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 75%: Loading workspace: 143/189, Loading workspace: 142/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 76%: Loading workspace: 144/189, Loading workspace: 143/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 76%: Loading workspace: 145/189, Loading workspace: 144/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 77%: Loading workspace: 146/189, Loading workspace: 145/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 77%: Loading workspace: 147/189, Loading workspace: 146/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 78%: Loading workspace: 149/189, Loading workspace: 148/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 79%: Loading workspace: 150/189, Loading workspace: 149/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 79%: Loading workspace: 151/189, Loading workspace: 150/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 80%: Loading workspace: 152/189, Loading workspace: 151/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 80%: Loading workspace: 153/189, Loading workspace: 152/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 82%: Loading workspace: 155/189, Loading workspace: 154/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 82%: Loading workspace: 156/189, Loading workspace: 155/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 83%: Loading workspace: 157/189, Loading workspace: 156/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 83%: Loading workspace: 158/189, Loading workspace: 157/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 84%: Loading workspace: 159/189, Loading workspace: 158/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 85%: Loading workspace: 162/189, Loading workspace: 161/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 86%: Loading workspace: 163/189, Loading workspace: 162/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 86%: Loading workspace: 164/189, Loading workspace: 163/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 87%: Loading workspace: 165/189, Loading workspace: 164/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 87%: Loading workspace: 166/189, Loading workspace: 165/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 88%: Loading workspace: 167/189, Loading workspace: 166/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 88%: Loading workspace: 168/189, Loading workspace: 167/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 89%: Loading workspace: 169/189, Loading workspace: 168/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 89%: Loading workspace: 170/189, Loading workspace: 169/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 91%: Loading workspace: 172/189, Loading workspace: 171/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": " 92%: Loading workspace: 174/189, Loading workspace: 173/188",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "100%: Loading workspace: 189/189, Loading workspace: 188/188, Loading workspace, Loading workspace",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      },
+      {
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0
+      }
+    ]
+  },
+  "prewarm_scroll_input_to_paint_ms": {
+    "p95": 21.317,
+    "raw": [
+      {
+        "input_ns": 1792391739587084000,
+        "paint_ns": 1792391739607944000,
+        "ms": 20.86
+      },
+      {
+        "input_ns": 1792391739679314000,
+        "paint_ns": 1792391739692897000,
+        "ms": 13.583
+      },
+      {
+        "input_ns": 1792391739780160000,
+        "paint_ns": 1792391739799384000,
+        "ms": 19.224
+      },
+      {
+        "input_ns": 1792391739880200000,
+        "paint_ns": 1792391739898920000,
+        "ms": 18.72
+      },
+      {
+        "input_ns": 1792391739980773000,
+        "paint_ns": 1792391739998609000,
+        "ms": 17.836
+      },
+      {
+        "input_ns": 1792391740079396000,
+        "paint_ns": 1792391740099518000,
+        "ms": 20.122
+      },
+      {
+        "input_ns": 1792391740179162000,
+        "paint_ns": 1792391740199088000,
+        "ms": 19.926
+      },
+      {
+        "input_ns": 1792391740279512000,
+        "paint_ns": 1792391740299254000,
+        "ms": 19.742
+      },
+      {
+        "input_ns": 1792391740379302000,
+        "paint_ns": 1792391740392915000,
+        "ms": 13.613
+      },
+      {
+        "input_ns": 1792391740479075000,
+        "paint_ns": 1792391740492339000,
+        "ms": 13.264
+      },
+      {
+        "input_ns": 1792391740579209000,
+        "paint_ns": 1792391740593590000,
+        "ms": 14.381
+      },
+      {
+        "input_ns": 1792391740679088000,
+        "paint_ns": 1792391740699268000,
+        "ms": 20.18
+      },
+      {
+        "input_ns": 1792391740778965000,
+        "paint_ns": 1792391740798822000,
+        "ms": 19.857
+      },
+      {
+        "input_ns": 1792391740879106000,
+        "paint_ns": 1792391740899421000,
+        "ms": 20.315
+      },
+      {
+        "input_ns": 1792391740980546000,
+        "paint_ns": 1792391740997611000,
+        "ms": 17.065
+      },
+      {
+        "input_ns": 1792391741079423000,
+        "paint_ns": 1792391741098827000,
+        "ms": 19.404
+      },
+      {
+        "input_ns": 1792391741179091000,
+        "paint_ns": 1792391741207479000,
+        "ms": 28.388
+      },
+      {
+        "input_ns": 1792391741279073000,
+        "paint_ns": 1792391741299685000,
+        "ms": 20.612
+      },
+      {
+        "input_ns": 1792391741379458000,
+        "paint_ns": 1792391741392617000,
+        "ms": 13.159
+      },
+      {
+        "input_ns": 1792391741479104000,
+        "paint_ns": 1792391741499792000,
+        "ms": 20.688
+      },
+      {
+        "input_ns": 1792391741578992000,
+        "paint_ns": 1792391741593857000,
+        "ms": 14.865
+      },
+      {
+        "input_ns": 1792391741679243000,
+        "paint_ns": 1792391741698944000,
+        "ms": 19.701
+      },
+      {
+        "input_ns": 1792391741779011000,
+        "paint_ns": 1792391741799788000,
+        "ms": 20.777
+      },
+      {
+        "input_ns": 1792391741879002000,
+        "paint_ns": 1792391741890893000,
+        "ms": 11.891
+      },
+      {
+        "input_ns": 1792391741980561000,
+        "paint_ns": 1792391741999296000,
+        "ms": 18.735
+      },
+      {
+        "input_ns": 1792391742079038000,
+        "paint_ns": 1792391742099355000,
+        "ms": 20.317
+      },
+      {
+        "input_ns": 1792391742178924000,
+        "paint_ns": 1792391742199375000,
+        "ms": 20.451
+      },
+      {
+        "input_ns": 1792391742279140000,
+        "paint_ns": 1792391742300457000,
+        "ms": 21.317
+      },
+      {
+        "input_ns": 1792391742378951000,
+        "paint_ns": 1792391742392781000,
+        "ms": 13.83
+      },
+      {
+        "input_ns": 1792391742478847000,
+        "paint_ns": 1792391742498709000,
+        "ms": 19.862
+      }
+    ]
+  },
+  "display_scale": 2.0,
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "initial": {
+    "cold": {
+      "cache": "process-cold; OS caches uncontrolled",
+      "source_ms": 62.708542,
+      "complete_source_sync_ms": 67.544832,
+      "first_painted_content_ms": 89.686912
+    },
+    "warm": {
+      "cache": "same-process warm",
+      "source_ms": 100.765041,
+      "complete_source_sync_ms": 105.940992,
+      "first_painted_content_ms": 120.762064
+    }
+  },
+  "scroll_input_to_paint_ms": {
+    "p95": 27.377,
+    "raw": [
+      {
+        "input_ns": 1792391742779820000,
+        "paint_ns": 1792391742807197000,
+        "ms": 27.377
+      },
+      {
+        "input_ns": 1792391742881095000,
+        "paint_ns": 1792391742915791000,
+        "ms": 34.696
+      },
+      {
+        "input_ns": 1792391742980482000,
+        "paint_ns": 1792391742994510000,
+        "ms": 14.028
+      },
+      {
+        "input_ns": 1792391743079040000,
+        "paint_ns": 1792391743099002000,
+        "ms": 19.962
+      },
+      {
+        "input_ns": 1792391743179100000,
+        "paint_ns": 1792391743201053000,
+        "ms": 21.953
+      },
+      {
+        "input_ns": 1792391743279048000,
+        "paint_ns": 1792391743290968000,
+        "ms": 11.92
+      },
+      {
+        "input_ns": 1792391743387546000,
+        "paint_ns": 1792391743400279000,
+        "ms": 12.733
+      },
+      {
+        "input_ns": 1792391743479003000,
+        "paint_ns": 1792391743496927000,
+        "ms": 17.924
+      },
+      {
+        "input_ns": 1792391743578964000,
+        "paint_ns": 1792391743599093000,
+        "ms": 20.129
+      },
+      {
+        "input_ns": 1792391743679154000,
+        "paint_ns": 1792391743699018000,
+        "ms": 19.864
+      },
+      {
+        "input_ns": 1792391743779130000,
+        "paint_ns": 1792391743799325000,
+        "ms": 20.195
+      },
+      {
+        "input_ns": 1792391743883690000,
+        "paint_ns": 1792391743907215000,
+        "ms": 23.525
+      },
+      {
+        "input_ns": 1792391743980561000,
+        "paint_ns": 1792391744000741000,
+        "ms": 20.18
+      },
+      {
+        "input_ns": 1792391744079088000,
+        "paint_ns": 1792391744091463000,
+        "ms": 12.375
+      },
+      {
+        "input_ns": 1792391744178925000,
+        "paint_ns": 1792391744194995000,
+        "ms": 16.07
+      },
+      {
+        "input_ns": 1792391744278947000,
+        "paint_ns": 1792391744290633000,
+        "ms": 11.686
+      },
+      {
+        "input_ns": 1792391744378974000,
+        "paint_ns": 1792391744391608000,
+        "ms": 12.634
+      },
+      {
+        "input_ns": 1792391744479020000,
+        "paint_ns": 1792391744493298000,
+        "ms": 14.278
+      },
+      {
+        "input_ns": 1792391744578961000,
+        "paint_ns": 1792391744591621000,
+        "ms": 12.66
+      },
+      {
+        "input_ns": 1792391744679338000,
+        "paint_ns": 1792391744699253000,
+        "ms": 19.915
+      },
+      {
+        "input_ns": 1792391744779129000,
+        "paint_ns": 1792391744792157000,
+        "ms": 13.028
+      },
+      {
+        "input_ns": 1792391744879332000,
+        "paint_ns": 1792391744898012000,
+        "ms": 18.68
+      },
+      {
+        "input_ns": 1792391744984250000,
+        "paint_ns": 1792391745000409000,
+        "ms": 16.159
+      },
+      {
+        "input_ns": 1792391745079139000,
+        "paint_ns": 1792391745091602000,
+        "ms": 12.463
+      },
+      {
+        "input_ns": 1792391745180401000,
+        "paint_ns": 1792391745207683000,
+        "ms": 27.282
+      },
+      {
+        "input_ns": 1792391745280163000,
+        "paint_ns": 1792391745305723000,
+        "ms": 25.56
+      },
+      {
+        "input_ns": 1792391745379005000,
+        "paint_ns": 1792391745399252000,
+        "ms": 20.247
+      },
+      {
+        "input_ns": 1792391745479303000,
+        "paint_ns": 1792391745492495000,
+        "ms": 13.192
+      },
+      {
+        "input_ns": 1792391745579792000,
+        "paint_ns": 1792391745603809000,
+        "ms": 24.017
+      },
+      {
+        "input_ns": 1792391745680449000,
+        "paint_ns": 1792391745707734000,
+        "ms": 27.285
+      }
+    ]
+  },
+  "warm_native_paint_ms": {
+    "p95": 1.108625,
+    "raw": [
+      0.8604160000000001,
+      0.920167,
+      0.942625,
+      0.789667,
+      1.057,
+      0.906625,
+      0.8364590000000001,
+      1.108625,
+      0.72875,
+      0.926875,
+      0.971791,
+      1.0895,
+      0.932166,
+      1.0684589999999998,
+      1.001417,
+      0.891084,
+      0.8837079999999999,
+      0.789833,
+      0.6505000000000001,
+      0.83875,
+      0.795666,
+      0.922208,
+      0.8652500000000001,
+      1.2031660000000002,
+      0.9584170000000001,
+      0.913625,
+      1.054417,
+      0.9086660000000001,
+      0.971542,
+      1.054791,
+      0.908416,
+      1.108083
+    ]
+  },
+  "edit_to_paint_ms": 16.044,
+  "scheduled_callback_max_ms": 1.228917,
+  "query_config": {
+    "safe": true,
+    "reason": null
+  },
+  "worker": {
+    "request": 2,
+    "buffer": 1,
+    "pid": 27545
+  },
+  "dependency_state": "copied installed Mason packages; no user installation changed",
+  "source_chunk_max_bytes": 20317,
+  "source_bytes": 158330,
+  "pure_scroll_source_messages": 0,
+  "pure_scroll_state_messages": 31,
+  "peak_rss": {
+    "host_kib": 102864,
+    "editor_kib": 51168,
+    "editor_pid": 27470,
+    "worker_pid": 27545,
+    "worker_kib": 26304
+  },
+  "initial_rpc_heartbeat_ms": {
+    "samples": 2,
+    "max": 0.58775,
+    "p95": 0.58775,
+    "raw": [
+      0.260416,
+      0.58775
+    ]
+  },
+  "memory_sampling_ms": 100,
+  "measurement": "CPU canvas paint submission end; not GPU presentation/compositor timestamp",
+  "acceptance": {
+    "analysis_quiet": true,
+    "editor_slices": true,
+    "source_chunks": true,
+    "scroll_no_source": true,
+    "native_paint": true,
+    "scroll_latency": true,
+    "initial_cold": true,
+    "initial_warm": true,
+    "edit": true
+  }
+}

@@ -1,0 +1,20 @@
+test (macos-latest, nightly)	Tests	2026-10-19T12:37:59.7893410Z input_bridge_order_spec.lua
+test (macos-latest, nightly)	Tests	2026-10-19T12:37:59.7894380Z input_bridge_spec.lua
+test (macos-latest, nightly)	Tests	2026-10-19T12:38:31.8098920Z native_minimap_spec.lua
+test (macos-latest, nightly)	Tests	2026-10-19T12:38:42.1418390Z 20729 checks, 0 failures
+test (ubuntu-latest, stable)	Tests	2026-10-19T12:37:49.1277399Z input_bridge_order_spec.lua
+test (ubuntu-latest, stable)	Tests	2026-10-19T12:37:49.1621966Z input_bridge_spec.luaNvim: Caught deadly signal 'SIGTERM'
+test (ubuntu-latest, stable)	Tests	2026-10-19T12:38:20.5188590Z native_minimap_spec.luaNvim: Caught deadly signal 'SIGTERM'
+test (ubuntu-latest, v0.11.0)	Tests	2026-10-19T12:37:49.8267661Z input_bridge_order_spec.lua
+test (ubuntu-latest, v0.11.0)	Tests	2026-10-19T12:37:49.8718753Z input_bridge_spec.luaNvim: Caught deadly signal 'SIGTERM'
+test (ubuntu-latest, v0.11.0)	Tests	2026-10-19T12:38:21.4139740Z native_minimap_spec.luaNvim: Caught deadly signal 'SIGTERM'
+test (ubuntu-latest, nightly)	Tests	2026-10-19T12:37:49.1819789Z input_bridge_order_spec.lua
+test (ubuntu-latest, nightly)	Tests	2026-10-19T12:37:49.1827032Z input_bridge_spec.lua
+test (ubuntu-latest, nightly)	Tests	2026-10-19T12:38:20.5638423Z native_minimap_spec.lua
+test (ubuntu-latest, nightly)	Tests	2026-10-19T12:38:29.3516791Z 20729 checks, 0 failures
+test (macos-latest, v0.11.0)	Tests	2026-10-19T12:37:58.7992850Z input_bridge_order_spec.lua
+test (macos-latest, v0.11.0)	Tests	2026-10-19T12:37:58.9762700Z input_bridge_spec.lua
+test (macos-latest, v0.11.0)	Tests	2026-10-19T12:38:31.2189250Z native_minimap_spec.luaNvim: Caught deadly signal 'SIGTERM'
+test (macos-latest, stable)	Tests	2026-10-19T12:38:35.8390780Z input_bridge_order_spec.lua
+test (macos-latest, stable)	Tests	2026-10-19T12:38:35.9263720Z input_bridge_spec.luaNvim: Caught deadly signal 'SIGTERM'
+test (macos-latest, stable)	Tests	2026-10-19T12:39:07.9447080Z native_minimap_spec.luaNvim: Caught deadly signal 'SIGTERM'

@@ -1,0 +1,51 @@
+vim.opt.rtp:prepend(vim.fn.getcwd())
+vim.env.VSVIM_ROOT=vim.fn.getcwd()
+if vim.env.VSVIM_WORKER_CASE=='preloaded' then require('vim.treesitter.query') end
+require('vsvim.minimap.query_config').observe()
+local source=require('vsvim.minimap.source')
+local root=vim.fn.tempname()
+vim.fn.mkdir(root,'p')
+local function git(...)
+  local result=vim.system({'git','-C',root,...},{text=true}):wait()
+  assert(result.code==0,result.stderr)
+  return vim.trim(result.stdout)
+end
+vim.fn.writefile({'return 1'},root..'/a.lua')
+vim.fn.writefile({'return 2'},root..'/b.lua')
+vim.fn.writefile({'return 3\r','return 4\r'},root..'/c.lua')
+git('init','-q');git('add','a.lua','b.lua','c.lua')
+git('-c','user.name=Test','-c','user.email=test@example.invalid','commit','-qm','baseline')
+local sha=git('rev-parse','HEAD')
+vim.o.swapfile=false
+vim.api.nvim_buf_set_lines(0,0,-1,false,{'return 2'})
+local buffer=vim.api.nvim_get_current_buf()
+local latest
+local stop=source.watch(buffer,function(value) latest=value end)
+local done=false
+source.rows(buffer,1,1,function() done=true end,{full=true})
+assert(vim.wait(3000,function() return done and latest~=nil end,1))
+assert(latest.error and #latest.changes==0)
+vim.cmd('write! '..vim.fn.fnameescape(root..'/a.lua'))
+assert(vim.wait(3000,function() return latest.head==sha and #latest.changes==1 and latest.changes[1].kind=='modified' end,1),vim.inspect(latest))
+print('minimap worker Git untitled first save: PASS')
+latest=nil
+vim.cmd('file '..vim.fn.fnameescape(root..'/b.lua'))
+assert(vim.wait(3000,function() return latest and latest.head==sha and #latest.changes==0 end,1),vim.inspect(latest))
+print('minimap worker Git rename switches HEAD path: PASS')
+latest=nil
+vim.bo.endofline=false
+assert(vim.wait(3000,function() return latest and latest.head==sha and #latest.changes==1 end,1),vim.inspect(latest))
+print('minimap worker Git endofline metadata: PASS')
+stop();source.stop()
+vim.cmd('edit! '..vim.fn.fnameescape(root..'/c.lua'))
+assert(vim.bo.fileformat=='dos')
+latest=nil;done=false
+stop=source.watch(0,function(value) latest=value end)
+source.rows(0,1,2,function() done=true end,{full=true})
+assert(vim.wait(3000,function() return done and latest and latest.head==sha and #latest.changes==0 end,1),vim.inspect(latest))
+vim.api.nvim_buf_set_lines(0,1,2,false,{'return 5'})
+done=false;source.rows(0,2,2,function() done=true end)
+assert(vim.wait(3000,function() return done and latest and #latest.changes==1 and latest.changes[1].start==2 and latest.changes[1]['end']==2 end,1),vim.inspect(latest))
+print('minimap worker Git CRLF logical baseline and narrow edit: PASS')
+stop();source.stop()
+vim.fn.delete(root,'rf')

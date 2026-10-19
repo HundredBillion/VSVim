@@ -1,0 +1,660 @@
+{
+  "lines": 10000,
+  "revisions": {
+    "vsvim": "1dfa343411020fa82721e1fba363f64803864b93",
+    "adapter": "4f572f48c0af53d01476544ff53471ce4a6c4bc4",
+    "host": "9f7319b8759268f2f3a7e2af8303bbc4c9ffa764"
+  },
+  "samples": {
+    "initial_cold": 1,
+    "initial_warm": 1,
+    "prewarm_scroll": 30,
+    "scroll": 30,
+    "paint": 32,
+    "edit": 1
+  },
+  "analysis_quiet": {
+    "reached": true,
+    "timeout_seconds": 30,
+    "quiet_seconds": 1,
+    "observations": [
+      {
+        "diagnostics": 0,
+        "status": " 92%: Loading workspace: 92/189, Loading workspace: 93/188, Loading workspace: 106/189, Loading workspace: 107/188, Loading workspace: 115/189, Loading workspace: 116/188, Loading workspace: 127/189, Loading workspace: 128/188, Loading workspace: 141/189, Loading workspace: 142/188, Loading workspace: 154/189, Loading workspace: 155/188, Loading workspace: 173/189, Loading workspace: 174/188, Loading workspace, Loading workspace",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      }
+    ]
+  },
+  "prewarm_scroll_input_to_paint_ms": {
+    "p95": 35.803,
+    "raw": [
+      {
+        "input_ns": 1792392271007248000,
+        "paint_ns": 1792392271024156000,
+        "ms": 16.908
+      },
+      {
+        "input_ns": 1792392271104568000,
+        "paint_ns": 1792392271125862000,
+        "ms": 21.294
+      },
+      {
+        "input_ns": 1792392271204583000,
+        "paint_ns": 1792392271223849000,
+        "ms": 19.266
+      },
+      {
+        "input_ns": 1792392271304720000,
+        "paint_ns": 1792392271326232000,
+        "ms": 21.512
+      },
+      {
+        "input_ns": 1792392271405115000,
+        "paint_ns": 1792392271424546000,
+        "ms": 19.431
+      },
+      {
+        "input_ns": 1792392271504735000,
+        "paint_ns": 1792392271526292000,
+        "ms": 21.557
+      },
+      {
+        "input_ns": 1792392271604354000,
+        "paint_ns": 1792392271626201000,
+        "ms": 21.847
+      },
+      {
+        "input_ns": 1792392271704550000,
+        "paint_ns": 1792392271726204000,
+        "ms": 21.654
+      },
+      {
+        "input_ns": 1792392271804467000,
+        "paint_ns": 1792392271817869000,
+        "ms": 13.402
+      },
+      {
+        "input_ns": 1792392271901002000,
+        "paint_ns": 1792392271916023000,
+        "ms": 15.021
+      },
+      {
+        "input_ns": 1792392272004690000,
+        "paint_ns": 1792392272026431000,
+        "ms": 21.741
+      },
+      {
+        "input_ns": 1792392272104553000,
+        "paint_ns": 1792392272126335000,
+        "ms": 21.782
+      },
+      {
+        "input_ns": 1792392272204426000,
+        "paint_ns": 1792392272216774000,
+        "ms": 12.348
+      },
+      {
+        "input_ns": 1792392272304602000,
+        "paint_ns": 1792392272326453000,
+        "ms": 21.851
+      },
+      {
+        "input_ns": 1792392272404641000,
+        "paint_ns": 1792392272419496000,
+        "ms": 14.855
+      },
+      {
+        "input_ns": 1792392272504597000,
+        "paint_ns": 1792392272525725000,
+        "ms": 21.128
+      },
+      {
+        "input_ns": 1792392272604454000,
+        "paint_ns": 1792392272623203000,
+        "ms": 18.749
+      },
+      {
+        "input_ns": 1792392272704497000,
+        "paint_ns": 1792392272725874000,
+        "ms": 21.377
+      },
+      {
+        "input_ns": 1792392272804327000,
+        "paint_ns": 1792392272825136000,
+        "ms": 20.809
+      },
+      {
+        "input_ns": 1792392272904385000,
+        "paint_ns": 1792392272917107000,
+        "ms": 12.722
+      },
+      {
+        "input_ns": 1792392273004613000,
+        "paint_ns": 1792392273026457000,
+        "ms": 21.844
+      },
+      {
+        "input_ns": 1792392273104838000,
+        "paint_ns": 1792392273126641000,
+        "ms": 21.803
+      },
+      {
+        "input_ns": 1792392273204861000,
+        "paint_ns": 1792392273225394000,
+        "ms": 20.533
+      },
+      {
+        "input_ns": 1792392273306482000,
+        "paint_ns": 1792392273333028000,
+        "ms": 26.546
+      },
+      {
+        "input_ns": 1792392273405045000,
+        "paint_ns": 1792392273426441000,
+        "ms": 21.396
+      },
+      {
+        "input_ns": 1792392273506625000,
+        "paint_ns": 1792392273550074000,
+        "ms": 43.449
+      },
+      {
+        "input_ns": 1792392273606644000,
+        "paint_ns": 1792392273642447000,
+        "ms": 35.803
+      },
+      {
+        "input_ns": 1792392273706348000,
+        "paint_ns": 1792392273740805000,
+        "ms": 34.457
+      },
+      {
+        "input_ns": 1792392273804885000,
+        "paint_ns": 1792392273826236000,
+        "ms": 21.351
+      },
+      {
+        "input_ns": 1792392273906421000,
+        "paint_ns": 1792392273940210000,
+        "ms": 33.789
+      }
+    ]
+  },
+  "display_scale": 2.0,
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "initial": {
+    "cold": {
+      "cache": "process-cold; OS caches uncontrolled",
+      "source_ms": 476.891958,
+      "complete_source_sync_ms": 518.723072,
+      "first_painted_content_ms": 537.431976
+    },
+    "warm": {
+      "cache": "same-process warm",
+      "source_ms": 449.983416,
+      "complete_source_sync_ms": 492.61824,
+      "first_painted_content_ms": 506.56012
+    }
+  },
+  "scroll_input_to_paint_ms": {
+    "p95": 53.686,
+    "raw": [
+      {
+        "input_ns": 1792392274306383000,
+        "paint_ns": 1792392274344789000,
+        "ms": 38.406
+      },
+      {
+        "input_ns": 1792392274407155000,
+        "paint_ns": 1792392274459491000,
+        "ms": 52.336
+      },
+      {
+        "input_ns": 1792392274510909000,
+        "paint_ns": 1792392274539547000,
+        "ms": 28.638
+      },
+      {
+        "input_ns": 1792392274606504000,
+        "paint_ns": 1792392274659220000,
+        "ms": 52.716
+      },
+      {
+        "input_ns": 1792392274705423000,
+        "paint_ns": 1792392274759109000,
+        "ms": 53.686
+      },
+      {
+        "input_ns": 1792392274805679000,
+        "paint_ns": 1792392274833875000,
+        "ms": 28.196
+      },
+      {
+        "input_ns": 1792392274904349000,
+        "paint_ns": 1792392274927415000,
+        "ms": 23.066
+      },
+      {
+        "input_ns": 1792392275006612000,
+        "paint_ns": 1792392275033523000,
+        "ms": 26.911
+      },
+      {
+        "input_ns": 1792392275106525000,
+        "paint_ns": 1792392275142787000,
+        "ms": 36.262
+      },
+      {
+        "input_ns": 1792392275205282000,
+        "paint_ns": 1792392275225799000,
+        "ms": 20.517
+      },
+      {
+        "input_ns": 1792392275306639000,
+        "paint_ns": 1792392275332873000,
+        "ms": 26.234
+      },
+      {
+        "input_ns": 1792392275404875000,
+        "paint_ns": 1792392275430785000,
+        "ms": 25.91
+      },
+      {
+        "input_ns": 1792392275505903000,
+        "paint_ns": 1792392275529510000,
+        "ms": 23.607
+      },
+      {
+        "input_ns": 1792392275605003000,
+        "paint_ns": 1792392275629973000,
+        "ms": 24.97
+      },
+      {
+        "input_ns": 1792392275706309000,
+        "paint_ns": 1792392275739600000,
+        "ms": 33.291
+      },
+      {
+        "input_ns": 1792392275804780000,
+        "paint_ns": 1792392275826469000,
+        "ms": 21.689
+      },
+      {
+        "input_ns": 1792392275905660000,
+        "paint_ns": 1792392275929489000,
+        "ms": 23.829
+      },
+      {
+        "input_ns": 1792392276005018000,
+        "paint_ns": 1792392276030668000,
+        "ms": 25.65
+      },
+      {
+        "input_ns": 1792392276105961000,
+        "paint_ns": 1792392276129679000,
+        "ms": 23.718
+      },
+      {
+        "input_ns": 1792392276205888000,
+        "paint_ns": 1792392276252444000,
+        "ms": 46.556
+      },
+      {
+        "input_ns": 1792392276305089000,
+        "paint_ns": 1792392276343125000,
+        "ms": 38.036
+      },
+      {
+        "input_ns": 1792392276406633000,
+        "paint_ns": 1792392276433334000,
+        "ms": 26.701
+      },
+      {
+        "input_ns": 1792392276505698000,
+        "paint_ns": 1792392276535055000,
+        "ms": 29.357
+      },
+      {
+        "input_ns": 1792392276606454000,
+        "paint_ns": 1792392276640932000,
+        "ms": 34.478
+      },
+      {
+        "input_ns": 1792392276706617000,
+        "paint_ns": 1792392276767469000,
+        "ms": 60.852
+      },
+      {
+        "input_ns": 1792392276804819000,
+        "paint_ns": 1792392276826730000,
+        "ms": 21.911
+      },
+      {
+        "input_ns": 1792392276909462000,
+        "paint_ns": 1792392276925897000,
+        "ms": 16.435
+      },
+      {
+        "input_ns": 1792392277004480000,
+        "paint_ns": 1792392277026267000,
+        "ms": 21.787
+      },
+      {
+        "input_ns": 1792392277106689000,
+        "paint_ns": 1792392277138345000,
+        "ms": 31.656
+      },
+      {
+        "input_ns": 1792392277204972000,
+        "paint_ns": 1792392277231300000,
+        "ms": 26.328
+      }
+    ]
+  },
+  "warm_native_paint_ms": {
+    "p95": 2.1024580000000004,
+    "raw": [
+      1.81725,
+      1.676542,
+      1.853083,
+      1.388,
+      1.589292,
+      1.576583,
+      0.824958,
+      0.9722500000000001,
+      1.311834,
+      1.869458,
+      1.6533749999999998,
+      1.858167,
+      2.1024580000000004,
+      1.9616249999999997,
+      2.041833,
+      2.0484999999999998,
+      1.784833,
+      1.968291,
+      1.909125,
+      1.9185,
+      2.00025,
+      1.9810420000000002,
+      1.9511669999999999,
+      1.890666,
+      1.834125,
+      1.7642499999999999,
+      1.813459,
+      0.999375,
+      1.26325,
+      1.698042,
+      2.018875,
+      2.188833
+    ]
+  },
+  "edit_to_updated_band_ms": 64.509,
+  "edit_source_repaint_ms": 64.509,
+  "edit_expected_band": {
+    "start": 1,
+    "kind": "modified",
+    "paint": {
+      "event": "paint",
+      "generation": 3,
+      "viewport": [
+        1,
+        47
+      ],
+      "offset": 0,
+      "rows": 293,
+      "state_revision": 163,
+      "change_bands": 3,
+      "first_line_change": true,
+      "occurrences": 0,
+      "selection": false,
+      "scale": 2.0,
+      "ms": 10.296667000000001,
+      "unix_ns": 1792392277494841000
+    }
+  },
+  "scheduled_callback_max_ms": 2.20725,
+  "query_config": {
+    "reason": null,
+    "safe": true
+  },
+  "worker": {
+    "buffer": 1,
+    "request": 2,
+    "pid": 36415
+  },
+  "dependency_state": "copied installed Mason packages; no user installation changed",
+  "source_chunk_max_bytes": 20830,
+  "source_bytes": 1623094,
+  "pure_scroll_source_messages": 0,
+  "pure_scroll_state_messages": 32,
+  "peak_rss": {
+    "host_kib": 105872,
+    "editor_kib": 117952,
+    "editor_pid": 36343,
+    "worker_pid": 36357
+  },
+  "initial_rpc_heartbeat_ms": {
+    "samples": 10,
+    "max": 8.353083,
+    "p95": 8.353083,
+    "raw": [
+      8.353083,
+      0.110459,
+      0.110958,
+      1.260833,
+      0.835083,
+      0.295916,
+      0.097,
+      0.873584,
+      0.091125,
+      0.49775
+    ]
+  },
+  "memory_sampling_ms": 100,
+  "memory_sampling_method": "macOS libproc TASKINFO and owned-child discovery; no subprocesses",
+  "measurement": "CPU canvas paint submission end; not GPU presentation/compositor timestamp",
+  "acceptance": {
+    "analysis_quiet": true,
+    "editor_slices": true,
+    "source_chunks": true,
+    "scroll_no_source": true,
+    "native_paint": true,
+    "scroll_latency": false,
+    "initial_cold": true,
+    "initial_warm": true,
+    "edit": true
+  }
+}

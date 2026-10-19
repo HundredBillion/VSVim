@@ -1,0 +1,1782 @@
+{
+  "cold": {
+    "callbacks": {
+      "...y/share/nvim/runtime/lua/vim/treesitter/languagetree.lua:581": {
+        "max_ms": 0.193625,
+        "total_ms": 0.193625,
+        "count": 1
+      },
+      "/Users/davidlee/Projects/VSVim/lua/vsvim/minimap/work.lua:8": {
+        "max_ms": 0.405209,
+        "total_ms": 1.033207,
+        "count": 11
+      },
+      "/Users/davidlee/Projects/VSVim/lua/vsvim/minimap/work.lua:15": {
+        "max_ms": 0.005125,
+        "total_ms": 0.037833000000000006,
+        "count": 11
+      },
+      "...avidlee/Projects/VSVim/lua/vsvim/minimap/source_main.lua:64": {
+        "max_ms": 0.899625,
+        "total_ms": 4.673292,
+        "count": 8
+      },
+      ".../1000/data/vsvim/lazy/sprite.nvim/lua/sprite/minimap.lua:13": {
+        "max_ms": 0.018625,
+        "total_ms": 0.050334000000000004,
+        "count": 10
+      },
+      "...avidlee/Projects/VSVim/lua/vsvim/minimap/source_main.lua:132": {
+        "max_ms": 0.010083,
+        "total_ms": 0.030291000000000005,
+        "count": 8
+      },
+      "...d3/1000/data/vsvim/lazy/lazy.nvim/lua/lazy/core/util.lua:169": {
+        "max_ms": 4.358708,
+        "total_ms": 4.358708,
+        "count": 1
+      },
+      "...nd3/1000/data/vsvim/lazy/sprite.nvim/lua/sprite/tabs.lua:13": {
+        "max_ms": 0.002583,
+        "total_ms": 0.002583,
+        "count": 1
+      },
+      ".../1000/data/vsvim/lazy/lazy.nvim/lua/lazy/core/loader.lua:367": {
+        "max_ms": 0.00575,
+        "total_ms": 0.014958999999999998,
+        "count": 6
+      },
+      "...al/nvim-nightly/share/nvim/runtime/lua/nvim/autoread.lua:59": {
+        "max_ms": 0.001375,
+        "total_ms": 0.002125,
+        "count": 2
+      }
+    },
+    "ops": [
+      {
+        "kind": "begin",
+        "generation": 1,
+        "bytes": 225,
+        "rows": 0,
+        "unix_ns": 1792395549945106944
+      },
+      {
+        "kind": "lines",
+        "generation": 1,
+        "bytes": 20054,
+        "rows": 256,
+        "unix_ns": 1792395549945175040
+      },
+      {
+        "kind": "lines",
+        "generation": 1,
+        "bytes": 20317,
+        "rows": 256,
+        "unix_ns": 1792395549946426880
+      },
+      {
+        "kind": "lines",
+        "generation": 1,
+        "bytes": 20317,
+        "rows": 256,
+        "unix_ns": 1792395549947404032
+      },
+      {
+        "kind": "lines",
+        "generation": 1,
+        "bytes": 18385,
+        "rows": 232,
+        "unix_ns": 1792395549948498944
+      },
+      {
+        "kind": "commit",
+        "generation": 1,
+        "bytes": 71,
+        "rows": 0,
+        "unix_ns": 1792395549949670912
+      },
+      {
+        "kind": "state",
+        "generation": 1,
+        "bytes": 147,
+        "rows": 0,
+        "unix_ns": 1792395549949723904
+      },
+      {
+        "kind": "state",
+        "generation": 1,
+        "bytes": 147,
+        "rows": 0,
+        "unix_ns": 1792395549956761088
+      },
+      {
+        "kind": "state",
+        "generation": 1,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395549961207040
+      },
+      {
+        "kind": "state",
+        "generation": 1,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395550060023040
+      },
+      {
+        "kind": "state",
+        "generation": 1,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395550084997888
+      },
+      {
+        "kind": "state",
+        "generation": 1,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395550094246912
+      }
+    ],
+    "started": 304750040774875,
+    "source": [
+      {
+        "ms": 55.058375,
+        "first": 1,
+        "range": {
+          "total": 1000,
+          "last": 1000,
+          "first": 1
+        },
+        "last": 1000,
+        "unix_ns": 1792395549889754112
+      }
+    ],
+    "provider_max_ms": 0.543958,
+    "slow_callbacks": [
+      {
+        "ms": 4.358708,
+        "key": "...d3/1000/data/vsvim/lazy/lazy.nvim/lua/lazy/core/util.lua:169",
+        "unix_ns": 1792395549883239936
+      }
+    ],
+    "receive_max_ms": 0.096125
+  },
+  "warm": {
+    "callbacks": {
+      ".../1000/data/vsvim/lazy/sprite.nvim/lua/sprite/minimap.lua:13": {
+        "max_ms": 0.011583,
+        "total_ms": 0.032333,
+        "count": 6
+      },
+      "/Users/davidlee/Projects/VSVim/lua/vsvim/minimap/work.lua:8": {
+        "max_ms": 0.537125,
+        "total_ms": 1.2000419999999998,
+        "count": 11
+      },
+      "/Users/davidlee/Projects/VSVim/lua/vsvim/minimap/work.lua:15": {
+        "max_ms": 0.023541,
+        "total_ms": 0.07600000000000001,
+        "count": 11
+      },
+      "...avidlee/Projects/VSVim/lua/vsvim/minimap/source_main.lua:64": {
+        "max_ms": 0.781625,
+        "total_ms": 4.289626,
+        "count": 8
+      },
+      "...avidlee/Projects/VSVim/lua/vsvim/minimap/source_main.lua:132": {
+        "max_ms": 0.004167,
+        "total_ms": 0.022042,
+        "count": 8
+      }
+    },
+    "ops": [
+      {
+        "kind": "begin",
+        "generation": 2,
+        "bytes": 225,
+        "rows": 0,
+        "unix_ns": 1792395550278259968
+      },
+      {
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20054,
+        "rows": 256,
+        "unix_ns": 1792395550278319104
+      },
+      {
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20317,
+        "rows": 256,
+        "unix_ns": 1792395550279635968
+      },
+      {
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20317,
+        "rows": 256,
+        "unix_ns": 1792395550280710912
+      },
+      {
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 18385,
+        "rows": 232,
+        "unix_ns": 1792395550282000896
+      },
+      {
+        "kind": "commit",
+        "generation": 2,
+        "bytes": 71,
+        "rows": 0,
+        "unix_ns": 1792395550282907904
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 147,
+        "rows": 0,
+        "unix_ns": 1792395550282960896
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 147,
+        "rows": 0,
+        "unix_ns": 1792395550289799936
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395550292404992
+      }
+    ],
+    "started": 304750040774875,
+    "source": [
+      {
+        "ms": 55.886125,
+        "first": 1,
+        "range": {
+          "total": 1000,
+          "first": 1,
+          "last": 1000
+        },
+        "last": 1000,
+        "unix_ns": 1792395550221981952
+      }
+    ],
+    "provider_max_ms": 0.543958,
+    "slow_callbacks": [
+      {
+        "ms": 4.358708,
+        "key": "...d3/1000/data/vsvim/lazy/lazy.nvim/lua/lazy/core/util.lua:169",
+        "unix_ns": 1792395549883239936
+      }
+    ],
+    "receive_max_ms": 0.125125
+  },
+  "final": {
+    "actions": [
+      {
+        "done_ns": 1792395561471248896,
+        "event": {
+          "topline": 4,
+          "revision": 27,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 1,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395561471076096
+      },
+      {
+        "done_ns": 1792395561558672896,
+        "event": {
+          "topline": 7,
+          "revision": 28,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 2,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395561558542080
+      },
+      {
+        "done_ns": 1792395561660090112,
+        "event": {
+          "topline": 11,
+          "revision": 29,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 3,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395561659764992
+      },
+      {
+        "done_ns": 1792395561759875072,
+        "event": {
+          "topline": 14,
+          "revision": 30,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 4,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395561759725056
+      },
+      {
+        "done_ns": 1792395561860060928,
+        "event": {
+          "topline": 17,
+          "revision": 31,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 5,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395561859908096
+      },
+      {
+        "done_ns": 1792395561960101888,
+        "event": {
+          "topline": 21,
+          "revision": 32,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 6,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395561959962112
+      },
+      {
+        "done_ns": 1792395562060122112,
+        "event": {
+          "topline": 24,
+          "revision": 33,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 7,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395562059968000
+      },
+      {
+        "done_ns": 1792395562159439872,
+        "event": {
+          "topline": 27,
+          "revision": 34,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 8,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395562159244032
+      },
+      {
+        "done_ns": 1792395562259521024,
+        "event": {
+          "topline": 31,
+          "revision": 35,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 9,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395562259369984
+      },
+      {
+        "done_ns": 1792395562357476096,
+        "event": {
+          "topline": 34,
+          "revision": 37,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 10,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395562357436928
+      },
+      {
+        "done_ns": 1792395562458362112,
+        "event": {
+          "topline": 37,
+          "revision": 38,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 11,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395562458301952
+      },
+      {
+        "done_ns": 1792395562559427072,
+        "event": {
+          "topline": 41,
+          "revision": 39,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 12,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395562559185920
+      },
+      {
+        "done_ns": 1792395562659185920,
+        "event": {
+          "topline": 44,
+          "revision": 40,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 13,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395562659017984
+      },
+      {
+        "done_ns": 1792395562759977984,
+        "event": {
+          "topline": 47,
+          "revision": 41,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 14,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395562759612928
+      },
+      {
+        "done_ns": 1792395562858503936,
+        "event": {
+          "topline": 51,
+          "revision": 42,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 15,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395562858148096
+      },
+      {
+        "done_ns": 1792395562959357952,
+        "event": {
+          "topline": 54,
+          "revision": 43,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 16,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395562959048960
+      },
+      {
+        "done_ns": 1792395563060052992,
+        "event": {
+          "topline": 57,
+          "revision": 44,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 17,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395563059770112
+      },
+      {
+        "done_ns": 1792395563160066048,
+        "event": {
+          "topline": 61,
+          "revision": 45,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 18,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395563159920128
+      },
+      {
+        "done_ns": 1792395563259610112,
+        "event": {
+          "topline": 64,
+          "revision": 46,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 19,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395563259325952
+      },
+      {
+        "done_ns": 1792395563358811904,
+        "event": {
+          "topline": 67,
+          "revision": 47,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 20,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395563358615040
+      },
+      {
+        "done_ns": 1792395563459629056,
+        "event": {
+          "topline": 71,
+          "revision": 48,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 21,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395563459397888
+      },
+      {
+        "done_ns": 1792395563559282944,
+        "event": {
+          "topline": 74,
+          "revision": 49,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 22,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395563559045888
+      },
+      {
+        "done_ns": 1792395563659376128,
+        "event": {
+          "topline": 77,
+          "revision": 50,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 23,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395563659212032
+      },
+      {
+        "done_ns": 1792395563760133120,
+        "event": {
+          "topline": 81,
+          "revision": 51,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 24,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395563759862016
+      },
+      {
+        "done_ns": 1792395563860166912,
+        "event": {
+          "topline": 84,
+          "revision": 52,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 25,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395563859766016
+      },
+      {
+        "done_ns": 1792395563959645952,
+        "event": {
+          "topline": 87,
+          "revision": 53,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 26,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395563959485952
+      },
+      {
+        "done_ns": 1792395564059945984,
+        "event": {
+          "topline": 91,
+          "revision": 54,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 27,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395564059517952
+      },
+      {
+        "done_ns": 1792395564163087104,
+        "event": {
+          "topline": 94,
+          "revision": 55,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 28,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395564162936064
+      },
+      {
+        "done_ns": 1792395564260058112,
+        "event": {
+          "topline": 97,
+          "revision": 56,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 29,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395564259895040
+      },
+      {
+        "done_ns": 1792395564362597120,
+        "event": {
+          "topline": 101,
+          "revision": 58,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 30,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395564362548992
+      },
+      {
+        "done_ns": 1792395564659059968,
+        "event": {
+          "topline": 4,
+          "revision": 60,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 31,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395564658801920
+      },
+      {
+        "done_ns": 1792395564760043008,
+        "event": {
+          "topline": 7,
+          "revision": 61,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 32,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395564759838976
+      },
+      {
+        "done_ns": 1792395564859964928,
+        "event": {
+          "topline": 11,
+          "revision": 62,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 33,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395564859799040
+      },
+      {
+        "done_ns": 1792395564959982080,
+        "event": {
+          "topline": 14,
+          "revision": 63,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 34,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395564959814912
+      },
+      {
+        "done_ns": 1792395565060197120,
+        "event": {
+          "topline": 17,
+          "revision": 64,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 35,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395565060016896
+      },
+      {
+        "done_ns": 1792395565162209024,
+        "event": {
+          "topline": 21,
+          "revision": 65,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 36,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395565162084096
+      },
+      {
+        "done_ns": 1792395565259316992,
+        "event": {
+          "topline": 24,
+          "revision": 66,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 37,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395565259043072
+      },
+      {
+        "done_ns": 1792395565357920000,
+        "event": {
+          "topline": 27,
+          "revision": 67,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 38,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395565357810944
+      },
+      {
+        "done_ns": 1792395565459607040,
+        "event": {
+          "topline": 31,
+          "revision": 68,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 39,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395565459454976
+      },
+      {
+        "done_ns": 1792395565560061952,
+        "event": {
+          "topline": 34,
+          "revision": 69,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 40,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395565559886080
+      },
+      {
+        "done_ns": 1792395565660280064,
+        "event": {
+          "topline": 37,
+          "revision": 70,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 41,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395565660112896
+      },
+      {
+        "done_ns": 1792395565758748928,
+        "event": {
+          "topline": 41,
+          "revision": 71,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 42,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395565758610944
+      },
+      {
+        "done_ns": 1792395565859433984,
+        "event": {
+          "topline": 44,
+          "revision": 72,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 43,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395565859281920
+      },
+      {
+        "done_ns": 1792395565959385088,
+        "event": {
+          "topline": 47,
+          "revision": 73,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 44,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395565959227904
+      },
+      {
+        "done_ns": 1792395566062030080,
+        "event": {
+          "topline": 51,
+          "revision": 74,
+          "generation": 2,
+          "type": "minimap_action",
+          "action_id": 45,
+          "action": "scroll",
+          "target": "b1:w1000:2"
+        },
+        "unix_ns": 1792395566061884928
+      },
+      {
+        "done_ns": 1792395566159589888,
+        "event": {
+          "topline": 54,
+          "revision": 75,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 46,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566159404032
+      },
+      {
+        "done_ns": 1792395566259476992,
+        "event": {
+          "topline": 57,
+          "revision": 76,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 47,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566259304960
+      },
+      {
+        "done_ns": 1792395566359257088,
+        "event": {
+          "topline": 61,
+          "revision": 78,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 48,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566359200000
+      },
+      {
+        "done_ns": 1792395566458117120,
+        "event": {
+          "topline": 64,
+          "revision": 79,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 49,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566457989888
+      },
+      {
+        "done_ns": 1792395566558088960,
+        "event": {
+          "topline": 67,
+          "revision": 80,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 50,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566558008064
+      },
+      {
+        "done_ns": 1792395566660316928,
+        "event": {
+          "topline": 71,
+          "revision": 81,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 51,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566660152064
+      },
+      {
+        "done_ns": 1792395566759794944,
+        "event": {
+          "topline": 74,
+          "revision": 82,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 52,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566759640064
+      },
+      {
+        "done_ns": 1792395566860103936,
+        "event": {
+          "topline": 77,
+          "revision": 83,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 53,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566859950080
+      },
+      {
+        "done_ns": 1792395566959756032,
+        "event": {
+          "topline": 81,
+          "revision": 84,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 54,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395566959589888
+      },
+      {
+        "done_ns": 1792395567059847936,
+        "event": {
+          "topline": 84,
+          "revision": 85,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 55,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395567059692032
+      },
+      {
+        "done_ns": 1792395567159363072,
+        "event": {
+          "topline": 87,
+          "revision": 86,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 56,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395567159112960
+      },
+      {
+        "done_ns": 1792395567259375104,
+        "event": {
+          "topline": 91,
+          "revision": 87,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 57,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395567259222016
+      },
+      {
+        "done_ns": 1792395567359358976,
+        "event": {
+          "topline": 94,
+          "revision": 88,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 58,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395567359216896
+      },
+      {
+        "done_ns": 1792395567459310080,
+        "event": {
+          "topline": 97,
+          "revision": 89,
+          "generation": 2,
+          "action": "scroll",
+          "action_id": 59,
+          "target": "b1:w1000:2",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395567459147008
+      },
+      {
+        "done_ns": 1792395567560472064,
+        "event": {
+          "topline": 101,
+          "revision": 90,
+          "generation": 2,
+          "target": "b1:w1000:2",
+          "action_id": 60,
+          "action": "scroll",
+          "type": "minimap_action"
+        },
+        "unix_ns": 1792395567560294912
+      }
+    ],
+    "callbacks": {
+      "...y/share/nvim/runtime/lua/vim/treesitter/languagetree.lua:581": {
+        "max_ms": 1.367125,
+        "total_ms": 1.367125,
+        "count": 1
+      },
+      "...nd3/1000/data/vsvim/lazy/sprite.nvim/lua/sprite/tabs.lua:13": {
+        "max_ms": 0.006917,
+        "total_ms": 0.01025,
+        "count": 2
+      },
+      "...l/nvim-nightly/share/nvim/runtime/lua/vim/lsp/client.lua:1171": {
+        "max_ms": 30.2455,
+        "total_ms": 30.2455,
+        "count": 1
+      },
+      "/Users/davidlee/Projects/VSVim/lua/vsvim/minimap/work.lua:8": {
+        "max_ms": 0.537125,
+        "total_ms": 2.017083,
+        "count": 15
+      },
+      "...data/vsvim/lazy/mason.nvim/lua/mason-core/async/init.lua:20": {
+        "max_ms": 2.111792,
+        "total_ms": 2.111792,
+        "count": 1
+      },
+      "/Users/davidlee/Projects/VSVim/lua/vsvim/minimap/work.lua:15": {
+        "max_ms": 0.023541,
+        "total_ms": 0.09458500000000002,
+        "count": 15
+      },
+      "...avidlee/Projects/VSVim/lua/vsvim/minimap/source_main.lua:132": {
+        "max_ms": 0.007292,
+        "total_ms": 0.029334,
+        "count": 9
+      },
+      ".../1000/data/vsvim/lazy/sprite.nvim/lua/sprite/minimap.lua:13": {
+        "max_ms": 0.053083,
+        "total_ms": 1.6332849999999994,
+        "count": 140
+      },
+      "...l/nvim-nightly/share/nvim/runtime/lua/vim/lsp/client.lua:1199": {
+        "max_ms": 0.175125,
+        "total_ms": 0.175125,
+        "count": 1
+      },
+      ".../davidlee/Projects/VSVim/lua/vsvim/minimap/selection.lua:137": {
+        "max_ms": 0.091125,
+        "total_ms": 1.430462,
+        "count": 63
+      },
+      "[string \"vim/_core/editor\"]:658": {
+        "max_ms": 0.086041,
+        "total_ms": 0.114041,
+        "count": 2
+      },
+      "...l/nvim-nightly/share/nvim/runtime/lua/vim/lsp/client.lua:859": {
+        "max_ms": 0.122416,
+        "total_ms": 0.130123,
+        "count": 3
+      },
+      "...avidlee/Projects/VSVim/lua/vsvim/minimap/source_main.lua:64": {
+        "max_ms": 0.781625,
+        "total_ms": 4.681001,
+        "count": 9
+      },
+      "[C]:-1": {
+        "max_ms": 4.662334,
+        "total_ms": 9.243289,
+        "count": 14
+      },
+      "[string \"vim/_core/editor\"]:407": {
+        "max_ms": 14.592167,
+        "total_ms": 30.90471099999999,
+        "count": 161
+      }
+    },
+    "ops": [
+      {
+        "kind": "begin",
+        "generation": 2,
+        "bytes": 225,
+        "rows": 0,
+        "unix_ns": 1792395550278259968
+      },
+      {
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20054,
+        "rows": 256,
+        "unix_ns": 1792395550278319104
+      },
+      {
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20317,
+        "rows": 256,
+        "unix_ns": 1792395550279635968
+      },
+      {
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20317,
+        "rows": 256,
+        "unix_ns": 1792395550280710912
+      },
+      {
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 18385,
+        "rows": 232,
+        "unix_ns": 1792395550282000896
+      },
+      {
+        "kind": "commit",
+        "generation": 2,
+        "bytes": 71,
+        "rows": 0,
+        "unix_ns": 1792395550282907904
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 147,
+        "rows": 0,
+        "unix_ns": 1792395550282960896
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 147,
+        "rows": 0,
+        "unix_ns": 1792395550289799936
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395550292404992
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395552311823104
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395554311209984
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395556323968000
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395558325334016
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 266,
+        "rows": 0,
+        "unix_ns": 1792395560314880000
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 280,
+        "rows": 0,
+        "unix_ns": 1792395561478973952
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 280,
+        "rows": 0,
+        "unix_ns": 1792395561571830016
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395561664225024
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395561764348928
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395561864082944
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395561965122048
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395562063868928
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395562163474944
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395562263279104
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395562334222080
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395562359079936
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395562461888000
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395562565424128
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395562664987904
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395562775796992
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395562868247040
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395562963819008
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563064124928
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563163751936
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563263543040
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563362945024
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563464132096
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563562686976
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563664643072
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563765417984
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563865979904
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395563971681024
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395564074912000
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395564167550976
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395564263994112
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395564335913984
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 284,
+        "rows": 0,
+        "unix_ns": 1792395564364280064
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395564393551104
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395564663112960
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395564764002048
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395564865051904
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395564965730048
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565066112000
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565175077120
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565276119040
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565361473024
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565464229888
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565564474880
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565664625920
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565763066112
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565862798080
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395565963194880
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 282,
+        "rows": 0,
+        "unix_ns": 1792395566066283008
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566165550080
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566265955072
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566335218944
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566365612032
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566472621056
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566560873984
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566664264960
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566763834880
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566864236032
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395566963442944
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395567063100928
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395567163139072
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395567262678016
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395567365388032
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 283,
+        "rows": 0,
+        "unix_ns": 1792395567465382912
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 284,
+        "rows": 0,
+        "unix_ns": 1792395567566371072
+      },
+      {
+        "kind": "state",
+        "generation": 2,
+        "bytes": 281,
+        "rows": 0,
+        "unix_ns": 1792395567700407040
+      },
+      {
+        "kind": "begin",
+        "generation": 3,
+        "bytes": 219,
+        "rows": 0,
+        "unix_ns": 1792395567814703104
+      },
+      {
+        "kind": "lines",
+        "generation": 3,
+        "bytes": 184,
+        "rows": 1,
+        "unix_ns": 1792395567814984960
+      },
+      {
+        "kind": "commit",
+        "generation": 3,
+        "bytes": 71,
+        "rows": 0,
+        "unix_ns": 1792395567815173120
+      },
+      {
+        "kind": "state",
+        "generation": 3,
+        "bytes": 162,
+        "rows": 0,
+        "unix_ns": 1792395567815324928
+      },
+      {
+        "kind": "state",
+        "generation": 3,
+        "bytes": 319,
+        "rows": 0,
+        "unix_ns": 1792395567846702080
+      }
+    ],
+    "started": 304750040774875,
+    "source": [
+      {
+        "ms": 55.886125,
+        "first": 1,
+        "range": {
+          "total": 1000,
+          "first": 1,
+          "last": 1000
+        },
+        "last": 1000,
+        "unix_ns": 1792395550221981952
+      },
+      {
+        "ms": 10.374417,
+        "first": 1,
+        "range": {
+          "total": 1000,
+          "first": 1,
+          "last": 2
+        },
+        "last": 1000,
+        "unix_ns": 1792395567803632128
+      }
+    ],
+    "provider_max_ms": 0.543958,
+    "slow_callbacks": [
+      {
+        "ms": 4.358708,
+        "key": "...d3/1000/data/vsvim/lazy/lazy.nvim/lua/lazy/core/util.lua:169",
+        "unix_ns": 1792395549883239936
+      },
+      {
+        "ms": 14.592167,
+        "key": "[string \"vim/_core/editor\"]:407",
+        "unix_ns": 1792395550472995072
+      },
+      {
+        "ms": 30.2455,
+        "key": "...l/nvim-nightly/share/nvim/runtime/lua/vim/lsp/client.lua:1171",
+        "unix_ns": 1792395550488120064
+      },
+      {
+        "ms": 4.662334,
+        "key": "[C]:-1",
+        "unix_ns": 1792395550526535936
+      }
+    ],
+    "receive_max_ms": 0.126542
+  }
+}

@@ -1,0 +1,110 @@
+   Compiling gpui v0.2.2 (/Users/davidlee/Projects/Sprite/vendor/gpui)
+   Compiling libghostty-vt-sys v0.2.1 (https://github.com/HundredBillion/libghostty-rs?rev=f77032ddaec2ab075154c61bf7e1b3c49f259498#f77032dd)
+   Compiling libghostty-vt v0.2.1 (https://github.com/HundredBillion/libghostty-rs?rev=f77032ddaec2ab075154c61bf7e1b3c49f259498#f77032dd)
+   Compiling sprite-term v0.2.8 (/Users/davidlee/Projects/Sprite/crates/sprite-term)
+warning: falling back to `f32` as the trait bound `f32: From<f64>` is not satisfied
+   --> vendor/gpui/src/taffy.rs:312:68
+    |
+312 |             unit.map(|count| vec![repeat(count, vec![minmax(length(0.0), fr(1.0))])])
+    |                                                                    ^^^ help: explicitly specify the type as `f32`: `0.0_f32`
+    |
+    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+    = note: for more information, see issue #154024 <https://github.com/rust-lang/rust/issues/154024>
+    = note: `#[warn(float_literal_f32_fallback)]` (part of `#[warn(future_incompatible)]`) on by default
+
+warning: falling back to `f32` as the trait bound `f32: From<f64>` is not satisfied
+   --> vendor/gpui/src/taffy.rs:312:77
+    |
+312 |             unit.map(|count| vec![repeat(count, vec![minmax(length(0.0), fr(1.0))])])
+    |                                                                             ^^^ help: explicitly specify the type as `f32`: `1.0_f32`
+    |
+    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+    = note: for more information, see issue #154024 <https://github.com/rust-lang/rust/issues/154024>
+
+   Compiling sprite-pane v0.2.8 (/Users/davidlee/Projects/Sprite/crates/sprite-pane)
+   Compiling sprite-app v0.2.8 (/Users/davidlee/Projects/Sprite/crates/sprite-app)
+warning: `gpui` (lib) generated 2 warnings (run `cargo fix --lib -p gpui` to apply 2 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 1m 11s
+warning: the following packages contain code that will be rejected by a future version of Rust: block v0.1.6, proc-macro-error2 v2.0.1
+note: to see what the problems were, use the option `--future-incompat-report`, or run `cargo report future-incompatibilities --id 1`
+     Running unittests src/lib.rs (target/debug/deps/sprite_app-d763842b0a97c0eb)
+
+running 22 tests
+test terminal_view::native_minimap::tests::native_minimap_wheel_retains_intent_across_flushes_and_old_acks ... ok
+test terminal_view::native_minimap::tests::native_minimap_reversal_acks_and_legacy_authoritative_navigation ... ok
+test terminal_view::native_minimap::tests::native_minimap_ranges_clip_hunks_and_selection_without_fabricating_rows ... ok
+test terminal_view::native_minimap::tests::native_minimap_geometry_reaches_full_file_monotonically ... ok
+test terminal_view::native_minimap::tests::native_minimap_folded_same_top_ack_has_no_queue_or_stall ... ok
+test surface::wire::tests::minimap_fixture_routes_and_advertises_renderer_support ... ok
+test surface::minimap::tests::source_revision_and_staging_are_distinct_from_connection_watermark ... ok
+test surface::minimap::tests::fixture_commits_code_and_overlays_atomically ... ok
+test surface::minimap::tests::new_target_hides_old_source_and_cancels_pending_transaction ... ok
+test surface::minimap::tests::native_minimap_action_ack_is_optional_negotiated_and_bounded ... ok
+test terminal_view::native_minimap::tests::native_minimap_text_runs_preserve_utf8_span_lengths_and_plain_gaps ... ok
+test surface::minimap::tests::staged_refusals_preserve_all_state_and_hide_retains_watermark ... ok
+test surface::minimap::tests::minimap_is_a_grid_operation_in_standalone_and_batch_messages ... ok
+test surface::minimap::tests::source_display_controls_cross_the_real_parser ... ok
+test surface::minimap::tests::numeric_and_message_bounds_are_refused_without_mutation ... ok
+test terminal_view::surfaces::tests::native_minimap_press_focuses_editor_and_routes_next_key ... ok
+test surface::minimap::tests::splices_match_a_plain_vector_oracle ... ok
+test terminal_view::surfaces::tests::native_minimap_reserves_columns_and_routes_one_hunk_click ... ok
+test terminal_view::surfaces::tests::native_minimap_tall_warm_frame_reuses_visible_shapes ... ok
+test surface::minimap::tests::overlay_bounds_and_required_fields_preserve_previous_revision ... ok
+test surface::minimap::tests::source_storage_caps_apply_to_staging_and_final_splice ... ok
+test terminal_view::surfaces::tests::native_minimap_drag_survives_state_and_stops_for_source_staging ... ok
+
+test result: ok. 22 passed; 0 failed; 0 ignored; 0 measured; 793 filtered out; finished in 4.85s
+
+     Running unittests src/main.rs (target/debug/deps/sprite-e5c05277b3d90b88)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/sprite-observation-bench.rs (target/debug/deps/sprite_observation_bench-6a8870004833ef6d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/sprite-paint-bench.rs (target/debug/deps/sprite_paint_bench-13841f5b54711b8e)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests/client.rs (target/debug/deps/client-41ae6efa5de88295)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 21 filtered out; finished in 0.00s
+
+     Running tests/graphics_observation.rs (target/debug/deps/graphics_observation-b596fe691f5c7c3d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s
+
+     Running tests/no_tcp_port.rs (target/debug/deps/no_tcp_port-555a40722e39f26d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 1 filtered out; finished in 0.00s
+
+     Running tests/paint_benchmark_report.rs (target/debug/deps/paint_benchmark_report-46b363fd5c2ea819)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.00s
+
+     Running tests/platform_quit_request.rs (target/debug/deps/platform_quit_request-dd3ae7d420a6c6a4)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+
+     Running tests/type_invariants.rs (target/debug/deps/type_invariants-3029aee39d602ba6)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 3 filtered out; finished in 0.00s

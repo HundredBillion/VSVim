@@ -1,0 +1,7 @@
+/Users/davidlee/.local/share/uv/python/cpython-3.12.13-macos-aarch64-none/lib/python3.12/asyncio/events.py:828: DeprecationWarning: 'get_child_watcher' is deprecated as of Python 3.12 and will be removed in Python 3.14.
+  return get_event_loop_policy().get_child_watcher()
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 44.096s
+
+OK

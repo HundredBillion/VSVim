@@ -1,0 +1,126 @@
+{
+  "baseline_single_ms": 46.805041,
+  "baseline_segments": 100000,
+  "optimized_raw": [
+    {
+      "segments": 2,
+      "ms": 0.040667
+    },
+    {
+      "segments": 2,
+      "ms": 0.011042
+    },
+    {
+      "segments": 2,
+      "ms": 0.006708
+    },
+    {
+      "segments": 2,
+      "ms": 0.006875
+    },
+    {
+      "segments": 2,
+      "ms": 0.006
+    },
+    {
+      "segments": 2,
+      "ms": 0.007083
+    },
+    {
+      "segments": 2,
+      "ms": 0.005916
+    },
+    {
+      "segments": 2,
+      "ms": 0.005458
+    },
+    {
+      "segments": 2,
+      "ms": 0.005542
+    },
+    {
+      "segments": 2,
+      "ms": 0.005542
+    },
+    {
+      "segments": 2,
+      "ms": 0.005625
+    },
+    {
+      "segments": 2,
+      "ms": 0.0055
+    },
+    {
+      "segments": 2,
+      "ms": 0.005584
+    },
+    {
+      "segments": 2,
+      "ms": 0.005334
+    },
+    {
+      "segments": 2,
+      "ms": 0.005666
+    },
+    {
+      "segments": 2,
+      "ms": 0.005209
+    },
+    {
+      "segments": 2,
+      "ms": 0.005042
+    },
+    {
+      "segments": 2,
+      "ms": 0.005625
+    },
+    {
+      "segments": 2,
+      "ms": 0.005208
+    },
+    {
+      "segments": 2,
+      "ms": 0.005292
+    },
+    {
+      "segments": 2,
+      "ms": 0.005375
+    },
+    {
+      "segments": 2,
+      "ms": 0.005083
+    },
+    {
+      "segments": 2,
+      "ms": 0.005167
+    },
+    {
+      "segments": 2,
+      "ms": 0.005125
+    },
+    {
+      "segments": 2,
+      "ms": 0.005209
+    },
+    {
+      "segments": 2,
+      "ms": 0.005291
+    },
+    {
+      "segments": 2,
+      "ms": 0.005209
+    },
+    {
+      "segments": 2,
+      "ms": 0.005041
+    },
+    {
+      "segments": 2,
+      "ms": 0.005083
+    },
+    {
+      "segments": 2,
+      "ms": 0.005084
+    }
+  ]
+}

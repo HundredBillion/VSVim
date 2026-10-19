@@ -1,6 +1,7 @@
 local M = {}
 
 function M.setup()
+  require('vsvim.minimap.query_config').observe()
   vim.g.loaded_netrw = 1
   vim.g.loaded_netrwPlugin = 1
   vim.g.mapleader = ' '
@@ -53,7 +54,7 @@ function M.setup()
       dependencies = { 'mason.nvim', 'nvim-lspconfig' } },
     {
       'HundredBillion/sprite.nvim',
-      commit = '21c96d6e15cfea741eba145284461b7256d7d159',
+      commit = '84c73cad6bedee1ebf2bd466a5382947ff611481',
       lazy = false,
     },
     {
@@ -109,6 +110,7 @@ function M.setup()
   if vim.uv.fs_stat(user) then
     dofile(user)
   end
+  require('vsvim.minimap').setup()
 end
 
 return M

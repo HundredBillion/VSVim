@@ -1,0 +1,647 @@
+{
+  "lines": 10000,
+  "revisions": {
+    "vsvim": "5d325858efad90232d93c64f274809436c69aa28",
+    "adapter": "4f572f48c0af53d01476544ff53471ce4a6c4bc4",
+    "host": "45b9a4e0aa13b739f409b4b7d2098f2d49a1455c"
+  },
+  "samples": {
+    "initial_cold": 1,
+    "initial_warm": 1,
+    "prewarm_scroll": 30,
+    "scroll": 30,
+    "paint": 32,
+    "edit": 1
+  },
+  "analysis_quiet": {
+    "reached": true,
+    "timeout_seconds": 30,
+    "quiet_seconds": 1,
+    "observations": [
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": " 91%: Loading workspace: 91/189, Loading workspace: 92/188, Loading workspace: 106/188, Loading workspace: 108/189, Loading workspace: 116/189, Loading workspace: 116/188, Loading workspace: 128/189, Loading workspace: 128/188, Loading workspace: 140/189, Loading workspace: 139/188, Loading workspace: 154/189, Loading workspace: 154/188, Loading workspace: 157/189, Loading workspace: 156/188, Loading workspace: 172/188, Loading workspace: 174/189, Loading workspace, Loading workspace"
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "diagnostics": 0,
+        "status": ""
+      }
+    ]
+  },
+  "prewarm_scroll_input_to_paint_ms": {
+    "p95": 51.054,
+    "raw": [
+      {
+        "input_ns": 1792391755281705000,
+        "paint_ns": 1792391755298802000,
+        "ms": 17.097
+      },
+      {
+        "input_ns": 1792391755379108000,
+        "paint_ns": 1792391755395834000,
+        "ms": 16.726
+      },
+      {
+        "input_ns": 1792391755479002000,
+        "paint_ns": 1792391755490248000,
+        "ms": 11.246
+      },
+      {
+        "input_ns": 1792391755579102000,
+        "paint_ns": 1792391755590191000,
+        "ms": 11.089
+      },
+      {
+        "input_ns": 1792391755679087000,
+        "paint_ns": 1792391755698553000,
+        "ms": 19.466
+      },
+      {
+        "input_ns": 1792391755778991000,
+        "paint_ns": 1792391755790271000,
+        "ms": 11.28
+      },
+      {
+        "input_ns": 1792391755879013000,
+        "paint_ns": 1792391755890230000,
+        "ms": 11.217
+      },
+      {
+        "input_ns": 1792391755979006000,
+        "paint_ns": 1792391755994594000,
+        "ms": 15.588
+      },
+      {
+        "input_ns": 1792391756079050000,
+        "paint_ns": 1792391756090462000,
+        "ms": 11.412
+      },
+      {
+        "input_ns": 1792391756179073000,
+        "paint_ns": 1792391756190215000,
+        "ms": 11.142
+      },
+      {
+        "input_ns": 1792391756278904000,
+        "paint_ns": 1792391756291214000,
+        "ms": 12.31
+      },
+      {
+        "input_ns": 1792391756379109000,
+        "paint_ns": 1792391756398941000,
+        "ms": 19.832
+      },
+      {
+        "input_ns": 1792391756479073000,
+        "paint_ns": 1792391756491836000,
+        "ms": 12.763
+      },
+      {
+        "input_ns": 1792391756663918000,
+        "paint_ns": 1792391756920573000,
+        "ms": 256.655
+      },
+      {
+        "input_ns": 1792391756979118000,
+        "paint_ns": 1792391756992083000,
+        "ms": 12.965
+      },
+      {
+        "input_ns": 1792391757079795000,
+        "paint_ns": 1792391757101627000,
+        "ms": 21.832
+      },
+      {
+        "input_ns": 1792391757179539000,
+        "paint_ns": 1792391757205804000,
+        "ms": 26.265
+      },
+      {
+        "input_ns": 1792391757279736000,
+        "paint_ns": 1792391757307173000,
+        "ms": 27.437
+      },
+      {
+        "input_ns": 1792391757379954000,
+        "paint_ns": 1792391757407336000,
+        "ms": 27.382
+      },
+      {
+        "input_ns": 1792391757479540000,
+        "paint_ns": 1792391757509897000,
+        "ms": 30.357
+      },
+      {
+        "input_ns": 1792391757579591000,
+        "paint_ns": 1792391757606198000,
+        "ms": 26.607
+      },
+      {
+        "input_ns": 1792391757679888000,
+        "paint_ns": 1792391757700542000,
+        "ms": 20.654
+      },
+      {
+        "input_ns": 1792391757779430000,
+        "paint_ns": 1792391757797071000,
+        "ms": 17.641
+      },
+      {
+        "input_ns": 1792391757879704000,
+        "paint_ns": 1792391757897194000,
+        "ms": 17.49
+      },
+      {
+        "input_ns": 1792391757979159000,
+        "paint_ns": 1792391758005515000,
+        "ms": 26.356
+      },
+      {
+        "input_ns": 1792391758079483000,
+        "paint_ns": 1792391758099620000,
+        "ms": 20.137
+      },
+      {
+        "input_ns": 1792391758191645000,
+        "paint_ns": 1792391758242699000,
+        "ms": 51.054
+      },
+      {
+        "input_ns": 1792391758279160000,
+        "paint_ns": 1792391758307340000,
+        "ms": 28.18
+      },
+      {
+        "input_ns": 1792391758380114000,
+        "paint_ns": 1792391758405512000,
+        "ms": 25.398
+      },
+      {
+        "input_ns": 1792391758479757000,
+        "paint_ns": 1792391758506814000,
+        "ms": 27.057
+      }
+    ]
+  },
+  "display_scale": 2.0,
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "initial": {
+    "cold": {
+      "cache": "process-cold; OS caches uncontrolled",
+      "source_ms": 484.350167,
+      "complete_source_sync_ms": 528.286976,
+      "first_painted_content_ms": 547.113
+    },
+    "warm": {
+      "cache": "same-process warm",
+      "source_ms": 462.61775,
+      "complete_source_sync_ms": 508.174848,
+      "first_painted_content_ms": 518.602904
+    }
+  },
+  "scroll_input_to_paint_ms": {
+    "p95": 30.904,
+    "raw": [
+      {
+        "input_ns": 1792391758779655000,
+        "paint_ns": 1792391758791698000,
+        "ms": 12.043
+      },
+      {
+        "input_ns": 1792391758879847000,
+        "paint_ns": 1792391758905943000,
+        "ms": 26.096
+      },
+      {
+        "input_ns": 1792391758979775000,
+        "paint_ns": 1792391759007256000,
+        "ms": 27.481
+      },
+      {
+        "input_ns": 1792391759079307000,
+        "paint_ns": 1792391759104238000,
+        "ms": 24.931
+      },
+      {
+        "input_ns": 1792391759179575000,
+        "paint_ns": 1792391759207122000,
+        "ms": 27.547
+      },
+      {
+        "input_ns": 1792391759279545000,
+        "paint_ns": 1792391759298706000,
+        "ms": 19.161
+      },
+      {
+        "input_ns": 1792391759379598000,
+        "paint_ns": 1792391759403715000,
+        "ms": 24.117
+      },
+      {
+        "input_ns": 1792391759480074000,
+        "paint_ns": 1792391759507258000,
+        "ms": 27.184
+      },
+      {
+        "input_ns": 1792391759579326000,
+        "paint_ns": 1792391759602637000,
+        "ms": 23.311
+      },
+      {
+        "input_ns": 1792391759680037000,
+        "paint_ns": 1792391759705290000,
+        "ms": 25.253
+      },
+      {
+        "input_ns": 1792391759779822000,
+        "paint_ns": 1792391759807968000,
+        "ms": 28.146
+      },
+      {
+        "input_ns": 1792391759879559000,
+        "paint_ns": 1792391759910463000,
+        "ms": 30.904
+      },
+      {
+        "input_ns": 1792391759980139000,
+        "paint_ns": 1792391760005910000,
+        "ms": 25.771
+      },
+      {
+        "input_ns": 1792391760080010000,
+        "paint_ns": 1792391760106825000,
+        "ms": 26.815
+      },
+      {
+        "input_ns": 1792391760179539000,
+        "paint_ns": 1792391760200905000,
+        "ms": 21.366
+      },
+      {
+        "input_ns": 1792391760279654000,
+        "paint_ns": 1792391760294847000,
+        "ms": 15.193
+      },
+      {
+        "input_ns": 1792391760379483000,
+        "paint_ns": 1792391760403033000,
+        "ms": 23.55
+      },
+      {
+        "input_ns": 1792391760479515000,
+        "paint_ns": 1792391760506113000,
+        "ms": 26.598
+      },
+      {
+        "input_ns": 1792391760579808000,
+        "paint_ns": 1792391760606103000,
+        "ms": 26.295
+      },
+      {
+        "input_ns": 1792391760679772000,
+        "paint_ns": 1792391760717276000,
+        "ms": 37.504
+      },
+      {
+        "input_ns": 1792391760780204000,
+        "paint_ns": 1792391760806406000,
+        "ms": 26.202
+      },
+      {
+        "input_ns": 1792391760880564000,
+        "paint_ns": 1792391760898813000,
+        "ms": 18.249
+      },
+      {
+        "input_ns": 1792391760979238000,
+        "paint_ns": 1792391760998957000,
+        "ms": 19.719
+      },
+      {
+        "input_ns": 1792391761079530000,
+        "paint_ns": 1792391761098825000,
+        "ms": 19.295
+      },
+      {
+        "input_ns": 1792391761179193000,
+        "paint_ns": 1792391761198759000,
+        "ms": 19.566
+      },
+      {
+        "input_ns": 1792391761279569000,
+        "paint_ns": 1792391761298183000,
+        "ms": 18.614
+      },
+      {
+        "input_ns": 1792391761379492000,
+        "paint_ns": 1792391761397335000,
+        "ms": 17.843
+      },
+      {
+        "input_ns": 1792391761479378000,
+        "paint_ns": 1792391761499028000,
+        "ms": 19.65
+      },
+      {
+        "input_ns": 1792391761579406000,
+        "paint_ns": 1792391761606214000,
+        "ms": 26.808
+      },
+      {
+        "input_ns": 1792391761679542000,
+        "paint_ns": 1792391761699552000,
+        "ms": 20.01
+      }
+    ]
+  },
+  "warm_native_paint_ms": {
+    "p95": 1.021042,
+    "raw": [
+      0.785917,
+      0.8319580000000001,
+      0.814458,
+      0.623166,
+      0.798042,
+      0.817084,
+      0.8758750000000001,
+      0.818833,
+      0.799542,
+      0.8444159999999999,
+      0.836458,
+      0.83725,
+      0.893458,
+      0.812584,
+      0.8570840000000001,
+      0.8939590000000001,
+      0.88025,
+      0.826916,
+      0.901416,
+      0.871375,
+      0.833084,
+      0.881708,
+      0.89425,
+      1.063875,
+      0.720458,
+      0.9268339999999999,
+      0.8627090000000001,
+      1.001125,
+      0.9927499999999999,
+      0.972208,
+      1.021042,
+      0.9881670000000001
+    ]
+  },
+  "edit_to_paint_ms": 41.085,
+  "scheduled_callback_max_ms": 2.453583,
+  "query_config": {
+    "safe": true,
+    "reason": null
+  },
+  "worker": {
+    "request": 2,
+    "buffer": 1,
+    "pid": 28705
+  },
+  "dependency_state": "copied installed Mason packages; no user installation changed",
+  "source_chunk_max_bytes": 20830,
+  "source_bytes": 1623094,
+  "pure_scroll_source_messages": 0,
+  "pure_scroll_state_messages": 32,
+  "peak_rss": {
+    "host_kib": 104176,
+    "editor_kib": 117760,
+    "editor_pid": 28604,
+    "worker_pid": 28705,
+    "worker_kib": 73728
+  },
+  "initial_rpc_heartbeat_ms": {
+    "samples": 10,
+    "max": 8.047916,
+    "p95": 8.047916,
+    "raw": [
+      8.047916,
+      0.223042,
+      0.101834,
+      1.520167,
+      0.260292,
+      1.295,
+      0.375542,
+      0.805958,
+      1.279292,
+      0.356417
+    ]
+  },
+  "memory_sampling_ms": 100,
+  "measurement": "CPU canvas paint submission end; not GPU presentation/compositor timestamp",
+  "acceptance": {
+    "analysis_quiet": true,
+    "editor_slices": true,
+    "source_chunks": true,
+    "scroll_no_source": true,
+    "native_paint": true,
+    "scroll_latency": true,
+    "initial_cold": true,
+    "initial_warm": true,
+    "edit": true
+  }
+}

@@ -73,3 +73,42 @@ _Avoid_: Application when referring to sending a comment
 **Application**:
 Making an approved proposal's changes to local working files.
 _Avoid_: Publication when referring to changing local code
+
+
+## Minimap language
+
+**Minimap**:
+A miniature view of source code showing file structure, changes, occurrences,
+and selection alongside the main editor.
+_Avoid_: Overview ruler when referring to the miniature code itself
+
+**File-change baseline**:
+The file revision against which the minimap displays current in-memory edits.
+It is distinct from the merge-base review baseline.
+_Avoid_: Review baseline when referring to the minimap comparison
+
+**Viewing rectangle**:
+The outlined minimap region corresponding to source lines currently visible in
+the target editor.
+_Avoid_: Selected section when referring to the visible viewport
+
+**Selected section**:
+The blue minimap region corresponding to rows containing selected text.
+_Avoid_: Viewing rectangle when referring to selected text
+
+**Occurrence box**:
+A grey minimap region marking a source row containing the selected whole word.
+_Avoid_: Reference when no symbol relationship is implied
+
+**Preserved selection**:
+Selected text retained while minimap browsing moves the viewing position away
+from it, and restored when keyboard editing resumes.
+_Avoid_: Active selection when the editor is temporarily browsing elsewhere
+
+
+**Minimap action acknowledgment**:
+The latest processed connection-monotonic navigation ID echoed in minimap state
+when host and provider negotiate `grid-minimap-ack-v1`. It acknowledges processed
+input even when folds/clamping leave the actual viewport unchanged. It is
+separate from source generation and state revision.
+_Avoid_: viewport equality, paint completion, one acknowledgment per state
