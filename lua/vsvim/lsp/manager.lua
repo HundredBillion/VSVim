@@ -18,8 +18,9 @@ local function context(buf)
   local config = vim.deepcopy(vim.lsp.config[server] or {})
   local explicit = vim.lsp.config._configs or {}
   config._explicit = vim.tbl_deep_extend('force', {}, explicit['*'] or {}, explicit[server] or {})
-  local root = type(config.root_dir) == 'string' and config.root_dir or vim.fs.root(name, markers[server]) or vim.fs.dirname(name)
-  if server == 'gopls' and not config._explicit.root_dir then root = vim.fs.root(name, 'go.work') or root end
+  local configured_root = config._explicit.root_markers and vim.fs.root(name, config._explicit.root_markers)
+  local root = type(config.root_dir) == 'string' and config.root_dir or configured_root or vim.fs.root(name, markers[server]) or vim.fs.dirname(name)
+  if server == 'gopls' and not config._explicit.root_dir and not config._explicit.root_markers then root = vim.fs.root(name, 'go.work') or root end
   local custom_root = type(config._explicit.root_dir) == 'function' and config._explicit.root_dir or nil
   local cached = roots[buf]
   if custom_root and cached and cached.fn == custom_root and cached.name == name and cached.filetype == vim.bo[buf].filetype then
@@ -41,7 +42,7 @@ function M.status()
   end
   return result
 end
-function M.ensure(buf, force, root_result)
+function M.ensure(buf, force, root_result, recovery_attempt)
   buf = buf == 0 and vim.api.nvim_get_current_buf() or buf
   local ctx, name = context(buf)
   if not ctx then return end
@@ -101,6 +102,7 @@ function M.ensure(buf, force, root_result)
     for b in pairs(e.buffers) do if valid(b) then vim.lsp.buf_attach_client(b, client) end end
   end
   if e.state == 'ready' then attach(e.client); return end
+  if e.state == 'unavailable' and e.attempt ~= recovery_attempt then return end
   if e.state == 'resolving' or e.state == 'installing' or e.state == 'starting' or e.attempts >= 2 then return end
   e.attempts = e.attempts + 1
   e.state = 'resolving'
@@ -118,7 +120,7 @@ function M.ensure(buf, force, root_result)
     if recover and e.attempts < 2 then vim.defer_fn(function()
       if not owned() or not attempt.failed then return end
       local target = live_buffer()
-      if target then M.ensure(target, false) end
+      if target then M.ensure(target, false, nil, attempt) end
     end, 500) end
   end
   ctx.report = function(state) if active() and not finished then e.state = state end end

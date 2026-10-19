@@ -267,6 +267,47 @@ stale_root_done(root .. '/stale-root-must-not-start')
 second_root_done(timeout_dir)
 assert(vim.wait(1000, function() return manager.status()[timeout_dir .. ':lua_ls'] ~= nil end))
 assert(manager.status()[root .. '/stale-root-must-not-start:lua_ls'] == nil, 'old root completions cannot replace the retried request')
+vim.lsp.config._configs.lua_ls = { root_markers = { '.custom-root' } }
+local marker_buf, marker_source = buffer('marker-project/src', 'main.lua')
+local marker_project = vim.fs.dirname(marker_source)
+vim.fn.writefile({}, marker_project .. '/.custom-root')
+local resolved_root
+env.resolve = function(ctx, done)
+  resolved_root = ctx.root
+  done({ runtime = 'markers', config = { cmd = { '/fixture/server' } } })
+end
+manager.ensure(marker_buf, true)
+assert(resolved_root == marker_project, 'explicit root markers select the environment root')
+assert(started[#started].config.root_dir == marker_project, 'explicit root markers select the final server root')
+vim.fn.writefile({}, marker_project .. '/.priority')
+vim.fn.writefile({}, marker_source .. '/.nearby')
+vim.lsp.config._configs.lua_ls = { root_markers = { '.priority', '.nearby' } }
+manager.ensure(marker_buf, true)
+assert(resolved_root == marker_project, 'ordered markers search every ancestor in priority order')
+vim.lsp.config._configs.lua_ls = { root_markers = { { '.priority', '.nearby' } } }
+manager.ensure(marker_buf, true)
+assert(resolved_root == marker_source, 'nested markers share priority and select the nearest root')
+local go_buf, go_project = buffer('go-workspace/project', 'main.go')
+vim.bo[go_buf].filetype = 'go'
+vim.fn.writefile({}, vim.fs.dirname(go_project) .. '/go.work')
+vim.fn.writefile({}, go_project .. '/.custom-root')
+vim.lsp.config._configs.gopls = { root_markers = { '.custom-root' } }
+manager.ensure(go_buf, true)
+assert(resolved_root == go_project and started[#started].config.root_dir == go_project, 'explicit Go markers win over inferred workspace roots')
+vim.lsp.config._configs.lua_ls = {}
+for index, reason in ipairs({ 'unsupported runtime', 'installation failed exit=73' }) do
+  local terminal_calls = 0
+  env.resolve = function(_, done) terminal_calls = terminal_calls + 1; done(nil, reason) end
+  local terminal, terminal_dir = buffer('terminal-failure-' .. index, 'main.lua')
+  manager.ensure(terminal, true)
+  manager.ensure(terminal, false); manager.ensure(terminal, false)
+  assert(terminal_calls == 1 and status(terminal_dir).attempts == 1, 'ordinary events do not retry terminal preflight/install failures')
+  manager.ensure(terminal, true)
+  assert(terminal_calls == 2, 'manual retry can resolve a terminal failure again')
+  vim.fn.writefile({ '{"runtime.version":"Lua 5.4"}' }, terminal_dir .. '/.luarc.json')
+  manager.ensure(terminal, false)
+  assert(terminal_calls == 3, 'changed environment can resolve a terminal failure again')
+end
 vim.lsp.start, vim.lsp.rpc.start = real_start, real_rpc
 vim.lsp.get_client_by_id, vim.lsp.buf_attach_client = real_client, real_attach
 print('LSP lifecycle passed: deduplication, generations, stale buffers, crash recovery, startup timeout, quiet logs, explicit root/cwd, attempt isolation, root retries')

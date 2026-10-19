@@ -178,15 +178,22 @@ local function npm_tool(ctx, bin, package, release, script, done, skip_existing)
   local dir = managed() .. '/node-' .. vim.fn.sha256(bin):sub(1, 12) .. '-' .. package .. '-' .. release
   local target = dir .. '/node_modules/' .. script
   local env = env_for(bin)
-  if exists(target) then done(target, env); return end
+  local complete = dir .. '/.complete'
+  if read(complete) == release and exists(target) then done(target, env); return end
   ctx.report('installing')
   process.once(dir, function(finish)
+    vim.fn.delete(dir, 'rf')
     vim.fn.mkdir(dir, 'p')
     local npm = vim.fs.dirname(bin) .. '/npm'
     process.run({ npm, 'install', '--prefix', dir, '--no-audit', '--no-fund', '--ignore-scripts', '--package-lock=false',
       package .. '@' .. release, unpack(package == 'typescript-language-server' and { 'typescript@5.9.3' } or {}) },
       { cwd = dir, env = env, timeout = vim.g.vsvim_lsp_install_timeout or 120000 }, function(output, err)
-        finish(output ~= nil and exists(target), err)
+        local stat = vim.uv.fs_stat(target)
+        if output == nil or not stat or stat.type ~= 'file' then
+          finish(false, err or ('Installer did not produce ' .. script)); return
+        end
+        local written, result = pcall(vim.fn.writefile, { release }, complete)
+        finish(written and result == 0, not written and tostring(result) or nil)
       end)
   end, function(ok, err) if ok then done(target, env) else done(nil, 'npm tooling installation: ' .. tostring(err)) end end)
 end

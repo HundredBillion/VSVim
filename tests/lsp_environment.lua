@@ -175,9 +175,24 @@ assert(resolve('ts_ls'), 'offline cache remains usable without invoking npm')
 for _, path in ipairs(vim.fn.glob(managed .. '/node-*-typescript-language-server-*', false, true)) do vim.fn.delete(path, 'rf') end
 local failed, failure = resolve('ts_ls')
 assert(not failed and failure:find('exit=73', 1, true), 'installer error code is retained')
-exe(npm, 'exec /bin/sleep 5')
+exe(npm, 'exit 0')
+local absent, absent_error = resolve('ts_ls')
+assert(not absent and absent_error:find('Installer did not produce', 1, true), 'successful exit without a launch file is not a complete install')
+for _, case in ipairs({ { 'ts_ls', 'typescript-language-server' }, { 'pyright', 'pyright' } }) do
+  for _, path in ipairs(vim.fn.glob(managed .. '/node-*-' .. case[2] .. '-*', false, true)) do vim.fn.delete(path, 'rf') end
+  exe(npm, 'echo install >> "$VSVIM_FIXTURE_LOG"\n' .. npm_body .. '\nexit 73')
+  local before = #vim.fn.readfile(installation_log)
+  for _ = 1, 2 do
+    local partial, partial_error = resolve(case[1])
+    assert(not partial and partial_error:find('exit=73', 1, true), 'partial failed npm installation is never cached as ready: ' .. case[1])
+  end
+  assert(#vim.fn.readfile(installation_log) == before + 2, 'retry reruns installation after a partial failure')
+end
+exe(npm, npm_body .. '\nexec /bin/sleep 5')
 vim.g.vsvim_lsp_install_timeout = 30
 local timed, timeout = resolve('ts_ls')
 assert(not timed and timeout:find('exit=124', 1, true), 'installer process times out')
+local timed_again, timeout_again = resolve('ts_ls')
+assert(not timed_again and timeout_again:find('exit=124', 1, true), 'timed-out npm CLI is not reused on retry')
 print('LSP environment passed: six ecosystems, explicit precedence, isolation, fingerprints, cached reuse, installer failure/timeout, Node boundaries')
 vim.fn.delete(root, 'rf')
