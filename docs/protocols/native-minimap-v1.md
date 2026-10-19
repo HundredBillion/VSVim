@@ -59,8 +59,8 @@ atomically. On a target change, immediately stop drawing old source/overlays
 while replacement stages. On an edit to the same target, retain committed code
 until commit, clear overlays during staging, and disable stale pointer actions.
 Do not reuse old source colors with new line numbers. A rejected chunk leaves
-previous committed code intact; the bridge cancels with hide and restarts after
-logging the refusal. A state notification for uncommitted data is rejected.
+previous committed code intact; the bridge logs the refusal, hides and disables
+only the minimap for the session, and detaches its provider without retrying. A state notification for uncommitted data is rejected.
 
 ## Lightweight state
 
@@ -146,3 +146,33 @@ unknown action/kind, stale generation, incorrect base, noncontiguous chunk,
 out-of-range line, duplicate occurrence row, invalid color index, UTF-8 midpoint,
 more staged lines than insert, and commit before all chunks. Tests assert the
 committed snapshot and revision are unchanged after each refusal.
+
+
+## Negotiated action acknowledgment extension
+
+Hosts may additionally advertise `grid-minimap-ack-v1`. The bridge enables this
+extension only when that capability is present and the provider declares
+`acknowledge_actions=true`. It then adds optional `action_ack:true` to each
+`begin`. Without both opt-ins it sends the original v1 payload. An omitted
+`action_ack` is false. Unknown fields remain rejected outside these specified
+optional fields, and existing target/generation/revision guards remain required.
+
+For a committed document with `action_ack:true`, every host navigation action
+adds positive `action_id` (at most 2^53-1). The counter increases across target,
+generation, hide and staging changes for that Surface connection. The provider
+publishes a `state` after processing an action even if folds or clamping leave
+its viewport unchanged; optional `state.action_id` is the latest processed ID.
+State updates may coalesce, so this acknowledges all preceding ordered actions.
+A state without an ID does not acknowledge an outstanding request. IDs are not
+per-state revisions and unrelated overlay updates cannot acknowledge new input.
+
+The host retains requested source-top intent separately from the actual editor
+viewport. Older acknowledgments preserve newer intent. A latest acknowledgment
+can retire a request even if a closed fold prevents adopting its top; further
+wheel deltas continue from the requested position without any unbounded queue.
+Actual editing/viewport input flushes pending minimap navigation first and
+clears this intent; passive hover/focus/blur only validate ownership. Identity,
+staging and hide clear gesture state without resetting the connection counter.
+Legacy peers that do not opt in retain the original v1 fields and behavior.
+The first wheel action flushes immediately; subsequent actions coalesce until
+the next frame, preserving source identity and input ordering.

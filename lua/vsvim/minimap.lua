@@ -1,7 +1,7 @@
 local M = {}
 local source=require('vsvim.minimap.source')
 local work=require('vsvim.minimap.work')
-local provider={}
+local provider={acknowledge_actions=true}
 local live, active, bridge, group=false,nil,nil,nil
 local sequence, incarnation, token=0,0,0
 local queue, committed, dirty={},nil,nil
@@ -51,7 +51,7 @@ local function state()
   end
   return {type='minimap',kind='state',target=active.target,generation=committed.generation,
     viewport=viewport,selection=overlays.selection,occurrences=overlays.occurrences,
-    word=overlays.word,changes=valid_changes}
+    word=overlays.word,changes=valid_changes,action_id=active.action_id}
 end
 local function remap(rows, palette, fixed, checkpoint)
   local result={}
@@ -265,6 +265,7 @@ function provider.dispatch(event)
   local row = event.action == 'reveal' and event.line or event.action == 'scroll' and event.topline
   if type(row) ~= 'number' or row ~= math.floor(row) or row < 1 or row > target.total then return end
   selection.browse(target.window, event)
+  active.action_id=event.action_id
   state_dirty=true; changed()
 end
 function provider.before_input(event) selection.before_input(event) end

@@ -104,3 +104,11 @@ _Avoid_: Reference when no symbol relationship is implied
 Selected text retained while minimap browsing moves the viewing position away
 from it, and restored when keyboard editing resumes.
 _Avoid_: Active selection when the editor is temporarily browsing elsewhere
+
+
+**Minimap action acknowledgment**:
+The latest processed connection-monotonic navigation ID echoed in minimap state
+when host and provider negotiate `grid-minimap-ack-v1`. It acknowledges processed
+input even when folds/clamping leave the actual viewport unchanged. It is
+separate from source generation and state revision.
+_Avoid_: viewport equality, paint completion, one acknowledgment per state
