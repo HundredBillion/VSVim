@@ -28,7 +28,8 @@ class IntegrationTest(unittest.TestCase):
             config = root / 'config/vsvim'
             config.mkdir(parents=True)
             (config / 'user.lua').write_text(
-                'vim.g.vsvim_override_loaded = true\nvim.opt.shiftwidth = 4\n')
+                'vim.g.vsvim_override_loaded = true\nvim.opt.shiftwidth = 4\n'
+                'vim.g.vsvim_minimap = false\n')
             ordinary = root / 'config/nvim'
             ordinary.mkdir()
             sentinel = ordinary / 'init.lua'
@@ -43,6 +44,9 @@ class IntegrationTest(unittest.TestCase):
                 return result.stdout + result.stderr
 
             launch('+Lazy! sync', '+qa')
+            launch('+lua assert(vim.fn.exists(":VSVimMinimapToggle")==2); '
+                   'assert(vim.g.vsvim_minimap==false); '
+                   'assert(require("vsvim.minimap").provider().target()==nil)', '+qa!')
             for name, commit in PINS.items():
                 actual = subprocess.check_output(
                     ['git', '-C', str(root / 'data/vsvim/lazy' / name),

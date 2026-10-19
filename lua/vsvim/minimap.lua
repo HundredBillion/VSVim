@@ -260,7 +260,17 @@ function provider.stop()
 end
 function M.provider() return provider end
 function M.setup()
+  if vim.g.vsvim_minimap==nil then vim.g.vsvim_minimap=true end
   local ok,native=pcall(require,'sprite.minimap')
-  if ok and native.setup then bridge=native; native.setup(provider) end
+  if ok and type(native.setup)=='function' then bridge=native end
+  local function configure()
+    if bridge then bridge.setup(vim.g.vsvim_minimap~=false and provider or nil)
+    else provider.stop() end
+  end
+  vim.api.nvim_create_user_command('VSVimMinimapToggle',function()
+    vim.g.vsvim_minimap=vim.g.vsvim_minimap==false
+    configure()
+  end,{desc='Toggle the native Sprite minimap',force=true,bar=true})
+  configure()
 end
 return M

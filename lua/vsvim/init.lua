@@ -109,6 +109,7 @@ function M.setup()
   if vim.uv.fs_stat(user) then
     dofile(user)
   end
+  require('vsvim.minimap').setup()
 end
 
 return M
