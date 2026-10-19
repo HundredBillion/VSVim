@@ -13,7 +13,7 @@ PINS = {
     'mason-lspconfig.nvim': '00b5473cca4db5b410ff4bae724e3b6e21f2687f',
     'scm.nvim': 'c6946caa84c49054f37bf9097b7f59bcadf2bfa7',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
-    'sprite.nvim': 'fe271ffb678ac55ecf9bdb33f105e00e1f999182',
+    'sprite.nvim': 'a81577daaf834def81db9dc5935bfbd8353f643e',
     'svgtree.nvim': 'b1781a04d6147292ccd240cac8b73f6b31c679e3',
 }
 
@@ -93,6 +93,10 @@ class IntegrationTest(unittest.TestCase):
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(appearance) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
             self.assertIn('VSVim appearance passed', output)
+            tab_order = str(ROOT / 'tests/tab_order.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(tab_order) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('VSVim tab ordering passed', output)
             one_dark = str(ROOT / 'tests/one_dark.lua')
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(one_dark) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')

@@ -146,7 +146,9 @@ For the matching Menlo 12 font in Sprite, launch with
 `sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout.
 Sprite builds advertising `grid-tabs-v1` show 35-pixel native file tabs with
 SVGTree's SVG icons and the JB palette. Click a tab to select its buffer; click
-its close control to close it. Modified files ask before closing. Scroll the
+its close control to close it. On updated Sprite builds, drag a tab left or right to reorder open files
+without changing the active file. New files append, and closing a file keeps the
+remaining order. Modified files ask before closing. Scroll the
 strip horizontally when tabs overflow; selecting a buffer keeps its tab visible.
 Ordinary terminals and older Sprite versions keep the one-row tabline with
 Menlo-compatible symbols, close controls, and overflow arrows. After upgrading

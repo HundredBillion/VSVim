@@ -1,5 +1,6 @@
 local M = {}
 local last_editor_buffer
+local buffer_order = {}
 local function escape(text) return text:gsub('%%', '%%%%'):gsub('[\r\n\t]', ' ') end
 local icons = {
   lua={'●','#51a0cf'}, py={'◆','#ffbc03'}, js={'JS','#ffca28'}, ts={'TS','#42a5f5'},
@@ -63,7 +64,37 @@ local function buffers()
     if not collided then break end
     update_labels()
   end
-  return result
+  local available, ordered = {}, {}
+  for _, b in ipairs(result) do available[b.bufnr] = b end
+  for _, buffer in ipairs(buffer_order) do
+    if available[buffer] then
+      ordered[#ordered + 1] = available[buffer]
+      available[buffer] = nil
+    end
+  end
+  for _, b in ipairs(result) do
+    if available[b.bufnr] then ordered[#ordered + 1] = b end
+  end
+  buffer_order = {}
+  for i, b in ipairs(ordered) do buffer_order[i] = b.bufnr end
+  return ordered
+end
+function M.reorder(buffer, before)
+  local listed = {}
+  for _, b in ipairs(buffers()) do listed[b.bufnr] = true end
+  if not listed[buffer] or (before and not listed[before]) or buffer == before then return false end
+  local ordered = {}
+  for _, b in ipairs(buffer_order) do
+    if b ~= buffer then
+      if b == before then ordered[#ordered + 1] = buffer end
+      ordered[#ordered + 1] = b
+    end
+  end
+  if before == nil then ordered[#ordered + 1] = buffer end
+  if vim.deep_equal(ordered, buffer_order) then return false end
+  buffer_order = ordered
+  vim.cmd('redrawtabline')
+  return true
 end
 function M.select(buffer, _, button)
   if button=='m' then M.close(buffer); return end
@@ -204,7 +235,7 @@ function M.setup()
   if ok then
     native.setup({ snapshot = M.native_snapshot,
       select = function(buffer) M.select(buffer, nil, 'l') end,
-      close = M.close })
+      close = M.close, reorder = M.reorder })
   end
   _G.VSVimSelectBuffer=M.select
   _G.VSVimCloseBuffer=M.close

@@ -266,6 +266,35 @@ vim.defer_fn(observe,20)
         self.wait(lambda: any(m.get('type') == 'footer' and m.get('visible') is False
                               for m in self.host.messages))
 
+    def test_native_tab_reorder_persists_without_changing_active_file(self):
+        self.launch(['grid-tabs-v1'])
+
+        def tabs():
+            return next((m for m in reversed(self.host.messages)
+                         if m.get('type') == 'tabs'), {})
+
+        def labels():
+            return [item['label'] for item in tabs().get('items', [])
+                    if item['label'].startswith('reorder-')]
+
+        self.host.command('enew | file reorder-a.lua | enew | file reorder-b.lua | enew | file reorder-c.lua')
+        self.wait(lambda: labels() == ['reorder-a.lua', 'reorder-b.lua', 'reorder-c.lua'])
+        current = tabs()
+        self.assertTrue(current['reorderable'])
+        ids = {item['label']: item['id'] for item in current['items']}
+        active = current['active']
+        self.host.send(dict(type='tab_action', revision=current['revision'], action='reorder',
+                            id=ids['reorder-c.lua'], before=ids['reorder-a.lua']))
+        self.wait(lambda: labels() == ['reorder-c.lua', 'reorder-a.lua', 'reorder-b.lua'])
+        self.assertEqual(tabs()['active'], active)
+        current = tabs()
+        self.host.send(dict(type='tab_action', revision=current['revision'], action='reorder',
+                            id=ids['reorder-c.lua'], before=None))
+        self.wait(lambda: labels() == ['reorder-a.lua', 'reorder-b.lua', 'reorder-c.lua'])
+        self.assertEqual(tabs()['active'], active)
+        self.host.command('enew | file reorder-d.lua')
+        self.wait(lambda: labels() == ['reorder-a.lua', 'reorder-b.lua', 'reorder-c.lua', 'reorder-d.lua'])
+
     def test_old_host_does_no_work_or_minimap_messages(self):
         self.launch(['grid-tabs-v1'])
         time.sleep(.2)
