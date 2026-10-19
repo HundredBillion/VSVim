@@ -78,24 +78,44 @@ while True:
         headers[key.lower()] = value.strip()
     data = json.loads(sys.stdin.buffer.read(int(headers['content-length'])))
     if data.get('method') == 'initialize':
+        for method in ('window/showMessage', 'window/showMessageRequest'):
+            message = {'jsonrpc': '2.0', 'method': method, 'params': {'type': 1, 'message': 'fixture managed startup failure'}}
+            if method.endswith('Request'): message['id'] = 'fixture-request'
+            payload = json.dumps(message).encode()
+            sys.stdout.buffer.write(('Content-Length: %d\r\n\r\n' % len(payload)).encode() + payload)
+            sys.stdout.buffer.flush()
         time.sleep(0.15)
         response = json.dumps({'jsonrpc': '2.0', 'id': data['id'], 'result': {'capabilities': {}}}).encode()
         sys.stdout.buffer.write(('Content-Length: %d\r\n\r\n' % len(response)).encode() + response)
         sys.stdout.buffer.flush()
 ]], '\n', { plain = true }), script)
-local modes = {}
+local modes, explicit_messages = {}, 0
 env.resolve = function(ctx, done)
   resolutions = resolutions + 1
-  done({ runtime = 'fixture', config = { cmd = { '/usr/bin/python3', script, modes[ctx.root] or 'ready', root .. '/cwd-' .. vim.fn.sha256(ctx.root):sub(1, 8) } } })
+  local handlers
+  if modes[ctx.root] == 'explicit' then
+    handlers = {}
+    for _, method in ipairs({'window/showMessage', 'window/showMessageRequest'}) do
+      handlers[method] = function() explicit_messages = explicit_messages + 1; return vim.NIL end
+    end
+  end
+  done({ runtime = 'fixture', config = { handlers = handlers, cmd = { '/usr/bin/python3', script, modes[ctx.root] or 'ready', root .. '/cwd-' .. vim.fn.sha256(ctx.root):sub(1, 8) } } })
 end
 vim.g.vsvim_lsp_start_timeout = 1000
 local first, ready_dir = buffer('ready', 'first.lua')
 local second = buffer('ready', 'second.lua')
 manager.ensure(first, true); manager.ensure(second, true)
 assert(vim.wait(4000, function() return status(ready_dir).state == 'ready' end), vim.inspect(status(ready_dir)))
+assert(#notifications == 0, 'managed protocol messages must remain quiet: ' .. vim.inspect(notifications))
+assert(table.concat(vim.fn.readfile(status(ready_dir).log), '\n'):find('fixture managed startup failure', 1, true))
 local clients = vim.lsp.get_clients({ bufnr = first })
 assert(#clients == 1 and #vim.lsp.get_clients({ bufnr = second }) == 1, 'both project buffers attach')
 assert(clients[1].id == vim.lsp.get_clients({ bufnr = second })[1].id, 'matching project reuses client')
+assert(clients[1].config.handlers['textDocument/publishDiagnostics'] == nil, 'source diagnostics retain their normal handler')
+local explicit_buf, explicit_dir = buffer('explicit-messages', 'main.lua')
+modes[explicit_dir] = 'explicit'; manager.ensure(explicit_buf, true)
+assert(vim.wait(4000, function() return status(explicit_dir).state == 'ready' end))
+assert(explicit_messages == 2, 'explicit protocol handlers must retain precedence')
 local old, stale_dir = buffer('stale-init', 'old.lua')
 manager.ensure(old, true)
 vim.api.nvim_buf_set_name(old, ready_dir .. '/renamed.lua')
@@ -117,6 +137,9 @@ assert(status(hang_dir).reason:find('timed out') or status(hang_dir).reason:find
 assert(#notifications == 0, 'managed failures never notify: ' .. vim.inspect(notifications))
 vim.notify('unrelated editor warning')
 assert(#notifications == 1, 'unrelated warnings remain available')
+for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+  if vim.api.nvim_buf_get_name(buf):sub(1, #root) == root then vim.api.nvim_buf_delete(buf, {force=true}) end
+end
 for _, client in ipairs(vim.lsp.get_clients()) do client:stop(true) end
 
 vim.g.vsvim_lsp_start_timeout = 1000
@@ -132,6 +155,7 @@ assert(vim.wait(4000, function() return manager.status()[custom .. ':lua_ls'] an
 local custom_client = vim.lsp.get_clients({ bufnr = custom_buffer })[1]
 assert(custom_client.config.root_dir == custom, 'explicit root function wins marker inference')
 assert(vim.fn.readfile(root .. '/cwd-' .. vim.fn.sha256(custom):sub(1, 8))[1] == root, 'explicit server cwd is preserved')
+vim.api.nvim_buf_delete(custom_buffer, {force=true})
 custom_client:stop(true)
 
 vim.lsp.config._configs.lua_ls = {}

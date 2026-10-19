@@ -25,6 +25,9 @@ local function managed() return vim.fn.stdpath('data') .. '/lsp-environments' en
 local function env_for(bin, extras)
   return vim.tbl_extend('force', { PATH = vim.fs.dirname(bin) .. ':' .. (vim.env.PATH or '') }, extras or {})
 end
+local function rust_lock(root)
+  return vim.fs.find('Cargo.lock', { path = root, upward = true, type = 'file' })[1]
+end
 local function installed_go_policy(policy)
   if policy == 'auto' then return 'path' end
   if policy == 'local' or policy == 'path' then return policy end
@@ -32,6 +35,19 @@ local function installed_go_policy(policy)
 end
 local function config(plan, ctx)
   plan.config = vim.tbl_deep_extend('force', plan.config or {}, ctx.config._explicit or {})
+  if ctx.server == 'rust_analyzer' then
+    local settings = vim.tbl_get(plan.config, 'settings', 'rust-analyzer')
+    if settings then
+      for _, scope in ipairs({ 'cargo', 'check' }) do
+        settings[scope] = settings[scope] or {}
+        local args = settings[scope].extraArgs or {}
+        for _, flag in ipairs({ '--locked', '--offline' }) do
+          if not vim.tbl_contains(args, flag) then table.insert(args, flag) end
+        end
+        settings[scope].extraArgs = args
+      end
+    end
+  end
   if ctx.server == 'gopls' then
     plan.config.cmd_env = plan.config.cmd_env or {}
     plan.config.cmd_env.GOTOOLCHAIN = installed_go_policy(plan.config.cmd_env.GOTOOLCHAIN or vim.env.GOTOOLCHAIN or 'auto')
@@ -45,9 +61,14 @@ function M.fingerprint(root, server)
   end
   for _, file in ipairs({ '.ruby-version', '.python-version', '.node-version', '.nvmrc', '.tool-versions',
     'Gemfile', 'Gemfile.lock', 'pyproject.toml', 'pyrightconfig.json', 'package.json', 'tsconfig.json', 'jsconfig.json',
-    'rust-toolchain', 'rust-toolchain.toml', 'Cargo.toml', 'go.mod', 'go.work', '.luarc.json', '.luarc.jsonc' }) do
+    'rust-toolchain', 'rust-toolchain.toml', 'Cargo.toml', 'Cargo.lock', 'go.mod', 'go.work', '.luarc.json', '.luarc.jsonc' }) do
     local stat = vim.uv.fs_stat(root .. '/' .. file)
     table.insert(parts, file .. ':' .. vim.inspect(stat and { stat.mtime, stat.ctime, stat.size } or false))
+  end
+  if server == 'rust_analyzer' then
+    local lock = rust_lock(root)
+    local stat = lock and vim.uv.fs_stat(lock)
+    table.insert(parts, 'workspace-lock:' .. tostring(lock) .. ':' .. vim.inspect(stat and {stat.mtime, stat.ctime, stat.size}))
   end
   for _, path in ipairs({ root .. '/.venv/bin/python', root .. '/venv/bin/python', root .. '/node_modules/typescript/lib/tsserver.js',
     (vim.env.HOME or '') .. '/.rbenv/versions', (vim.env.HOME or '') .. '/.pyenv/versions', (vim.env.HOME or '') .. '/.nvm/versions/node' }) do
@@ -233,7 +254,7 @@ local function rust(ctx, done)
         process.run({ rustup, 'which', 'rust-analyzer' }, { cwd = ctx.root, env = env }, function(bin, analyzer_err)
           if not bin then done(nil, analyzer_err); return end
           done(config({ runtime = 'Rust ' .. (toolchain ~= '' and toolchain or 'selected default'), config = {
-            cmd = { vim.trim(bin) }, cmd_env = env, settings = { ['rust-analyzer'] = { cargo = { sysrootSrc = src } } } } }, ctx))
+            cmd = { vim.trim(bin) }, cmd_env = env, settings = { ['rust-analyzer'] = { cargo = { sysrootSrc = src, extraArgs = { '--locked', '--offline' }, noDeps = rust_lock(ctx.root) == nil }, check = { extraArgs = { '--locked', '--offline' } } } } } }, ctx))
         end)
       end
       local function install()

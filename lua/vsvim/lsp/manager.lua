@@ -135,6 +135,15 @@ function M.ensure(buf, force, root_result)
     local config = vim.tbl_deep_extend('force', ctx.config, plan.config or {})
     config._explicit = nil; config.name = e.server; config.root_dir = ctx.root
     config._vsvim_environment = identity
+    config.handlers = config.handlers or {}
+    for _, method in ipairs({ 'window/showMessage', 'window/showMessageRequest' }) do
+      if config.handlers[method] == nil then
+        config.handlers[method] = function(err, result)
+          if active() then log(e, 'Server message: ' .. tostring(result and result.message or err)) end
+          return vim.NIL
+        end
+      end
+    end
     local original_init, original_exit, original_error = config.on_init, config.on_exit, config.on_error
     config.on_init = function(client, result)
       if not active() or (e.client and e.client ~= client.id) then client:stop(true); return end

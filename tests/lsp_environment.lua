@@ -124,8 +124,26 @@ write(root .. '/rust-toolchain.toml', { '[toolchain]', 'channel = "1.88.0"' })
 vim.fn.mkdir(root .. '/sysroot/lib/rustlib/src/rust/library', 'p')
 local rust, rust_error = resolve('rust_analyzer')
 assert(rust, rust_error)
+assert(vim.tbl_contains(rust.config.settings['rust-analyzer'].cargo.extraArgs or {}, '--locked'), 'Cargo must preserve project lockfiles')
 assert(rust.config.cmd_env.RUSTUP_TOOLCHAIN == '1.88.0')
 assert(rust.config.settings['rust-analyzer'].cargo.sysrootSrc == root .. '/sysroot/lib/rustlib/src/rust/library')
+assert(rust.config.settings['rust-analyzer'].cargo.noDeps == true)
+local before_lock = require('vsvim.lsp.environment').fingerprint(root, 'rust_analyzer')
+write(root .. '/Cargo.lock', {'version = 4'})
+assert(before_lock ~= require('vsvim.lsp.environment').fingerprint(root, 'rust_analyzer'), 'lock presence changes Rust environment')
+local configured = assert(resolve('rust_analyzer', {settings={['rust-analyzer']={cargo={extraArgs={'--features', 'editor'}}, check={extraArgs={'--all-targets'}}}}}))
+assert(configured.config.settings['rust-analyzer'].cargo.noDeps == false, 'existing lock retains dependency discovery')
+for _, scope in ipairs({'cargo', 'check'}) do
+  local args = configured.config.settings['rust-analyzer'][scope].extraArgs
+  assert(vim.tbl_contains(args, '--locked') and vim.tbl_contains(args, '--offline'), 'explicit args retain project safeguards')
+end
+assert(vim.tbl_contains(configured.config.settings['rust-analyzer'].cargo.extraArgs, '--features'))
+local nested = root .. '/workspace-member'; vim.fn.mkdir(nested, 'p')
+local member_before = require('vsvim.lsp.environment').fingerprint(nested, 'rust_analyzer')
+write(root .. '/Cargo.lock', {'version = 4', '# changed workspace lock'})
+assert(member_before ~= require('vsvim.lsp.environment').fingerprint(nested, 'rust_analyzer'), 'ancestor workspace lock invalidates member environment')
+
+
 
 vim.fn.delete(root .. '/.python-version')
 local custom_venv = root .. '/envs/analysis/bin/python'

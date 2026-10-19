@@ -112,3 +112,22 @@ when host and provider negotiate `grid-minimap-ack-v1`. It acknowledges processe
 input even when folds/clamping leave the actual viewport unchanged. It is
 separate from source generation and state revision.
 _Avoid_: viewport equality, paint completion, one acknowledgment per state
+
+
+## Language tooling
+
+**Project language environment**:
+The resolved project root, runtime, language server and configuration used for
+one project's language features. It does not mutate the editor's global PATH.
+
+**Server host runtime**:
+The runtime executing the language server, which can differ from the language
+version or interpreter used to analyze the application.
+
+**Managed tooling cache**:
+VSVim-owned server dependencies, keyed by effective runtime and server release.
+Application dependencies and runtime installation remain project responsibilities.
+
+**Language setup state**:
+Resolving, installing, starting, ready or unavailable, exposed by
+`:VSVimLspStatus` together with the project log and failure reason.
