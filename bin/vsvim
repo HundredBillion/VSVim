@@ -27,7 +27,7 @@ done
 if [ "$native" = 1 ] && [ "${VSVIM_NATIVE:-1}" != 0 ] \
   && [ -n "${SPRITE_SURFACE_SOCKET:-}" ] && [ -n "${SPRITE_SURFACE_KEY:-}" ] \
   && [ -n "${SPRITE_PANE:-}" ] && [ -z "${NVIM:-}" ]; then
-  adapter="${XDG_DATA_HOME:-$HOME/.local/share}/vsvim/lazy/sprite.nvim/lua/sprite/adapter.lua"
+  adapter="${VSVIM_SPRITE_SOURCE:-${XDG_DATA_HOME:-$HOME/.local/share}/vsvim/lazy/sprite.nvim}/lua/sprite/adapter.lua"
   if [ ! -f "$adapter" ]; then
     "${VSVIM_NVIM:-nvim-nightly}" --headless -u "$VSVIM_ROOT/init.lua" +qa
   fi

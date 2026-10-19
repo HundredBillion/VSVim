@@ -19,6 +19,18 @@ configuration directory. Create `user.lua` there for settings loaded after defau
 
 ## Controls
 
+Markdown files open in rendered preview when Sprite supports
+`grid-markdown-v1`. Click the file-code icon at the right of the file tabs to
+edit the Markdown, then click the eye to preview the current unsaved text.
+`:VSVimMarkdownToggle` performs the same action. Both views share one buffer,
+file tab, undo history, and save/close behavior. Preview supports text selection
+and copy, scrolling, links, images, tables, and code blocks. The source minimap
+returns when you switch to editing. Ordinary terminals and older hosts show
+editable Markdown source. Files above 2 MiB also stay in source.
+
+For development with a local adapter checkout, set `VSVIM_SPRITE_SOURCE` to its
+absolute repository path. Both the launcher and plugin loader use that checkout.
+
 Cmd-Z undoes, Cmd-C copies, Cmd-X cuts, Cmd-V pastes, Cmd-A selects the whole
 file, and Cmd-S saves. These shortcuts also work while typing. Copy and cut use
 the selected text, or the current line when nothing is selected. They use the

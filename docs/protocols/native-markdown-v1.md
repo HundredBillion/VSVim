@@ -32,7 +32,7 @@ At most 16 ordinary visible Markdown windows. `active` is a window ID in
 `windows`, or null when another file/sidebar owns focus. `row` and `column`
 are zero-based global Neovim grid coordinates, excluding native tabs; dimensions
 are positive and all rectangles fit the current grid. Exclude winbar/statusline
-and source gutters from the content rectangle. `generation` names the current
+and cover source gutters with the content rectangle. `generation` names the current
 buffer text; preview is painted only if that document generation is available.
 Source windows remain in state with `preview:false` so the toolbar can show
 the eye. Colors are exactly #rrggbb. Native minimap space is suppressed when

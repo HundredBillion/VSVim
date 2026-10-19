@@ -54,6 +54,7 @@ function M.setup()
       dependencies = { 'mason.nvim', 'nvim-lspconfig' } },
     {
       'HundredBillion/sprite.nvim',
+      dir = vim.env.VSVIM_SPRITE_SOURCE,
       commit = 'a81577daaf834def81db9dc5935bfbd8353f643e',
       lazy = false,
     },
@@ -106,6 +107,7 @@ function M.setup()
   require('vsvim.navigation').setup()
   require('vsvim.editing').setup()
   require('vsvim.appearance').setup()
+  require('vsvim.markdown').setup()
   local user = vim.fn.stdpath('config') .. '/user.lua'
   if vim.uv.fs_stat(user) then
     dofile(user)
