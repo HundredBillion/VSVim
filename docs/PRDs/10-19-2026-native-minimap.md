@@ -1,6 +1,6 @@
 # Native code minimap
 
-Status: approved by the user on 2026-10-19; Tasks 1–6 implemented and independently reviewed. Task 7 focused checks, pinned native performance and interaction evidence executed; final independent evidence review and publication/dependency pinning pending.
+Status: approved by the user on 2026-10-19; Tasks 1–6 implemented and reviewed. Task 7 pinned native performance, interaction evidence and whole-branch code/evidence review passed. Dependency feature branches are published and the adapter pin is updated; the final undo-only correction is reviewed and the pin awaits its delivery-only scoped review. No merge or installation performed.
 
 Issue: https://github.com/HundredBillion/VSVim/issues/8
 

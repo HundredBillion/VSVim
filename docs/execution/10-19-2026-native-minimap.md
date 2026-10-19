@@ -2,9 +2,11 @@
 
 The final pinned release run passes every recorded performance gate at 1,000,
 10,000 and 100,000 lines. Same-release native interaction assertions and
-screenshots are captured. Independent scoped fix/evidence reviews remain pending;
-this report does not declare merge readiness. Publication and dependency pinning
-remain pending, including the separate Sprite PR120 Cmd-C delivery dependency.
+screenshots are captured. Whole-branch code/evidence review approved the measured revisions. A later
+undo-only correction is also approved; the published dependency pin awaits its
+delivery-only scoped review. This
+report does not declare merge readiness. Dependency feature branches are
+published, including the separate Sprite PR120 Cmd-C delivery dependency.
 No push, merge, installation or issue closure was performed here.
 
 | Repository | Measured code revision |
@@ -13,8 +15,8 @@ No push, merge, installation or issue closure was performed here.
 | sprite.nvim | `bb309536778274f9e2d9519f6a25d9e8f28baecf` |
 | Sprite | `386f8c599eb5c7d37c91fab15132bbc09ea9442a` |
 
-Code was committed before the release build. Only evidence/status documentation
-changed afterward. Neovim was 0.13.0-dev-761+g0639f6e41a, LuaJIT2.1.1774896198
+Code was committed before the release build. Evidence/status documentation and the later explicitly identified undo-only
+correction/pin below changed afterward. Neovim was 0.13.0-dev-761+g0639f6e41a, LuaJIT2.1.1774896198
 on this development Mac. The committed build command passed in 15.89s:
 
 ```
@@ -138,8 +140,8 @@ stylua and diff checks. Earlier affected source 7sections, real worker different
 query/cancellation/control cases, integration 5, adapter 135, host control parser
 and 64MiB boundary tests passed before this final navigation-only group.
 Unchanged selection 21(including exact 100k yank) and Git 13 checks remain applicable.
-The parent independently ran Sprite findings-registry validation and reported
-PASS. Exact commands/results and review rounds are in the task report.
+The parent independently ran `python3 scripts/check_findings.py` from Sprite:
+`every finding is guarded by a test or tracked by an issue`, exit0. Exact commands/results and review rounds are in the task report.
 
 Existing pynvim Python 3.12 child-watcher deprecation, GPUI float-fallback,
 dependency future-incompatibility and helper AppKit activation deprecation
@@ -148,5 +150,40 @@ query object ownership/custom Lua handlers, preloaded query modules, or
 unsupported capture bounds select the exact foreground fallback to preserve
 colors and mutation semantics. Default-worker budgets do not qualify that
 fallback's performance. See ADR0003 for the installed-runtime reader boundary
-and ADR0004 for negotiated processed-action acknowledgments. Final independent
-review and publication/pinning remain pending.
+and ADR0004 for negotiated processed-action acknowledgments. Whole-branch code/evidence review is approved. The undo correction is also approved; the delivery-only pin review remains
+pending.
+
+
+## Published pin and final undo correction
+
+Evidence is committed at VSVim 51353d7982c7f349c113a119e5ddba659ead2200.
+The measured source remains 95ffdcb. Subsequent source correction
+`672501a8a8e1c956875eab16d62610b9d5f983e4` adds only the provider's
+`on_changedtick` handler: undo/redo advances the tick again after `on_lines`, so
+in-flight version-guarded preparation must restart at the final tick. Idle
+committed tick notifications perform no extraction. The normal API edit,
+initial and scroll paths measured above are unchanged; no native performance
+rerun was made or implied for the later correction.
+
+Real-provider edit/save/undo/redo source text and HEAD bands now pass through
+both the actual worker and exact-main fallback. The worker test also compares
+its full child mirror to main after each step. Provider bound/lifecycle checks
+pass. Post-fix setup integration against the fresh remote adapter passes 5 tests
+in 24.849s. [Focused raw outputs](native-minimap/final-provider/) are retained.
+Dedicated native soft-wrap interaction was not exercised; the documented
+mapping axis is logical buffer lines, with existing source/geometry coverage
+for empty, short, long, tab, Unicode and folded cases. Native undo keystroke
+routing was not independently replayed; this check exercises actual provider
+content/bands and built-in undo/redo, complementing the tested native input path.
+
+Parent published the feature branches. [Adapter PR7](https://github.com/HundredBillion/sprite.nvim/pull/7)
+uses exact bb309536778274f9e2d9519f6a25d9e8f28baecf; its seven CI checks were
+reported successful by the parent. [Host PR121](https://github.com/HundredBillion/Sprite/pull/121)
+uses 386f8c599eb5c7d37c91fab15132bbc09ea9442a and is stacked on
+`fix/native-editor-copy` for PR120. Remote `git ls-remote` returned the exact
+adapter feature-branch SHA; a fresh temporary Git repository fetched that SHA
+with `--depth=1`, checked out FETCH_HEAD detached and verified HEAD equality.
+Installed plugins were untouched. VSVim's adapter dependency now pins that
+published SHA. The later pin/documentation commit is delivery bookkeeping and
+is separate from measured source provenance. The undo correction is independently approved; final narrow pin review is
+pending; no merge or installation was performed.

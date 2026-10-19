@@ -481,7 +481,7 @@ vsvim_minimap=false. Existing plugin/setup and launch behavior remain the seam.
   never overwrite installed dependencies to make tests pass. Run integration,
   editing, source/Git and selection tests and the existing unittest suite.
   Confirm legacy u/y/d/p and Cmd shortcuts still work through the native bridge.
-- [ ] **Step 4: Publish dependencies only when authorized.** Record immutable
+- [x] **Step 4: Publish dependencies only when authorized.** Record immutable
   verified sprite.nvim and Sprite SHAs. Update the adapter pin in init.lua only
   to an accessible published commit; do not put an unpushed SHA into a user
   installation path. If publication is not authorized, retain local overrides
@@ -522,13 +522,13 @@ host revisions, sample count, display scale and whether caches are warm.
   selected rows, including overlaps, long-file drag to both ends, narrow pane,
   theme/scale change and selected-text copy after scrolling away. If physical
   IME or another platform cannot be exercised, report that limitation explicitly.
-- [ ] **Step 4: Run final focused suites and independent review.** Re-run only
+- [x] **Step 4: Run final focused suites and independent review.** Re-run only
   suites affected by the final changes, record commands/results, and use
   requesting-code-review before integration. If independent review cannot run,
   disclose self-review. No feature-complete claim before native evidence and
   correctness checks pass. Do not install into /Applications or merge branches
   without user authorization.
-- [ ] **Step 5: Commit evidence and hand off the reviewable changes.** Record
+- [x] **Step 5: Commit evidence and hand off the reviewable changes.** Record
   remaining publication/pinning work, exact commits, test totals and material
   limitations. Close issue #8 only once all acceptance requirements are met.
 
@@ -588,9 +588,9 @@ Native geometry/IME and performance: Tasks 5,7. Delivery: Tasks 6,7.
 - [x] User approved preserved selection during browsing after runtime probe.
 - [x] Protocol, task interfaces, failure paths and PRD coverage self-reviewed.
 - [x] Execute approved tasks in the shared feature checkouts; dependency base SHAs and baseline checks recorded in task reports.
-- [x] Tasks 1–6 implemented and independently reviewed; publication/pinning step remains pending.
-- [ ] Task 7 final native acceptance/evidence and independent review complete.
-- [ ] Tasks 1–7 implemented and verified; native screenshots captured.
+- [x] Tasks 1–6 implemented and independently reviewed; dependency feature branches published and adapter pinned to verified accessible bb309536778274f9e2d9519f6a25d9e8f28baecf.
+- [x] Task 7 final native acceptance/evidence and independent review complete; final undo correction approved, pin-only delivery review pending.
+- [x] Tasks 1–7 implemented and verified; native screenshots captured.
 
 
 ## Task 7 navigation acknowledgment amendment
@@ -606,3 +606,26 @@ immediate flush with subsequent per-frame coalescing removes the measured
 approximately2.1ms avoidable first-event delay. Targets and user behavior remain
 unchanged. Focused actual-fold, compatibility, host ordering and passive-input
 regressions precede the final pinned measurement; a remaining miss stays open.
+
+
+## Final execution status
+
+Pinned source 95ffdcb, adapter bb30953 and host 386f8c5 passed every native budget
+at 1k/10k/100k; evidence commit 51353d7 contains raw arrays and same-release
+interaction screenshots. Whole-branch code/evidence review approved those
+revisions. Subsequent source 672501a corrects the confirmed undo/redo final-tick
+refresh gap with real-provider worker/exact-main and post-save HEAD-band checks.
+It does not change measured initial/normal-edit/scroll paths; performance was not
+rerun or relabeled. The final undo correction is approved. The remaining pin-only delivery review
+does not change the measured implementation or its accepted evidence.
+Implementation checks, independent review and evidence commitment/handoff are complete.
+
+Parent published dependency feature branches. Adapter PR7:
+https://github.com/HundredBillion/sprite.nvim/pull/7 . Host PR121:
+https://github.com/HundredBillion/Sprite/pull/121 , stacked on
+`fix/native-editor-copy` to retain the separate PR120 dependency. A fresh isolated
+fetch retrieved exact adapter bb30953 from GitHub; post-fix setup integration
+using that retrieved source passed 5 tests. No merge/install/issue closure here.
+Dedicated native soft-wrap interaction, physical 1x, IME and other platforms were
+not exercised; logical-buffer-line mapping and configured fallback limits are
+recorded in the execution report.

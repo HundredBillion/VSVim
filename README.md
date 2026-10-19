@@ -157,12 +157,12 @@ Rows are clipped to 256 display columns. Files exceeding 1,000,000 lines or
 64 MiB of prepared source, and overlays exceeding the protocol bounds, hide the
 minimap with one warning for that buffer. Editing a file can retry preparation.
 
-The native minimap currently requires the locally tested development builds of
-sprite.nvim and Sprite. Publishing those dependencies and updating VSVim's
-adapter pin are outstanding; the distributed pin still points to the published
-adapter without minimap support. Development checks use isolated local copies,
-leaving installed plugins unchanged.
-Tested local revisions are sprite.nvim `bb309536778274f9e2d9519f6a25d9e8f28baecf`
+The native minimap requires a Sprite host advertising `grid-minimap-v1`.
+VSVim pins the published sprite.nvim commit containing the matching adapter.
+The tested host feature branch is published for review; use a build containing
+the revision below and open a new Sprite process. Development checks use
+isolated copies, leaving installed plugins unchanged.
+Tested revisions are sprite.nvim `bb309536778274f9e2d9519f6a25d9e8f28baecf`
 and Sprite `386f8c599eb5c7d37c91fab15132bbc09ea9442a`.
 [Execution evidence](docs/execution/10-19-2026-native-minimap.md) records the
 final passing measurements and the physical-display/configuration limits.
