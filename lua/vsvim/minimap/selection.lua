@@ -3,7 +3,8 @@ local current, preserved, notify, owner, group
 local occurrences, matches, word, signature = {}, {}, nil, nil
 local epoch = 0
 local ns = vim.api.nvim_create_namespace('VSVimMinimapSelection')
-local update, activate
+local update, activate, refresh_matches
+local selection_option_to_restore, setting_selection_option
 local function publish()
   local rows = current and current.segments or {}
   local value = {selection=#rows > 0 and {rows[1][1][2], rows[#rows][2][2]} or vim.NIL,
@@ -13,6 +14,17 @@ local function publish()
   return value
 end
 local visual = {v='v', V='V', ['\22']='\22', s='v', S='V', ['\19']='\22'}
+local function set_selection_option(value)
+  setting_selection_option = true
+  vim.o.selection = value
+  setting_selection_option = false
+end
+local function release_selection_option()
+  if not selection_option_to_restore then return end
+  local value = selection_option_to_restore
+  selection_option_to_restore = nil
+  set_selection_option(value)
+end
 local function window(win)
   return win == 0 and vim.api.nvim_get_current_win() or win
 end
@@ -31,7 +43,7 @@ function M.capture(win)
     local segments = vim.fn.getregionpos(anchor, cursor, opts)
     return {buffer=vim.api.nvim_win_get_buf(win), window=win,
       changedtick=vim.api.nvim_buf_get_changedtick(0), anchor=anchor, cursor=cursor,
-      mode=mode, segments=segments, exclusive=opts.exclusive,
+      mode=mode, segments=segments, exclusive=opts.exclusive, selection_option=vim.o.selection,
       curswant=vim.fn.winsaveview().curswant}
   end)
 end
@@ -69,9 +81,30 @@ local function scan(saved, selected)
   end
   vim.schedule(batch)
 end
+refresh_matches = function()
+  epoch = epoch + 1
+  occurrences, matches, word = {}, {}, nil
+  local saved = current
+  if not saved then publish(); return end
+  if visual[saved.mode] == 'v' and #saved.segments == 1
+    and saved.segments[1][2][3] - saved.segments[1][1][3] <= 1024 then
+    vim.api.nvim_win_call(saved.window, function()
+      local texts = vim.fn.getregion(saved.anchor, saved.cursor,
+        {type='v', exclusive=saved.exclusive})
+      local text = texts[1]
+      if text and #text <= 1024 and text ~= '' and vim.fn.matchstr(text, '^\\k\\+$') == text then
+        word = text
+        scan(saved, text)
+      end
+    end)
+  end
+  publish()
+end
 update = function(win)
-  if preserved then return end
-  if not valid(win) or win ~= vim.api.nvim_get_current_win() then M.clear(); return end
+  if not valid(win) or current and (vim.api.nvim_win_get_buf(win) ~= current.buffer
+    or vim.api.nvim_buf_get_changedtick(current.buffer) ~= current.changedtick) then M.clear(); return end
+  if win ~= vim.api.nvim_get_current_win() or preserved then return end
+  if not visual[vim.fn.mode()] then release_selection_option() end
   local mode = vim.fn.mode()
   local key = visual[mode] and vim.inspect({win, vim.fn.getpos('v'), vim.fn.getpos('.'), mode,
     vim.api.nvim_buf_get_changedtick(0), vim.o.selection, vim.bo.iskeyword}) or nil
@@ -81,17 +114,7 @@ update = function(win)
   if not key then return end
   current = M.capture(win)
   if not current then return end
-  if visual[mode] == 'v' and #current.segments == 1
-    and current.segments[1][2][3] - current.segments[1][1][3] <= 1024 then
-    local texts = vim.fn.getregion(current.anchor, current.cursor,
-      {type='v', exclusive=current.exclusive})
-    local text = texts[1]
-    if text and #text <= 1024 and text ~= '' and vim.fn.matchstr(text, '^\\k\\+$') == text then
-      word = text
-      scan(current, text)
-    end
-  end
-  publish()
+  refresh_matches()
 end
 activate = function(win)
   if owner == win and group then return end
@@ -99,10 +122,13 @@ activate = function(win)
   owner = win
   group = vim.api.nvim_create_augroup('VSVimMinimapSelection', {clear=true})
   vim.api.nvim_create_autocmd({'CursorMoved','CursorMovedI','ModeChanged'}, {
-    group=group, callback=function() vim.schedule(function() if owner then update(owner) end end) end})
+    group=group, callback=function() vim.schedule(function()
+      if not visual[vim.fn.mode()] then release_selection_option() end
+      if owner then update(owner) end
+    end) end})
   vim.api.nvim_create_autocmd({'TextChanged','TextChangedI','BufEnter','WinEnter','WinClosed','BufWipeout'}, {
     group=group, callback=function()
-      if not valid(win) or vim.api.nvim_get_current_win() ~= win
+      if not valid(win)
         or current and (vim.api.nvim_win_get_buf(win) ~= current.buffer
         or vim.api.nvim_buf_get_changedtick(current.buffer) ~= current.changedtick) then M.clear() end
     end})
@@ -111,7 +137,13 @@ activate = function(win)
     publish()
   end})
   vim.api.nvim_create_autocmd('OptionSet', {group=group, pattern={'iskeyword','selection'},
-    callback=function() M.clear(); update(win) end})
+    callback=function(event)
+      if setting_selection_option then return end
+      if event.match == 'selection' then selection_option_to_restore = nil end
+      if preserved then
+        if event.match == 'iskeyword' and vim.api.nvim_get_current_buf() == current.buffer then refresh_matches() end
+      else update(win) end
+    end})
 end
 function M.state(win)
   win = window(win)
@@ -146,10 +178,12 @@ function M.browse(win, action)
   end)
 end
 function M.before_input(event)
-  if not preserved then return end
-  local key = event.key or event.keys or ''
+  if not preserved or not current or vim.api.nvim_get_current_win() ~= current.window then return end
+  local key = (event.key or event.keys or ''):lower()
+  local escape = key == 'escape' or key == 'ctrl-[' or key:match('^<esc>')
+    or key:match('^<c%-%[>') or key:sub(1,1) == '\27'
   if (event.type == 'mouse' and event.action == 'press')
-    or (event.type == 'input' and (key:lower():match('^<esc>') or key:lower():match('^<c%-%[>') or key:sub(1,1) == '\27')) then
+    or (event.type == 'input' and escape) then
     M.clear(); return
   end
   if event.type ~= 'input' and event.type ~= 'paste' then return end
@@ -158,6 +192,11 @@ function M.before_input(event)
     or vim.api.nvim_buf_get_changedtick(saved.buffer) ~= saved.changedtick then M.clear(); return end
   -- Restore native mode before the bridge queues the original keyboard or paste input.
   preserved = nil
+  if vim.o.selection ~= saved.selection_option then
+    -- Keep captured endpoint semantics until native Visual/Select editing finishes.
+    selection_option_to_restore = vim.o.selection
+    set_selection_option(saved.selection_option)
+  end
   vim.api.nvim_set_current_win(saved.window)
   vim.fn.setpos('.', saved.anchor)
   vim.cmd('normal! ' .. visual[saved.mode])
@@ -224,6 +263,7 @@ function M.attach(provider)
   local on_target, on_edit = provider.on_target, provider.on_edit
   provider.on_target = function(target)
     if on_target then on_target(target) end
+    release_selection_option()
     M.clear()
     if group then vim.api.nvim_del_augroup_by_id(group); group=nil end
     owner = nil

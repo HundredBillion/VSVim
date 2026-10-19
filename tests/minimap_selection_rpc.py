@@ -276,6 +276,96 @@ vim.g.clipboard = {name='test',cache_enabled=0,
         self.assertIsNone(self.nvim.exec_lua('return selection.capture(0)'))
         self.nvim.exec_lua('provider.stop()')
 
+    def start_provider(self):
+        self.nvim.exec_lua("_G.provider=require('vsvim.minimap').provider(); provider.next()")
+        def ready():
+            return self.nvim.exec_lua("for _=1,100 do provider.next() end; local t=provider.target(); return t and t.generation ~= nil and not t.busy")
+        self.wait_for(ready)
+
+    def test_retained_target_survives_sidebar_focus_and_sidebar_keyboard(self):
+        self.start_provider()
+        target = self.nvim.exec_lua('return provider.target()')
+        for floating in (True, False):
+            with self.subTest(floating=floating):
+                self.nvim.input('gg0v3l')
+                self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
+                self.browse()
+                self.nvim.exec_lua('''local floating=...
+local b=vim.api.nvim_create_buf(false,true)
+vim.bo[b].buftype='nofile'
+vim.api.nvim_buf_set_lines(b,0,-1,false,{'sidebar one','sidebar two'})
+local config=floating and {relative='editor',row=2,col=2,width=30,height=5} or {split='right',width=30}
+_G.sidebar=vim.api.nvim_open_win(b,true,config)
+provider.next()''', floating)
+                self.assertEqual(self.nvim.exec_lua('return provider.target().target'), target['target'])
+                self.assertEqual(self.nvim.exec_lua('return selection.state(...).selection', target['window']), [1, 1])
+                self.nvim.exec_lua("provider.before_input({type='input',key='j'}); vim.api.nvim_input('j')")
+                self.wait_for(lambda: self.nvim.current.window.cursor[0] == 2)
+                self.assertEqual(self.nvim.current.window.handle, self.nvim.exec_lua('return _G.sidebar'))
+                self.assertEqual(self.nvim.funcs.mode(), 'n')
+                self.nvim.exec_lua("provider.before_input({type='input',key='escape'}); vim.api.nvim_input('<Esc>')")
+                self.assertEqual(self.nvim.exec_lua('return selection.state(...).selection', target['window']), [1, 1])
+                self.nvim.api.set_current_win(target['window'])
+                self.nvim.exec_lua("provider.before_input({type='input',key='y'}); vim.api.nvim_input('y')")
+                self.wait_for(lambda: self.nvim.funcs.mode() == 'n')
+                self.assertEqual(self.nvim.funcs.getreg('"'), 'word')
+                self.assertEqual(self.nvim.current.buffer[:], self.original)
+                self.nvim.exec_lua('vim.api.nvim_win_close(_G.sidebar,true)')
+
+    def test_preserved_keyword_change_refreshes_matches_without_losing_region(self):
+        self.start_provider()
+        self.nvim.current.buffer[:3] = ['word word-word', 'word-word', '-- word']
+        self.nvim.input('gg0v3l')
+        self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
+        self.browse()
+        self.nvim.command('setlocal iskeyword+=-')
+        self.assertEqual(self.nvim.exec_lua('return selection.state(0).selection'), [1, 1])
+        self.wait_for(lambda: self.nvim.exec_lua('return selection.state(0).occurrences') == [1, 3] + list(range(4, 1001)))
+        self.send('y')
+        self.wait_for(lambda: self.nvim.funcs.mode() == 'n')
+        self.assertEqual(self.nvim.funcs.getreg('"'), 'word')
+
+    def test_preserved_selection_option_changes_keep_original_selected_text(self):
+        for original, changed, keys in [('inclusive', 'exclusive', 'gg0v3l'),
+                                         ('exclusive', 'inclusive', 'gg0v4l'),
+                                         ('exclusive', 'inclusive', 'gg04lv4h'),
+                                         ('inclusive', 'exclusive', 'gg0<C-v>j3l'),
+                                         ('inclusive', 'exclusive', 'gg0v3l<C-g>')]:
+            with self.subTest(original=original, keys=keys):
+                self.nvim.options['selection'] = original
+                self.nvim.input(keys)
+                self.wait_for(lambda: self.nvim.funcs.mode() in ('v', '\x16', 's'))
+                if self.nvim.funcs.mode() == 's':
+                    self.nvim.input('<C-g>')
+                    self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
+                self.nvim.input('y')
+                self.wait_for(lambda: self.nvim.funcs.mode() == 'n')
+                expected = [self.nvim.funcs.getreg('"'), self.nvim.funcs.getregtype('"')]
+                self.nvim.input(keys)
+                self.wait_for(lambda: self.nvim.funcs.mode() in ('v', '\x16', 's'))
+                self.browse()
+                self.nvim.options['selection'] = changed
+                self.assertEqual(self.nvim.exec_lua('return selection.state(0).selection')[0], 1)
+                self.nvim.exec_lua("selection.before_input({type='input',key='y'})")
+                if self.nvim.funcs.mode() == 's':
+                    self.nvim.input('<C-g>')
+                    self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
+                self.nvim.input('y')
+                self.wait_for(lambda: self.nvim.funcs.mode() == 'n')
+                self.assertEqual([self.nvim.funcs.getreg('"'), self.nvim.funcs.getregtype('"')], expected)
+                self.assertEqual(self.nvim.options['selection'], changed)
+
+    def test_raw_host_escape_names_clear_without_restoring(self):
+        for raw in ('escape', 'ctrl-['):
+            with self.subTest(raw=raw):
+                self.nvim.input('gg0v3l')
+                self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
+                self.browse()
+                self.nvim.exec_lua("selection.before_input({type='input',key=...}); vim.api.nvim_input('<Esc>')", raw)
+                self.wait_for(lambda: self.nvim.funcs.mode() == 'n')
+                self.assertGreaterEqual(self.nvim.funcs.line('.'), 490)
+                self.assertIsNone(self.nvim.exec_lua('return selection.state(0).selection'))
+
     def test_yank_restores_preserved_selection(self):
         self.nvim.input('gg0v3l')
         self.wait_for(lambda: self.nvim.funcs.mode() == 'v')
