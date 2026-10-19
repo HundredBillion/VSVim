@@ -32,9 +32,12 @@ commands preserves their existing command grammar and force semantics.
 
 Sprite's native Surface handler consumed Cmd-C without forwarding an event.
 The companion `fix/native-editor-copy` branch in Sprite forwards Copy to the
-focused Surface while retaining its existing Paste routing. Its GPUI regression
+focused grid Surface while retaining its existing Paste routing. Element and
+list Surfaces keep their previous copy handling; the check identifies the grid
+renderer, not Neovim specifically. Its GPUI regression
 test dispatches the actual shortcut and asserts exactly one input event reaches
-the native editor. The distro includes that companion source patch under
+the native editor. A second dispatch test checks that an element Surface does
+not receive Copy. The distro includes that companion source patch under
 `extras/sprite-native-copy.patch`; applying it requires rebuilding/updating the
 Sprite host. A running, older Sprite process will keep its old input handler.
 Ordinary terminals also need to forward Cmd shortcuts to Neovim.
