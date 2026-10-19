@@ -116,9 +116,10 @@ the adapter before opening the editor. Other terminals retain normal Neovim
 rendering. Set `VSVIM_NATIVE=0` to force the terminal path. Headless, embedded,
 script, help, and version invocations bypass the native adapter.
 
-The palette follows the VS Code extension `kenethriera.jb-theme` (JetBrains Dark
-Theme): charcoal editor, gray sidebars, orange keywords, green strings, and
-blue functions. See [theme sources and font setup](docs/themes/jb-theme.md).
+The default `vsvim-one-dark` syntax palette follows Zed’s One Dark: purple
+keywords, blue functions, teal types, green strings, and red properties. It uses
+the existing charcoal editor and gray sidebars. See [One Dark syntax](docs/themes/one-dark.md)
+and [window colors and font setup](docs/themes/jb-theme.md).
 For the matching Menlo 12 font in Sprite, launch with
 `sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout.
 Sprite builds advertising `grid-tabs-v1` show 35-pixel native file tabs with

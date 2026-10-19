@@ -13,7 +13,7 @@ PINS = {
     'mason-lspconfig.nvim': '00b5473cca4db5b410ff4bae724e3b6e21f2687f',
     'scm.nvim': 'c6946caa84c49054f37bf9097b7f59bcadf2bfa7',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
-    'sprite.nvim': '21c96d6e15cfea741eba145284461b7256d7d159',
+    'sprite.nvim': '84c73cad6bedee1ebf2bd466a5382947ff611481',
     'svgtree.nvim': 'b1781a04d6147292ccd240cac8b73f6b31c679e3',
 }
 
@@ -86,6 +86,10 @@ class IntegrationTest(unittest.TestCase):
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(appearance) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
             self.assertIn('VSVim appearance passed', output)
+            one_dark = str(ROOT / 'tests/one_dark.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(one_dark) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('One Dark syntax: PASS', output)
             self.assertEqual(sentinel.read_bytes(), original)
             for name in ('sprite.nvim', 'svgtree.nvim', 'scm.nvim'):
                 shutil.rmtree(root / 'data/vsvim/lazy' / name)

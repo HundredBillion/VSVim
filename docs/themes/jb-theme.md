@@ -1,6 +1,10 @@
 # JetBrains Dark Theme
 
-VSVim's default `vsvim-jb-dark` translates the active **JetBrains Dark Theme**
+The default `vsvim-one-dark` reuses this theme’s window colors and applies
+[Zed One Dark syntax colors](one-dark.md). Select `vsvim-jb-dark` to use its
+original syntax palette as well.
+
+VSVim's `vsvim-jb-dark` translates the active **JetBrains Dark Theme**
 from `kenethriera.jb-theme` version 1.0.35. Source: the installed extension's
 `themes/generated/jetbrains-dark-color_theme.json`.
 Upstream: https://github.com/rierarizzo/jetbrains-theme (CC0-1.0).
