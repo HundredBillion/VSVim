@@ -56,44 +56,7 @@ function M.mouse_definition()
 end
 
 function M.setup()
-  if vim.fn.exepath('ruby') == '/usr/bin/ruby' then
-    for _, bin in ipairs({ '/opt/homebrew/opt/ruby/bin', '/usr/local/opt/ruby/bin' }) do
-      if vim.fn.executable(bin .. '/ruby') == 1 then
-        vim.env.PATH = bin .. ':' .. vim.env.PATH
-        break
-      end
-    end
-  end
-  vim.lsp.config('ruby_lsp', { cmd = function(dispatchers, config)
-    return vim.lsp.rpc.start({ 'ruby-lsp' }, dispatchers, {
-      cwd = config.root_dir,
-      env = { BUNDLE_PATH = vim.env.BUNDLE_PATH or (vim.fn.stdpath('data') .. '/ruby-lsp/bundle') },
-    })
-  end })
-  vim.lsp.config('lua_ls', { settings = { Lua = {
-    runtime = { version = 'LuaJIT', path = { '?.lua', '?/init.lua', 'lua/?.lua', 'lua/?/init.lua' } },
-    workspace = { checkThirdParty = false, library = { vim.env.VIMRUNTIME .. '/lua' } },
-  } } })
-  require('mason').setup()
-  require('mason-lspconfig').setup({ ensure_installed = {}, automatic_enable = M.servers })
-  local function install()
-    local registry = require('mason-registry')
-    registry.refresh(vim.schedule_wrap(function(ok)
-      if not ok then vim.notify('Language server registry unavailable; retry :VSVimInstallLsp', vim.log.levels.ERROR); return end
-      for _, name in ipairs({ 'pyright', 'ruby-lsp', 'gopls', 'rust-analyzer', 'typescript-language-server', 'lua-language-server' }) do
-        local pkg = registry.get_package(name)
-        if not pkg:is_installed() and not pkg:is_installing() then
-          pkg:install({}, vim.schedule_wrap(function(success)
-            if not success then vim.notify(name .. ' installation failed; see :MasonLog', vim.log.levels.ERROR) end
-          end))
-        end
-      end
-    end))
-  end
-  vim.api.nvim_create_user_command('VSVimInstallLsp', install, { desc = 'Install bundled language servers' })
-  local group = vim.api.nvim_create_augroup('VSVimLsp', { clear = true })
-  vim.api.nvim_create_autocmd('UIEnter', { group = group, once = true, callback = install })
-  if #vim.api.nvim_list_uis() > 0 then install() end
+  require('vsvim.lsp.manager').setup()
   vim.keymap.set('n', 'gd', M.definition, { desc = 'Go to definition' })
   vim.keymap.set({ 'n', 'i' }, '<D-LeftMouse>', M.mouse_definition, { desc = 'Go to clicked definition' })
   for _, event in ipairs({ '<D-LeftRelease>', '<D-LeftDrag>' }) do

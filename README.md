@@ -75,38 +75,60 @@ above muted filenames and line numbers. Five choices fit at once; use arrows or
 `j`/`k` to browse, Enter or a click to open, and Esc to cancel. Ordinary terminals can use `gd`
 even when they do not forward Command/Super mouse events.
 
-VSVim includes pinned Mason, mason-lspconfig, and nvim-lspconfig plugins. The first
-interactive launch installs these servers in VSVim's own data directory:
+VSVim selects and starts language servers in the background when a supported
+file opens. Project configuration and explicit `vim.lsp.config` settings take
+precedence over inferred defaults. Tooling lives in VSVim's data directory;
+setup does not install application dependencies or upgrade language runtimes.
 
-| Languages | Server |
+| Languages | Selection |
 | --- | --- |
-| Lua / Neovim configuration | Lua Language Server |
-| Python | Pyright |
-| Ruby | Ruby LSP |
-| Go | gopls |
-| Rust | rust-analyzer |
-| TypeScript, JavaScript (including TSX/JSX) | TypeScript language server |
+| Lua / Neovim configuration | LuaLS; Neovim projects receive LuaJIT and API definitions, ordinary Lua projects retain their own settings |
+| Python | Pyright using explicit interpreter settings, project virtual environments and version declarations |
+| Ruby | Project Ruby; Ruby LSP 0.26.11 for Ruby >= 3.0, Solargraph 0.52.0 for Ruby 2.7 |
+| Go | gopls matched to installed Go 1.23–1.27, respecting go.work and toolchain directives |
+| Rust | rust-analyzer and rust-src from the selected installed rustup toolchain |
+| TypeScript / JavaScript (including TSX/JSX) | TypeScript language server with the project's TypeScript SDK when present |
 
-Server downloads and first project indexing take time. Use `:Mason` to inspect
-installation progress, `:VSVimInstallLsp` to retry installation, and
-`:checkhealth vim.lsp` to inspect attached servers. Headless startup does not
-install servers automatically; the install command also works for provisioning.
-Server releases come from Mason's registry; plugin revisions are pinned, but
-server releases are not frozen by the distro.
+Server host and application target versions are separate. For example, Node
+hosts Pyright while Python analysis uses the selected Python interpreter;
+TypeScript analysis can use a project's SDK under a newer server host. VSVim
+prefers installed Node >= 22.22.2 for TypeScript, with a managed server fallback
+under Node >= 18. Missing or unsupported runtimes are reported as unavailable.
+Ruby 2.7.5 and 3.3.5 have real initialization and definition coverage; other
+versions still depend on their installed Bundler and compatible dependencies.
 
-Language runtimes/toolchains still need to be available: Node/npm (the tested
-TypeScript server requires Node 22.22.2 or newer), modern Ruby/Bundler, Go, and
-Rust/Cargo with rust-src. Projects need their normal dependencies and configuration.
-Ruby projects with a Gemfile need a Gemfile.lock (`bundle install`). Ruby LSP's
-support bundle uses VSVim's data directory unless `BUNDLE_PATH` is set. On macOS,
-VSVim uses an installed Homebrew Ruby when PATH otherwise selects Apple's old
-`/usr/bin/ruby`; it preserves Ruby version managers already selected on PATH.
+Successful tooling is cached under `lsp-environments` and reused for matching
+runtime/server selections. Mason is retained for LuaLS and compatible installed
+Node tools. Rust components use rustup's cache for the installed toolchain.
+Setup respects existing manifests and lockfiles. Rust defaults to offline,
+locked Cargo operations. Projects without Cargo.lock use dependency-free
+metadata discovery; external dependency analysis can be limited until the
+project is prepared. Projects with a lockfile retain dependency discovery and
+build-script support. Explicit Rust settings can change
+these defaults. Go uses installed toolchains and readonly module operations.
 
-The real-server integration check is `VSVIM_TEST_LANGUAGE=python ./bin/vsvim
---headless '+lua dofile("tests/lsp_servers.lua")' '+qa!'` (repeat with lua, ruby, go,
-rust, typescript, javascript). The mouse RPC check is
-`uv run --with pynvim python tests/mouse_definition_rpc.py`; add `--real` to
-exercise the installed Python server and mouse-release behavior together.
+Use `:VSVimLspStatus` to inspect project, runtime, state, failure and log path;
+`:VSVimInstallLsp` explicitly retries setup for loaded source buffers. Setup
+failures and managed server messages go to project logs without blocking
+editing. Explicit message handlers and source diagnostics remain available.
+Recovery permits one automatic retry for startup failures; unsupported runtime
+or installation failures wait for a relevant change or explicit retry.
+Headless startup does not download tooling merely by loading VSVim; the install
+command and `manager.ensure(buffer, true)` explicitly permit provisioning.
+
+Real-server checks run from the checkout root, for example:
+
+```sh
+VSVIM_TEST_LANGUAGE=python ./bin/vsvim --headless \
+  '+lua local ok,e=pcall(dofile,"tests/lsp_servers.lua"); if not ok then print(e); vim.cmd("cquit 1") end' '+qa!'
+```
+
+Repeat with `lua`, `lua-nvim`, `ruby`, `ruby-legacy`, `go`, `rust`, `typescript`,
+`javascript`, and `rust-locked`. These check initialization, actual cross-file navigation and
+manifest preservation. If `nvim-nightly` is a wrapper launching an installed
+VSVim release, set `VSVIM_NVIM` to the actual Neovim binary to test this checkout.
+The mouse RPC check is `uv run --with pynvim python tests/mouse_definition_rpc.py`;
+add `--real` to exercise Python navigation and mouse release together.
 
 ## Sprite
 

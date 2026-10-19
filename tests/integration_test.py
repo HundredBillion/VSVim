@@ -68,7 +68,14 @@ class IntegrationTest(unittest.TestCase):
             setup_script = str(ROOT / 'tests/lsp_setup.lua')
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(setup_script) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
-            self.assertIn('VSVim LSP installation lifecycle passed', output)
+            self.assertIn('LSP setup passed', output)
+            for script_name, marker in (
+                    ('lsp_environment.lua', 'LSP environment passed'),
+                    ('lsp_lifecycle.lua', 'LSP lifecycle passed')):
+                script = str(ROOT / 'tests' / script_name)
+                output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(script) +
+                                '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+                self.assertIn(marker, output)
             native_script = str(ROOT / 'tests/native_handoff.lua')
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(native_script) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
