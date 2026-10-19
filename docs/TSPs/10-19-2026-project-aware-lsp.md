@@ -20,6 +20,7 @@
 - Use asynchronous subprocesses with bounded timeouts; stale callbacks cannot attach to a different project or revive cancelled work.
 - Explicit user/project settings override inferred defaults.
 - Cache compatible installations and deduplicate simultaneous provisioning requests.
+- Ruby/npm/Go server packages use VSVim managed storage; Rust server/source components use rustup's managed storage for an already installed toolchain, and LuaLS uses VSVim's Mason storage.
 - Preserve definition navigation and mouse behavior in the existing LSP module.
 - No publishing, merging, release installation, or restarting the live editor is authorized by this implementation plan.
 
@@ -126,7 +127,10 @@ assert(next(require('vsvim.lsp.manager').status()) == nil)
   project root, environment, and resulting settings. Use actual temporary
   project marker files and executable fixture processes at external seams.
   Preserve explicit config values. Test missing and conflicting runtime
-  requirements. New installation paths must live under VSVim managed storage.
+  requirements. New server-package paths use VSVim managed storage; selected
+  Rust toolchain components use rustup's managed component storage. Resolve the
+  installed Rust toolchain before adding components, without installing or
+  updating application toolchain versions.
 
   Run each cycle with
   `nvim-nightly --headless -u NONE --cmd 'set rtp^=.' -l tests/lsp_environment.lua`.
