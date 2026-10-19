@@ -240,11 +240,67 @@ vim.defer_fn(observe,20)
         self.wait(lambda: self.first_lines()[0]['text'] == 'current text' and self.snapshot().get('enabled') is True)
         self.assertTrue(self.snapshot()['enabled'])
 
+    def test_statusline_spans_minimap_and_tracks_editor_state(self):
+        self.launch(['grid-minimap-v1', 'grid-tabs-v1', 'grid-footer-v1'])
+
+        def footer():
+            return next((m for m in reversed(self.host.messages)
+                         if m.get('type') == 'footer' and m.get('cols') == 120), None)
+
+        self.host.send(dict(type='resize', width=800, height=480,
+                            cols=100, rows=30, footer_cols=120))
+        self.wait(lambda: footer() is not None)
+        bar = footer()
+        text = ''.join(cell[0] * (cell[2] if len(cell) > 2 else 1)
+                       for cell in bar['cells'])
+        self.assertEqual(len(text), 120)
+        self.assertIn('NORMAL', text)
+        self.assertTrue(text.endswith('text  '), text)
+        self.assertEqual(bar['grid_cols'], 100)
+        self.assertEqual(bar['grid_rows'], 30)
+        self.assertEqual(len(bar['source']), 100)
+        self.assertEqual(self.snapshot()['width'], 100)
+        self.host.send(dict(type='input', text='j'))
+        self.wait(lambda: 'Ln 2,' in ''.join(cell[0] for cell in footer()['cells']))
+        self.host.command('set laststatus=2')
+        self.wait(lambda: any(m.get('type') == 'footer' and m.get('visible') is False
+                              for m in self.host.messages))
+
+    def test_native_tab_reorder_persists_without_changing_active_file(self):
+        self.launch(['grid-tabs-v1'])
+
+        def tabs():
+            return next((m for m in reversed(self.host.messages)
+                         if m.get('type') == 'tabs'), {})
+
+        def labels():
+            return [item['label'] for item in tabs().get('items', [])
+                    if item['label'].startswith('reorder-')]
+
+        self.host.command('enew | file reorder-a.lua | enew | file reorder-b.lua | enew | file reorder-c.lua')
+        self.wait(lambda: labels() == ['reorder-a.lua', 'reorder-b.lua', 'reorder-c.lua'])
+        current = tabs()
+        self.assertTrue(current['reorderable'])
+        ids = {item['label']: item['id'] for item in current['items']}
+        active = current['active']
+        self.host.send(dict(type='tab_action', revision=current['revision'], action='reorder',
+                            id=ids['reorder-c.lua'], before=ids['reorder-a.lua']))
+        self.wait(lambda: labels() == ['reorder-c.lua', 'reorder-a.lua', 'reorder-b.lua'])
+        self.assertEqual(tabs()['active'], active)
+        current = tabs()
+        self.host.send(dict(type='tab_action', revision=current['revision'], action='reorder',
+                            id=ids['reorder-c.lua'], before=None))
+        self.wait(lambda: labels() == ['reorder-a.lua', 'reorder-b.lua', 'reorder-c.lua'])
+        self.assertEqual(tabs()['active'], active)
+        self.host.command('enew | file reorder-d.lua')
+        self.wait(lambda: labels() == ['reorder-a.lua', 'reorder-b.lua', 'reorder-c.lua', 'reorder-d.lua'])
+
     def test_old_host_does_no_work_or_minimap_messages(self):
         self.launch(['grid-tabs-v1'])
         time.sleep(.2)
         self.assertEqual(self.snapshot()['jobs'], dict(source=0, git=0, cancel=0, stop=0))
         self.assertIsNone(self.latest('begin'))
+        self.assertFalse(any(m.get('type') == 'footer' for m in self.host.messages))
         self.assertEqual(self.snapshot()['width'], 100)
         self.host.command('VSVimMinimapToggle | VSVimMinimapToggle')
         time.sleep(.2)

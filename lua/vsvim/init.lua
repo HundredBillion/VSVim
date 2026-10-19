@@ -54,7 +54,7 @@ function M.setup()
       dependencies = { 'mason.nvim', 'nvim-lspconfig' } },
     {
       'HundredBillion/sprite.nvim',
-      commit = '84c73cad6bedee1ebf2bd466a5382947ff611481',
+      commit = 'a81577daaf834def81db9dc5935bfbd8353f643e',
       lazy = false,
     },
     {

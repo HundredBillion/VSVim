@@ -146,7 +146,9 @@ For the matching Menlo 12 font in Sprite, launch with
 `sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout.
 Sprite builds advertising `grid-tabs-v1` show 35-pixel native file tabs with
 SVGTree's SVG icons and the JB palette. Click a tab to select its buffer; click
-its close control to close it. Modified files ask before closing. Scroll the
+its close control to close it. On updated Sprite builds, drag a tab left or right to reorder open files
+without changing the active file. New files append, and closing a file keeps the
+remaining order. Modified files ask before closing. Scroll the
 strip horizontally when tabs overflow; selecting a buffer keeps its tab visible.
 Ordinary terminals and older Sprite versions keep the one-row tabline with
 Menlo-compatible symbols, close controls, and overflow arrows. After upgrading
@@ -156,8 +158,8 @@ keep running with their original host. The explorer opens by default; put
 User overrides run after appearance setup, so a different colorscheme can be
 selected there.
 
-Sprite hosts advertising `grid-minimap-v1` can show a 160-pixel native minimap
-beside the editor. It displays real source text and colors, the current viewport,
+Sprite hosts advertising `grid-minimap-v1` can show a native minimap up to
+120 pixels wide beside the editor. It displays real source text and colors, the current viewport,
 selection, matching whole words, and live changes against the file in Git HEAD.
 Unsaved edits are included. Saving or staging leaves those change markers in
 place; committing establishes the next baseline. New files appear as added.
@@ -168,6 +170,9 @@ The minimap is enabled by default on supported hosts. Set
 `:VSVimMinimapToggle` to toggle it for the current session. Disabling removes the
 strip and stops its source and Git work. Terminals, headless runs, and older
 hosts keep their full editor width and do no minimap source or Git work.
+The minimap shrinks with the editor area, using at most a quarter of its width,
+so it can remain visible beside the explorer in a split terminal pane. It hides
+only when the editor area is narrower than 192 pixels.
 After upgrading Sprite, open a new Sprite process to use the new capability.
 
 Click the minimap to browse or drag its viewport to scroll. Browsing preserves
@@ -179,6 +184,11 @@ focusing a sidebar retains the last file's minimap.
 Rows are clipped to 256 display columns. Files exceeding 1,000,000 lines or
 64 MiB of prepared source, and overlays exceeding the protocol bounds, hide the
 minimap with one warning for that buffer. Editing a file can retry preparation.
+
+On Sprite hosts advertising `grid-footer-v1`, the bottom statusline spans the
+editor and minimap. Its mode badge, highlights, and right-aligned file details
+use the full width, while the editor text stays beside the minimap. Commands
+and messages can cover the bar. Older hosts retain the ordinary statusline.
 
 The native minimap requires a Sprite host advertising `grid-minimap-v1`.
 VSVim pins the published sprite.nvim commit containing the matching adapter.
