@@ -64,7 +64,9 @@ The action revision is the latest state revision, independent of later
 document operations. Validate revision, window, buffer, generation, visibility,
 and current target against live Neovim state before toggling. Never use a
 delayed action to change a newly selected file. Toolbar uses VS Code file-code
-in preview and Zed eye in source. Link navigation may send the same envelope
+in preview and Zed eye in source. A preview pointer press sends the same
+envelope with `action:"focus"` before subsequent keyboard input, so Neovim
+focus follows the clicked document without a source-grid click. Link navigation may send the same envelope
 with `action:"open"` and `destination` containing the Markdown link destination;
 fragment-only anchors stay in the host. Provider resolves local file paths
 against the source directory and opens them using Neovim APIs, never shell text.

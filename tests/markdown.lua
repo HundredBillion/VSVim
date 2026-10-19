@@ -104,6 +104,22 @@ end)
 for _, target in ipairs(state.windows) do
 	assert(target.buffer == buffer, "split shares original file buffer")
 end
+local inactive = state.windows[2]
+assert(
+	bridge.dispatch({
+		type = "markdown_action",
+		revision = state.revision,
+		window = inactive.window,
+		buffer = inactive.buffer,
+		generation = inactive.generation,
+		action = "focus",
+	}),
+	"preview press focuses its own Neovim window"
+)
+assert(vim.api.nvim_get_current_win() == inactive.window)
+wait_for(function()
+	return state.active == inactive.window
+end)
 local split = vim.api.nvim_get_current_win()
 vim.wo[split].winbar = "Markdown document"
 vim.wo[split].number = true
@@ -123,6 +139,29 @@ vim.cmd.close()
 wait_for(function()
 	return #state.windows == 1
 end)
+local live = state.windows[1]
+source.toggle()
+assert(not bridge.dispatch({
+	type = "markdown_action",
+	revision = state.revision,
+	window = live.window,
+	buffer = live.buffer,
+	generation = live.generation,
+	action = "open",
+	destination = "obsolete.md",
+}), "a queued link cannot navigate after switching to source")
+assert(vim.api.nvim_get_current_buf() == buffer)
+source.toggle()
+vim.fn.mkdir(root .. "/moved", "p")
+local renamed = root .. "/moved/renamed.md"
+local rename_tick = vim.api.nvim_buf_get_changedtick(buffer)
+vim.cmd.file(vim.fn.fnameescape(renamed))
+renamed = vim.api.nvim_buf_get_name(buffer)
+assert(vim.api.nvim_buf_get_changedtick(buffer) == rename_tick, "rename does not change text generation")
+wait_for(function()
+	return document.path == renamed and document.generation == rename_tick
+end)
+
 local lines = {}
 for i = 1, 10000 do
 	lines[i] = "paragraph " .. i
@@ -139,11 +178,19 @@ wait_for(function()
 end)
 assert(document.text:match("^# Latest after cancellation"))
 assert(document.text:find("paragraph 10000", 1, true))
+local fallback_events = 0
+vim.api.nvim_create_autocmd("User", {
+	pattern = "VSVimMarkdownChanged",
+	callback = function()
+		fallback_events = fallback_events + 1
+	end,
+})
 vim.api.nvim_buf_set_lines(buffer, 0, -1, false, { string.rep("x", 2 * 1024 * 1024 + 1) })
 wait_for(function()
 	return state.windows[1] and not state.windows[1].preview
 end)
 assert(not source.previewing(), "over-limit files stay editable")
+assert(fallback_events > 0, "automatic source fallback refreshes the minimap")
 assert(bridge.before_input({ type = "input", key = "x" }))
 local buffers = {}
 for _, info in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do

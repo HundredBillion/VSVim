@@ -40,6 +40,7 @@ local function warn(buffer, reason)
 		vim.notify("Markdown preview: " .. reason .. "; showing source", vim.log.levels.WARN)
 	end)
 	changed()
+	vim.api.nvim_exec_autocmds("User", { pattern = "VSVimMarkdownChanged", modeline = false })
 end
 
 local function observe(buffer)
@@ -62,7 +63,8 @@ local function observe(buffer)
 end
 
 local function extract(buffer, tick)
-	if jobs[buffer] and jobs[buffer].tick == tick then
+	local path = vim.api.nvim_buf_get_name(buffer)
+	if jobs[buffer] and jobs[buffer].tick == tick and jobs[buffer].path == path then
 		return
 	end
 	local total = vim.api.nvim_buf_line_count(buffer)
@@ -70,12 +72,11 @@ local function extract(buffer, tick)
 		warn(buffer, "document exceeds 2 MiB")
 		return
 	end
-	local path = vim.api.nvim_buf_get_name(buffer)
 	if #path > 4096 then
 		warn(buffer, "filename exceeds 4096 bytes")
 		return
 	end
-	local job = { tick = tick, epoch = epoch, row = 0, lines = {} }
+	local job = { tick = tick, epoch = epoch, path = path, row = 0, lines = {} }
 	jobs[buffer] = job
 	local function step()
 		if
@@ -86,6 +87,7 @@ local function extract(buffer, tick)
 			or not current[buffer]
 			or not M.previewing(buffer)
 			or vim.api.nvim_buf_get_changedtick(buffer) ~= tick
+			or vim.api.nvim_buf_get_name(buffer) ~= path
 		then
 			if jobs[buffer] == job then
 				jobs[buffer] = nil
@@ -193,10 +195,12 @@ local function snapshot()
 		end
 	end
 	for _, target in ipairs(windows) do
+		local path = vim.api.nvim_buf_get_name(target.buffer)
+		local published, prepared = sent[target.buffer], ready[target.buffer]
 		if
 			target.preview
-			and sent[target.buffer] ~= target.generation
-			and (not ready[target.buffer] or ready[target.buffer].generation ~= target.generation)
+			and (not published or published.generation ~= target.generation or published.path ~= path)
+			and (not prepared or prepared.generation ~= target.generation or prepared.path ~= path)
 		then
 			extract(target.buffer, target.generation)
 			target.preview = M.previewing(target.buffer)
@@ -236,8 +240,9 @@ function provider.next()
 			and markdown(buffer)
 			and M.previewing(buffer)
 			and document.generation == vim.api.nvim_buf_get_changedtick(buffer)
+			and document.path == vim.api.nvim_buf_get_name(buffer)
 		then
-			sent[buffer] = document.generation
+			sent[buffer] = { generation = document.generation, path = document.path }
 			return document
 		end
 	end
@@ -279,11 +284,25 @@ function provider.dispatch(event)
 	then
 		return false
 	end
+	local shown
+	for _, target in ipairs(previous and previous.windows or {}) do
+		if target.window == event.window then
+			shown = target
+			break
+		end
+	end
+	if not shown or shown.preview ~= M.previewing(event.buffer) or (event.action ~= "toggle" and not shown.preview) then
+		return false
+	end
 	if event.action == "toggle" then
 		if vim.api.nvim_get_current_win() ~= event.window then
 			return false
 		end
 		return M.toggle(event.buffer)
+	end
+	if event.action == "focus" then
+		vim.api.nvim_set_current_win(event.window)
+		return true
 	end
 	if event.action == "open" then
 		local destination = event.destination
