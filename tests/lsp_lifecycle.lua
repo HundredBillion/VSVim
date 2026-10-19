@@ -3,6 +3,13 @@ vim.fn.mkdir(root, 'p'); root = vim.uv.fs_realpath(root)
 vim.env.XDG_STATE_HOME = root .. '/state'
 package.loaded.mason = { setup = function() end }
 package.loaded['mason-lspconfig'] = { setup = function() end }
+local global_methods = { 'window/showMessage', 'window/showMessageRequest' }
+local original_handlers, global_messages = {}, 0
+local function global_handler() global_messages = global_messages + 1; return vim.NIL end
+for _, method in ipairs(global_methods) do
+  original_handlers[method] = vim.lsp.handlers[method]
+  vim.lsp.handlers[method] = global_handler
+end
 local manager = require('vsvim.lsp.manager')
 local env = require('vsvim.lsp.environment')
 local pending, resolutions = {}, 0
@@ -102,6 +109,11 @@ env.resolve = function(ctx, done)
   done({ runtime = 'fixture', config = { handlers = handlers, cmd = { '/usr/bin/python3', script, modes[ctx.root] or 'ready', root .. '/cwd-' .. vim.fn.sha256(ctx.root):sub(1, 8) } } })
 end
 vim.g.vsvim_lsp_start_timeout = 1000
+local before_setup, before_dir = buffer('global-before-setup', 'main.lua')
+manager.ensure(before_setup, true)
+assert(vim.wait(4000, function() return status(before_dir).state == 'ready' end))
+assert(global_messages == 2, 'both global handlers installed before setup must retain precedence')
+for _, method in ipairs(global_methods) do vim.lsp.handlers[method] = original_handlers[method] end
 local first, ready_dir = buffer('ready', 'first.lua')
 local second = buffer('ready', 'second.lua')
 manager.ensure(first, true); manager.ensure(second, true)
@@ -116,6 +128,23 @@ local explicit_buf, explicit_dir = buffer('explicit-messages', 'main.lua')
 modes[explicit_dir] = 'explicit'; manager.ensure(explicit_buf, true)
 assert(vim.wait(4000, function() return status(explicit_dir).state == 'ready' end))
 assert(explicit_messages == 2, 'explicit protocol handlers must retain precedence')
+for _, method in ipairs(global_methods) do vim.lsp.handlers[method] = global_handler end
+for _, method in ipairs(global_methods) do
+  local selected = clients[1]:_resolve_handler(method)
+  assert(selected(nil, {message='late override', type=1}, {client_id=clients[1].id}) == vim.NIL)
+end
+assert(global_messages == 4, 'both global overrides installed after attachment must be honored')
+local after_setup, after_dir = buffer('global-after-setup', 'main.lua')
+manager.ensure(after_setup, true)
+assert(vim.wait(4000, function() return status(after_dir).state == 'ready' end))
+assert(global_messages == 6, 'new clients honor both global handlers installed after setup')
+local explicit_client = vim.lsp.get_clients({bufnr=explicit_buf})[1]
+for _, method in ipairs(global_methods) do
+  explicit_client:_resolve_handler(method)(nil, {message='client precedence', type=1}, {client_id=explicit_client.id})
+end
+assert(explicit_messages == 4 and global_messages == 6, 'per-client handlers win over explicit global handlers')
+for _, method in ipairs(global_methods) do vim.lsp.handlers[method] = original_handlers[method] end
+
 local old, stale_dir = buffer('stale-init', 'old.lua')
 manager.ensure(old, true)
 vim.api.nvim_buf_set_name(old, ready_dir .. '/renamed.lua')

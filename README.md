@@ -117,7 +117,12 @@ Headless startup does not download tooling merely by loading VSVim; the install
 command and `manager.ensure(buffer, true)` explicitly permit provisioning.
 
 Real-server checks run from the checkout root, for example:
-`VSVIM_TEST_LANGUAGE=python ./bin/vsvim --headless '+lua dofile("tests/lsp_servers.lua")' '+qa!'`.
+
+```sh
+VSVIM_TEST_LANGUAGE=python ./bin/vsvim --headless \
+  '+lua local ok,e=pcall(dofile,"tests/lsp_servers.lua"); if not ok then print(e); vim.cmd("cquit 1") end' '+qa!'
+```
+
 Repeat with `lua`, `lua-nvim`, `ruby`, `ruby-legacy`, `go`, `rust`, `typescript`,
 `javascript`, and `rust-locked`. These check initialization, actual cross-file navigation and
 manifest preservation. If `nvim-nightly` is a wrapper launching an installed

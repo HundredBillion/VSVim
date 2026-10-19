@@ -1,5 +1,6 @@
 local M = {}
 local entries, roots = {}, {}
+local builtin_handler_source = vim.uv.fs_realpath(vim.env.VIMRUNTIME .. '/lua/vim/lsp/handlers.lua')
 local languages = { ruby = 'ruby_lsp', python = 'pyright', javascript = 'ts_ls', javascriptreact = 'ts_ls',
   typescript = 'ts_ls', typescriptreact = 'ts_ls', rust = 'rust_analyzer', go = 'gopls', gomod = 'gopls', gowork = 'gopls', lua = 'lua_ls' }
 local markers = {
@@ -138,7 +139,14 @@ function M.ensure(buf, force, root_result)
     config.handlers = config.handlers or {}
     for _, method in ipairs({ 'window/showMessage', 'window/showMessageRequest' }) do
       if config.handlers[method] == nil then
-        config.handlers[method] = function(err, result)
+        config.handlers[method] = function(err, result, handler_ctx, options)
+          local handler = vim.lsp.handlers[method]
+          local info = type(handler) == 'function' and debug.getinfo(handler, 'S')
+          local source = info and info.source
+          local path = source and source:sub(1, 1) == '@' and vim.uv.fs_realpath(source:sub(2))
+          if handler and (not path or path ~= builtin_handler_source) then
+            return handler(err, result, handler_ctx, options)
+          end
           if active() then log(e, 'Server message: ' .. tostring(result and result.message or err)) end
           return vim.NIL
         end
