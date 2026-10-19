@@ -1,7 +1,11 @@
 # Markdown preview in one buffer
 
 Status: product design and written PRD approved in conversation on 2026-10-19.
-Implementation in progress on coordinated `feat/markdown-preview` branches.
+Implemented and reviewed on coordinated `feat/markdown-preview` branches.
+Automated/native event checks and live preview/source transitions passed.
+Desktop screenshots remain unavailable because this session lacks screen-capture
+permission. See `docs/execution/10-19-2026-markdown-preview.md` for evidence,
+limitations, and the runnable test build. No merge or installation performed.
 
 ## Outcome
 

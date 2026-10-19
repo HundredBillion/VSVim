@@ -1,0 +1,15 @@
+{
+  "host_commit": "632e028992eb7738b57072a03b96c0bbfcf14fd7",
+  "host_binary_sha256": "8499876a215bae95710ec36d92cecdefd2975ced44ecd2b1795572bbc8cbf70e",
+  "adapter_commit": "6ae5a61330186f241bddd6a2f108203fd7e7d405",
+  "vsvim_commit": "c6b89750acedbc98fcf6c24010e1d18eb9e92994",
+  "preview_was_active": true,
+  "source_was_active": true,
+  "buffer_ids": [
+    1
+  ],
+  "document_updates": 1,
+  "refusals_or_warnings": [],
+  "native_capture_permission": false,
+  "screenshots_captured": false
+}
