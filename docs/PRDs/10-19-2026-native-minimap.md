@@ -1,6 +1,6 @@
 # Native code minimap
 
-Status: proposed implementation design; awaiting written-design review.
+Status: approved by the user on 2026-10-19; implementation planning in progress.
 
 Issue: https://github.com/HundredBillion/VSVim/issues/8
 
@@ -16,7 +16,7 @@ The approved prototype is pinned at VSVim commit
 `docs/prototypes/minimap/`. Issue #8 embeds its complete HTML and screenshots.
 It is a visual specification, not production code or an actual Git integration.
 
-## Proposed defaults
+## Approved defaults
 
 - Enable automatically for supported Sprite native editor grids. Provide
   `:VSVimMinimapToggle` and `vim.g.vsvim_minimap = false` to disable it.
@@ -34,8 +34,8 @@ It is a visual specification, not production code or an actual Git integration.
 - Use a 160-logical-pixel strip when space permits. Hide it below an editor
   width of 480 logical pixels, releasing its space automatically.
 
-These are proposed product decisions for review, not claims that the HTML
-already specifies long-file, Git, or split behavior.
+The user approved these product defaults. The HTML specifies appearance and
+interaction; this document additionally specifies long-file, Git, and split behavior.
 
 ## Appearance and selection
 
@@ -79,6 +79,24 @@ and a full-file drag track. The viewport's travel must reach the first and last
 source lines without discontinuities or an unreachable tail. A click uses the
 source line actually displayed under the pointer; dragging the viewport can
 move the minimap window through the rest of the file.
+
+### Preserved selection during minimap browsing
+
+Approved during design hardening on 2026-10-19. Neovim cannot keep a Visual
+selection endpoint far outside the viewport: a runtime probe of winrestview()
+with an unchanged Visual cursor snapped topline back to that cursor. VSVim
+therefore captures the selection before minimap navigation, temporarily leaves
+Visual/Select mode, and draws the preserved selection while scrolling freely.
+Word occurrences and minimap selected rows remain active.
+
+Before the next keyboard input, restore the saved selection and original mode,
+then deliver that input unchanged. Vim y/d/c and Cmd-C/X/V consequently act on
+the original selection. Escape clears the preserved selection; a new editor
+click clears it and follows normal mouse behavior. A file switch, target-window
+closure, or buffer edit invalidates the preserved selection. Buffer edits from
+another agent clear it rather than applying old positions to new text. Minimap
+wheel and drag remain browsing operations. Preserve the original anchor and
+endpoint orientation, register type, and Select versus Visual mode.
 
 ## Component boundaries
 
