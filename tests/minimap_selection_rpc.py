@@ -41,6 +41,20 @@ class SelectionTest(unittest.TestCase):
         self.nvim.exec_lua("selection.before_input({type='input',key=...})", keys)
         self.nvim.input(keys)
 
+    def test_large_linewise_selection_is_bounded_and_preserves_yank(self):
+        self.nvim.current.buffer[:] = ['whole line'] * 100000
+        self.nvim.input('ggVG')
+        self.wait_for(lambda: self.nvim.funcs.mode() == 'V')
+        result=self.nvim.exec_lua('local t=vim.uv.hrtime();local s=selection.capture(0);return {ms=(vim.uv.hrtime()-t)/1e6,segments=#s.segments}')
+        self.assertLessEqual(result['segments'],2)
+        self.assertLess(result['ms'],4,result)
+        self.browse()
+        self.nvim.exec_lua("selection.before_input({type='input',key='y'})")
+        self.nvim.input('y')
+        self.wait_for(lambda: self.nvim.funcs.mode()=='n')
+        self.assertEqual(self.nvim.funcs.getregtype('"'),'V')
+        self.assertEqual(self.nvim.exec_lua("return #vim.fn.getreg('\"',1,true)"),100000)
+
     def test_double_click_matches_literal_whole_words(self):
         self.nvim.current.buffer[:] = ['word word WORD sword word_', '-- word', 'word', ''] + ['padding'] * 995 + ['word']
         self.nvim.api.input_mouse('left', 'press', '2', 0, 0, 1)

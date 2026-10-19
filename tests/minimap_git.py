@@ -59,6 +59,35 @@ class MinimapGit(unittest.TestCase):
                 self.wait([])
                 self.assertIsNone(self.nvim.exec_lua('return _G.result.error'))
 
+    def test_crlf_head_and_checkout_use_logical_lines(self):
+        for head_crlf in (True, False):
+            with self.subTest(head_crlf=head_crlf):
+                self.nvim.exec_lua('_G.stop(); _G.result=nil')
+                self.git('config', 'core.autocrlf', 'false')
+                self.file.write_bytes(b'one\r\ntwo\r\nthree\r\n' if head_crlf else b'one\ntwo\nthree\n')
+                self.git('add', '.')
+                if self.git('status', '--porcelain').strip(): self.commit()
+                self.git('config','core.autocrlf','true' if not head_crlf else 'false')
+                self.file.write_bytes(b'one\r\ntwo\r\nthree\r\n')
+                self.nvim.command('edit!')
+                self.assertEqual(self.nvim.current.buffer.options['fileformat'], 'dos')
+                self.nvim.exec_lua("_G.stop=require('vsvim.minimap.git').watch(0,function(r) _G.result=r end)")
+                self.wait([])
+                self.nvim.current.buffer[1]='TWO'
+                self.wait([{'start':2,'end':2,'kind':'modified'}])
+
+    def test_unix_literal_carriage_return_is_content(self):
+        self.nvim.exec_lua('_G.stop(); _G.result=nil')
+        self.file.write_bytes(b'one\r\ntwo\nthree\n')
+        self.git('add','.')
+        self.commit()
+        self.nvim.command('edit! ++ff=unix')
+        self.assertEqual(self.nvim.current.buffer[0],'one\r')
+        self.nvim.exec_lua("_G.stop=require('vsvim.minimap.git').watch(0,function(r) _G.result=r end)")
+        self.wait([])
+        self.nvim.current.buffer[0]='one'
+        self.wait([{'start':1,'end':1,'kind':'modified'}])
+
     def test_head_resolution_read_failure(self):
         self.nvim.exec_lua("""
           _G.stop(); _G.result=nil

@@ -532,6 +532,18 @@ host revisions, sample count, display scale and whether caches are warm.
   remaining publication/pinning work, exact commits, test totals and material
   limitations. Close issue #8 only once all acceptance requirements are met.
 
+## Task 7 implementation amendment: bounded foreground work
+
+Profiling showed whole-file Tree-sitter and Git work cannot be bounded by an
+editor Lua timer. ADR 0003 keeps VSVim ownership and the existing protocol while
+using an owned Neovim child for parsing, capture names/ranges and HEAD comparison.
+Actual colors, Vim syntax fallback and display formatting stay in the editor.
+Staging and transfer yield cooperatively; complete callbacks are measured.
+The child has no user initialization, swap, undo or shada files and stops with
+the native provider. Public query customizations retain an exact editor fallback.
+Conservative configured paths are reported separately from the default fixture
+budgets; acceptance target values above are unchanged.
+
 ## Planning evidence and hardening
 
 On 2026-10-19, clean embedded Neovim with a 100x30 UI retained a Visual cursor

@@ -22,7 +22,9 @@ function M.watch(buffer, on_change)
       if empty then current='' end
     end
     if #current>MAX_BYTES then emit({changes={},error='Minimap Git buffer exceeds 64 MiB'}); return end
-    local ok,hunks=pcall(vim.diff,baseline,current,{result_type='indices'})
+    -- Neovim removes CR from DOS line endings; compare HEAD in the same logical form.
+    local logical_baseline=vim.bo[buffer].fileformat=='dos' and baseline:gsub('\r\n','\n') or baseline
+    local ok,hunks=pcall(vim.diff,logical_baseline,current,{result_type='indices'})
     if not ok then emit({changes={},error=tostring(hunks)}); return end
     local groups={}
     for _,h in ipairs(hunks) do
@@ -130,7 +132,8 @@ function M.watch(buffer, on_change)
     on_lines=function() if stopped then return true end; schedule(false) end,
     on_detach=function() vim.schedule(function() if stop then stop() end end) end,
   })
-  vim.api.nvim_create_autocmd({'BufEnter','BufWritePost','BufFilePost'},{group=group,buffer=buffer,callback=function()
+  vim.api.nvim_create_autocmd({'BufEnter','BufWritePost','BufFilePost'},{group=group,callback=function(event)
+    if event.buf~=buffer then return end
     local name=vim.api.nvim_buf_get_name(buffer)
     if name~=filename then
       filename=name; head=nil; baseline=nil; serial=serial+1
@@ -138,6 +141,9 @@ function M.watch(buffer, on_change)
       emit({changes={}})
     end
     schedule(true)
+  end})
+  vim.api.nvim_create_autocmd('OptionSet',{group=group,pattern={'endofline','fileformat'},callback=function()
+    if vim.api.nvim_get_current_buf()==buffer then schedule(false) end
   end})
   vim.api.nvim_create_autocmd('FocusGained',{group=group,callback=function() schedule(true) end})
   timer:start(2000,2000,vim.schedule_wrap(function() if valid() then schedule(true) end end))

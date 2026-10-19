@@ -1,6 +1,6 @@
 local M = {}
 local source=require('vsvim.minimap.source')
-local git=require('vsvim.minimap.git')
+local work=require('vsvim.minimap.work')
 local provider={}
 local live, active, bridge, group=false,nil,nil,nil
 local sequence, incarnation, token=0,0,0
@@ -17,6 +17,7 @@ local function changed()
 end
 local function clear_jobs()
   token=token+1
+  source.stop()
   if cancel_source then cancel_source(); cancel_source=nil end
   if stop_git then stop_git(); stop_git=nil end
 end
@@ -52,7 +53,7 @@ local function state()
     viewport=viewport,selection=overlays.selection,occurrences=overlays.occurrences,
     word=overlays.word,changes=valid_changes}
 end
-local function remap(rows, palette, fixed)
+local function remap(rows, palette, fixed, checkpoint)
   local result={}
   for _,row in ipairs(rows) do
     local spans={}
@@ -64,44 +65,55 @@ local function remap(rows, palette, fixed)
       spans[#spans+1]={span[1],span[2],index}
     end
     result[#result+1]={text=row.text,spans=spans}
+    if checkpoint then checkpoint() end
   end
   return result
 end
 local function stage(rows,palette,start,delete,total,full)
+  local stage_token=token
+  local function valid() return active and stage_token==token end
+  cancel_source=function() end
+  work.start(valid,function(checkpoint)
   sequence=sequence+1
   local generation=sequence
-  local all={}
-  if not full then for i=1,start-1 do all[#all+1]=committed.rows[i] end end
-  for _,row in ipairs(rows) do all[#all+1]=row end
-  if not full then for i=start+delete,#committed.rows do all[#all+1]=committed.rows[i] end end
+  local all=full and rows or {}
+  if not full then for i=1,start-1 do all[#all+1]=committed.rows[i];checkpoint() end end
+  if not full then for _,row in ipairs(rows) do all[#all+1]=row;checkpoint() end end
+  if not full then for i=start+delete,#committed.rows do all[#all+1]=committed.rows[i];checkpoint() end end
   local storage=0
-  for _,row in ipairs(all) do storage=storage+#row.text+#row.spans*24 end
+  for _,row in ipairs(all) do storage=storage+#row.text+#row.spans*24;checkpoint() end
   if storage>64*1024*1024 then
     blocked[active.buffer]=vim.api.nvim_buf_get_changedtick(active.buffer)
     warn(active.buffer,'Minimap source exceeds 64 MiB'); hide(); return
   end
   local pending_hide=queue[1] and queue[1].kind=='hide' and queue[1] or nil
-  queue={{type='minimap',kind='begin',target=active.target,generation=generation,
+  local prepared_queue={{type='minimap',kind='begin',target=active.target,generation=generation,
     base=full and vim.NIL or committed.generation,start=start,delete=full and 0 or delete,
     insert=#rows,total=total,palette=palette,background=source.background()}}
-  if pending_hide then table.insert(queue,1,pending_hide) end
+  if pending_hide then table.insert(prepared_queue,1,pending_hide) end
   local chunk,offset,bytes={},0,0
   local function flush()
     if #chunk==0 then return end
-    queue[#queue+1]={type='minimap',kind='lines',target=active.target,generation=generation,offset=offset,lines=chunk}
+    prepared_queue[#prepared_queue+1]={type='minimap',kind='lines',target=active.target,generation=generation,offset=offset,lines=chunk}
     offset=offset+#chunk; chunk={}; bytes=0
   end
   for _,row in ipairs(rows) do
-    local size=#vim.json.encode(row)+1
+    local size=#row.text*6+#row.spans*20+64
     if #chunk==256 or bytes+size>250*1024 then flush() end
-    chunk[#chunk+1]=row; bytes=bytes+size
+    chunk[#chunk+1]=row; bytes=bytes+size;checkpoint()
   end
   flush()
-  queue[#queue+1]={type='minimap',kind='commit',target=active.target,generation=generation}
-  active.pending=generation
-  active.prepared={rows=all,palette=palette,generation=generation}
-  state_dirty=true
-  changed()
+  prepared_queue[#prepared_queue+1]={type='minimap',kind='commit',target=active.target,generation=generation}
+  return {queue=prepared_queue,prepared={rows=all,palette=palette,generation=generation}}
+  end,function(result)
+    if not result then return end
+    queue=result.queue
+    active.prepared=result.prepared
+    active.pending=result.prepared.generation
+    cancel_source=nil
+    state_dirty=true
+    changed()
+  end)
 end
 rebuild=function(full)
   if not active then return end
@@ -118,31 +130,38 @@ rebuild=function(full)
   end
   full=full or not committed
   local first=full and 1 or dirty and dirty.first+1 or 1
-  cancel_source=source.rows(buffer,first,total,function(rows,palette,error_message)
+  cancel_source=source.rows(buffer,first,total,function(rows,palette,error_message,range)
     if current_token~=token or not active then return end
     cancel_source=nil
     if not rows then
       blocked[buffer]=vim.api.nvim_buf_get_changedtick(buffer)
       warn(buffer,error_message); hide(); return
     end
+    cancel_source=function() end
+    work.start(function() return active and current_token==token end,function(checkpoint)
+    if range then first=range.first end
     if not full then
-      local translated=remap(rows,palette,committed.palette)
+      local translated=remap(rows,palette,committed.palette,checkpoint)
       if palette[1]~=committed.palette[1] or not translated then rebuild(true); return end
       rows=translated; palette=committed.palette
-      local delete=#committed.rows-first+1
+      local delete=range and (range.last-first+1+#committed.rows-total) or #committed.rows-first+1
       while #rows>0 and delete>0 and vim.deep_equal(rows[#rows],committed.rows[first+delete-1]) do
-        rows[#rows]=nil; delete=delete-1
+        rows[#rows]=nil; delete=delete-1;checkpoint()
       end
       local skip=0
-      while skip<#rows and skip<delete and vim.deep_equal(rows[skip+1],committed.rows[first+skip]) do skip=skip+1 end
+      while skip<#rows and skip<delete and vim.deep_equal(rows[skip+1],committed.rows[first+skip]) do skip=skip+1;checkpoint() end
       if skip>0 then
         local trimmed={}
-        for i=skip+1,#rows do trimmed[#trimmed+1]=rows[i] end
+        for i=skip+1,#rows do trimmed[#trimmed+1]=rows[i];checkpoint() end
         rows=trimmed; first=first+skip; delete=delete-skip
       end
-      stage(rows,palette,first,delete,total,false)
-    else stage(rows,palette,1,0,total,true) end
-  end)
+      return {rows=rows,palette=palette,first=first,delete=delete,full=false}
+    else return {rows=rows,palette=palette,first=1,delete=0,full=true} end
+    end,function(result)
+      if result then stage(result.rows,result.palette,result.first,result.delete,total,result.full) end
+    end)
+
+  end,{full=full})
 end
 local function edited(first,last,newlast)
   if not active then return end
@@ -190,7 +209,7 @@ refresh=function()
     end,
     on_detach=function() vim.schedule(function() if active and active.target==identity then hide(); refresh() end end) end,
   })
-  stop_git=git.watch(buffer,function(value)
+  stop_git=source.watch(buffer,function(value)
     if active and active.target==identity then changes=value.changes; state_dirty=true; changed() end
   end)
   rebuild(true)
@@ -217,6 +236,7 @@ function provider.next()
   if op then
     if op.kind=='commit' and active then
       committed=active.prepared; active.prepared=nil; active.pending=nil; dirty=nil
+      source.commit(active.buffer)
     end
     return op
   end

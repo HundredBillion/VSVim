@@ -121,12 +121,14 @@ source.rows=function(...)
  local cancel=rows(...)
  return function() jobs.cancel=jobs.cancel+1; cancel() end
 end
-local git=require('vsvim.minimap.git')
-local watch=git.watch
-git.watch=function(...)
- jobs.git=jobs.git+1
- local stop=watch(...)
- return function() jobs.stop=jobs.stop+1; stop() end
+for _,name in ipairs({'vsvim.minimap.git','vsvim.minimap.worker'}) do
+ local module=require(name)
+ local watch=module.watch
+ module.watch=function(...)
+  jobs.git=jobs.git+1
+  local stop=watch(...)
+  return function() jobs.stop=jobs.stop+1; stop() end
+ end
 end
 dofile(vim.env.VSVIM_ROOT..'/init.lua')
 vim.api.nvim_clear_autocmds({group='VSVimLsp',event='UIEnter'})

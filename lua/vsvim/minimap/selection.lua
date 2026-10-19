@@ -40,19 +40,27 @@ function M.capture(win)
     if not visual[mode] then return end
     local anchor, cursor = vim.fn.getpos('v'), vim.fn.getpos('.')
     local opts = {type=visual[mode], exclusive=vim.o.selection == 'exclusive', eol=true}
-    local segments = vim.fn.getregionpos(anchor, cursor, opts)
+    local linewise=visual[mode]=='V'
+    local segments
+    if linewise then
+      -- Linewise selection only needs its endpoints; visible rows are decorated lazily.
+      local first,last=math.min(anchor[2],cursor[2]),math.max(anchor[2],cursor[2])
+      segments=vim.fn.getregionpos({0,first,1,0},{0,first,1,0},opts)
+      if last~=first then segments[2]=vim.fn.getregionpos({0,last,1,0},{0,last,1,0},opts)[1] end
+    else segments=vim.fn.getregionpos(anchor,cursor,opts) end
     return {buffer=vim.api.nvim_win_get_buf(win), window=win,
       changedtick=vim.api.nvim_buf_get_changedtick(0), anchor=anchor, cursor=cursor,
-      mode=mode, segments=segments, exclusive=opts.exclusive, selection_option=vim.o.selection,
+      mode=mode, segments=segments, linewise=linewise, exclusive=opts.exclusive, selection_option=vim.o.selection,
       curswant=vim.fn.winsaveview().curswant}
   end)
 end
 function M.clear()
+  local had_decorations=current~=nil or next(matches)~=nil
   epoch = epoch + 1
   current, preserved, signature, word = nil, nil, nil, nil
   occurrences, matches = {}, {}
   if notify then notify({selection=vim.NIL, occurrences={}, word=vim.NIL}) end
-  vim.schedule(function() vim.cmd.redraw({bang=true}) end)
+  if had_decorations then vim.schedule(function() vim.cmd.redraw({bang=true}) end) end
 end
 local function scan(saved, selected)
   local id, row, offset = epoch, 1, 0
@@ -226,8 +234,13 @@ vim.api.nvim_set_decoration_provider(ns, {
     if not preserved then return end
     local firstrow = current.segments[1] and current.segments[1][1][2]
     local segment = firstrow and current.segments[row+2-firstrow]
+    local line
+    if current.linewise and firstrow and row+1>=firstrow and row+1<=current.segments[#current.segments][2][2] then
+      line=vim.api.nvim_buf_get_lines(buffer,row,row+1,false)[1]
+      segment={{buffer,row+1,1,0},{buffer,row+1,#line+1,0}}
+    end
     if not segment then return end
-    local line = vim.api.nvim_buf_get_lines(buffer, row, row+1, false)[1]
+    line=line or vim.api.nvim_buf_get_lines(buffer, row, row+1, false)[1]
     local first, last = segment[1][3]-1, segment[2][3]-1
     local startoff, endoff = segment[1][4], segment[2][4]
     local function character(col)
