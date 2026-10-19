@@ -240,8 +240,18 @@ function provider.set_overlays(value)
   for _,key in ipairs({'selection','occurrences','word'}) do if value[key]~=nil then overlays[key]=value[key] end end
   state_dirty=true; changed()
 end
-function provider.dispatch(_) end
-function provider.before_input(_) end
+local selection = require('vsvim.minimap.selection')
+selection.attach(provider)
+function provider.dispatch(event)
+  local target = provider.target()
+  if not target or target.busy or not target.generation or event.target ~= target.target
+    or event.generation ~= target.generation then return end
+  local row = event.action == 'reveal' and event.line or event.action == 'scroll' and event.topline
+  if type(row) ~= 'number' or row ~= math.floor(row) or row < 1 or row > target.total then return end
+  selection.browse(target.window, event)
+  state_dirty=true; changed()
+end
+function provider.before_input(event) selection.before_input(event) end
 function provider.stop()
   clear_jobs()
   live=false; active=nil; committed=nil; queue={}; dirty=nil; state_dirty=false
