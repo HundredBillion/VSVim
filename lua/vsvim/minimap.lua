@@ -81,7 +81,7 @@ local function stage(rows,palette,start,delete,total,full)
   if not full then for _,row in ipairs(rows) do all[#all+1]=row;checkpoint() end end
   if not full then for i=start+delete,#committed.rows do all[#all+1]=committed.rows[i];checkpoint() end end
   local storage=0
-  for _,row in ipairs(all) do storage=storage+#row.text+#row.spans*24;checkpoint() end
+  for _,row in ipairs(all) do storage=storage+source.storage_bytes(row.text,#row.spans);checkpoint() end
   if storage>64*1024*1024 then
     blocked[active.buffer]=vim.api.nvim_buf_get_changedtick(active.buffer)
     warn(active.buffer,'Minimap source exceeds 64 MiB'); hide(); return
@@ -168,14 +168,7 @@ local function edited(first,last,newlast)
   if provider.on_edit then provider.on_edit() end
   overlays={selection=vim.NIL,occurrences={},word=vim.NIL}
   changes={}
-  if dirty then
-    local delta=dirty.newlast-dirty.last
-    local oldfirst=first<=dirty.first and first or first>=dirty.newlast and first-delta or dirty.first
-    local oldlast=last<=dirty.first and last or last>=dirty.newlast and last-delta or dirty.last
-    dirty.first=math.min(dirty.first,oldfirst)
-    dirty.last=math.max(dirty.last,oldlast)
-    dirty.newlast=dirty.last+delta+newlast-last
-  else dirty={first=first,last=last,newlast=newlast} end
+  dirty={first=math.min(first,dirty and dirty.first or first)}
   rebuild(false)
 end
 refresh=function()
@@ -189,7 +182,10 @@ refresh=function()
     return
   end
   local buffer=vim.api.nvim_win_get_buf(win)
-  if blocked[buffer]==vim.api.nvim_buf_get_changedtick(buffer) then return end
+  if blocked[buffer]==vim.api.nvim_buf_get_changedtick(buffer) then
+    if active then hide() end
+    return
+  end
   if active and active.window==win and active.buffer==buffer then return end
   local replacing=active~=nil
   clear_jobs()
@@ -223,7 +219,7 @@ local function start()
     {group=group,callback=function() state_dirty=true; changed() end})
   vim.api.nvim_create_autocmd({'ColorScheme','OptionSet'}, {group=group,callback=function(event)
     if event.event=='ColorScheme' then blocked={} end
-    if event.event=='ColorScheme' or vim.tbl_contains({'tabstop','vartabstop','ambiwidth','emoji','syntax','filetype','background'},event.match) then
+    if event.event=='ColorScheme' or vim.tbl_contains({'tabstop','vartabstop','ambiwidth','emoji','syntax','filetype','background','display'},event.match) then
       if active then rebuild(true) end
     end
   end})

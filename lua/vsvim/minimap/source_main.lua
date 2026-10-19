@@ -1,5 +1,6 @@
 local M = {}
 local jobs = {}
+function M.storage_bytes(text,spans) return 48+#text+spans*24 end
 local function color(name, fallback)
   local ok, hl = pcall(vim.api.nvim_get_hl, 0, {name=name, link=false})
   return ok and hl.fg and string.format('#%06x', hl.fg) or fallback
@@ -82,12 +83,22 @@ function M.rows(buffer, first, last, done, prepared)
           local second=char:byte(2) or 0
           if lead==224 and second<160 or lead==237 and second>=160 or lead==240 and second<144 or lead==244 and second>=144 then valid=false end
           if not valid then char='�'; len=1 end
-          local width=lead>=32 and lead<127 and 1 or vim.fn.strdisplaywidth(char,cells)
-          if lead>=128 then
-            -- The prefix is bounded to 2048 bytes, even when the source line is arbitrarily long.
-            width=vim.fn.strdisplaywidth(table.concat(parts)..char)-cells
+          local text,width=char
+          if lead<32 and char~='\t' or lead==127 then
+            -- NUL cannot cross the Vim function string boundary; spell controls as the editor displays them.
+            text=vim.o.display:find('uhex',1,true) and string.format('<%02x>',lead)
+              or '^'..string.char(lead==127 and 63 or lead+64)
+            width=#text
+          elseif lead==194 and second>=128 and second<=159 then
+            text=vim.fn.strtrans(char);width=#text
+          else
+            width=lead>=32 and lead<127 and 1 or vim.fn.strdisplaywidth(char,cells)
+            if lead>=128 then
+              -- The prefix is bounded to 2048 bytes, even when the source line is arbitrarily long.
+              width=vim.fn.strdisplaywidth(table.concat(parts)..char)-cells
+            end
+            if char=='\t' then text=string.rep(' ',width) end
           end
-          local text=char=='\t' and string.rep(' ',width) or char
           if cells+width>256 or bytes+#text>2048 then break end
           local value,priority=nil,-math.huge
           for _,cap in ipairs(highlights[row] or {}) do
@@ -109,7 +120,7 @@ function M.rows(buffer, first, last, done, prepared)
           cells,bytes,pos=cells+width,bytes+#text,pos+len
         end
         local text=table.concat(parts)
-        storage=storage+#text+#spans*24
+        storage=storage+M.storage_bytes(text,#spans)
         if storage>64*1024*1024 then failure='Minimap source exceeds 64 MiB'; break end
         rows[#rows+1]={text=text,spans=spans}
         row=row+1

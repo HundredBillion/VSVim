@@ -5,6 +5,7 @@ local worker=require('vsvim.minimap.worker')
 config.observe()
 M.background=main.background
 M.palette_index=main.palette_index
+M.storage_bytes=main.storage_bytes
 function M.rows(buffer,first,last,done,options)
   local function exact_main()
     local start=options and not options.full and 1 or first

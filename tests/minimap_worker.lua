@@ -95,6 +95,16 @@ print('minimap worker serializable query.set replay and removal: PASS')
 vim.api.nvim_buf_set_lines(buffer,0,-1,false,{'local value = "'..string.rep('a',200000)..'"','bad '..string.char(255)..' text'})
 assert(vim.deep_equal(extract(source,1,2,{full=true}),extract(direct,1,2)))
 print('minimap worker large-line fragments and invalid UTF-8: PASS')
+local original_display=vim.o.display
+for _,display in ipairs({'lastline','lastline,uhex'}) do
+  vim.o.display=display
+  vim.api.nvim_buf_set_lines(buffer,0,-1,false,{'-- controls '..string.char(13,0,27,127)..'\t end'})
+  local actual=extract(source,1,1,{full=true})
+  assert(vim.deep_equal(actual,extract(direct,1,1)))
+  assert(not actual[1].text:find('[\r\n\t%z]'))
+end
+vim.o.display=original_display
+print('minimap worker CR/NUL/ESC/DEL display fidelity: PASS')
 local stale=false
 local cancel=source.rows(buffer,1,vim.api.nvim_buf_line_count(buffer),function() stale=true end,{full=true})
 cancel();vim.wait(20)

@@ -96,3 +96,24 @@ assert(combined[1].text=='á'..string.rep(' ',7)..'x',vim.inspect(combined[1]))
 assert(combined[2].text==string.rep('a',255)..'á',vim.inspect(combined[2]))
 assert(vim.fn.strdisplaywidth(combined[2].text)==256)
 print('minimap combining width and clipping: PASS')
+local direct=require('vsvim.minimap.source_main')
+local controls=vim.json.decode(table.concat(vim.fn.readfile('tests/fixtures/minimap-display-controls.json'),'\n'))
+local control_buffer=vim.api.nvim_create_buf(true,false)
+vim.bo[control_buffer].tabstop=8
+vim.api.nvim_set_hl(0,'Normal',{fg='#123456'})
+for _,case in ipairs(controls) do
+  vim.o.display=case.display
+  vim.api.nvim_buf_set_lines(control_buffer,0,-1,false,{case.input})
+  local result,problem
+  direct.rows(control_buffer,1,1,function(rows,_,err) result=rows;problem=err end,
+    {[1]={{0,#case.input,100,'#abcdef'}}})
+  assert(vim.wait(2000,function() return result~=nil or problem~=nil end,1),'control callback must complete')
+  assert(result,problem)
+  assert(vim.deep_equal(result[1],case.row),vim.inspect({actual=result[1],expected=case.row}))
+  assert(not result[1].text:find('[\r\n\t%z]'))
+  assert(vim.fn.strdisplaywidth(result[1].text)<=256)
+end
+assert(direct.storage_bytes(string.rep('x',20),0)==68)
+assert(direct.storage_bytes('hé',2)==48+#'hé'+48)
+vim.api.nvim_buf_delete(control_buffer,{force=true})
+print('minimap control display, span clipping and canonical storage: PASS')

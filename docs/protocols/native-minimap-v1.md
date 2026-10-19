@@ -20,7 +20,7 @@ target even when two windows show the same buffer. Old actions are ignored.
 Coordinates: source lines are 1-based; ranges `[start,end]` are inclusive; text
 span offsets `[start,end)` are zero-based UTF-8 bytes of the transmitted line.
 Colors are six-digit `#rrggbb`; opacity and layer order belong to the renderer.
-Source text has tabs expanded using Neovim display columns, no line terminators,
+Source text has tabs expanded using Neovim display columns, controls rendered as Neovim display text (`^M`, `^@`, or `display=uhex` forms), no line terminators,
 and is clipped to 256 display cells and 2,048 UTF-8 bytes, stopping at a character
 boundary. This clipping affects miniature display only, not word matching/diffs.
 
@@ -124,7 +124,9 @@ changes using existing host scroll accumulation, with no underlying grid event.
 
 ## Bounds and failure behavior
 
-- At most 1,000,000 source lines and 64 MiB committed text/span storage per Surface.
+- At most 1,000,000 source lines and 64 MiB committed source storage per Surface.
+  Canonical storage is 48 bytes per row plus UTF-8 text bytes plus 24 bytes per span,
+  including every retained row after a splice. This accounting is independent of JSON encoding.
 - At most another 64 MiB staged; reject before allocation exceeds that bound.
 - Up to 100,000 occurrence rows or change groups per state; total state <=4 MiB.
 - The general Surface limit remains 16 MiB per message; minimap limits are lower.

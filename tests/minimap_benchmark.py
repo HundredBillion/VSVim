@@ -76,7 +76,7 @@ def nvim_children(pid):
     children = (ctypes.c_int * 256)()
     size = LIBPROC.proc_listchildpids(pid, children, ctypes.sizeof(children))
     result = []
-    for child in children[:max(0, size) // ctypes.sizeof(ctypes.c_int)]:
+    for child in children[:max(0, size)]:
         path = ctypes.create_string_buffer(4096)
         if LIBPROC.proc_pidpath(child, path, len(path)) > 0 and Path(os.fsdecode(path.value)).name == 'nvim':
             result.append(child)
@@ -223,10 +223,12 @@ def run_case(args, count, plugins, helper):
             for i in range(args.samples):
                 previous = [e for e in events(native_log) if e['event'] == 'paint'][-1]['viewport']
                 after = time.time_ns()
-                control(controls, [dict(type='wheel', x=window_info['width']-80, y=min(300,window_info['height']/2), dy=-60)])
+                event_metadata=folder/'event-window.json'
+                control(controls, [dict(type='metadata',path=str(event_metadata)),dict(type='wheel', x=window_info['width']-80, y=min(300,window_info['height']/2), dy=-60)])
+                event_window=json.loads(event_metadata.read_text())
                 sent = wait_until(lambda: next((e for e in events(native_log) if e['event'] == 'input' and e['kind'] == 'wheel' and e['unix_ns'] > after), None), 10)
                 frame = wait_until(lambda: next((e for e in events(native_log) if e['event'] == 'paint' and e['unix_ns'] > sent['unix_ns'] and e['viewport'] != previous), None), 10)
-                scroll.append(dict(input_ns=sent['unix_ns'], paint_ns=frame['unix_ns'], ms=(frame['unix_ns']-sent['unix_ns'])/1e6))
+                scroll.append(dict(input_ns=sent['unix_ns'], paint_ns=frame['unix_ns'], window=event_window, paint_active=frame.get('active'), ms=(frame['unix_ns']-sent['unix_ns'])/1e6))
             return scroll
         prewarm=scroll_pass()
         nvim.command('normal! gg')
@@ -277,7 +279,7 @@ def run_case(args, count, plugins, helper):
                        memory_sampling_ms=100, memory_sampling_method='macOS libproc TASKINFO and owned-child discovery; no subprocesses',
                        measurement='CPU canvas paint submission end; not GPU presentation/compositor timestamp')
         initial_budget = {1000:500, 10000:2000, 100000:10000}[count]
-        metrics['acceptance'] = dict(analysis_quiet=quiet, editor_slices=metrics['scheduled_callback_max_ms'] <= 4,
+        metrics['acceptance'] = dict(analysis_quiet=quiet, active_scroll=all(x['window']['active'] and x['window']['key'] and not x['window']['occluded'] and x['paint_active'] for x in scroll), editor_slices=metrics['scheduled_callback_max_ms'] <= 4,
                                     source_chunks=metrics['source_chunk_max_bytes'] <= 256*1024,
                                     scroll_no_source=metrics['pure_scroll_source_messages'] == 0,
                                     native_paint=metrics['warm_native_paint_ms']['p95'] <= 8,
