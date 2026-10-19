@@ -589,7 +589,7 @@ Native geometry/IME and performance: Tasks 5,7. Delivery: Tasks 6,7.
 - [x] Protocol, task interfaces, failure paths and PRD coverage self-reviewed.
 - [x] Execute approved tasks in the shared feature checkouts; dependency base SHAs and baseline checks recorded in task reports.
 - [x] Tasks 1–6 implemented and independently reviewed; dependency feature branches published and adapter pinned to verified accessible bb309536778274f9e2d9519f6a25d9e8f28baecf.
-- [x] Task 7 final native acceptance/evidence and independent review complete; final undo correction approved, pin-only delivery review pending.
+- [x] Task 7 final native acceptance/evidence and independent review complete; final undo correction and pin-only delivery review approved.
 - [x] Tasks 1–7 implemented and verified; native screenshots captured.
 
 
@@ -616,8 +616,8 @@ interaction screenshots. Whole-branch code/evidence review approved those
 revisions. Subsequent source 672501a corrects the confirmed undo/redo final-tick
 refresh gap with real-provider worker/exact-main and post-save HEAD-band checks.
 It does not change measured initial/normal-edit/scroll paths; performance was not
-rerun or relabeled. The final undo correction is approved. The remaining pin-only delivery review
-does not change the measured implementation or its accepted evidence.
+rerun or relabeled. The final undo correction and pin-only delivery review are
+approved; the pin does not change the measured implementation or its accepted evidence.
 Implementation checks, independent review and evidence commitment/handoff are complete.
 
 Parent published dependency feature branches. Adapter PR7:

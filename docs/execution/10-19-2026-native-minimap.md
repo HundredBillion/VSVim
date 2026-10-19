@@ -3,11 +3,10 @@
 The final pinned release run passes every recorded performance gate at 1,000,
 10,000 and 100,000 lines. Same-release native interaction assertions and
 screenshots are captured. Whole-branch code/evidence review approved the measured revisions. A later
-undo-only correction is also approved; the published dependency pin awaits its
-delivery-only scoped review. This
-report does not declare merge readiness. Dependency feature branches are
-published, including the separate Sprite PR120 Cmd-C delivery dependency.
-No push, merge, installation or issue closure was performed here.
+undo-only correction and published dependency pin are also independently approved.
+The feature branches are published for review; the separate Sprite PR120 Cmd-C
+change remains a delivery dependency. No merge, installation or issue closure
+was performed.
 
 | Repository | Measured code revision |
 | --- | --- |
@@ -150,8 +149,8 @@ query object ownership/custom Lua handlers, preloaded query modules, or
 unsupported capture bounds select the exact foreground fallback to preserve
 colors and mutation semantics. Default-worker budgets do not qualify that
 fallback's performance. See ADR0003 for the installed-runtime reader boundary
-and ADR0004 for negotiated processed-action acknowledgments. Whole-branch code/evidence review is approved. The undo correction is also approved; the delivery-only pin review remains
-pending.
+and ADR0004 for negotiated processed-action acknowledgments. Whole-branch code/evidence review, the undo correction, and the delivery-only
+pin review are approved.
 
 
 ## Published pin and final undo correction
@@ -185,5 +184,5 @@ adapter feature-branch SHA; a fresh temporary Git repository fetched that SHA
 with `--depth=1`, checked out FETCH_HEAD detached and verified HEAD equality.
 Installed plugins were untouched. VSVim's adapter dependency now pins that
 published SHA. The later pin/documentation commit is delivery bookkeeping and
-is separate from measured source provenance. The undo correction is independently approved; final narrow pin review is
-pending; no merge or installation was performed.
+is separate from measured source provenance. The undo correction and final
+narrow pin review are independently approved; no merge or installation was performed.
