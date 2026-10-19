@@ -4,6 +4,16 @@ VSVim helps developers read and review proposed code changes while coding
 agents work. These terms distinguish the code being reviewed from agent
 activity and review decisions.
 
+## Markdown documents
+
+**Markdown source**:
+The editable Markdown text of an open document, including unsaved changes.
+_Avoid_: Code mode when referring to the document's text
+
+**Markdown preview**:
+The rendered, read-only presentation of the same open document.
+_Avoid_: Preview buffer, rendered file
+
 ## Language
 
 **Target branch**:

@@ -36,8 +36,10 @@ local function hide()
   changed()
 end
 local function supported(win)
+  local markdown = package.loaded['vsvim.markdown']
   return vim.api.nvim_win_is_valid(win) and vim.api.nvim_win_get_config(win).relative==''
     and vim.bo[vim.api.nvim_win_get_buf(win)].buftype==''
+    and not (markdown and markdown.previewing(vim.api.nvim_win_get_buf(win)))
 end
 local function state()
   local total=#committed.rows
@@ -219,6 +221,7 @@ local function start()
   group=vim.api.nvim_create_augroup('VSVimMinimap',{clear=true})
   vim.api.nvim_create_autocmd({'WinEnter','BufEnter','WinClosed','BufWinEnter','BufWipeout','TabEnter'},
     {group=group,callback=function() vim.schedule(refresh) end})
+  vim.api.nvim_create_autocmd('User',{group=group,pattern='VSVimMarkdownChanged',callback=function() vim.schedule(refresh) end})
   vim.api.nvim_create_autocmd({'CursorMoved','CursorMovedI','WinScrolled','ModeChanged'},
     {group=group,callback=function() state_dirty=true; changed() end})
   vim.api.nvim_create_autocmd({'ColorScheme','OptionSet'}, {group=group,callback=function(event)

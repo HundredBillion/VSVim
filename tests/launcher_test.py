@@ -67,6 +67,14 @@ sys.exit(23)
                     self.assertEqual(result.returncode, 0, result.stderr)
                     prefix = ['-l', str(adapter)] if native else []
                     self.assertEqual(json.loads(result.stdout), prefix + base + args)
+            source = root / 'adapter checkout'
+            checkout_adapter = source / 'lua/sprite/adapter.lua'
+            checkout_adapter.parent.mkdir(parents=True)
+            checkout_adapter.write_text('')
+            env['VSVIM_SPRITE_SOURCE'] = str(source)
+            result = subprocess.run([str(ROOT / 'bin/vsvim'), 'README.md'], env=env,
+                                    capture_output=True, text=True)
+            self.assertEqual(json.loads(result.stdout), ['-l', str(checkout_adapter)] + base + ['README.md'])
             env['NVIM'] = '/nested/editor'
             result = subprocess.run([str(ROOT / 'bin/vsvim'), 'file.lua'], env=env,
                                     capture_output=True, text=True)
