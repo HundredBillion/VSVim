@@ -15,7 +15,7 @@ was performed.
 | Sprite | `386f8c599eb5c7d37c91fab15132bbc09ea9442a` |
 
 Code was committed before the release build. Evidence/status documentation and the later explicitly identified undo-only
-correction/pin below changed afterward. Neovim was 0.13.0-dev-761+g0639f6e41a, LuaJIT2.1.1774896198
+correction/pin and the host CI cleanup below changed afterward. Neovim was 0.13.0-dev-761+g0639f6e41a, LuaJIT2.1.1774896198
 on this development Mac. The committed build command passed in 15.89s:
 
 ```
@@ -186,3 +186,49 @@ Installed plugins were untouched. VSVim's adapter dependency now pins that
 published SHA. The later pin/documentation commit is delivery bookkeeping and
 is separate from measured source provenance. The undo correction and final
 narrow pin review are independently approved; no merge or installation was performed.
+
+
+## Host CI cleanup after publication
+
+The first Sprite PR121 CI run rejected new minimap code under its Clippy gate.
+Host commit `723766c9ef17cfb9dea10d681be03d134a1b2585` addresses those findings
+in four minimap files: exhaustive matches, guarded option access, deliberate
+result discard, equivalent conditional guards, and test initializers. The
+scoped review approved the cleanup without a behavior change. No lint
+suppression, protocol, geometry, queue, or dependency change was introduced.
+The measured host remains `386f8c5`; native performance was not rerun or
+relabeled for this subsequent lint cleanup.
+
+On the declared Rust 1.97.1 toolchain, both checks passed:
+
+```
+cargo clippy --workspace --all-targets --locked --offline -- -D warnings
+cargo clippy -p sprite-app --all-targets --features minimap-benchmark --locked --offline -- -D warnings
+```
+
+The first finished in 1m23s, the optional benchmark-feature check in 11.03s.
+`cargo test -p sprite-app minimap --locked --offline` passed 22 tests in 4.85s;
+formatting and diff checks passed. [Retained outputs](native-minimap/final-host-ci/)
+include the actual compiler checks and test results. The shell's default
+Homebrew Clippy 1.98 had reported an unrelated existing `sprite-term` lint;
+using the existing rustup shims selected the repository's pinned 1.97.1, with
+no unrelated edit or toolchain installation.
+
+[Remote CI for the cleanup](https://github.com/HundredBillion/Sprite/actions/runs/39220198556)
+finished: macOS and release/packaging checks passed. The macOS application suite
+passed 814 tests with one ignored, and all other executed workspace targets
+passed. Arch Linux passed the new minimap tests, but the complete job remains
+red: `grid_surface_receives_copy_shortcut` expects `cmd-c` and receives `super-c`,
+and `a_program_that_replaces_the_idle_shell_requires_confirmation` hits its
+20-second snapshot watchdog. Both exact failures are also present in the
+[base PR120 run](https://github.com/HundredBillion/Sprite/actions/runs/39194816099).
+No new minimap failure was observed. Those inherited failures remain unresolved;
+this report does not claim a green Linux workspace suite.
+
+Coordinated review links: [VSVim PR9](https://github.com/HundredBillion/VSVim/pull/9),
+[adapter PR7](https://github.com/HundredBillion/sprite.nvim/pull/7), and
+[Sprite PR121](https://github.com/HundredBillion/Sprite/pull/121). The adapter's
+seven CI jobs passed. VSVim has no configured PR CI checks; its focused provider
+and fresh-published-adapter integration checks are recorded above. All feature
+changes are published for review; no merge, installed application replacement,
+or issue closure was performed.
