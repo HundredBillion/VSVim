@@ -102,12 +102,13 @@ function M.close(buffer, _, button)
     if not ok then vim.notify(tostring(err),vim.log.levels.ERROR) end
   end
   if not vim.bo[buffer].modified then remove(false); return end
-  vim.ui.select({'Save and close','Discard changes','Cancel'}, {prompt='Close modified file?'}, function(choice)
+  local name=vim.fn.fnamemodify(vim.api.nvim_buf_get_name(buffer), ':t')
+  if name=='' then name='Untitled' end
+  vim.ui.select({'Save and close','Discard changes','Cancel'}, {prompt='Save changes to '..name..'?'}, function(choice)
     if not vim.api.nvim_buf_is_valid(buffer) then return end
     if choice=='Discard changes' then remove(true)
     elseif choice=='Save and close' then
-      local ok,err=pcall(vim.api.nvim_buf_call,buffer,function() vim.cmd.write() end)
-      if ok then remove(false) else vim.notify(tostring(err),vim.log.levels.ERROR) end
+      require('vsvim.editing').save(buffer,function() remove(false) end)
     end
   end)
 end

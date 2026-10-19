@@ -19,6 +19,34 @@ configuration directory. Create `user.lua` there for settings loaded after defau
 
 ## Controls
 
+Cmd-Z undoes, Cmd-C copies, Cmd-X cuts, Cmd-V pastes, Cmd-A selects the whole
+file, and Cmd-S saves. These shortcuts also work while typing. Copy and cut use
+the selected text, or the current line when nothing is selected. They use the
+system clipboard, and pasting replaces selected text. Saving an unnamed file
+asks for a filename. Ordinary Vim commands (`u`, `y`, `d`, `p`, `ggVG`, and `:w`)
+remain available. Cmd shortcuts require a host that forwards those keys;
+ordinary terminals may reserve some of them for their own actions.
+Sprite's native editor panes also need the companion
+[Cmd-C host fix](extras/sprite-native-copy.patch). Older hosts consume Cmd-C
+before it reaches Neovim; rebuild/update Sprite with that patch and open a new
+Sprite process to enable copying from native editor selections.
+
+`:q` and `:qa` ask whether to save unsaved changes before an operation would
+discard them. Choose Yes to save, No to discard, or Cancel to keep editing.
+File-tab close controls offer Save and close, Discard changes, and Cancel.
+Canceling a filename prompt or failing to save keeps the file open. Switching
+files keeps unsaved edits in memory without prompting. `:qa!` still explicitly
+discards unsaved edits and quits. Use Cmd-S to choose a name for a new document
+before quitting: Neovim's native quit prompt otherwise saves unnamed documents
+as `Untitled` when you answer Yes.
+
+VSVim keeps Neovim's swap-based crash recovery enabled and updates recovery
+files after one second of idle time. After a crash, reopen the affected file
+and choose Recover when Neovim finds its recovery file. Saved undo history also
+survives restarts, so `u` can undo older saved edits. Recovery and undo files use
+VSVim's own state directory. This does not silently save edits to your source
+files or restore edits you explicitly discarded when closing or quitting.
+
 Use normal Neovim editing modes. Space is the leader. Press Space then e,
 or Ctrl-b, to toggle the explorer. Space-g-s or Ctrl-Shift-g
 opens source control (`:ScmToggle` also works). Space-g-s works in terminals
@@ -109,6 +137,12 @@ Sprite controls font metrics and native panel geometry. This is an initial
 visual implementation, not a claim of pixel-identical VS Code rendering.
 
 ## Development checks
+
+Run `uv run --with pynvim python tests/editing_rpc.py` to exercise the Cmd
+shortcuts, quit choices, unnamed-file saves, failed-save preservation, saved
+undo history, and recovery after killing an editor process. Clipboard checks
+use an isolated provider and leave the desktop clipboard alone. Set
+`VSVIM_NVIM` to the underlying Neovim executable if `nvim-nightly` is a wrapper.
 
 Run `python3 -m unittest discover -s tests -p '*_test.py'` with Neovim nightly
 and Git on PATH. Integration checks download pinned plugins into a temporary
