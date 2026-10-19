@@ -120,7 +120,7 @@ class MarkdownIntegration(unittest.TestCase):
         self.host.send(dict(type='input', text='x'))
         self.host.send(dict(type='paste', text='must not change source'))
         self.host.send(dict(type='input', key='cmd-s'))
-        self.wait(lambda: 'unsaved' in self.file.read_text())
+        self.wait(lambda: not self.nvim.current.buffer.options['modified'])
         self.assertEqual(self.file.read_text(), '# Hello unsaved\n\nSome **Markdown**.\n')
         self.assertFalse(self.nvim.current.buffer.options['modified'])
         self.host.send(dict(type='input', text=':'))

@@ -120,3 +120,10 @@ Both upstream icon license notices are included in packaged third-party notices.
 The isolated macOS bundle passes strict ad-hoc signature verification. Vendored
 GPUI lacks an OS accessibility role/label API; tooltips and the keyboard toggle
 are provided, while screen-reader labeling is not claimed.
+
+
+## Reading improvements
+
+The follow-up reading pass adds syntax-highlighted code, content-sized aligned tables with horizontal scrolling, duplicate/explicit/encoded heading links, readable inert HTML with expanded details, nested-list hanging markers, and a centered reading column. The mixed-content fixture is `tests/fixtures/markdown-reading.md`. The updated test app is `/tmp/vsvim-markdown-reading/Sprite.app`; substitute this app and fixture in the launch command above. Existing test windows are preserved.
+
+Follow-up verification: 850 Sprite library tests passed (1 ignored), all 3 launcher/adapter/provider integration tests passed, and the provider single-buffer regression passed. Independent review findings were fixed and re-reviewed. Source/preview live RPC retained buffer 1 and identical source lines. Strict app signature verification passes. Full evidence and the explicit HTML/highlighting scope are in Sprite's `docs/execution/10-19-2026-markdown-reading.md`. Visual screenshot inspection remains unavailable in this session; the demo is open for human review.
