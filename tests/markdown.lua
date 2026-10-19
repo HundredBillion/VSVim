@@ -162,6 +162,29 @@ wait_for(function()
 	return document.path == renamed and document.generation == rename_tick
 end)
 
+local uri_path = root .. "/uri target.md"
+vim.fn.writefile({ "# URI target" }, uri_path)
+local uri_target = state.windows[1]
+assert(
+	bridge.dispatch({
+		type = "markdown_action",
+		revision = state.revision,
+		window = uri_target.window,
+		buffer = uri_target.buffer,
+		generation = uri_target.generation,
+		action = "open",
+		destination = vim.uri_from_fname(uri_path),
+	}),
+	"local file URI links open the intended file"
+)
+local linked_buffer = vim.api.nvim_get_current_buf()
+assert(vim.api.nvim_buf_get_name(linked_buffer) == vim.uv.fs_realpath(uri_path))
+vim.api.nvim_set_current_buf(buffer)
+vim.api.nvim_buf_delete(linked_buffer, { force = true })
+wait_for(function()
+	return state.windows[1] and state.windows[1].buffer == buffer
+end)
+
 local lines = {}
 for i = 1, 10000 do
 	lines[i] = "paragraph " .. i

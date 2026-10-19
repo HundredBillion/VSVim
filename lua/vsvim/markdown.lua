@@ -309,14 +309,21 @@ function provider.dispatch(event)
 		if type(destination) ~= "string" or #destination > 4096 or destination:find("[%z\r\n]") then
 			return false
 		end
-		if destination:match("^%a[%w+.-]*:") then
-			return false
-		end
 		destination = destination:match("^[^#]*")
 		if destination == "" then
 			return false
 		end
-		destination = vim.uri_decode(destination)
+		if destination:match("^file://") then
+			local ok, filename = pcall(vim.uri_to_fname, destination)
+			if not ok then
+				return false
+			end
+			destination = filename
+		elseif destination:match("^%a[%w+.-]*:") then
+			return false
+		else
+			destination = vim.uri_decode(destination)
+		end
 		if destination:find("[%z\r\n]") then
 			return false
 		end
