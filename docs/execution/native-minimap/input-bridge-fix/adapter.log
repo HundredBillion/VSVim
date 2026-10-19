@@ -1,0 +1,126 @@
+channel_spec.lua
+fake_sprite_spec.lua
+input_bridge_order_spec.lua
+input_bridge_spec.luaNvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+
+input_spec.luaNvim: Finished.
+Nvim: Finished.
+
+integration_spec.luaNvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: preserving files...
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: preserving files...
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+
+launcher_spec.luaNVIM v0.13.0-dev-761+g0639f6e41a
+Build type: RelWithDebInfo
+LuaJIT 2.1.1774896198
+Run "nvim -V1 -v" for more info
+
+log_spec.lua
+minimap_spec.lua
+Sprite minimap: tests/minimap_spec.lua:65: hook failure
+native_minimap_spec.luaNvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: preserving files...
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: preserving files...
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: preserving files...
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+
+native_tabs_spec.luaNvim: Finished.
+Nvim: Finished.
+
+  provider calls: first edit=1, 12 dirty edits=0
+  real events: {
+  OptionSet = 5,
+  TextChanged = 15,
+  TextChangedI = 12
+}Nvim: Caught deadly signal 'SIGTERM'
+Nvim: preserving files...
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Caught deadly signal 'SIGTERM'
+
+public_spec.luaNvim: Finished.
+Nvim: Finished.
+
+sprite public API
+sprite wire shapes and large ids
+queued state patches
+owned handle lifecycle
+resume subscriptions
+events after deliberate close
+events after immediate open close
+unexpected owned socket EOF
+sequential token registration
+redraw_spec.lua
+rpc_spec.lua
+session_integration_spec.luaNvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+Nvim: Caught deadly signal 'SIGTERM'
+Nvim: Finished.
+
+session_spec.lua
+tabs_spec.lua
+terminal_owner_spec.lua
+token_exit_spec.lua
+zz_exit_lifecycle_spec.lua
+
+20729 checks, 0 failures

@@ -232,3 +232,20 @@ seven CI jobs passed. VSVim has no configured PR CI checks; its focused provider
 and fresh-published-adapter integration checks are recorded above. All feature
 changes are published for review; no merge, installed application replacement,
 or issue closure was performed.
+
+## Typing freeze found during local preview
+
+Ordinary fragmented typing exposed a deferred-input deadlock after the original
+acceptance handoff. The corrected adapter is `84c73cad6bedee1ebf2bd466a5382947ff611481`
+and this distro now pins it. Selection restoration still precedes mapping resolution,
+including Cmd-C after minimap browsing. Continuation keys can reach a blocked editor
+without waiting for the deferred Lua hook that previously trapped them.
+
+The new real-adapter regression fails with the previous production files and passes
+with the fix. Local adapter 20,729 checks, 21 selection tests, 5 full-setup tests and
+actual native keyboard/minimap/Cmd-C verification passed. All seven adapter CI jobs
+passed at the corrected SHA, with the real VSVim provider enabled on every matrix leg.
+See [root cause, test design and retained evidence](native-minimap/input-bridge-fix/README.md).
+Prior performance timings keep their original provenance; no new timing claim or
+host change accompanies this fix. The preview's prior unsaved buffer was recovered
+to its private temporary directory before the corrected preview was opened.

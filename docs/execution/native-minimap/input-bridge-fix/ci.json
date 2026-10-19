@@ -1,0 +1,509 @@
+{
+  "conclusion": "success",
+  "headSha": "84c73cad6bedee1ebf2bd466a5382947ff611481",
+  "jobs": [
+    {
+      "completedAt": "2026-10-19T12:37:51Z",
+      "conclusion": "success",
+      "databaseId": 118063000161,
+      "name": "format",
+      "startedAt": "2026-10-19T12:37:45Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-19T12:37:47Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-19T12:37:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:48Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-19T12:37:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:49Z",
+          "conclusion": "success",
+          "name": "Run JohnnyMorganz/stylua-action@v4",
+          "number": 3,
+          "startedAt": "2026-10-19T12:37:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:49Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 6,
+          "startedAt": "2026-10-19T12:37:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:49Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 7,
+          "startedAt": "2026-10-19T12:37:49Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/HundredBillion/sprite.nvim/actions/runs/39253538050/job/118063000161"
+    },
+    {
+      "completedAt": "2026-10-19T12:38:52Z",
+      "conclusion": "success",
+      "databaseId": 118063000577,
+      "name": "test (macos-latest, nightly)",
+      "startedAt": "2026-10-19T12:37:52Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-19T12:37:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-19T12:37:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:56Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-19T12:37:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:57Z",
+          "conclusion": "success",
+          "name": "Run rhysd/action-setup-vim@v1",
+          "number": 3,
+          "startedAt": "2026-10-19T12:37:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:59Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 4,
+          "startedAt": "2026-10-19T12:37:57Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:47Z",
+          "conclusion": "success",
+          "name": "Tests",
+          "number": 5,
+          "startedAt": "2026-10-19T12:37:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:48Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 9,
+          "startedAt": "2026-10-19T12:38:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:48Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-10-19T12:38:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:50Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-10-19T12:38:48Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/HundredBillion/sprite.nvim/actions/runs/39253538050/job/118063000577"
+    },
+    {
+      "completedAt": "2026-10-19T12:38:36Z",
+      "conclusion": "success",
+      "databaseId": 118063000638,
+      "name": "test (ubuntu-latest, stable)",
+      "startedAt": "2026-10-19T12:37:45Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-19T12:37:46Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-19T12:37:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:47Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-19T12:37:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:48Z",
+          "conclusion": "success",
+          "name": "Run rhysd/action-setup-vim@v1",
+          "number": 3,
+          "startedAt": "2026-10-19T12:37:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:48Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 4,
+          "startedAt": "2026-10-19T12:37:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:34Z",
+          "conclusion": "success",
+          "name": "Tests",
+          "number": 5,
+          "startedAt": "2026-10-19T12:37:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:34Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 9,
+          "startedAt": "2026-10-19T12:38:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:34Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-10-19T12:38:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:34Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-10-19T12:38:34Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/HundredBillion/sprite.nvim/actions/runs/39253538050/job/118063000638"
+    },
+    {
+      "completedAt": "2026-10-19T12:38:35Z",
+      "conclusion": "success",
+      "databaseId": 118063000653,
+      "name": "test (ubuntu-latest, v0.11.0)",
+      "startedAt": "2026-10-19T12:37:45Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-19T12:37:47Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-19T12:37:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:47Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-19T12:37:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:48Z",
+          "conclusion": "success",
+          "name": "Run rhysd/action-setup-vim@v1",
+          "number": 3,
+          "startedAt": "2026-10-19T12:37:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:49Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 4,
+          "startedAt": "2026-10-19T12:37:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:33Z",
+          "conclusion": "success",
+          "name": "Tests",
+          "number": 5,
+          "startedAt": "2026-10-19T12:37:49Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:33Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 9,
+          "startedAt": "2026-10-19T12:38:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:33Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-10-19T12:38:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:33Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-10-19T12:38:33Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/HundredBillion/sprite.nvim/actions/runs/39253538050/job/118063000653"
+    },
+    {
+      "completedAt": "2026-10-19T12:38:35Z",
+      "conclusion": "success",
+      "databaseId": 118063000666,
+      "name": "test (ubuntu-latest, nightly)",
+      "startedAt": "2026-10-19T12:37:45Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-19T12:37:46Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-19T12:37:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:47Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-19T12:37:46Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:48Z",
+          "conclusion": "success",
+          "name": "Run rhysd/action-setup-vim@v1",
+          "number": 3,
+          "startedAt": "2026-10-19T12:37:47Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:48Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 4,
+          "startedAt": "2026-10-19T12:37:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:34Z",
+          "conclusion": "success",
+          "name": "Tests",
+          "number": 5,
+          "startedAt": "2026-10-19T12:37:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:34Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 9,
+          "startedAt": "2026-10-19T12:38:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:34Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-10-19T12:38:34Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:34Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-10-19T12:38:34Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/HundredBillion/sprite.nvim/actions/runs/39253538050/job/118063000666"
+    },
+    {
+      "completedAt": "2026-10-19T12:38:49Z",
+      "conclusion": "success",
+      "databaseId": 118063000704,
+      "name": "test (macos-latest, v0.11.0)",
+      "startedAt": "2026-10-19T12:37:50Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-19T12:37:52Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-19T12:37:51Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:54Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-19T12:37:52Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:56Z",
+          "conclusion": "success",
+          "name": "Run rhysd/action-setup-vim@v1",
+          "number": 3,
+          "startedAt": "2026-10-19T12:37:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:58Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 4,
+          "startedAt": "2026-10-19T12:37:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:44Z",
+          "conclusion": "success",
+          "name": "Tests",
+          "number": 5,
+          "startedAt": "2026-10-19T12:37:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:45Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 9,
+          "startedAt": "2026-10-19T12:38:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:46Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-10-19T12:38:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:47Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-10-19T12:38:46Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/HundredBillion/sprite.nvim/actions/runs/39253538050/job/118063000704"
+    },
+    {
+      "completedAt": "2026-10-19T12:39:33Z",
+      "conclusion": "success",
+      "databaseId": 118063000773,
+      "name": "test (macos-latest, stable)",
+      "startedAt": "2026-10-19T12:37:53Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-19T12:37:56Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-19T12:37:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:37:58Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-19T12:37:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:33Z",
+          "conclusion": "success",
+          "name": "Run rhysd/action-setup-vim@v1",
+          "number": 3,
+          "startedAt": "2026-10-19T12:37:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:38:35Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 4,
+          "startedAt": "2026-10-19T12:38:33Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:39:23Z",
+          "conclusion": "success",
+          "name": "Tests",
+          "number": 5,
+          "startedAt": "2026-10-19T12:38:35Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:39:27Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 9,
+          "startedAt": "2026-10-19T12:39:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:39:29Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 10,
+          "startedAt": "2026-10-19T12:39:27Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-19T12:39:31Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 11,
+          "startedAt": "2026-10-19T12:39:29Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/HundredBillion/sprite.nvim/actions/runs/39253538050/job/118063000773"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/HundredBillion/sprite.nvim/actions/runs/39253538050"
+}

@@ -1,0 +1,5 @@
+{
+  "fragmented_native_visual_replace": "pass: xord first line",
+  "native_cmd_c_after_minimap_browse": "pass: original word copied once",
+  "pass": true
+}
