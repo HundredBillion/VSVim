@@ -87,3 +87,12 @@ assert(colored[1].text=='    "hé界"')
 assert(colored[1].spans[1][1]==4 and colored[1].spans[1][2]==#colored[1].text, vim.inspect(colored))
 assert(colors[colored[1].spans[1][3]+1]=='#aabbcc',vim.inspect({colored,colors}))
 print('minimap Tree-sitter priority and tab offsets: PASS')
+vim.bo[b].tabstop=8
+vim.api.nvim_buf_set_lines(b,0,-1,false,{'á\tx',string.rep('a',255)..'áx'})
+local combined
+source.rows(b,1,2,function(r) combined=r end)
+assert(vim.wait(1000,function() return combined~=nil end))
+assert(combined[1].text=='á'..string.rep(' ',7)..'x',vim.inspect(combined[1]))
+assert(combined[2].text==string.rep('a',255)..'á',vim.inspect(combined[2]))
+assert(vim.fn.strdisplaywidth(combined[2].text)==256)
+print('minimap combining width and clipping: PASS')

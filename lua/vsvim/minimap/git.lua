@@ -16,7 +16,11 @@ function M.watch(buffer, on_change)
     if not valid() or baseline==nil then return end
     local lines=vim.api.nvim_buf_get_lines(buffer,0,-1,false)
     local current=table.concat(lines,'\n')..(vim.bo[buffer].endofline and '\n' or '')
-    if #lines==1 and lines[1]=='' then current='' end
+    if #lines==1 and lines[1]=='' then
+      local empty=false
+      vim.api.nvim_buf_call(buffer,function() empty=vim.fn.wordcount().bytes==0 end)
+      if empty then current='' end
+    end
     if #current>MAX_BYTES then emit({changes={},error='Minimap Git buffer exceeds 64 MiB'}); return end
     local ok,hunks=pcall(vim.diff,baseline,current,{result_type='indices'})
     if not ok then emit({changes={},error=tostring(hunks)}); return end
@@ -99,7 +103,11 @@ function M.watch(buffer, on_change)
         run({'git','-C',root,'rev-parse','--verify','HEAD'},token,function(rev,rev_err)
           if not rev then failure(rev_err); return end
           if rev.code~=0 then
-            if sym and sym.code==0 then baseline,head='',nil; compare()
+            if sym and sym.code==0 then
+              run({'git','-C',root,'show-ref','--exists',vim.trim(sym.stdout)},token,function(exists,exists_err)
+                if exists and exists.code==2 then baseline,head='',nil; compare()
+                else failure(exists_err or rev.stderr) end
+              end)
             else failure(rev.stderr) end
             return
           end

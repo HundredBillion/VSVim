@@ -47,6 +47,55 @@ class MinimapGit(unittest.TestCase):
             self.nvim.close()
         self.tmp.cleanup()
 
+    def test_empty_newline_and_no_final_newline(self):
+        for text in ('', '\n', 'one'):
+            with self.subTest(text=text):
+                self.nvim.exec_lua('_G.stop(); _G.result=nil')
+                self.file.write_text(text)
+                self.git('add', '.')
+                self.commit()
+                self.nvim.command('edit!')
+                self.nvim.exec_lua("_G.stop=require('vsvim.minimap.git').watch(0,function(r) _G.result=r end)")
+                self.wait([])
+                self.assertIsNone(self.nvim.exec_lua('return _G.result.error'))
+
+    def test_head_resolution_read_failure(self):
+        self.nvim.exec_lua("""
+          _G.stop(); _G.result=nil
+          local system=vim.system
+          vim.system=function(args,opts,done)
+            return system(args,opts,function(result)
+              if args[4]=='rev-parse' and args[5]=='--verify' then
+                result.code=128; result.stderr='controlled HEAD read failure'
+              end
+              done(result)
+            end)
+          end
+          _G.stop=require('vsvim.minimap.git').watch(0,function(r) _G.result=r end)
+        """)
+        self.wait()
+        self.assertTrue(self.nvim.exec_lua('return _G.result.error ~= nil'), self.nvim.exec_lua('return _G.result'))
+        self.assertEqual(self.nvim.exec_lua('return _G.result.changes'), [])
+
+    def test_corrupt_head_reference_is_error(self):
+        self.nvim.exec_lua('_G.stop(); _G.result=nil')
+        ref = self.git('symbolic-ref', 'HEAD').strip()
+        (self.repo / '.git' / ref).write_text('invalid reference\n')
+        self.nvim.exec_lua("_G.stop=require('vsvim.minimap.git').watch(0,function(r) _G.result=r end)")
+        self.wait()
+        self.assertTrue(self.nvim.exec_lua('return _G.result.error ~= nil'), self.nvim.exec_lua('return _G.result'))
+        self.assertEqual(self.nvim.exec_lua('return _G.result.changes'), [])
+
+    def test_unborn_branch_is_added(self):
+        unborn = self.repo / 'unborn'
+        unborn.mkdir()
+        subprocess.check_call(['git', '-C', str(unborn), 'init', '-q'])
+        self.nvim.exec_lua('_G.stop(); _G.result=nil')
+        self.nvim.command('file ' + self.nvim.funcs.fnameescape(str(unborn / 'new.txt')))
+        self.nvim.exec_lua("_G.stop=require('vsvim.minimap.git').watch(0,function(r) _G.result=r end)")
+        self.wait([{'start': 1, 'end': 3, 'kind': 'added'}])
+        self.assertIsNone(self.nvim.exec_lua('return _G.result.error'))
+
     def test_head_baseline_survives_save_stage(self):
         self.nvim.current.buffer[1] = 'TWO'
         groups = [{'start': 2, 'end': 2, 'kind': 'modified'}]
@@ -61,7 +110,7 @@ class MinimapGit(unittest.TestCase):
         self.wait([])
 
     def test_deletion_boundaries(self):
-        for lines, boundary in [(['two', 'three'], 1), (['one', 'two'], 2), ([''], 1)]:
+        for lines, boundary in [(['two', 'three'], 1), (['one', 'two'], 2), ([], 1)]:
             self.nvim.current.buffer[:] = lines
             self.wait([{'start': boundary, 'end': boundary, 'kind': 'deleted'}])
 

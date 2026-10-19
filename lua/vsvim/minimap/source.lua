@@ -80,6 +80,10 @@ function M.rows(buffer, first, last, done)
           if lead==224 and second<160 or lead==237 and second>=160 or lead==240 and second<144 or lead==244 and second>=144 then valid=false end
           if not valid then char='�'; len=1 end
           local width=vim.fn.strdisplaywidth(char,cells)
+          if lead>=128 then
+            -- The prefix is bounded to 2048 bytes, even when the source line is arbitrarily long.
+            width=vim.fn.strdisplaywidth(table.concat(parts)..char)-cells
+          end
           local text=char=='\t' and string.rep(' ',width) or char
           if cells+width>256 or bytes+#text>2048 then break end
           local value,priority=nil,-math.huge
