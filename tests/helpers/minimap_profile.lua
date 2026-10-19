@@ -11,11 +11,15 @@ vim.schedule=function(fn)
   local info=debug.getinfo(fn,'Sl')
   local key=info.short_src..':'..info.linedefined
   schedule(function()
-    local before=vim.uv.hrtime();fn()
+    local before=vim.uv.hrtime();local at=now();fn()
     local elapsed=(vim.uv.hrtime()-before)/1e6
     local m=minimap_metrics.callbacks[key] or {count=0,max_ms=0,total_ms=0}
     minimap_metrics.callbacks[key]=m
     m.count=m.count+1;m.max_ms=math.max(m.max_ms,elapsed);m.total_ms=m.total_ms+elapsed
+    if elapsed>4 then
+      minimap_metrics.slow_callbacks=minimap_metrics.slow_callbacks or {}
+      minimap_metrics.slow_callbacks[#minimap_metrics.slow_callbacks+1]={key=key,unix_ns=at,ms=elapsed}
+    end
   end)
 end
 local source=require('vsvim.minimap.source')

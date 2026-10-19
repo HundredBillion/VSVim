@@ -88,8 +88,10 @@ assert(default_query)
 vim.treesitter.query.set('lua','highlights','((identifier) @constant)')
 assert(config.safe())
 assert(vim.deep_equal(extract(source,1,3,{full=true}),extract(direct,1,3)))
+vim.treesitter.query.set('lua','highlights',nil)
+assert(vim.deep_equal(extract(source,1,3,{full=true}),extract(direct,1,3)))
 vim.treesitter.query.set('lua','highlights',default_query)
-print('minimap worker serializable query.set replay: PASS')
+print('minimap worker serializable query.set replay and removal: PASS')
 vim.api.nvim_buf_set_lines(buffer,0,-1,false,{'local value = "'..string.rep('a',200000)..'"','bad '..string.char(255)..' text'})
 assert(vim.deep_equal(extract(source,1,2,{full=true}),extract(direct,1,2)))
 print('minimap worker large-line fragments and invalid UTF-8: PASS')
@@ -103,6 +105,70 @@ source.stop()
 assert(worker.status()==nil)
 assert(vim.wait(2000,function() return not vim.uv.kill(pid,0) end,1))
 print('minimap worker cancellation and owned process shutdown: PASS')
+local function interrupted_transfer(incremental)
+  local root=vim.fn.tempname();vim.fn.mkdir(root,'p')
+  local lines={};for i=1,300 do lines[i]='value_'..i..' = '..i end
+  vim.fn.writefile(lines,root..'/fixture.lua')
+  local function git(...)
+    local result=vim.system({'git','-C',root,...},{text=true}):wait()
+    assert(result.code==0,result.stderr);return vim.trim(result.stdout)
+  end
+  git('init','-q');git('add','fixture.lua')
+  git('-c','user.name=Test','-c','user.email=test@example.invalid','commit','-qm','fixture')
+  local head=git('rev-parse','HEAD')
+  vim.api.nvim_buf_set_name(buffer,root..'/fixture.lua')
+  vim.api.nvim_buf_set_lines(buffer,0,-1,false,lines)
+  local latest
+  local stop=worker.watch(buffer,function(value) latest=value end)
+  if incremental then
+    extract(source,1,300,{full=true});source.commit(buffer)
+    local changed={};for i=1,200 do changed[i]=lines[i] end
+    table.insert(changed,150,'pending_a = 1');table.insert(changed,151,'pending_b = 2')
+    vim.api.nvim_buf_set_lines(buffer,0,200,false,changed)
+  end
+  local work=require('vsvim.minimap.work');local start=work.start
+  work.start=function(valid,fn,done,buf)
+    return start(valid,function(checkpoint)
+      return fn(function() checkpoint();coroutine.yield() end)
+    end,done,buf)
+  end
+  local notify=vim.rpcnotify
+  local interrupted,channel,finished,message,cancel
+  vim.rpcnotify=function(job,method,code,args)
+    notify(job,method,code,args)
+    if code:find('.replace',1,true) then
+      channel=job
+      if not interrupted then
+        interrupted=true
+        vim.schedule(function()
+          cancel()
+          vim.api.nvim_buf_set_lines(buffer,0,1,false,{'value_1 = 999'})
+          vim.api.nvim_buf_set_lines(buffer,149,149,false,{'added_a = 1','added_b = 2'})
+          worker.read(buffer,1,vim.api.nvim_buf_line_count(buffer),function(_,next_chunk) next_chunk() end,
+            function() finished=true end,function(err) message=err;finished=true end,true)
+        end)
+      end
+    end
+  end
+  cancel=worker.read(buffer,1,vim.api.nvim_buf_line_count(buffer),function(_,next_chunk) next_chunk() end,
+    function() error('cancelled transfer completed') end,function(err) message=err;finished=true end,true)
+  assert(vim.wait(5000,function() return finished end,1),'interrupted worker timeout')
+  vim.rpcnotify=notify;work.start=start
+  assert(interrupted and not message,message)
+  assert(vim.deep_equal(vim.rpcrequest(channel,'nvim_buf_get_lines',0,0,-1,false),vim.api.nvim_buf_get_lines(buffer,0,-1,false)),
+    'partial transfer must not duplicate or delete the mirror tail')
+  local total=vim.api.nvim_buf_line_count(buffer)
+  assert(vim.deep_equal(extract(source,1,total,{full=true}),extract(direct,1,total)))
+  assert(vim.wait(3000,function()
+    return latest and latest.head==head and #latest.changes==2
+      and latest.changes[1].start==1 and latest.changes[1].kind=='modified'
+      and latest.changes[2].start==150 and latest.changes[2].kind=='added'
+  end,1),vim.inspect(latest))
+  stop();source.stop();vim.fn.delete(root,'rf')
+end
+interrupted_transfer(false)
+interrupted_transfer(true)
+print('minimap worker delayed initial/incremental cancellation mirror, captures and Git: PASS')
 local query=vim.treesitter.query.get('lua','highlights')
 assert(not config.safe())
 query.query:disable_capture('string')

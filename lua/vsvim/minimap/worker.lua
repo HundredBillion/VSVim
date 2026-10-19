@@ -49,6 +49,12 @@ local function ensure(buffer)
 end
 function M.read(buffer,first,last,on_chunk,done,on_error,full)
   local owner=ensure(buffer)
+  if owner.copying then
+    -- A cancelled transfer may have applied only a prefix; discard that mirror before retrying.
+    send(owner,"require('vsvim.minimap.worker').reset()",{})
+    owner.dirty={first=0,last=1,newlast=vim.api.nvim_buf_line_count(buffer)}
+    owner.copying=nil
+  end
   owner.request=owner.request+1
   local request=owner.request
   owner.on_chunk,owner.done,owner.on_error=on_chunk,done,on_error
@@ -58,6 +64,7 @@ function M.read(buffer,first,last,on_chunk,done,on_error,full)
   require('vsvim.minimap.work').start(valid,function(checkpoint)
     local dirty=owner.dirty
     if dirty then
+      owner.copying=true
       local first_chunk=true
       local chunk,bytes,chunk_row={},0,dirty.first
       local function flush()
@@ -97,7 +104,7 @@ function M.read(buffer,first,last,on_chunk,done,on_error,full)
       end
       flush()
       if first_chunk then send(owner,"require('vsvim.minimap.worker').replace(...)",{dirty.first,dirty.last,{}}) end
-      owner.dirty=nil
+      owner.dirty=nil;owner.copying=nil
     end
     local syntax_signature
     vim.api.nvim_buf_call(buffer,function() syntax_signature=vim.fn.execute('silent syntax list')..vim.fn.execute('silent syntax sync') end)
@@ -147,6 +154,12 @@ function M.boot(id,runtimepath)
   vim.o.runtimepath=runtimepath
   server={id=id,request=0,affected_first=1,affected_last=1,bytes=0}
 end
+function M.reset()
+  if server.stop_git then server.stop_git();server.stop_git=nil end
+  vim.api.nvim_buf_set_lines(0,0,-1,false,{''})
+  server.bytes=0;server.parts=nil;server.bound_error=nil
+  server.affected_first=1;server.affected_last=1
+end
 function M.replace(first,last,lines)
   local bytes=server.bytes
   for _,line in ipairs(vim.api.nvim_buf_get_lines(0,first,last,false)) do bytes=bytes-#line end
@@ -176,6 +189,15 @@ function M.prepare(request,first,last,full,queries,filetype,filename,endofline,l
   server.request=request
   if server.bound_error then reply(request,'error',server.bound_error);return end
   for _,registration in ipairs(queries.languages) do vim.treesitter.language.register(registration.lang,registration.filetypes) end
+  local incoming={}
+  for _,query in ipairs(queries.queries) do incoming[query.lang..':'..query.group]=true end
+  for key in pairs(server.queries or {}) do
+    if not incoming[key] then
+      local lang,group=key:match('^(.-):(.*)$')
+      vim.treesitter.query.set(lang,group,nil)
+      server.queries[key]=nil
+    end
+  end
   for _,query in ipairs(queries.queries) do
     local text=query.raw and query.text or '\n'..query.text
     server.queries=server.queries or {}

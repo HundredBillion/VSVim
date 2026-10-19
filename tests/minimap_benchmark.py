@@ -5,6 +5,7 @@ Run `uv run --with pynvim python tests/minimap_benchmark.py --output /tmp/minima
 The helper captures and sends events only to the new test process's own window.
 """
 import argparse
+import ctypes
 import json
 import math
 import os
@@ -51,6 +52,40 @@ def control(path, actions):
     draft.write_text(json.dumps(actions))
     draft.replace(path)
     wait_until(lambda: path.with_suffix('.json.done').exists() or Path(str(path) + '.done').exists(), 10)
+
+
+class TaskInfo(ctypes.Structure):
+    _fields_ = [('virtual_bytes', ctypes.c_uint64), ('resident_bytes', ctypes.c_uint64)] + [
+        (f'time_{i}', ctypes.c_uint64) for i in range(4)] + [
+        (f'counter_{i}', ctypes.c_int32) for i in range(12)]
+
+
+LIBPROC = ctypes.CDLL('/usr/lib/libproc.dylib')
+LIBPROC.proc_pidinfo.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_uint64, ctypes.c_void_p, ctypes.c_int]
+LIBPROC.proc_listchildpids.argtypes = [ctypes.c_int, ctypes.c_void_p, ctypes.c_int]
+LIBPROC.proc_pidpath.argtypes = [ctypes.c_int, ctypes.c_void_p, ctypes.c_uint32]
+
+
+def process_rss(pid):
+    info = TaskInfo()
+    size = ctypes.sizeof(info)
+    return info.resident_bytes // 1024 if LIBPROC.proc_pidinfo(pid, 4, 0, ctypes.byref(info), size) == size else None
+
+
+def nvim_children(pid):
+    children = (ctypes.c_int * 256)()
+    size = LIBPROC.proc_listchildpids(pid, children, ctypes.sizeof(children))
+    result = []
+    for child in children[:max(0, size) // ctypes.sizeof(ctypes.c_int)]:
+        path = ctypes.create_string_buffer(4096)
+        if LIBPROC.proc_pidpath(child, path, len(path)) > 0 and Path(os.fsdecode(path.value)).name == 'nvim':
+            result.append(child)
+    return result
+
+
+def edited_band_paint(event, previous_generation, edit_start):
+    return (event['event'] == 'paint' and event['unix_ns'] > edit_start
+            and event['generation'] != previous_generation and event.get('first_line_change') is True)
 
 
 def run_case(args, count, plugins, helper):
@@ -104,17 +139,16 @@ def run_case(args, count, plugins, helper):
             if editor:
                 pids.append(str(editor))
             if editor:
-                children=subprocess.run(['pgrep','-P',str(editor)],capture_output=True,text=True).stdout.split()
-                for child in children:
-                    name=subprocess.run(['ps','-o','comm=','-p',child],capture_output=True,text=True).stdout.strip()
-                    if Path(name).name=='nvim':
-                        peak['worker_pid']=int(child)
-                        pids.append(child)
-            output = subprocess.run(['ps', '-o', 'pid=,rss=', '-p', ','.join(pids)], capture_output=True, text=True).stdout
-            for line in output.splitlines():
-                pid, rss = map(int, line.split())
-                key = 'host_kib' if pid == process.pid else 'editor_kib' if pid == editor else 'worker_kib'
-                peak[key] = max(peak.get(key,0), rss)
+                for child in nvim_children(editor):
+                    peak['worker_pid'] = child
+                    peak.setdefault('worker_pids', [])
+                    if child not in peak['worker_pids']: peak['worker_pids'].append(child)
+                    pids.append(str(child))
+            for pid in map(int,pids):
+                rss = process_rss(pid)
+                if rss is not None:
+                    key = 'host_kib' if pid == process.pid else 'editor_kib' if pid == editor else 'worker_kib'
+                    peak[key] = max(peak.get(key,0),rss)
     thread = threading.Thread(target=memory, daemon=True)
     thread.start()
     try:
@@ -212,14 +246,15 @@ def run_case(args, count, plugins, helper):
         previous_generation = nvim.exec_lua("return require('vsvim.minimap').provider().target().generation")
         edit_start = time.time_ns()
         nvim.api.buf_set_lines(0, 0, 1, False, ['local values = {} -- unsaved benchmark edit'])
-        updated = wait_until(lambda: next((e for e in events(native_log) if e['event'] == 'paint' and e['unix_ns'] > edit_start and e['generation'] != previous_generation), None))
+        updated = wait_until(lambda: next((e for e in events(native_log) if edited_band_paint(e,previous_generation,edit_start)), None))
+        source_paint=next(e for e in events(native_log) if e['event']=='paint' and e['unix_ns']>edit_start and e['generation']!=previous_generation)
         time.sleep(.1)
         final_metrics = nvim.exec_lua('return minimap_metrics')
         control(controls, [dict(type='capture', path=str(folder / 'native.png'))])
         wait_until(lambda: (folder / 'native.png').exists(), 10)
         paints = [e['ms'] for e in events(native_log) if e['event'] == 'paint' and sample_start <= e['unix_ns'] <= scroll_end]
         chunks = [o['bytes'] for o in cold_metrics['ops'] + final_metrics['ops'] if o['kind'] == 'lines']
-        callbacks = [value for phase in (cold_metrics, final_metrics) for key,value in phase['callbacks'].items() if '/vsvim/minimap/' in key or key.endswith('/vsvim/minimap.lua')]
+        callbacks = [value for phase in (cold_metrics, final_metrics) for key,value in phase['callbacks'].items() if '/vsvim/minimap/' in key or '/vsvim/minimap.lua:' in key]
         callback_max = max([x['max_ms'] for x in callbacks] + [cold_metrics.get('receive_max_ms',0), final_metrics.get('receive_max_ms',0)])
         metrics = dict(lines=count, revisions=dict(vsvim=revision(ROOT), adapter=revision(args.adapter), host=revision(args.sprite_repo)),
                        samples=dict(initial_cold=1, initial_warm=1, prewarm_scroll=args.samples, scroll=args.samples, paint=len(paints), edit=1),
@@ -228,7 +263,9 @@ def run_case(args, count, plugins, helper):
                        display_scale=first['scale'], window=json.loads((folder / 'window.json').read_text()), initial=dict(cold=cold, warm=warm),
                        scroll_input_to_paint_ms=dict(p95=percentile([x['ms'] for x in scroll]), raw=scroll),
                        warm_native_paint_ms=dict(p95=percentile(paints), raw=paints),
-                       edit_to_paint_ms=(updated['unix_ns']-edit_start)/1e6,
+                       edit_to_updated_band_ms=(updated['unix_ns']-edit_start)/1e6,
+                       edit_source_repaint_ms=(source_paint['unix_ns']-edit_start)/1e6,
+                       edit_expected_band=dict(start=1,kind='modified',paint=updated),
                        scheduled_callback_max_ms=callback_max,
                        query_config=nvim.exec_lua("return require('vsvim.minimap.query_config').status()"),
                        worker=nvim.exec_lua("return require('vsvim.minimap.worker').status()"),
@@ -237,7 +274,7 @@ def run_case(args, count, plugins, helper):
                        pure_scroll_source_messages=sum(o['kind'] in ('begin','lines','commit') for o in scroll_ops),
                        pure_scroll_state_messages=sum(o['kind'] == 'state' for o in scroll_ops), peak_rss=peak,
                        initial_rpc_heartbeat_ms=dict(samples=len(heartbeat_samples),max=max(heartbeat_samples),p95=percentile(heartbeat_samples),raw=heartbeat_samples),
-                       memory_sampling_ms=100,
+                       memory_sampling_ms=100, memory_sampling_method='macOS libproc TASKINFO and owned-child discovery; no subprocesses',
                        measurement='CPU canvas paint submission end; not GPU presentation/compositor timestamp')
         initial_budget = {1000:500, 10000:2000, 100000:10000}[count]
         metrics['acceptance'] = dict(analysis_quiet=quiet, editor_slices=metrics['scheduled_callback_max_ms'] <= 4,
@@ -247,7 +284,7 @@ def run_case(args, count, plugins, helper):
                                     scroll_latency=metrics['scroll_input_to_paint_ms']['p95'] <= 33,
                                     initial_cold=cold['first_painted_content_ms'] <= initial_budget,
                                     initial_warm=warm['first_painted_content_ms'] <= initial_budget,
-                                    edit=metrics['edit_to_paint_ms'] <= (1000 if count == 100000 else 250))
+                                    edit=metrics['edit_to_updated_band_ms'] <= (1000 if count == 100000 else 250))
         (folder / 'editor-metrics.json').write_text(json.dumps(dict(cold=cold_metrics, warm=warm_metrics, final=final_metrics), indent=2))
         (folder / 'result.json').write_text(json.dumps(metrics, indent=2))
         print(json.dumps(metrics), flush=True)
