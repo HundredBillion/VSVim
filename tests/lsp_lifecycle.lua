@@ -133,5 +133,88 @@ local custom_client = vim.lsp.get_clients({ bufnr = custom_buffer })[1]
 assert(custom_client.config.root_dir == custom, 'explicit root function wins marker inference')
 assert(vim.fn.readfile(root .. '/cwd-' .. vim.fn.sha256(custom):sub(1, 8))[1] == root, 'explicit server cwd is preserved')
 custom_client:stop(true)
-print('LSP lifecycle passed: deduplication, generations, stale buffers, crash recovery, startup timeout, quiet logs, explicit root/cwd')
+
+vim.lsp.config._configs.lua_ls = {}
+local real_start, real_rpc = vim.lsp.start, vim.lsp.rpc.start
+local real_client, real_attach = vim.lsp.get_client_by_id, vim.lsp.buf_attach_client
+local started, attached = {}, {}
+vim.lsp.rpc.start = function(_, dispatchers) started[#started].dispatchers = dispatchers; return {} end
+vim.lsp.start = function(config)
+  local record = { id = 9000 + #started, config = config }
+  started[#started + 1] = record
+  record.client = { id = record.id, config = config, stop = function() record.stopped = true end }
+  config.cmd({ on_exit = function(code, signal) config.on_exit(code, signal, record.id) end }, config)
+  return record.id
+end
+vim.lsp.get_client_by_id = function(id)
+  for _, record in ipairs(started) do if record.id == id then return record.client end end
+  return real_client(id)
+end
+vim.lsp.buf_attach_client = function(buf, id) attached[#attached + 1] = { buf, id }; return true end
+local reported = {}
+env.resolve = function(ctx, done)
+  reported[#reported + 1] = ctx.report
+  done({ runtime = 'controlled', config = { cmd = { '/fixture/server' } } })
+end
+vim.g.vsvim_lsp_start_timeout = 1100
+local attempt_buf, attempt_dir = buffer('attempt-isolation', 'a.lua')
+manager.ensure(attempt_buf, true)
+local first_attempt = started[1]
+first_attempt.dispatchers.on_exit(23, 0)
+assert(vim.wait(900, function() return #started == 2 end), 'one recovery starts')
+local recovery_attempt = started[2]
+vim.wait(650, function() return false end)
+assert(status(attempt_dir).state == 'starting', 'old initialization deadline cannot fail the recovery attempt')
+first_attempt.config.on_init(first_attempt.client, {})
+first_attempt.config.on_error(9, 'late first error')
+first_attempt.dispatchers.on_exit(99, 0)
+reported[1]('installing')
+vim.wait(20, function() return false end)
+assert(status(attempt_dir).state == 'starting' and #attached == 0, 'stale init/error/exit/report cannot alter recovery or attach')
+recovery_attempt.config.on_init(recovery_attempt.client, {})
+assert(status(attempt_dir).state == 'ready' and #attached == 1 and attached[1][2] == recovery_attempt.id)
+local late_report
+vim.g.vsvim_lsp_resolve_timeout = 30
+env.resolve = function(ctx) late_report = ctx.report end
+local stalled, stalled_dir = buffer('resolution-timeout', 'a.lua')
+manager.ensure(stalled, true)
+assert(vim.wait(1000, function() return status(stalled_dir).state == 'unavailable' end))
+late_report('installing')
+assert(status(stalled_dir).state == 'unavailable', 'timed-out resolution reports cannot revive setup')
+
+vim.g.vsvim_lsp_resolve_timeout = 1000
+vim.g.vsvim_lsp_root_timeout = 30
+local root_calls = 0
+local root_retry_dir = root .. '/root-retry'; vim.fn.mkdir(root_retry_dir, 'p')
+env.resolve = function(_, done) done({ runtime = 'root retry', config = { cmd = { '/fixture/server' } } }) end
+vim.lsp.config('lua_ls', { root_dir = function(_, done)
+  root_calls = root_calls + 1
+  if root_calls == 1 then error('transient root failure') end
+  done(root_retry_dir)
+end })
+local throw_buf = buffer('throw-root', 'a.lua')
+manager.ensure(throw_buf, true)
+manager.ensure(throw_buf, true)
+assert(vim.wait(1000, function() return root_calls == 2 and manager.status()[root_retry_dir .. ':lua_ls'] ~= nil end), 'explicit retry reruns a throwing root resolver')
+local stale_root_done, second_root_done
+root_calls = 0
+local timeout_dir = root .. '/root-timeout-retry'; vim.fn.mkdir(timeout_dir, 'p')
+vim.lsp.config('lua_ls', { root_dir = function(_, done)
+  root_calls = root_calls + 1
+  if root_calls == 1 then stale_root_done = done else second_root_done = done end
+end })
+local root_timeout_buf, inferred_dir = buffer('timeout-root', 'a.lua')
+manager.ensure(root_timeout_buf, true)
+manager.ensure(root_timeout_buf, true)
+assert(root_calls == 1, 'genuinely pending root requests remain shared')
+assert(vim.wait(1000, function() return manager.status()[inferred_dir .. ':lua_ls'] and status(inferred_dir).state == 'unavailable' end))
+manager.ensure(root_timeout_buf, true)
+assert(root_calls == 2, 'explicit retry reruns a timed-out root resolver')
+stale_root_done(root .. '/stale-root-must-not-start')
+second_root_done(timeout_dir)
+assert(vim.wait(1000, function() return manager.status()[timeout_dir .. ':lua_ls'] ~= nil end))
+assert(manager.status()[root .. '/stale-root-must-not-start:lua_ls'] == nil, 'old root completions cannot replace the retried request')
+vim.lsp.start, vim.lsp.rpc.start = real_start, real_rpc
+vim.lsp.get_client_by_id, vim.lsp.buf_attach_client = real_client, real_attach
+print('LSP lifecycle passed: deduplication, generations, stale buffers, crash recovery, startup timeout, quiet logs, explicit root/cwd, attempt isolation, root retries')
 vim.fn.delete(root, 'rf')

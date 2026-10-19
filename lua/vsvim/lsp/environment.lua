@@ -25,8 +25,17 @@ local function managed() return vim.fn.stdpath('data') .. '/lsp-environments' en
 local function env_for(bin, extras)
   return vim.tbl_extend('force', { PATH = vim.fs.dirname(bin) .. ':' .. (vim.env.PATH or '') }, extras or {})
 end
+local function installed_go_policy(policy)
+  if policy == 'auto' then return 'path' end
+  if policy == 'local' or policy == 'path' then return policy end
+  return policy:gsub('%+auto$', ''):gsub('%+path$', '') .. '+path'
+end
 local function config(plan, ctx)
   plan.config = vim.tbl_deep_extend('force', plan.config or {}, ctx.config._explicit or {})
+  if ctx.server == 'gopls' then
+    plan.config.cmd_env = plan.config.cmd_env or {}
+    plan.config.cmd_env.GOTOOLCHAIN = installed_go_policy(plan.config.cmd_env.GOTOOLCHAIN or vim.env.GOTOOLCHAIN or 'auto')
+  end
   return plan
 end
 function M.fingerprint(root, server)
@@ -247,9 +256,7 @@ local function go(ctx, done)
   if bin == '' then done(nil, 'Go runtime is unavailable'); return end
   local selected_env = vim.tbl_extend('force', {}, ctx.config.cmd_env or {})
   local policy = selected_env.GOTOOLCHAIN or vim.env.GOTOOLCHAIN or 'auto'
-  if policy == 'auto' then policy = 'path'
-  elseif policy ~= 'local' and policy ~= 'path' then policy = policy:gsub('%+auto$', ''):gsub('%+path$', '') .. '+path' end
-  selected_env.GOTOOLCHAIN = policy
+  selected_env.GOTOOLCHAIN = installed_go_policy(policy)
   process.run({ bin, 'env', '-json', 'GOVERSION', 'GOWORK', 'GOMOD', 'GOROOT', 'GOTOOLCHAIN' },
     { cwd = ctx.root, env = selected_env }, function(output, err)
     if not output then done(nil, 'Selected Go toolchain unavailable: ' .. tostring(err)); return end
@@ -338,7 +345,7 @@ function M.resolve(ctx, done)
   ctx.report = ctx.report or function() end
   if not exists(ctx.root) then done(nil, 'Project directory no longer exists'); return end
   if ctx.config._explicit and ctx.config._explicit.cmd then
-    done({ runtime = 'Explicit command', config = vim.deepcopy(ctx.config._explicit) }); return
+    done(config({ runtime = 'Explicit command', config = vim.deepcopy(ctx.config._explicit) }, ctx)); return
   end
   local resolve = ({ ruby_lsp = ruby, pyright = python, ts_ls = typescript, rust_analyzer = rust, gopls = go, lua_ls = lua })[ctx.server]
   if not resolve then done(nil, 'Unsupported server ' .. ctx.server); return end

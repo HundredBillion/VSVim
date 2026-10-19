@@ -40,27 +40,31 @@ function M.status()
   end
   return result
 end
-function M.ensure(buf, force)
+function M.ensure(buf, force, root_result)
   buf = buf == 0 and vim.api.nvim_get_current_buf() or buf
   local ctx, name = context(buf)
   if not ctx then return end
+  if force and ctx.root_request and ctx.root_request.error and ctx.root_request ~= root_result then
+    roots[buf] = nil
+    ctx.root_request = nil
+  end
   if ctx.root_function and not ctx.root_request then
     local request = { fn = ctx.root_function, name = name, filetype = vim.bo[buf].filetype }
     roots[buf] = request
     local function resolved(root)
       vim.schedule(function()
-        if roots[buf] ~= request or not vim.api.nvim_buf_is_valid(buf) or vim.api.nvim_buf_get_name(buf) ~= name then return end
+        if roots[buf] ~= request or request.error or request.root or not vim.api.nvim_buf_is_valid(buf) or vim.api.nvim_buf_get_name(buf) ~= name then return end
         if type(root) ~= 'string' or root == '' then return end
         request.root = root
-        M.ensure(buf, force)
+        M.ensure(buf, force, request)
       end)
     end
     local ok, returned = pcall(ctx.root_function, buf, resolved)
-    if not ok then request.error = tostring(returned); M.ensure(buf, force)
+    if not ok then request.error = tostring(returned); M.ensure(buf, force, request)
     elseif type(returned) == 'string' then resolved(returned) end
     vim.defer_fn(function()
       if roots[buf] == request and not request.root and not request.error then
-        request.error = 'Explicit project root resolution timed out'; M.ensure(buf, force)
+        request.error = 'Explicit project root resolution timed out'; M.ensure(buf, force, request)
       end
     end, vim.g.vsvim_lsp_root_timeout or 5000)
     return
@@ -99,25 +103,33 @@ function M.ensure(buf, force)
   if e.state == 'resolving' or e.state == 'installing' or e.state == 'starting' or e.attempts >= 2 then return end
   e.attempts = e.attempts + 1
   e.state = 'resolving'
+  e.client = nil
+  local attempt = {}
+  e.attempt = attempt
+  local function owned() return entries[key] == e and e.attempt == attempt end
+  local function active() return owned() and not attempt.failed and not attempt.exited end
   local finished = false
   local function fail(reason, recover)
-    if entries[key] ~= e then return end
+    if not owned() or attempt.failed then return end
+    attempt.failed = true
+    finished = true
     e.state = 'unavailable'; log(e, reason)
     if recover and e.attempts < 2 then vim.defer_fn(function()
+      if not owned() or not attempt.failed then return end
       local target = live_buffer()
       if target then M.ensure(target, false) end
     end, 500) end
   end
-  ctx.report = function(state) if entries[key] == e then e.state = state end end
+  ctx.report = function(state) if active() and not finished then e.state = state end end
   vim.defer_fn(function()
-    if not finished and entries[key] == e then finished = true; fail('Environment resolution timed out', false) end
+    if not finished and active() then fail('Environment resolution timed out', false) end
   end, vim.g.vsvim_lsp_resolve_timeout or 180000)
   environment.resolve(ctx, function(plan, err)
-    if finished or entries[key] ~= e then return end
+    if finished or not active() then return end
     finished = true
     if not vim.uv.fs_stat(ctx.root) then fail('Project directory no longer exists', false); return end
     local target = live_buffer()
-    if not target then e.state = 'unavailable'; log(e, 'No supported buffers remain in this project'); return end
+    if not target then fail('No supported buffers remain in this project', false); return end
     if not plan then fail(err or 'Environment unavailable', false); return end
     e.runtime = plan.runtime; e.server = plan.server or ctx.server; e.state = 'starting'
     local config = vim.tbl_deep_extend('force', ctx.config, plan.config or {})
@@ -125,18 +137,21 @@ function M.ensure(buf, force)
     config._vsvim_environment = identity
     local original_init, original_exit, original_error = config.on_init, config.on_exit, config.on_error
     config.on_init = function(client, result)
+      if not active() or (e.client and e.client ~= client.id) then client:stop(true); return end
       local live = false
       for b in pairs(e.buffers) do if valid(b) then live = true; break end end
-      if not live then e.state = 'unavailable'; client:stop(true); return end
+      if not live then fail('No supported buffers remain in this project', false); client:stop(true); return end
       e.state = 'ready'; e.reason = nil; e.client = client.id; attach(client.id)
       if original_init then for _, cb in ipairs(type(original_init) == 'table' and original_init or { original_init }) do cb(client, result) end end
     end
     local exit_status
     config.on_exit = function(code, signal, id)
+      if not owned() or attempt.failed or (e.client and e.client ~= id) then return end
       if exit_status then code, signal = exit_status[1], exit_status[2] end
       if original_exit then for _, cb in ipairs(type(original_exit) == 'table' and original_exit or { original_exit }) do pcall(cb, code, signal, id) end end
     end
     config.on_error = function(code, message)
+      if not active() then return end
       log(e, 'LSP error ' .. code .. ': ' .. vim.inspect(message))
       if original_error then pcall(original_error, code, message) end
     end
@@ -144,8 +159,11 @@ function M.ensure(buf, force)
     config.cmd = function(dispatchers, resolved)
       local exit = dispatchers.on_exit
       dispatchers.on_exit = function(code, signal)
-        exit_status = { code, signal }
-        vim.schedule(function() fail('Server exited code=' .. code .. ' signal=' .. signal, true) end)
+        if active() then
+          attempt.exited = true
+          exit_status = { code, signal }
+          vim.schedule(function() fail('Server exited code=' .. code .. ' signal=' .. signal, true) end)
+        end
         -- Neovim otherwise emits a second generic startup warning after our project log records the true exit.
         exit(0, 0)
       end
@@ -161,7 +179,7 @@ function M.ensure(buf, force)
     if not ok or not id then fail('Server start failed: ' .. tostring(e.reason or id), true); return end
     e.client = id
     vim.defer_fn(function()
-      if entries[key] == e and e.state == 'starting' then
+      if active() and e.client == id and e.state == 'starting' then
         fail('Server initialization timed out', true)
         local client = vim.lsp.get_client_by_id(id); if client then client:stop(true) end
       end
