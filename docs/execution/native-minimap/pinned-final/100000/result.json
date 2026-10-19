@@ -1,0 +1,799 @@
+{
+  "lines": 100000,
+  "revisions": {
+    "vsvim": "5d325858efad90232d93c64f274809436c69aa28",
+    "adapter": "4f572f48c0af53d01476544ff53471ce4a6c4bc4",
+    "host": "45b9a4e0aa13b739f409b4b7d2098f2d49a1455c"
+  },
+  "samples": {
+    "initial_cold": 1,
+    "initial_warm": 1,
+    "prewarm_scroll": 30,
+    "scroll": 30,
+    "paint": 32,
+    "edit": 1
+  },
+  "analysis_quiet": {
+    "reached": true,
+    "timeout_seconds": 30,
+    "quiet_seconds": 1,
+    "observations": [
+      {
+        "diagnostics": 0,
+        "status": " 91%: Loading workspace: 91/189, Loading workspace: 92/188, Loading workspace: 99/189, Loading workspace: 100/188, Loading workspace: 106/189, Loading workspace: 107/188, Loading workspace: 115/189, Loading workspace: 116/188, Loading workspace: 125/189, Loading workspace: 126/188, Loading workspace: 140/189, Loading workspace: 141/188, Loading workspace: 152/189, Loading workspace: 153/188, Loading workspace: 157/189, Loading workspace: 158/188, Loading workspace: 173/189, Loading workspace: 173/188, Loading workspace, Loading workspace, Processing full semantic tokens..., Diagnosing: fixture.lua, Diagnosing workspace: 1/189, Processing full semantic tokens..., Diagnosing, Diagnosing workspace: 2/189, Diagnosing workspace",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      }
+    ]
+  },
+  "prewarm_scroll_input_to_paint_ms": {
+    "p95": 28.185,
+    "raw": [
+      {
+        "input_ns": 1792391787800210000,
+        "paint_ns": 1792391787823937000,
+        "ms": 23.727
+      },
+      {
+        "input_ns": 1792391787888633000,
+        "paint_ns": 1792391787907435000,
+        "ms": 18.802
+      },
+      {
+        "input_ns": 1792391787987791000,
+        "paint_ns": 1792391788007056000,
+        "ms": 19.265
+      },
+      {
+        "input_ns": 1792391788088979000,
+        "paint_ns": 1792391788110896000,
+        "ms": 21.917
+      },
+      {
+        "input_ns": 1792391788187455000,
+        "paint_ns": 1792391788202105000,
+        "ms": 14.65
+      },
+      {
+        "input_ns": 1792391788287991000,
+        "paint_ns": 1792391788307272000,
+        "ms": 19.281
+      },
+      {
+        "input_ns": 1792391788389251000,
+        "paint_ns": 1792391788413158000,
+        "ms": 23.907
+      },
+      {
+        "input_ns": 1792391788487479000,
+        "paint_ns": 1792391788500812000,
+        "ms": 13.333
+      },
+      {
+        "input_ns": 1792391788588544000,
+        "paint_ns": 1792391788631491000,
+        "ms": 42.947
+      },
+      {
+        "input_ns": 1792391788688393000,
+        "paint_ns": 1792391788707862000,
+        "ms": 19.469
+      },
+      {
+        "input_ns": 1792391788787264000,
+        "paint_ns": 1792391788802675000,
+        "ms": 15.411
+      },
+      {
+        "input_ns": 1792391788888570000,
+        "paint_ns": 1792391788912892000,
+        "ms": 24.322
+      },
+      {
+        "input_ns": 1792391788988631000,
+        "paint_ns": 1792391789016816000,
+        "ms": 28.185
+      },
+      {
+        "input_ns": 1792391789087268000,
+        "paint_ns": 1792391789099904000,
+        "ms": 12.636
+      },
+      {
+        "input_ns": 1792391789188556000,
+        "paint_ns": 1792391789209819000,
+        "ms": 21.263
+      },
+      {
+        "input_ns": 1792391789287514000,
+        "paint_ns": 1792391789307584000,
+        "ms": 20.07
+      },
+      {
+        "input_ns": 1792391789387331000,
+        "paint_ns": 1792391789401151000,
+        "ms": 13.82
+      },
+      {
+        "input_ns": 1792391789488816000,
+        "paint_ns": 1792391789508984000,
+        "ms": 20.168
+      },
+      {
+        "input_ns": 1792391789587520000,
+        "paint_ns": 1792391789607300000,
+        "ms": 19.78
+      },
+      {
+        "input_ns": 1792391789687703000,
+        "paint_ns": 1792391789707376000,
+        "ms": 19.673
+      },
+      {
+        "input_ns": 1792391789788653000,
+        "paint_ns": 1792391789807628000,
+        "ms": 18.975
+      },
+      {
+        "input_ns": 1792391789887216000,
+        "paint_ns": 1792391789899131000,
+        "ms": 11.915
+      },
+      {
+        "input_ns": 1792391789989339000,
+        "paint_ns": 1792391790014125000,
+        "ms": 24.786
+      },
+      {
+        "input_ns": 1792391790087475000,
+        "paint_ns": 1792391790100456000,
+        "ms": 12.981
+      },
+      {
+        "input_ns": 1792391790187239000,
+        "paint_ns": 1792391790207955000,
+        "ms": 20.716
+      },
+      {
+        "input_ns": 1792391790287512000,
+        "paint_ns": 1792391790301387000,
+        "ms": 13.875
+      },
+      {
+        "input_ns": 1792391790387567000,
+        "paint_ns": 1792391790407728000,
+        "ms": 20.161
+      },
+      {
+        "input_ns": 1792391790487317000,
+        "paint_ns": 1792391790502575000,
+        "ms": 15.258
+      },
+      {
+        "input_ns": 1792391790587486000,
+        "paint_ns": 1792391790607761000,
+        "ms": 20.275
+      },
+      {
+        "input_ns": 1792391790687480000,
+        "paint_ns": 1792391790706078000,
+        "ms": 18.598
+      }
+    ]
+  },
+  "display_scale": 2.0,
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "initial": {
+    "cold": {
+      "cache": "process-cold; OS caches uncontrolled",
+      "source_ms": 8811.768333,
+      "complete_source_sync_ms": 9256.70912,
+      "first_painted_content_ms": 9269.136
+    },
+    "warm": {
+      "cache": "same-process warm",
+      "source_ms": 8289.840208,
+      "complete_source_sync_ms": 8710.529024,
+      "first_painted_content_ms": 8727.655032
+    }
+  },
+  "scroll_input_to_paint_ms": {
+    "p95": 35.105,
+    "raw": [
+      {
+        "input_ns": 1792391790987371000,
+        "paint_ns": 1792391791007194000,
+        "ms": 19.823
+      },
+      {
+        "input_ns": 1792391791088714000,
+        "paint_ns": 1792391791123819000,
+        "ms": 35.105
+      },
+      {
+        "input_ns": 1792391791188700000,
+        "paint_ns": 1792391791207510000,
+        "ms": 18.81
+      },
+      {
+        "input_ns": 1792391791287379000,
+        "paint_ns": 1792391791307384000,
+        "ms": 20.005
+      },
+      {
+        "input_ns": 1792391791388814000,
+        "paint_ns": 1792391791421079000,
+        "ms": 32.265
+      },
+      {
+        "input_ns": 1792391791488573000,
+        "paint_ns": 1792391791515927000,
+        "ms": 27.354
+      },
+      {
+        "input_ns": 1792391791587253000,
+        "paint_ns": 1792391791607481000,
+        "ms": 20.228
+      },
+      {
+        "input_ns": 1792391791687501000,
+        "paint_ns": 1792391791707769000,
+        "ms": 20.268
+      },
+      {
+        "input_ns": 1792391791787493000,
+        "paint_ns": 1792391791803889000,
+        "ms": 16.396
+      },
+      {
+        "input_ns": 1792391791887668000,
+        "paint_ns": 1792391791907219000,
+        "ms": 19.551
+      },
+      {
+        "input_ns": 1792391791988875000,
+        "paint_ns": 1792391792016228000,
+        "ms": 27.353
+      },
+      {
+        "input_ns": 1792391792087162000,
+        "paint_ns": 1792391792099720000,
+        "ms": 12.558
+      },
+      {
+        "input_ns": 1792391792187273000,
+        "paint_ns": 1792391792200539000,
+        "ms": 13.266
+      },
+      {
+        "input_ns": 1792391792287617000,
+        "paint_ns": 1792391792299591000,
+        "ms": 11.974
+      },
+      {
+        "input_ns": 1792391792387381000,
+        "paint_ns": 1792391792400117000,
+        "ms": 12.736
+      },
+      {
+        "input_ns": 1792391792487497000,
+        "paint_ns": 1792391792515688000,
+        "ms": 28.191
+      },
+      {
+        "input_ns": 1792391792587496000,
+        "paint_ns": 1792391792607628000,
+        "ms": 20.132
+      },
+      {
+        "input_ns": 1792391792687315000,
+        "paint_ns": 1792391792701592000,
+        "ms": 14.277
+      },
+      {
+        "input_ns": 1792391792788647000,
+        "paint_ns": 1792391792816674000,
+        "ms": 28.027
+      },
+      {
+        "input_ns": 1792391792887440000,
+        "paint_ns": 1792391792899213000,
+        "ms": 11.773
+      },
+      {
+        "input_ns": 1792391792988087000,
+        "paint_ns": 1792391793010345000,
+        "ms": 22.258
+      },
+      {
+        "input_ns": 1792391793088780000,
+        "paint_ns": 1792391793108009000,
+        "ms": 19.229
+      },
+      {
+        "input_ns": 1792391793187519000,
+        "paint_ns": 1792391793203157000,
+        "ms": 15.638
+      },
+      {
+        "input_ns": 1792391793289127000,
+        "paint_ns": 1792391793334802000,
+        "ms": 45.675
+      },
+      {
+        "input_ns": 1792391793387909000,
+        "paint_ns": 1792391793410358000,
+        "ms": 22.449
+      },
+      {
+        "input_ns": 1792391793487248000,
+        "paint_ns": 1792391793498841000,
+        "ms": 11.593
+      },
+      {
+        "input_ns": 1792391793589038000,
+        "paint_ns": 1792391793619826000,
+        "ms": 30.788
+      },
+      {
+        "input_ns": 1792391793687471000,
+        "paint_ns": 1792391793702217000,
+        "ms": 14.746
+      },
+      {
+        "input_ns": 1792391793787301000,
+        "paint_ns": 1792391793805648000,
+        "ms": 18.347
+      },
+      {
+        "input_ns": 1792391793888772000,
+        "paint_ns": 1792391793908592000,
+        "ms": 19.82
+      }
+    ]
+  },
+  "warm_native_paint_ms": {
+    "p95": 1.332708,
+    "raw": [
+      0.8581669999999999,
+      0.902,
+      1.052,
+      0.860167,
+      0.933791,
+      0.6765410000000001,
+      1.125084,
+      0.8570840000000001,
+      1.123958,
+      0.998334,
+      0.92725,
+      1.219417,
+      0.876375,
+      0.858459,
+      0.9578749999999999,
+      0.9011250000000001,
+      1.0395,
+      1.077833,
+      0.916333,
+      1.332708,
+      0.9554579999999999,
+      0.9985829999999999,
+      1.090084,
+      0.9215,
+      0.942916,
+      1.000417,
+      0.778625,
+      0.9096249999999999,
+      1.089625,
+      1.1314579999999999,
+      0.962375,
+      1.357541
+    ]
+  },
+  "edit_to_paint_ms": 249.111,
+  "scheduled_callback_max_ms": 2.545333,
+  "query_config": {
+    "safe": true,
+    "reason": null
+  },
+  "worker": {
+    "request": 2,
+    "pid": 29596,
+    "buffer": 1
+  },
+  "dependency_state": "copied installed Mason packages; no user installation changed",
+  "source_chunk_max_bytes": 21343,
+  "source_bytes": 16629780,
+  "pure_scroll_source_messages": 0,
+  "pure_scroll_state_messages": 32,
+  "peak_rss": {
+    "host_kib": 125248,
+    "editor_kib": 722448,
+    "editor_pid": 29115,
+    "worker_pid": 29596,
+    "worker_kib": 539120
+  },
+  "initial_rpc_heartbeat_ms": {
+    "samples": 162,
+    "max": 19.913416,
+    "p95": 3.67275,
+    "raw": [
+      8.297,
+      3.67275,
+      5.791792,
+      7.394041,
+      5.248833,
+      19.913416,
+      0.230584,
+      0.559333,
+      0.245459,
+      0.493667,
+      0.112334,
+      0.373333,
+      0.228083,
+      1.572584,
+      0.375417,
+      0.120125,
+      0.133,
+      0.241542,
+      0.122667,
+      0.487666,
+      0.184625,
+      0.122333,
+      1.802458,
+      0.278125,
+      0.144125,
+      0.3225,
+      0.111167,
+      0.189375,
+      0.493416,
+      0.169666,
+      1.6045,
+      0.304459,
+      0.170375,
+      1.076542,
+      0.318167,
+      0.120375,
+      0.443083,
+      0.6675,
+      0.138667,
+      0.312917,
+      0.239875,
+      0.128209,
+      2.09825,
+      0.785625,
+      0.15375,
+      1.8695,
+      1.021083,
+      0.121958,
+      0.705292,
+      1.083125,
+      0.473291,
+      0.183333,
+      2.966375,
+      2.251208,
+      0.130375,
+      0.099583,
+      0.306084,
+      1.749791,
+      1.830292,
+      0.219584,
+      0.096375,
+      1.666792,
+      0.179958,
+      0.112416,
+      0.281375,
+      3.525792,
+      0.754291,
+      1.170833,
+      0.201167,
+      0.10925,
+      0.202666,
+      0.092834,
+      0.091416,
+      0.277667,
+      0.208042,
+      0.555833,
+      0.208875,
+      0.141,
+      0.342791,
+      0.200292,
+      2.225083,
+      1.123667,
+      6.360208,
+      0.110208,
+      0.318917,
+      0.091833,
+      1.468416,
+      0.30825,
+      0.110792,
+      0.23125,
+      0.110708,
+      0.21425,
+      1.366958,
+      0.103083,
+      0.296166,
+      0.111167,
+      0.60375,
+      0.239458,
+      1.119833,
+      1.095209,
+      0.238833,
+      0.090167,
+      0.194458,
+      0.110375,
+      0.116625,
+      8.656792,
+      7.699625,
+      2.416167,
+      0.18425,
+      0.110042,
+      0.211916,
+      1.089167,
+      0.367208,
+      0.188416,
+      0.090458,
+      0.199666,
+      0.08925,
+      1.587125,
+      0.242292,
+      1.02875,
+      0.287792,
+      0.224958,
+      0.0825,
+      2.547125,
+      0.105083,
+      3.206375,
+      1.050792,
+      0.102708,
+      0.304042,
+      0.102042,
+      0.13,
+      2.570458,
+      0.0965,
+      0.186583,
+      0.0855,
+      0.125792,
+      0.208334,
+      0.10025,
+      0.325042,
+      0.303083,
+      0.11525,
+      0.537042,
+      0.106375,
+      0.132916,
+      0.178375,
+      0.091125,
+      0.104833,
+      2.133667,
+      0.072625,
+      0.219458,
+      0.16725,
+      1.84525,
+      2.774084,
+      0.286334,
+      0.508792,
+      0.161333,
+      0.563625,
+      0.65225,
+      0.7645,
+      0.234625,
+      0.166917,
+      0.548708
+    ]
+  },
+  "memory_sampling_ms": 100,
+  "measurement": "CPU canvas paint submission end; not GPU presentation/compositor timestamp",
+  "acceptance": {
+    "analysis_quiet": true,
+    "editor_slices": true,
+    "source_chunks": true,
+    "scroll_no_source": true,
+    "native_paint": true,
+    "scroll_latency": false,
+    "initial_cold": true,
+    "initial_warm": true,
+    "edit": true
+  }
+}

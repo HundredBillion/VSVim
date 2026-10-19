@@ -1,0 +1,184 @@
+{
+  "meta": {
+    "root": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb",
+    "repo": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/project",
+    "file": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/project/demo.py",
+    "control": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/control.json",
+    "server": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/editor.sock",
+    "pid": 62452,
+    "initial": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/native-initial.png"
+  },
+  "revisions": {
+    "VSVim": "f99bf02e8c8e13fa67da9d8c30220256bc342ba9",
+    "sprite.nvim": "38852bd6597cd4daf1fc1bb5fb566e6933d8e201",
+    "Sprite": "ec55e8bca0de58c54fb610ce0b63e2b76c4e5764"
+  },
+  "cases": {
+    "initial": {
+      "target": {
+        "target": "b1:w1000:1",
+        "total": 232,
+        "generation": 2,
+        "busy": false,
+        "buffer": 1,
+        "window": 1000
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/current-native-code-git.png"
+    },
+    "word-overlap": {
+      "state": {
+        "bottom": 47,
+        "mode": "v",
+        "selection": {
+          "selection": [
+            1,
+            1
+          ],
+          "occurrences": [
+            1,
+            18,
+            19,
+            31,
+            92,
+            126,
+            129,
+            133,
+            144,
+            181,
+            184,
+            196,
+            197,
+            211
+          ],
+          "word": "file"
+        },
+        "cursor": [
+          1,
+          3
+        ],
+        "top": 1
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/current-native-word-git-overlap.png"
+    },
+    "selected-rows": {
+      "state": {
+        "bottom": 47,
+        "mode": "V",
+        "selection": {
+          "selection": [
+            13,
+            27
+          ],
+          "occurrences": [],
+          "word": null
+        },
+        "cursor": [
+          27,
+          3
+        ],
+        "top": 1
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/current-native-selected-rows.png"
+    },
+    "narrow": {
+      "window": {
+        "active": true,
+        "height": 948,
+        "visible": true,
+        "width": 504,
+        "occluded": 0,
+        "key": true,
+        "scale": 2
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/current-native-narrow.png",
+      "verified": false,
+      "qualification": "Requested420px ignored;actual504px. Screenshot deliberately excluded as narrow evidence."
+    },
+    "light": {
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/current-native-light.png"
+    },
+    "preserved-native-copy": {
+      "state": {
+        "bottom": 232,
+        "mode": "n",
+        "selection": {
+          "selection": [
+            1,
+            3
+          ],
+          "occurrences": [],
+          "word": null
+        },
+        "cursor": [
+          215,
+          0
+        ],
+        "top": 192
+      },
+      "clipboard": [
+        [
+          "file = \"file\"",
+          "import os",
+          "import signal",
+          ""
+        ],
+        "V"
+      ],
+      "provider": "isolated in-memory, no system clipboard access",
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/current-native-preserved-copy.png"
+    },
+    "edit-after-browse": {
+      "removed_rows": 3,
+      "actual_first_line": [
+        "from pathlib import Path"
+      ],
+      "expected_first_line": [
+        "from pathlib import Path"
+      ]
+    },
+    "long-bottom": {
+      "state": {
+        "selection": {
+          "selection": null,
+          "occurrences": [],
+          "word": null
+        },
+        "mode": "n",
+        "cursor": [
+          99954,
+          0
+        ],
+        "bottom": 100000,
+        "top": 99954
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/current-native-long-bottom.png"
+    },
+    "long-top": {
+      "state": {
+        "selection": {
+          "selection": null,
+          "occurrences": [],
+          "word": null
+        },
+        "mode": "n",
+        "cursor": [
+          1,
+          0
+        ],
+        "bottom": 47,
+        "top": 1
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/current-native-long-top.png"
+    }
+  },
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "pass": true
+}

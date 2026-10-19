@@ -1,0 +1,1417 @@
+{
+  "lines": 100000,
+  "revisions": {
+    "vsvim": "f99bf02e8c8e13fa67da9d8c30220256bc342ba9",
+    "adapter": "38852bd6597cd4daf1fc1bb5fb566e6933d8e201",
+    "host": "ec55e8bca0de58c54fb610ce0b63e2b76c4e5764"
+  },
+  "samples": {
+    "initial_cold": 1,
+    "initial_warm": 1,
+    "prewarm_scroll": 30,
+    "scroll": 30,
+    "paint": 31,
+    "edit": 1
+  },
+  "analysis_quiet": {
+    "reached": true,
+    "timeout_seconds": 30,
+    "quiet_seconds": 1,
+    "observations": [
+      {
+        "diagnostics": 0,
+        "status": "100%: Loading workspace: 95/189, Loading workspace: 96/188, Loading workspace: 106/189, Loading workspace: 107/188, Loading workspace: 115/189, Loading workspace: 116/188, Loading workspace: 127/189, Loading workspace: 128/188, Loading workspace: 141/189, Loading workspace: 142/188, Loading workspace: 153/189, Loading workspace: 154/188, Loading workspace: 172/189, Loading workspace: 173/188, Loading workspace: 189/189, Loading workspace: 188/188, Loading workspace, Loading workspace, Processing full semantic tokens..., Diagnosing: fixture.lua, Diagnosing workspace: 1/189, Processing full semantic tokens..., Diagnosing, Diagnosing workspace: 2/189, Diagnosing workspace",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      },
+      {
+        "diagnostics": 0,
+        "status": "",
+        "clients": [
+          {
+            "initialized": true,
+            "name": "lua_ls"
+          }
+        ]
+      }
+    ]
+  },
+  "prewarm_scroll_input_to_paint_ms": {
+    "p95": 21.604,
+    "raw": [
+      {
+        "input_ns": 1792394737677817000,
+        "paint_ns": 1792394737698934000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 21.117
+      },
+      {
+        "input_ns": 1792394737769286000,
+        "paint_ns": 1792394737790890000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 21.604
+      },
+      {
+        "input_ns": 1792394737869912000,
+        "paint_ns": 1792394737890404000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 20.492
+      },
+      {
+        "input_ns": 1792394737970088000,
+        "paint_ns": 1792394737990392000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 20.304
+      },
+      {
+        "input_ns": 1792394738069639000,
+        "paint_ns": 1792394738090277000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 20.638
+      },
+      {
+        "input_ns": 1792394738168014000,
+        "paint_ns": 1792394738180066000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.052
+      },
+      {
+        "input_ns": 1792394738267964000,
+        "paint_ns": 1792394738280751000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.787
+      },
+      {
+        "input_ns": 1792394738368525000,
+        "paint_ns": 1792394738382351000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.826
+      },
+      {
+        "input_ns": 1792394738559498000,
+        "paint_ns": 1792394738621922000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 62.424
+      },
+      {
+        "input_ns": 1792394738865699000,
+        "paint_ns": 1792394738879460000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.761
+      },
+      {
+        "input_ns": 1792394738966082000,
+        "paint_ns": 1792394738978848000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.766
+      },
+      {
+        "input_ns": 1792394739066749000,
+        "paint_ns": 1792394739080124000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.375
+      },
+      {
+        "input_ns": 1792394739167259000,
+        "paint_ns": 1792394739180119000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.86
+      },
+      {
+        "input_ns": 1792394739266765000,
+        "paint_ns": 1792394739278454000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 11.689
+      },
+      {
+        "input_ns": 1792394739366815000,
+        "paint_ns": 1792394739379021000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.206
+      },
+      {
+        "input_ns": 1792394739466880000,
+        "paint_ns": 1792394739480078000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.198
+      },
+      {
+        "input_ns": 1792394739566430000,
+        "paint_ns": 1792394739580021000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.591
+      },
+      {
+        "input_ns": 1792394739666292000,
+        "paint_ns": 1792394739679882000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.59
+      },
+      {
+        "input_ns": 1792394739766033000,
+        "paint_ns": 1792394739778333000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.3
+      },
+      {
+        "input_ns": 1792394739865875000,
+        "paint_ns": 1792394739879890000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 14.015
+      },
+      {
+        "input_ns": 1792394739966409000,
+        "paint_ns": 1792394739980253000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.844
+      },
+      {
+        "input_ns": 1792394740065526000,
+        "paint_ns": 1792394740080295000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 14.769
+      },
+      {
+        "input_ns": 1792394740166031000,
+        "paint_ns": 1792394740179633000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.602
+      },
+      {
+        "input_ns": 1792394740266354000,
+        "paint_ns": 1792394740279825000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.471
+      },
+      {
+        "input_ns": 1792394740365895000,
+        "paint_ns": 1792394740379884000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.989
+      },
+      {
+        "input_ns": 1792394740465913000,
+        "paint_ns": 1792394740480041000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 14.128
+      },
+      {
+        "input_ns": 1792394740565842000,
+        "paint_ns": 1792394740578559000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.717
+      },
+      {
+        "input_ns": 1792394740666102000,
+        "paint_ns": 1792394740678965000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.863
+      },
+      {
+        "input_ns": 1792394740767130000,
+        "paint_ns": 1792394740779841000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.711
+      },
+      {
+        "input_ns": 1792394740866730000,
+        "paint_ns": 1792394740880435000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.705
+      }
+    ]
+  },
+  "display_scale": 2.0,
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "initial": {
+    "cold": {
+      "cache": "process-cold; OS caches uncontrolled",
+      "source_ms": 8193.436542,
+      "complete_source_sync_ms": 8676.765952,
+      "first_painted_content_ms": 8696.53088
+    },
+    "warm": {
+      "cache": "same-process warm",
+      "source_ms": 7500.890667,
+      "complete_source_sync_ms": 7905.860864,
+      "first_painted_content_ms": 7917.180992
+    }
+  },
+  "scroll_input_to_paint_ms": {
+    "p95": 14.251,
+    "raw": [
+      {
+        "input_ns": 1792394741167051000,
+        "paint_ns": 1792394741178533000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 11.482
+      },
+      {
+        "input_ns": 1792394741267940000,
+        "paint_ns": 1792394741282002000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 14.062
+      },
+      {
+        "input_ns": 1792394741367047000,
+        "paint_ns": 1792394741379537000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.49
+      },
+      {
+        "input_ns": 1792394741466872000,
+        "paint_ns": 1792394741480075000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.203
+      },
+      {
+        "input_ns": 1792394741567233000,
+        "paint_ns": 1792394741580122000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.889
+      },
+      {
+        "input_ns": 1792394741667528000,
+        "paint_ns": 1792394741679274000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 11.746
+      },
+      {
+        "input_ns": 1792394741769998000,
+        "paint_ns": 1792394741779317000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 9.319
+      },
+      {
+        "input_ns": 1792394741866742000,
+        "paint_ns": 1792394741880082000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.34
+      },
+      {
+        "input_ns": 1792394741966717000,
+        "paint_ns": 1792394741978524000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 11.807
+      },
+      {
+        "input_ns": 1792394742067111000,
+        "paint_ns": 1792394742079960000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.849
+      },
+      {
+        "input_ns": 1792394742166047000,
+        "paint_ns": 1792394742178354000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.307
+      },
+      {
+        "input_ns": 1792394742266448000,
+        "paint_ns": 1792394742279647000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.199
+      },
+      {
+        "input_ns": 1792394742366662000,
+        "paint_ns": 1792394742380311000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.649
+      },
+      {
+        "input_ns": 1792394742467150000,
+        "paint_ns": 1792394742480338000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.188
+      },
+      {
+        "input_ns": 1792394742566867000,
+        "paint_ns": 1792394742580352000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.485
+      },
+      {
+        "input_ns": 1792394742666223000,
+        "paint_ns": 1792394742680020000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.797
+      },
+      {
+        "input_ns": 1792394742765804000,
+        "paint_ns": 1792394742780055000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 14.251
+      },
+      {
+        "input_ns": 1792394742866625000,
+        "paint_ns": 1792394742879830000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.205
+      },
+      {
+        "input_ns": 1792394742966425000,
+        "paint_ns": 1792394742980112000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.687
+      },
+      {
+        "input_ns": 1792394743066141000,
+        "paint_ns": 1792394743079626000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.485
+      },
+      {
+        "input_ns": 1792394743165911000,
+        "paint_ns": 1792394743179045000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.134
+      },
+      {
+        "input_ns": 1792394743266147000,
+        "paint_ns": 1792394743279502000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.355
+      },
+      {
+        "input_ns": 1792394743366065000,
+        "paint_ns": 1792394743379854000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.789
+      },
+      {
+        "input_ns": 1792394743466327000,
+        "paint_ns": 1792394743480170000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.843
+      },
+      {
+        "input_ns": 1792394743567178000,
+        "paint_ns": 1792394743580196000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.018
+      },
+      {
+        "input_ns": 1792394743669313000,
+        "paint_ns": 1792394743678807000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 9.494
+      },
+      {
+        "input_ns": 1792394743766511000,
+        "paint_ns": 1792394743779549000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 13.038
+      },
+      {
+        "input_ns": 1792394743865824000,
+        "paint_ns": 1792394743880117000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 14.293
+      },
+      {
+        "input_ns": 1792394743966866000,
+        "paint_ns": 1792394743978408000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 11.542
+      },
+      {
+        "input_ns": 1792394744065894000,
+        "paint_ns": 1792394744078871000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 12.977
+      }
+    ]
+  },
+  "warm_native_paint_ms": {
+    "p95": 1.141125,
+    "raw": [
+      0.957291,
+      1.6355,
+      1.0187499999999998,
+      0.995,
+      1.006959,
+      1.094458,
+      1.008875,
+      1.0087080000000002,
+      1.051167,
+      0.996458,
+      0.6474169999999999,
+      0.867375,
+      0.892875,
+      1.0560420000000001,
+      1.138125,
+      1.0595839999999999,
+      1.0159170000000002,
+      1.0239159999999998,
+      1.034917,
+      1.016,
+      0.982875,
+      1.043042,
+      1.0112079999999999,
+      1.00625,
+      1.0672920000000001,
+      1.108541,
+      1.099,
+      1.141125,
+      1.097708,
+      0.972125,
+      0.969417
+    ]
+  },
+  "edit_to_updated_band_ms": 250.885,
+  "edit_source_repaint_ms": 250.885,
+  "edit_expected_band": {
+    "start": 1,
+    "kind": "modified",
+    "paint": {
+      "event": "paint",
+      "generation": 3,
+      "viewport": [
+        1,
+        47
+      ],
+      "offset": 0,
+      "rows": 293,
+      "state_revision": 865,
+      "change_bands": 3,
+      "first_line_change": true,
+      "occurrences": 0,
+      "selection": false,
+      "scale": 2.0,
+      "active": true,
+      "ms": 8.251083,
+      "unix_ns": 1792394744535271000
+    }
+  },
+  "scheduled_callback_max_ms": 2.466125,
+  "query_config": {
+    "safe": true,
+    "reason": null
+  },
+  "worker": {
+    "pid": 61687,
+    "request": 2,
+    "buffer": 1
+  },
+  "dependency_state": "copied installed Mason packages; no user installation changed",
+  "source_chunk_max_bytes": 21343,
+  "source_bytes": 16629780,
+  "pure_scroll_source_messages": 0,
+  "pure_scroll_state_messages": 31,
+  "peak_rss": {
+    "host_kib": 128352,
+    "editor_kib": 767744,
+    "editor_pid": 61493,
+    "worker_pid": 61687,
+    "worker_pids": [
+      61507,
+      61687
+    ],
+    "worker_kib": 547152
+  },
+  "initial_rpc_heartbeat_ms": {
+    "samples": 151,
+    "max": 38.383416,
+    "p95": 4.271541,
+    "raw": [
+      8.353459,
+      4.637792,
+      5.204375,
+      5.626958,
+      3.449792,
+      12.124625,
+      0.112166,
+      0.080916,
+      1.323167,
+      0.097959,
+      0.091542,
+      0.580667,
+      14.799208,
+      0.09175,
+      1.077125,
+      0.109416,
+      0.10225,
+      0.099333,
+      0.084584,
+      0.137958,
+      0.106708,
+      0.751667,
+      0.305792,
+      0.1,
+      1.135667,
+      0.102291,
+      1.721709,
+      0.103541,
+      1.504209,
+      0.096959,
+      0.109917,
+      1.306334,
+      0.1095,
+      0.094125,
+      0.088208,
+      0.077875,
+      0.090292,
+      0.106542,
+      0.099792,
+      0.110792,
+      0.095583,
+      0.117125,
+      0.141583,
+      0.106791,
+      0.776875,
+      0.09225,
+      0.099833,
+      0.083333,
+      0.733,
+      0.088125,
+      0.101833,
+      0.743208,
+      0.094875,
+      0.091,
+      0.103166,
+      0.095583,
+      4.271541,
+      0.094625,
+      0.093625,
+      0.124,
+      0.13425,
+      1.809958,
+      1.875125,
+      0.106791,
+      1.887584,
+      0.072875,
+      2.562125,
+      0.094291,
+      0.094708,
+      0.099792,
+      1.007542,
+      1.937458,
+      2.074666,
+      0.521417,
+      0.112875,
+      0.101709,
+      0.073791,
+      0.0795,
+      0.086959,
+      0.118291,
+      0.111458,
+      0.108666,
+      0.080041,
+      0.0755,
+      0.09,
+      2.886208,
+      0.276041,
+      0.093958,
+      0.097708,
+      0.079667,
+      0.737167,
+      0.082625,
+      0.089083,
+      0.09975,
+      0.098792,
+      0.095958,
+      0.071209,
+      0.223709,
+      0.081625,
+      2.809292,
+      0.098666,
+      1.757917,
+      0.073333,
+      38.383416,
+      2.3905,
+      0.108708,
+      0.770166,
+      0.101333,
+      0.097209,
+      0.096375,
+      0.113625,
+      0.090375,
+      0.457916,
+      1.825792,
+      2.484,
+      3.416583,
+      0.086417,
+      0.08725,
+      0.095042,
+      0.093208,
+      0.083584,
+      0.075875,
+      0.062,
+      2.478709,
+      0.071375,
+      0.090791,
+      0.089417,
+      0.085375,
+      0.105333,
+      0.191667,
+      0.080625,
+      1.049792,
+      0.377041,
+      0.080375,
+      0.081792,
+      2.689375,
+      0.343875,
+      0.090875,
+      0.103458,
+      0.10325,
+      0.0775,
+      2.723375,
+      0.54275,
+      0.07725,
+      0.068542,
+      0.063708,
+      0.260583,
+      0.529708,
+      0.08,
+      0.51775,
+      0.132042
+    ]
+  },
+  "memory_sampling_ms": 100,
+  "memory_sampling_method": "macOS libproc TASKINFO and owned-child discovery; no subprocesses",
+  "measurement": "CPU canvas paint submission end; not GPU presentation/compositor timestamp",
+  "acceptance": {
+    "analysis_quiet": true,
+    "active_scroll": true,
+    "editor_slices": true,
+    "source_chunks": true,
+    "scroll_no_source": true,
+    "native_paint": true,
+    "scroll_latency": true,
+    "initial_cold": true,
+    "initial_warm": true,
+    "edit": true
+  }
+}

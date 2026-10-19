@@ -1,0 +1,38 @@
+[
+  {
+    "artifact": "prior-native-initial.png",
+    "source": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-y8wlsltg/native-initial.png",
+    "revisions": "Sprite2e69e37/VSVim3efcfd5/adapter72906b5",
+    "verification": "parent/reviewer visually verified; predates task7 performance architecture"
+  },
+  {
+    "artifact": "prior-native-narrow.png",
+    "source": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-y8wlsltg/native-narrow.png",
+    "revisions": "Sprite2e69e37/VSVim3efcfd5/adapter72906b5",
+    "verification": "parent/reviewer visually verified; predates task7 performance architecture"
+  },
+  {
+    "artifact": "prior-native-light-settled.png",
+    "source": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-y8wlsltg/native-light-settled.png",
+    "revisions": "Sprite2e69e37/VSVim3efcfd5/adapter72906b5",
+    "verification": "parent/reviewer visually verified; predates task7 performance architecture"
+  },
+  {
+    "artifact": "prior-native-word-occurrences.png",
+    "source": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-bpdm5zm5/native-word-occurrences.png",
+    "revisions": "Sprite2e69e37/VSVim3efcfd5/adapter72906b5",
+    "verification": "parent/reviewer visually verified; predates task7 performance architecture"
+  },
+  {
+    "artifact": "prior-native-selected-rows.png",
+    "source": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-bpdm5zm5/native-selected-rows.png",
+    "revisions": "Sprite2e69e37/VSVim3efcfd5/adapter72906b5",
+    "verification": "parent/reviewer visually verified; predates task7 performance architecture"
+  },
+  {
+    "artifact": "prior-native-doubleclick-occurrences.png",
+    "source": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-bwp9uyno/native-doubleclick-occurrences.png",
+    "revisions": "Spritec786902/VSVim3ca4de4/adapter4f572f4",
+    "verification": "parent/reviewer visually verified; predates task7 performance architecture"
+  }
+]

@@ -1,6 +1,6 @@
 # Native code minimap
 
-Status: approved by the user on 2026-10-19; implementation planning in progress.
+Status: approved by the user on 2026-10-19; Tasks 1–6 implemented and independently reviewed. Task 7 focused checks, pinned native performance and interaction evidence executed; final independent evidence review and publication/dependency pinning pending.
 
 Issue: https://github.com/HundredBillion/VSVim/issues/8
 

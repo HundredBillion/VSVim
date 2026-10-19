@@ -1,0 +1,1672 @@
+{
+  "messages": "",
+  "target": {
+    "buffer": 1,
+    "target": "b1:w1000:2",
+    "generation": 3,
+    "total": 10000,
+    "window": 1000,
+    "busy": false
+  },
+  "query": {
+    "safe": true,
+    "reason": null
+  },
+  "worker": {
+    "buffer": 1,
+    "pid": 61281,
+    "request": 2
+  },
+  "metrics": {
+    "source": [
+      {
+        "unix_ns": 1792394704489779968,
+        "ms": 450.896333,
+        "first": 1,
+        "last": 10000,
+        "range": {
+          "first": 1,
+          "last": 10000,
+          "total": 10000
+        }
+      },
+      {
+        "unix_ns": 1792394713148716032,
+        "ms": 38.41325,
+        "first": 1,
+        "last": 10000,
+        "range": {
+          "first": 1,
+          "last": 2,
+          "total": 10000
+        }
+      }
+    ],
+    "actions": [
+      {
+        "unix_ns": 1792394706823939072,
+        "done_ns": 1792394706824048128,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 4,
+          "revision": 93
+        }
+      },
+      {
+        "unix_ns": 1792394706921515008,
+        "done_ns": 1792394706921666048,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 7,
+          "revision": 94
+        }
+      },
+      {
+        "unix_ns": 1792394707021434880,
+        "done_ns": 1792394707021616128,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 11,
+          "revision": 95
+        }
+      },
+      {
+        "unix_ns": 1792394707120882944,
+        "done_ns": 1792394707120967936,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 14,
+          "generation": 2,
+          "revision": 96
+        }
+      },
+      {
+        "unix_ns": 1792394707220997888,
+        "done_ns": 1792394707221073920,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 17,
+          "generation": 2,
+          "revision": 97
+        }
+      },
+      {
+        "unix_ns": 1792394707321042944,
+        "done_ns": 1792394707321166080,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 21,
+          "generation": 2,
+          "revision": 98
+        }
+      },
+      {
+        "unix_ns": 1792394707421277952,
+        "done_ns": 1792394707421481984,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 24,
+          "generation": 2,
+          "revision": 99
+        }
+      },
+      {
+        "unix_ns": 1792394707521355008,
+        "done_ns": 1792394707521447936,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 27,
+          "generation": 2,
+          "revision": 100
+        }
+      },
+      {
+        "unix_ns": 1792394707621234944,
+        "done_ns": 1792394707621517056,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 31,
+          "generation": 2,
+          "revision": 101
+        }
+      },
+      {
+        "unix_ns": 1792394707721320960,
+        "done_ns": 1792394707721536000,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 34,
+          "generation": 2,
+          "revision": 102
+        }
+      },
+      {
+        "unix_ns": 1792394707821436928,
+        "done_ns": 1792394707821603072,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 37,
+          "generation": 2,
+          "revision": 103
+        }
+      },
+      {
+        "unix_ns": 1792394707921157888,
+        "done_ns": 1792394707921240064,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 41,
+          "revision": 104
+        }
+      },
+      {
+        "unix_ns": 1792394708021190912,
+        "done_ns": 1792394708021260032,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 44,
+          "revision": 105
+        }
+      },
+      {
+        "unix_ns": 1792394708120968960,
+        "done_ns": 1792394708121080064,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 47,
+          "revision": 106
+        }
+      },
+      {
+        "unix_ns": 1792394708221046016,
+        "done_ns": 1792394708221174016,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 51,
+          "revision": 107
+        }
+      },
+      {
+        "unix_ns": 1792394708321082112,
+        "done_ns": 1792394708321255936,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 54,
+          "revision": 108
+        }
+      },
+      {
+        "unix_ns": 1792394708421488128,
+        "done_ns": 1792394708421645056,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 57,
+          "generation": 2,
+          "revision": 109
+        }
+      },
+      {
+        "unix_ns": 1792394708521526016,
+        "done_ns": 1792394708521668096,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 61,
+          "generation": 2,
+          "revision": 110
+        }
+      },
+      {
+        "unix_ns": 1792394708619788032,
+        "done_ns": 1792394708619847936,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 64,
+          "generation": 2,
+          "revision": 112
+        }
+      },
+      {
+        "unix_ns": 1792394708719645952,
+        "done_ns": 1792394708719753984,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 67,
+          "generation": 2,
+          "revision": 113
+        }
+      },
+      {
+        "unix_ns": 1792394708821242112,
+        "done_ns": 1792394708821436928,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 71,
+          "generation": 2,
+          "revision": 114
+        }
+      },
+      {
+        "unix_ns": 1792394708921100032,
+        "done_ns": 1792394708921203968,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 74,
+          "generation": 2,
+          "revision": 115
+        }
+      },
+      {
+        "unix_ns": 1792394709028323072,
+        "done_ns": 1792394709028402944,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 77,
+          "generation": 2,
+          "revision": 116
+        }
+      },
+      {
+        "unix_ns": 1792394709120762112,
+        "done_ns": 1792394709120826112,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 81,
+          "generation": 2,
+          "revision": 117
+        }
+      },
+      {
+        "unix_ns": 1792394709222184960,
+        "done_ns": 1792394709222332928,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 84,
+          "generation": 2,
+          "revision": 118
+        }
+      },
+      {
+        "unix_ns": 1792394709323006976,
+        "done_ns": 1792394709323144960,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 87,
+          "generation": 2,
+          "revision": 119
+        }
+      },
+      {
+        "unix_ns": 1792394709423984128,
+        "done_ns": 1792394709424372992,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "revision": 120,
+          "topline": 91
+        }
+      },
+      {
+        "unix_ns": 1792394709524775936,
+        "done_ns": 1792394709525050112,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "revision": 121,
+          "topline": 94
+        }
+      },
+      {
+        "unix_ns": 1792394709625689088,
+        "done_ns": 1792394709625831936,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "revision": 122,
+          "topline": 97
+        }
+      },
+      {
+        "unix_ns": 1792394709725372928,
+        "done_ns": 1792394709725666048,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "revision": 123,
+          "topline": 101
+        }
+      },
+      {
+        "unix_ns": 1792394710024890112,
+        "done_ns": 1792394710025047040,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 4,
+          "revision": 125
+        }
+      },
+      {
+        "unix_ns": 1792394710124815872,
+        "done_ns": 1792394710125050880,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 7,
+          "revision": 126
+        }
+      },
+      {
+        "unix_ns": 1792394710223911936,
+        "done_ns": 1792394710224148992,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 11,
+          "revision": 127
+        }
+      },
+      {
+        "unix_ns": 1792394710327987968,
+        "done_ns": 1792394710328119040,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 14,
+          "revision": 128
+        }
+      },
+      {
+        "unix_ns": 1792394710431657984,
+        "done_ns": 1792394710431808000,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 17,
+          "revision": 129
+        }
+      },
+      {
+        "unix_ns": 1792394710528026112,
+        "done_ns": 1792394710528194048,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 21,
+          "revision": 130
+        }
+      },
+      {
+        "unix_ns": 1792394710621155072,
+        "done_ns": 1792394710621195008,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 24,
+          "revision": 132
+        }
+      },
+      {
+        "unix_ns": 1792394710723379968,
+        "done_ns": 1792394710723439104,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 27,
+          "revision": 133
+        }
+      },
+      {
+        "unix_ns": 1792394710823988992,
+        "done_ns": 1792394710824199936,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 31,
+          "revision": 134
+        }
+      },
+      {
+        "unix_ns": 1792394710924317952,
+        "done_ns": 1792394710924442112,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 34,
+          "revision": 135
+        }
+      },
+      {
+        "unix_ns": 1792394711025372928,
+        "done_ns": 1792394711025613056,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 37,
+          "revision": 136
+        }
+      },
+      {
+        "unix_ns": 1792394711124261120,
+        "done_ns": 1792394711124534016,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 41,
+          "revision": 137
+        }
+      },
+      {
+        "unix_ns": 1792394711223692032,
+        "done_ns": 1792394711223800064,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 44,
+          "generation": 2,
+          "revision": 138
+        }
+      },
+      {
+        "unix_ns": 1792394711325453056,
+        "done_ns": 1792394711325614080,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 47,
+          "generation": 2,
+          "revision": 139
+        }
+      },
+      {
+        "unix_ns": 1792394711425145088,
+        "done_ns": 1792394711425320960,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 51,
+          "generation": 2,
+          "revision": 140
+        }
+      },
+      {
+        "unix_ns": 1792394711525018880,
+        "done_ns": 1792394711525188096,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 54,
+          "generation": 2,
+          "revision": 141
+        }
+      },
+      {
+        "unix_ns": 1792394711624987904,
+        "done_ns": 1792394711625125120,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 57,
+          "generation": 2,
+          "revision": 142
+        }
+      },
+      {
+        "unix_ns": 1792394711725511936,
+        "done_ns": 1792394711725776896,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 61,
+          "generation": 2,
+          "revision": 143
+        }
+      },
+      {
+        "unix_ns": 1792394711828483072,
+        "done_ns": 1792394711828749056,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 64,
+          "generation": 2,
+          "revision": 144
+        }
+      },
+      {
+        "unix_ns": 1792394711925091072,
+        "done_ns": 1792394711925246976,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 67,
+          "generation": 2,
+          "revision": 145
+        }
+      },
+      {
+        "unix_ns": 1792394712025906944,
+        "done_ns": 1792394712026118912,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 71,
+          "generation": 2,
+          "revision": 146
+        }
+      },
+      {
+        "unix_ns": 1792394712123894016,
+        "done_ns": 1792394712124035072,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 74,
+          "generation": 2,
+          "revision": 147
+        }
+      },
+      {
+        "unix_ns": 1792394712224200960,
+        "done_ns": 1792394712224329984,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 77,
+          "generation": 2,
+          "revision": 148
+        }
+      },
+      {
+        "unix_ns": 1792394712323566080,
+        "done_ns": 1792394712323696896,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "topline": 81,
+          "generation": 2,
+          "revision": 149
+        }
+      },
+      {
+        "unix_ns": 1792394712425445120,
+        "done_ns": 1792394712425836032,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 84,
+          "revision": 150
+        }
+      },
+      {
+        "unix_ns": 1792394712523428096,
+        "done_ns": 1792394712523843072,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 87,
+          "revision": 151
+        }
+      },
+      {
+        "unix_ns": 1792394712622309888,
+        "done_ns": 1792394712622394112,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 91,
+          "revision": 153
+        }
+      },
+      {
+        "unix_ns": 1792394712722443008,
+        "done_ns": 1792394712722486016,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 94,
+          "revision": 154
+        }
+      },
+      {
+        "unix_ns": 1792394712823368960,
+        "done_ns": 1792394712823504896,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 97,
+          "revision": 155
+        }
+      },
+      {
+        "unix_ns": 1792394712924500992,
+        "done_ns": 1792394712924645120,
+        "event": {
+          "type": "minimap_action",
+          "action": "scroll",
+          "target": "b1:w1000:2",
+          "generation": 2,
+          "topline": 101,
+          "revision": 156
+        }
+      }
+    ],
+    "callbacks": {
+      "...10000/data/vsvim/lazy/sprite.nvim/lua/sprite/minimap.lua:12": {
+        "count": 136,
+        "max_ms": 0.077334,
+        "total_ms": 1.4270840000000005
+      },
+      "/Users/davidlee/Projects/VSVim/lua/vsvim/minimap/work.lua:15": {
+        "count": 86,
+        "max_ms": 0.016709,
+        "total_ms": 0.3386739999999998
+      },
+      "[string \"vim/_core/editor\"]:658": {
+        "count": 3,
+        "max_ms": 0.077291,
+        "total_ms": 0.17779
+      },
+      "...y/share/nvim/runtime/lua/vim/treesitter/languagetree.lua:581": {
+        "count": 10,
+        "max_ms": 5.366584,
+        "total_ms": 29.885291000000002
+      },
+      "...data/vsvim/lazy/mason.nvim/lua/mason-core/async/init.lua:20": {
+        "count": 1,
+        "max_ms": 2.172333,
+        "total_ms": 2.172333
+      },
+      "[C]:-1": {
+        "count": 4,
+        "max_ms": 0.062375,
+        "total_ms": 0.15350000000000003
+      },
+      "...d2/10000/data/vsvim/lazy/sprite.nvim/lua/sprite/tabs.lua:13": {
+        "count": 2,
+        "max_ms": 0.006958,
+        "total_ms": 0.013125
+      },
+      "...l/nvim-nightly/share/nvim/runtime/lua/vim/lsp/client.lua:859": {
+        "count": 1,
+        "max_ms": 0.152542,
+        "total_ms": 0.152542
+      },
+      "...avidlee/Projects/VSVim/lua/vsvim/minimap/source_main.lua:64": {
+        "count": 81,
+        "max_ms": 2.030417,
+        "total_ms": 71.332455
+      },
+      ".../davidlee/Projects/VSVim/lua/vsvim/minimap/selection.lua:137": {
+        "count": 63,
+        "max_ms": 0.086416,
+        "total_ms": 1.2429119999999998
+      },
+      "[string \"vim/_core/editor\"]:407": {
+        "count": 31,
+        "max_ms": 11.842083,
+        "total_ms": 20.324165999999998
+      },
+      "...avidlee/Projects/VSVim/lua/vsvim/minimap/source_main.lua:132": {
+        "count": 80,
+        "max_ms": 0.026584,
+        "total_ms": 0.333455
+      },
+      "/Users/davidlee/Projects/VSVim/lua/vsvim/minimap/work.lua:8": {
+        "count": 87,
+        "max_ms": 2.003125,
+        "total_ms": 8.301920000000003
+      }
+    },
+    "ops": [
+      {
+        "unix_ns": 1792394704943289088,
+        "kind": "begin",
+        "generation": 2,
+        "bytes": 227,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394704943342080,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20054,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704944696064,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20317,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704946033920,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20317,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704947064064,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20365,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704948047104,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704949018880,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704950114048,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704951205888,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704952203008,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704953221120,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704954286080,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704955525120,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704956648960,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704957733120,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704958892032,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704960155904,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704961931008,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704963151104,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704964390912,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704965392896,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704966667008,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704967819008,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704968937984,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704970092032,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704971440128,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704972677120,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704973820928,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704975049984,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704976392960,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704977517056,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704978650112,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704979795968,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704981153024,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704982248960,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704983322880,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704984570880,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704985925888,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704987205120,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704988338944,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 20830,
+        "rows": 256
+      },
+      {
+        "unix_ns": 1792394704989381888,
+        "kind": "lines",
+        "generation": 2,
+        "bytes": 1352,
+        "rows": 16
+      },
+      {
+        "unix_ns": 1792394704989491968,
+        "kind": "commit",
+        "generation": 2,
+        "bytes": 71,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394704989529088,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394704997463040,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394706588153088,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394706830841088,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394706926856960,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707025120000,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707123609088,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707226597120,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707324128000,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707424418048,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707525332992,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707624868096,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707726278912,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707825441024,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394707925371904,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708027205120,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708124912896,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708225627904,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708325961984,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708426272000,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708525387008,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708589549056,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708623766016,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708724850944,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708832368128,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394708926196992,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709032035072,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709124174080,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709227484928,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709326533888,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709428713984,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709529312000,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709629501952,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709729854976,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 271,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394709750039040,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710028923904,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710129179904,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710230849024,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710331801088,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710435428096,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710534295040,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710592258048,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710622885888,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710725708032,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710828833024,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394710927955968,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711028914944,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711128416000,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711229434880,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711334479872,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711431340032,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 269,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711533984000,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711630964992,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711731653120,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711835599104,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394711932143104,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712034454016,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712131099904,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712238710016,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712335329024,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712450851072,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712538423040,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712598963968,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712623973888,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712724677120,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712827045120,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 270,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394712928700928,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 271,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394713038244096,
+        "kind": "state",
+        "generation": 2,
+        "bytes": 268,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394713189029888,
+        "kind": "begin",
+        "generation": 3,
+        "bytes": 220,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394713189117952,
+        "kind": "lines",
+        "generation": 3,
+        "bytes": 184,
+        "rows": 1
+      },
+      {
+        "unix_ns": 1792394713189227008,
+        "kind": "commit",
+        "generation": 3,
+        "bytes": 71,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394713189296128,
+        "kind": "state",
+        "generation": 3,
+        "bytes": 147,
+        "rows": 0
+      },
+      {
+        "unix_ns": 1792394713191032064,
+        "kind": "state",
+        "generation": 3,
+        "bytes": 306,
+        "rows": 0
+      }
+    ],
+    "started": 303903796365083,
+    "receive_max_ms": 0.174416,
+    "provider_max_ms": 0.775167,
+    "slow_callbacks": [
+      {
+        "unix_ns": 1792394703728428032,
+        "ms": 15.671792,
+        "key": "...2/10000/data/vsvim/lazy/lazy.nvim/lua/lazy/core/util.lua:169"
+      },
+      {
+        "unix_ns": 1792394703899119104,
+        "ms": 6.365,
+        "key": "...l/nvim-nightly/share/nvim/runtime/lua/vim/lsp/client.lua:1171"
+      },
+      {
+        "unix_ns": 1792394705416468992,
+        "ms": 5.210208,
+        "key": "[string \"vim/_core/editor\"]:407"
+      },
+      {
+        "unix_ns": 1792394705724368896,
+        "ms": 11.842083,
+        "key": "[string \"vim/_core/editor\"]:407"
+      },
+      {
+        "unix_ns": 1792394713178714880,
+        "ms": 5.366584,
+        "key": "...y/share/nvim/runtime/lua/vim/treesitter/languagetree.lua:581"
+      }
+    ]
+  }
+}

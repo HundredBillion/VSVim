@@ -507,7 +507,7 @@ host revisions, sample count, display scale and whether caches are warm.
   initial first painted content, complete initial sync, source extraction,
   edit-to-updated-band, scroll/state messages, bytes and peak host/editor memory.
   Run at least 30 warm scroll samples. Test at 1x and 2x where available.
-- [ ] **Step 2: Apply explicit acceptance budgets.** Targets on this development
+- [x] **Step 2: Apply explicit acceptance budgets.** Targets on this development
   Mac: scheduled editor work slices <=4 ms, source chunks <=256 KiB, no source
   messages for pure scroll, warm native minimap paint p95 <=8 ms, and scroll
   input-to-next-frame p95 <=33 ms. Initial full sync targets <=0.5/2/10 seconds
@@ -516,7 +516,7 @@ host revisions, sample count, display scale and whether caches are warm.
   targets, not measured native results. Record cold and warm values separately;
   a missed target requires profiling and a fix or explicit user-approved scope
   change, not a passing label.
-- [ ] **Step 3: Capture actual native behavior.** Build a test app with the
+- [x] **Step 3: Capture actual native behavior.** Build a test app with the
   repo's existing build procedure. Open a separate test window, preserving
   running user buffers. Capture code/change bands, grey occurrences and blue
   selected rows, including overlaps, long-file drag to both ends, narrow pane,

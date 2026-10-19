@@ -1,0 +1,921 @@
+{
+  "lines": 1000,
+  "revisions": {
+    "vsvim": "1dfa343411020fa82721e1fba363f64803864b93",
+    "adapter": "4f572f48c0af53d01476544ff53471ce4a6c4bc4",
+    "host": "9f7319b8759268f2f3a7e2af8303bbc4c9ffa764"
+  },
+  "samples": {
+    "initial_cold": 1,
+    "initial_warm": 1,
+    "prewarm_scroll": 30,
+    "scroll": 30,
+    "paint": 31,
+    "edit": 1
+  },
+  "analysis_quiet": {
+    "reached": true,
+    "timeout_seconds": 30,
+    "quiet_seconds": 1,
+    "observations": [
+      {
+        "status": " 52%: Loading workspace: 97/189, Loading workspace: 99/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 56%: Loading workspace: 106/188, Loading workspace: 108/189",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 61%: Loading workspace: 116/189, Loading workspace: 116/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 62%: Loading workspace: 118/189, Loading workspace: 117/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 63%: Loading workspace: 120/189, Loading workspace: 119/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 67%: Loading workspace: 128/189, Loading workspace: 128/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 74%: Loading workspace: 140/189, Loading workspace: 139/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 74%: Loading workspace: 141/189, Loading workspace: 140/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 81%: Loading workspace: 154/189, Loading workspace: 154/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 83%: Loading workspace: 157/189, Loading workspace: 156/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 84%: Loading workspace: 159/189, Loading workspace: 158/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 85%: Loading workspace: 161/189, Loading workspace: 160/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 89%: Loading workspace: 170/189, Loading workspace: 169/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": " 91%: Loading workspace: 172/189, Loading workspace: 171/188",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "100%: Loading workspace: 189/189, Loading workspace: 188/188, Loading workspace, Loading workspace",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      },
+      {
+        "status": "",
+        "diagnostics": 0,
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ]
+      }
+    ]
+  },
+  "prewarm_scroll_input_to_paint_ms": {
+    "p95": 31.665,
+    "raw": [
+      {
+        "input_ns": 1792392255904058000,
+        "paint_ns": 1792392255923830000,
+        "ms": 19.772
+      },
+      {
+        "input_ns": 1792392256001125000,
+        "paint_ns": 1792392256018795000,
+        "ms": 17.67
+      },
+      {
+        "input_ns": 1792392256100973000,
+        "paint_ns": 1792392256126583000,
+        "ms": 25.61
+      },
+      {
+        "input_ns": 1792392256201122000,
+        "paint_ns": 1792392256218088000,
+        "ms": 16.966
+      },
+      {
+        "input_ns": 1792392256300885000,
+        "paint_ns": 1792392256325650000,
+        "ms": 24.765
+      },
+      {
+        "input_ns": 1792392256400746000,
+        "paint_ns": 1792392256426096000,
+        "ms": 25.35
+      },
+      {
+        "input_ns": 1792392256500973000,
+        "paint_ns": 1792392256518062000,
+        "ms": 17.089
+      },
+      {
+        "input_ns": 1792392256600715000,
+        "paint_ns": 1792392256617275000,
+        "ms": 16.56
+      },
+      {
+        "input_ns": 1792392256700722000,
+        "paint_ns": 1792392256716418000,
+        "ms": 15.696
+      },
+      {
+        "input_ns": 1792392256800787000,
+        "paint_ns": 1792392256817850000,
+        "ms": 17.063
+      },
+      {
+        "input_ns": 1792392256900978000,
+        "paint_ns": 1792392256925015000,
+        "ms": 24.037
+      },
+      {
+        "input_ns": 1792392257001049000,
+        "paint_ns": 1792392257025186000,
+        "ms": 24.137
+      },
+      {
+        "input_ns": 1792392257100822000,
+        "paint_ns": 1792392257126339000,
+        "ms": 25.517
+      },
+      {
+        "input_ns": 1792392257200951000,
+        "paint_ns": 1792392257224031000,
+        "ms": 23.08
+      },
+      {
+        "input_ns": 1792392257301026000,
+        "paint_ns": 1792392257323907000,
+        "ms": 22.881
+      },
+      {
+        "input_ns": 1792392257401105000,
+        "paint_ns": 1792392257419033000,
+        "ms": 17.928
+      },
+      {
+        "input_ns": 1792392257500966000,
+        "paint_ns": 1792392257525476000,
+        "ms": 24.51
+      },
+      {
+        "input_ns": 1792392257601066000,
+        "paint_ns": 1792392257618315000,
+        "ms": 17.249
+      },
+      {
+        "input_ns": 1792392257701087000,
+        "paint_ns": 1792392257726908000,
+        "ms": 25.821
+      },
+      {
+        "input_ns": 1792392257801101000,
+        "paint_ns": 1792392257817906000,
+        "ms": 16.805
+      },
+      {
+        "input_ns": 1792392257901592000,
+        "paint_ns": 1792392257926274000,
+        "ms": 24.682
+      },
+      {
+        "input_ns": 1792392258001628000,
+        "paint_ns": 1792392258027110000,
+        "ms": 25.482
+      },
+      {
+        "input_ns": 1792392258101041000,
+        "paint_ns": 1792392258132342000,
+        "ms": 31.301
+      },
+      {
+        "input_ns": 1792392258201036000,
+        "paint_ns": 1792392258216679000,
+        "ms": 15.643
+      },
+      {
+        "input_ns": 1792392258300849000,
+        "paint_ns": 1792392258332514000,
+        "ms": 31.665
+      },
+      {
+        "input_ns": 1792392258401294000,
+        "paint_ns": 1792392258425805000,
+        "ms": 24.511
+      },
+      {
+        "input_ns": 1792392258502928000,
+        "paint_ns": 1792392258532024000,
+        "ms": 29.096
+      },
+      {
+        "input_ns": 1792392258603572000,
+        "paint_ns": 1792392258642143000,
+        "ms": 38.571
+      },
+      {
+        "input_ns": 1792392258701320000,
+        "paint_ns": 1792392258725204000,
+        "ms": 23.884
+      },
+      {
+        "input_ns": 1792392258802709000,
+        "paint_ns": 1792392258831246000,
+        "ms": 28.537
+      }
+    ]
+  },
+  "display_scale": 2.0,
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "initial": {
+    "cold": {
+      "cache": "process-cold; OS caches uncontrolled",
+      "source_ms": 51.292625,
+      "complete_source_sync_ms": 55.89504,
+      "first_painted_content_ms": 69.672984
+    },
+    "warm": {
+      "cache": "same-process warm",
+      "source_ms": 51.292583,
+      "complete_source_sync_ms": 55.608064,
+      "first_painted_content_ms": 67.525088
+    }
+  },
+  "scroll_input_to_paint_ms": {
+    "p95": 56.036,
+    "raw": [
+      {
+        "input_ns": 1792392259104178000,
+        "paint_ns": 1792392259150213000,
+        "ms": 46.035
+      },
+      {
+        "input_ns": 1792392259203372000,
+        "paint_ns": 1792392259239085000,
+        "ms": 35.713
+      },
+      {
+        "input_ns": 1792392259302180000,
+        "paint_ns": 1792392259327216000,
+        "ms": 25.036
+      },
+      {
+        "input_ns": 1792392259403250000,
+        "paint_ns": 1792392259429604000,
+        "ms": 26.354
+      },
+      {
+        "input_ns": 1792392259502160000,
+        "paint_ns": 1792392259525855000,
+        "ms": 23.695
+      },
+      {
+        "input_ns": 1792392259603706000,
+        "paint_ns": 1792392259658546000,
+        "ms": 54.84
+      },
+      {
+        "input_ns": 1792392259702211000,
+        "paint_ns": 1792392259727822000,
+        "ms": 25.611
+      },
+      {
+        "input_ns": 1792392259802181000,
+        "paint_ns": 1792392259826401000,
+        "ms": 24.22
+      },
+      {
+        "input_ns": 1792392259903530000,
+        "paint_ns": 1792392259941392000,
+        "ms": 37.862
+      },
+      {
+        "input_ns": 1792392260001697000,
+        "paint_ns": 1792392260033770000,
+        "ms": 32.073
+      },
+      {
+        "input_ns": 1792392260103243000,
+        "paint_ns": 1792392260129058000,
+        "ms": 25.815
+      },
+      {
+        "input_ns": 1792392260202132000,
+        "paint_ns": 1792392260228064000,
+        "ms": 25.932
+      },
+      {
+        "input_ns": 1792392260303096000,
+        "paint_ns": 1792392260328461000,
+        "ms": 25.365
+      },
+      {
+        "input_ns": 1792392260403999000,
+        "paint_ns": 1792392260460035000,
+        "ms": 56.036
+      },
+      {
+        "input_ns": 1792392260502129000,
+        "paint_ns": 1792392260526580000,
+        "ms": 24.451
+      },
+      {
+        "input_ns": 1792392260602608000,
+        "paint_ns": 1792392260649587000,
+        "ms": 46.979
+      },
+      {
+        "input_ns": 1792392260701368000,
+        "paint_ns": 1792392260751198000,
+        "ms": 49.83
+      },
+      {
+        "input_ns": 1792392260801124000,
+        "paint_ns": 1792392260815553000,
+        "ms": 14.429
+      },
+      {
+        "input_ns": 1792392260901359000,
+        "paint_ns": 1792392260916467000,
+        "ms": 15.108
+      },
+      {
+        "input_ns": 1792392261001349000,
+        "paint_ns": 1792392261026684000,
+        "ms": 25.335
+      },
+      {
+        "input_ns": 1792392261101927000,
+        "paint_ns": 1792392261126103000,
+        "ms": 24.176
+      },
+      {
+        "input_ns": 1792392261202058000,
+        "paint_ns": 1792392261230944000,
+        "ms": 28.886
+      },
+      {
+        "input_ns": 1792392261303056000,
+        "paint_ns": 1792392261359264000,
+        "ms": 56.208
+      },
+      {
+        "input_ns": 1792392261402570000,
+        "paint_ns": 1792392261431344000,
+        "ms": 28.774
+      },
+      {
+        "input_ns": 1792392261501380000,
+        "paint_ns": 1792392261526945000,
+        "ms": 25.565
+      },
+      {
+        "input_ns": 1792392261603298000,
+        "paint_ns": 1792392261630526000,
+        "ms": 27.228
+      },
+      {
+        "input_ns": 1792392261704027000,
+        "paint_ns": 1792392261759673000,
+        "ms": 55.646
+      },
+      {
+        "input_ns": 1792392261802718000,
+        "paint_ns": 1792392261845781000,
+        "ms": 43.063
+      },
+      {
+        "input_ns": 1792392261902104000,
+        "paint_ns": 1792392261928552000,
+        "ms": 26.448
+      },
+      {
+        "input_ns": 1792392262003092000,
+        "paint_ns": 1792392262027827000,
+        "ms": 24.735
+      }
+    ]
+  },
+  "warm_native_paint_ms": {
+    "p95": 1.996333,
+    "raw": [
+      1.719542,
+      1.64225,
+      1.8906669999999999,
+      1.7545410000000001,
+      1.470083,
+      1.9334580000000001,
+      1.660958,
+      1.5697079999999999,
+      1.7210420000000002,
+      1.309917,
+      1.839208,
+      1.972709,
+      1.996333,
+      1.9872919999999998,
+      1.89275,
+      1.0725,
+      0.780417,
+      0.881584,
+      0.833708,
+      0.8036249999999999,
+      1.091875,
+      1.462,
+      1.8688330000000002,
+      1.612666,
+      1.511625,
+      1.789083,
+      1.794708,
+      2.0640419999999997,
+      1.7073340000000001,
+      1.66175,
+      1.8467500000000001
+    ]
+  },
+  "edit_to_updated_band_ms": 52.911,
+  "edit_source_repaint_ms": 32.337,
+  "edit_expected_band": {
+    "start": 1,
+    "kind": "modified",
+    "paint": {
+      "event": "paint",
+      "generation": 3,
+      "viewport": [
+        1,
+        47
+      ],
+      "offset": 0,
+      "rows": 293,
+      "state_revision": 93,
+      "change_bands": 3,
+      "first_line_change": true,
+      "occurrences": 0,
+      "selection": false,
+      "scale": 2.0,
+      "ms": 0.97025,
+      "unix_ns": 1792392262275043000
+    }
+  },
+  "scheduled_callback_max_ms": 0.972458,
+  "query_config": {
+    "safe": true,
+    "reason": null
+  },
+  "worker": {
+    "pid": 36124,
+    "request": 2,
+    "buffer": 1
+  },
+  "dependency_state": "copied installed Mason packages; no user installation changed",
+  "source_chunk_max_bytes": 20317,
+  "source_bytes": 158330,
+  "pure_scroll_source_messages": 0,
+  "pure_scroll_state_messages": 31,
+  "peak_rss": {
+    "host_kib": 104352,
+    "editor_kib": 51552,
+    "editor_pid": 36052,
+    "worker_pid": 36066
+  },
+  "initial_rpc_heartbeat_ms": {
+    "samples": 2,
+    "max": 1.156625,
+    "p95": 1.156625,
+    "raw": [
+      0.328583,
+      1.156625
+    ]
+  },
+  "memory_sampling_ms": 100,
+  "memory_sampling_method": "macOS libproc TASKINFO and owned-child discovery; no subprocesses",
+  "measurement": "CPU canvas paint submission end; not GPU presentation/compositor timestamp",
+  "acceptance": {
+    "analysis_quiet": true,
+    "editor_slices": true,
+    "source_chunks": true,
+    "scroll_no_source": true,
+    "native_paint": true,
+    "scroll_latency": false,
+    "initial_cold": true,
+    "initial_warm": true,
+    "edit": true
+  }
+}

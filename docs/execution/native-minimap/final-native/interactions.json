@@ -1,0 +1,208 @@
+{
+  "meta": {
+    "root": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb",
+    "repo": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/project",
+    "file": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/project/demo.py",
+    "control": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-control.json",
+    "server": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-editor.sock",
+    "pid": 70091,
+    "initial": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-initial.png"
+  },
+  "revisions": {
+    "VSVim": "95ffdcb252ce419c6dca97d1adf32a527519ff0d",
+    "sprite.nvim": "bb309536778274f9e2d9519f6a25d9e8f28baecf",
+    "Sprite": "386f8c599eb5c7d37c91fab15132bbc09ea9442a"
+  },
+  "cases": {
+    "initial": {
+      "target": {
+        "buffer": 1,
+        "total": 232,
+        "window": 1000,
+        "busy": false,
+        "target": "b1:w1000:1",
+        "generation": 2
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-current-native-code-git.png",
+      "durable_screenshot": "docs/execution/native-minimap/final-native/current-native-code-git.png"
+    },
+    "word-overlap": {
+      "state": {
+        "bottom": 47,
+        "cursor": [
+          1,
+          3
+        ],
+        "top": 1,
+        "selection": {
+          "occurrences": [
+            1,
+            18,
+            19,
+            31,
+            92,
+            126,
+            129,
+            133,
+            144,
+            181,
+            184,
+            196,
+            197,
+            211
+          ],
+          "selection": [
+            1,
+            1
+          ],
+          "word": "file"
+        },
+        "mode": "v"
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-current-native-word-git-overlap.png",
+      "durable_screenshot": "docs/execution/native-minimap/final-native/current-native-word-git-overlap.png"
+    },
+    "selected-rows": {
+      "state": {
+        "bottom": 47,
+        "cursor": [
+          27,
+          3
+        ],
+        "top": 1,
+        "selection": {
+          "occurrences": [],
+          "selection": [
+            13,
+            27
+          ],
+          "word": null
+        },
+        "mode": "V"
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-current-native-selected-rows.png",
+      "durable_screenshot": "docs/execution/native-minimap/final-native/current-native-selected-rows.png"
+    },
+    "narrow": {
+      "method": "supported native SVGTree dock with explicit isolated fixture root reduces editor surface below480px",
+      "fixture_root": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/project",
+      "uis": [
+        {
+          "width": 34,
+          "height": 48,
+          "rgb": true,
+          "override": false,
+          "term_name": "",
+          "term_background": "",
+          "term_colors": 0,
+          "stdin_tty": false,
+          "stdout_tty": false,
+          "ext_cmdline": false,
+          "ext_popupmenu": false,
+          "ext_tabline": true,
+          "ext_wildmenu": false,
+          "ext_messages": false,
+          "ext_linegrid": true,
+          "ext_multigrid": false,
+          "ext_hlstate": true,
+          "ext_termcolors": false,
+          "chan": 1
+        }
+      ],
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-current-native-narrow.png",
+      "verified": true,
+      "host_pid": 73063,
+      "durable_screenshot": "docs/execution/native-minimap/final-native/current-native-narrow.png"
+    },
+    "light": {
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-current-native-light.png",
+      "durable_screenshot": "docs/execution/native-minimap/final-native/current-native-light.png"
+    },
+    "preserved-native-copy": {
+      "state": {
+        "bottom": 232,
+        "cursor": [
+          215,
+          0
+        ],
+        "top": 192,
+        "selection": {
+          "occurrences": [],
+          "selection": [
+            1,
+            3
+          ],
+          "word": null
+        },
+        "mode": "n"
+      },
+      "clipboard": [
+        [
+          "file = \"file\"",
+          "import os",
+          "import signal",
+          ""
+        ],
+        "V"
+      ],
+      "provider": "isolated in-memory, no system clipboard access",
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-current-native-preserved-copy.png",
+      "durable_screenshot": "docs/execution/native-minimap/final-native/current-native-preserved-copy.png"
+    },
+    "edit-after-browse": {
+      "removed_rows": 3,
+      "actual_first_line": [
+        "from pathlib import Path"
+      ],
+      "expected_first_line": [
+        "from pathlib import Path"
+      ]
+    },
+    "long-bottom": {
+      "state": {
+        "cursor": [
+          99954,
+          0
+        ],
+        "top": 99954,
+        "bottom": 100000,
+        "selection": {
+          "occurrences": [],
+          "selection": null,
+          "word": null
+        },
+        "mode": "n"
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-current-native-long-bottom.png",
+      "durable_screenshot": "docs/execution/native-minimap/final-native/current-native-long-bottom.png"
+    },
+    "long-top": {
+      "state": {
+        "cursor": [
+          1,
+          0
+        ],
+        "top": 1,
+        "bottom": 47,
+        "selection": {
+          "occurrences": [],
+          "selection": null,
+          "word": null
+        },
+        "mode": "n"
+      },
+      "screenshot": "/var/folders/7d/jn501sx11w3_c1yk3ch_7rw00000gp/T/vsvim-minimap-live-6pogdksb/final3-current-native-long-top.png",
+      "durable_screenshot": "docs/execution/native-minimap/final-native/current-native-long-top.png"
+    }
+  },
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "pass": true
+}

@@ -162,8 +162,10 @@ sprite.nvim and Sprite. Publishing those dependencies and updating VSVim's
 adapter pin are outstanding; the distributed pin still points to the published
 adapter without minimap support. Development checks use isolated local copies,
 leaving installed plugins unchanged.
-Tested local revisions are sprite.nvim `4f572f48c0af53d01476544ff53471ce4a6c4bc4`
-and Sprite `2e69e378f64d3954973007f696e4f8113c624e0d`.
+Tested local revisions are sprite.nvim `bb309536778274f9e2d9519f6a25d9e8f28baecf`
+and Sprite `386f8c599eb5c7d37c91fab15132bbc09ea9442a`.
+[Execution evidence](docs/execution/10-19-2026-native-minimap.md) records the
+final passing measurements and the physical-display/configuration limits.
 
 Sprite controls font metrics and native panel geometry. This is an initial
 visual implementation, not a claim of pixel-identical VS Code rendering.

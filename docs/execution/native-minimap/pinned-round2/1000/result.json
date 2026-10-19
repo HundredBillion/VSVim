@@ -1,0 +1,2908 @@
+{
+  "lines": 1000,
+  "revisions": {
+    "vsvim": "f99bf02e8c8e13fa67da9d8c30220256bc342ba9",
+    "adapter": "38852bd6597cd4daf1fc1bb5fb566e6933d8e201",
+    "host": "ec55e8bca0de58c54fb610ce0b63e2b76c4e5764"
+  },
+  "samples": {
+    "initial_cold": 1,
+    "initial_warm": 1,
+    "prewarm_scroll": 30,
+    "scroll": 30,
+    "paint": 31,
+    "edit": 1
+  },
+  "analysis_quiet": {
+    "reached": true,
+    "timeout_seconds": 30,
+    "quiet_seconds": 1,
+    "observations": [
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 16%: Loading workspace: 31/188, Loading workspace: 32/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 17%: Loading workspace: 33/188, Loading workspace: 34/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 19%: Loading workspace: 35/188, Loading workspace: 36/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 19%: Loading workspace: 36/188, Loading workspace: 37/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 20%: Loading workspace: 37/188, Loading workspace: 38/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 20%: Loading workspace: 38/188, Loading workspace: 39/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 22%: Loading workspace: 41/188, Loading workspace: 42/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 23%: Loading workspace: 43/188, Loading workspace: 44/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 24%: Loading workspace: 45/188, Loading workspace: 46/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 25%: Loading workspace: 48/188, Loading workspace: 49/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 27%: Loading workspace: 51/188, Loading workspace: 52/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 28%: Loading workspace: 52/188, Loading workspace: 53/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 28%: Loading workspace: 53/188, Loading workspace: 54/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 30%: Loading workspace: 57/188, Loading workspace: 58/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 31%: Loading workspace: 58/188, Loading workspace: 59/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 32%: Loading workspace: 61/188, Loading workspace: 62/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 33%: Loading workspace: 63/188, Loading workspace: 64/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 35%: Loading workspace: 66/188, Loading workspace: 67/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 36%: Loading workspace: 68/188, Loading workspace: 69/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 38%: Loading workspace: 71/188, Loading workspace: 72/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 38%: Loading workspace: 72/188, Loading workspace: 73/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 41%: Loading workspace: 77/188, Loading workspace: 78/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 43%: Loading workspace: 82/188, Loading workspace: 83/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 45%: Loading workspace: 85/188, Loading workspace: 86/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 48%: Loading workspace: 93/189, Loading workspace: 93/188",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 50%: Loading workspace: 95/188, Loading workspace: 96/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 53%: Loading workspace: 100/188, Loading workspace: 101/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 53%: Loading workspace: 101/188, Loading workspace: 102/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 54%: Loading workspace: 102/188, Loading workspace: 103/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 55%: Loading workspace: 103/188, Loading workspace: 104/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 56%: Loading workspace: 105/188, Loading workspace: 106/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 56%: Loading workspace: 107/189, Loading workspace: 107/188",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 57%: Loading workspace: 107/188, Loading workspace: 108/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 57%: Loading workspace: 108/188, Loading workspace: 109/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 58%: Loading workspace: 109/188, Loading workspace: 110/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 58%: Loading workspace: 110/188, Loading workspace: 111/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 59%: Loading workspace: 111/188, Loading workspace: 112/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 60%: Loading workspace: 113/188, Loading workspace: 114/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 60%: Loading workspace: 114/188, Loading workspace: 115/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 61%: Loading workspace: 116/189, Loading workspace: 116/188",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 61%: Loading workspace: 116/188, Loading workspace: 117/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 62%: Loading workspace: 117/188, Loading workspace: 118/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 63%: Loading workspace: 119/188, Loading workspace: 120/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 65%: Loading workspace: 124/189, Loading workspace: 124/188",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 66%: Loading workspace: 124/188, Loading workspace: 125/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 67%: Loading workspace: 127/188, Loading workspace: 128/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 68%: Loading workspace: 128/188, Loading workspace: 129/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 68%: Loading workspace: 129/188, Loading workspace: 130/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 69%: Loading workspace: 130/188, Loading workspace: 131/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 70%: Loading workspace: 132/188, Loading workspace: 133/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 71%: Loading workspace: 134/188, Loading workspace: 135/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 73%: Loading workspace: 138/188, Loading workspace: 139/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 74%: Loading workspace: 139/188, Loading workspace: 140/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 75%: Loading workspace: 142/189, Loading workspace: 141/188",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 76%: Loading workspace: 144/188, Loading workspace: 145/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 77%: Loading workspace: 146/188, Loading workspace: 147/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 78%: Loading workspace: 147/188, Loading workspace: 148/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 78%: Loading workspace: 148/188, Loading workspace: 149/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 79%: Loading workspace: 150/188, Loading workspace: 151/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 80%: Loading workspace: 152/188, Loading workspace: 153/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 82%: Loading workspace: 154/188, Loading workspace: 155/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 82%: Loading workspace: 155/188, Loading workspace: 156/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 83%: Loading workspace: 156/188, Loading workspace: 157/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 84%: Loading workspace: 158/188, Loading workspace: 159/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 85%: Loading workspace: 160/188, Loading workspace: 161/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 86%: Loading workspace: 162/188, Loading workspace: 163/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 86%: Loading workspace: 163/188, Loading workspace: 164/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 87%: Loading workspace: 164/188, Loading workspace: 165/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 87%: Loading workspace: 165/188, Loading workspace: 166/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 88%: Loading workspace: 166/188, Loading workspace: 167/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 88%: Loading workspace: 167/188, Loading workspace: 168/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 89%: Loading workspace: 168/188, Loading workspace: 169/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 91%: Loading workspace: 169/188, Loading workspace: 170/189, Loading workspace: 173/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": " 91%: Loading workspace: 172/188, Loading workspace: 173/189",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "Loading workspace, Loading workspace",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      },
+      {
+        "clients": [
+          {
+            "name": "lua_ls",
+            "initialized": true
+          }
+        ],
+        "status": "",
+        "diagnostics": 0
+      }
+    ]
+  },
+  "prewarm_scroll_input_to_paint_ms": {
+    "p95": 33.327,
+    "raw": [
+      {
+        "input_ns": 1792394691359632000,
+        "paint_ns": 1792394691380987000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 21.355
+      },
+      {
+        "input_ns": 1792394691448173000,
+        "paint_ns": 1792394691482360000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 34.187
+      },
+      {
+        "input_ns": 1792394691546722000,
+        "paint_ns": 1792394691565468000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.746
+      },
+      {
+        "input_ns": 1792394691648515000,
+        "paint_ns": 1792394691665775000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.26
+      },
+      {
+        "input_ns": 1792394691747487000,
+        "paint_ns": 1792394691765896000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.409
+      },
+      {
+        "input_ns": 1792394691848428000,
+        "paint_ns": 1792394691865967000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.539
+      },
+      {
+        "input_ns": 1792394691948982000,
+        "paint_ns": 1792394691964089000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 15.107
+      },
+      {
+        "input_ns": 1792394692048823000,
+        "paint_ns": 1792394692064216000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 15.393
+      },
+      {
+        "input_ns": 1792394692148891000,
+        "paint_ns": 1792394692166217000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.326
+      },
+      {
+        "input_ns": 1792394692247419000,
+        "paint_ns": 1792394692255350000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 7.931
+      },
+      {
+        "input_ns": 1792394692347315000,
+        "paint_ns": 1792394692364807000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.492
+      },
+      {
+        "input_ns": 1792394692447568000,
+        "paint_ns": 1792394692465489000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.921
+      },
+      {
+        "input_ns": 1792394692548595000,
+        "paint_ns": 1792394692566004000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.409
+      },
+      {
+        "input_ns": 1792394692648386000,
+        "paint_ns": 1792394692680964000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 32.578
+      },
+      {
+        "input_ns": 1792394692747099000,
+        "paint_ns": 1792394692765127000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.028
+      },
+      {
+        "input_ns": 1792394692848601000,
+        "paint_ns": 1792394692865336000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 16.735
+      },
+      {
+        "input_ns": 1792394692948675000,
+        "paint_ns": 1792394692965836000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.161
+      },
+      {
+        "input_ns": 1792394693048785000,
+        "paint_ns": 1792394693064037000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 15.252
+      },
+      {
+        "input_ns": 1792394693148867000,
+        "paint_ns": 1792394693164777000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 15.91
+      },
+      {
+        "input_ns": 1792394693248397000,
+        "paint_ns": 1792394693265199000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 16.802
+      },
+      {
+        "input_ns": 1792394693348186000,
+        "paint_ns": 1792394693365729000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.543
+      },
+      {
+        "input_ns": 1792394693448546000,
+        "paint_ns": 1792394693466106000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.56
+      },
+      {
+        "input_ns": 1792394693548239000,
+        "paint_ns": 1792394693566217000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.978
+      },
+      {
+        "input_ns": 1792394693648324000,
+        "paint_ns": 1792394693673449000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 25.125
+      },
+      {
+        "input_ns": 1792394693748436000,
+        "paint_ns": 1792394693765601000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.165
+      },
+      {
+        "input_ns": 1792394693848524000,
+        "paint_ns": 1792394693881851000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 33.327
+      },
+      {
+        "input_ns": 1792394693946742000,
+        "paint_ns": 1792394693965078000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.336
+      },
+      {
+        "input_ns": 1792394694049017000,
+        "paint_ns": 1792394694065480000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 16.463
+      },
+      {
+        "input_ns": 1792394694148400000,
+        "paint_ns": 1792394694165923000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.523
+      },
+      {
+        "input_ns": 1792394694247502000,
+        "paint_ns": 1792394694255758000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 8.256
+      }
+    ]
+  },
+  "display_scale": 2.0,
+  "window": {
+    "active": true,
+    "height": 948,
+    "visible": true,
+    "width": 504,
+    "occluded": 0,
+    "key": true,
+    "scale": 2
+  },
+  "initial": {
+    "cold": {
+      "cache": "process-cold; OS caches uncontrolled",
+      "source_ms": 72.309958,
+      "complete_source_sync_ms": 77.753088,
+      "first_painted_content_ms": 93.479096
+    },
+    "warm": {
+      "cache": "same-process warm",
+      "source_ms": 52.397667,
+      "complete_source_sync_ms": 61.187072,
+      "first_painted_content_ms": 76.650008
+    }
+  },
+  "scroll_input_to_paint_ms": {
+    "p95": 33.867,
+    "raw": [
+      {
+        "input_ns": 1792394694547697000,
+        "paint_ns": 1792394694565451000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.754
+      },
+      {
+        "input_ns": 1792394694647765000,
+        "paint_ns": 1792394694665717000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.952
+      },
+      {
+        "input_ns": 1792394694748861000,
+        "paint_ns": 1792394694765862000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.001
+      },
+      {
+        "input_ns": 1792394694848566000,
+        "paint_ns": 1792394694865328000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 16.762
+      },
+      {
+        "input_ns": 1792394694948448000,
+        "paint_ns": 1792394694973998000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 25.55
+      },
+      {
+        "input_ns": 1792394695047288000,
+        "paint_ns": 1792394695081777000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 34.489
+      },
+      {
+        "input_ns": 1792394695146335000,
+        "paint_ns": 1792394695173616000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 27.281
+      },
+      {
+        "input_ns": 1792394695248096000,
+        "paint_ns": 1792394695266162000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.066
+      },
+      {
+        "input_ns": 1792394695348396000,
+        "paint_ns": 1792394695366267000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.871
+      },
+      {
+        "input_ns": 1792394695448223000,
+        "paint_ns": 1792394695465766000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.543
+      },
+      {
+        "input_ns": 1792394695547250000,
+        "paint_ns": 1792394695565745000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.495
+      },
+      {
+        "input_ns": 1792394695648485000,
+        "paint_ns": 1792394695665586000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.101
+      },
+      {
+        "input_ns": 1792394695748549000,
+        "paint_ns": 1792394695765694000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.145
+      },
+      {
+        "input_ns": 1792394695848598000,
+        "paint_ns": 1792394695866037000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.439
+      },
+      {
+        "input_ns": 1792394695947935000,
+        "paint_ns": 1792394695966207000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.272
+      },
+      {
+        "input_ns": 1792394696049285000,
+        "paint_ns": 1792394696065696000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 16.411
+      },
+      {
+        "input_ns": 1792394696148528000,
+        "paint_ns": 1792394696164139000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 15.611
+      },
+      {
+        "input_ns": 1792394696246600000,
+        "paint_ns": 1792394696263775000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.175
+      },
+      {
+        "input_ns": 1792394696346937000,
+        "paint_ns": 1792394696364381000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.444
+      },
+      {
+        "input_ns": 1792394696446820000,
+        "paint_ns": 1792394696456871000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 10.051
+      },
+      {
+        "input_ns": 1792394696548610000,
+        "paint_ns": 1792394696566198000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.588
+      },
+      {
+        "input_ns": 1792394696648130000,
+        "paint_ns": 1792394696666356000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.226
+      },
+      {
+        "input_ns": 1792394696748512000,
+        "paint_ns": 1792394696766079000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.567
+      },
+      {
+        "input_ns": 1792394696848504000,
+        "paint_ns": 1792394696865998000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.494
+      },
+      {
+        "input_ns": 1792394696948164000,
+        "paint_ns": 1792394696966531000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 18.367
+      },
+      {
+        "input_ns": 1792394697048412000,
+        "paint_ns": 1792394697064569000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 16.157
+      },
+      {
+        "input_ns": 1792394697148481000,
+        "paint_ns": 1792394697164082000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 15.601
+      },
+      {
+        "input_ns": 1792394697248088000,
+        "paint_ns": 1792394697265794000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.706
+      },
+      {
+        "input_ns": 1792394697348713000,
+        "paint_ns": 1792394697365873000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 17.16
+      },
+      {
+        "input_ns": 1792394697448245000,
+        "paint_ns": 1792394697482112000,
+        "window": {
+          "active": true,
+          "height": 948,
+          "visible": true,
+          "width": 504,
+          "occluded": 0,
+          "key": true,
+          "scale": 2
+        },
+        "paint_active": true,
+        "ms": 33.867
+      }
+    ]
+  },
+  "warm_native_paint_ms": {
+    "p95": 2.186458,
+    "raw": [
+      1.6912500000000001,
+      1.714,
+      1.8683750000000001,
+      1.7484169999999999,
+      1.685125,
+      1.501792,
+      1.635917,
+      1.951333,
+      1.956625,
+      1.8916250000000001,
+      1.930583,
+      2.1251249999999997,
+      1.888166,
+      2.163583,
+      2.186458,
+      1.813542,
+      1.956041,
+      0.813166,
+      1.088417,
+      1.294042,
+      1.6414170000000001,
+      2.104958,
+      2.240916,
+      1.985208,
+      1.955708,
+      1.9815409999999998,
+      1.8291250000000001,
+      1.895875,
+      1.80375,
+      1.87225,
+      1.647917
+    ]
+  },
+  "edit_to_updated_band_ms": 49.128,
+  "edit_source_repaint_ms": 37.028,
+  "edit_expected_band": {
+    "start": 1,
+    "kind": "modified",
+    "paint": {
+      "event": "paint",
+      "generation": 3,
+      "viewport": [
+        1,
+        47
+      ],
+      "offset": 0,
+      "rows": 293,
+      "state_revision": 97,
+      "change_bands": 3,
+      "first_line_change": true,
+      "occurrences": 0,
+      "selection": false,
+      "scale": 2.0,
+      "active": true,
+      "ms": 1.050708,
+      "unix_ns": 1792394697730309000
+    }
+  },
+  "scheduled_callback_max_ms": 1.153209,
+  "query_config": {
+    "safe": true,
+    "reason": null
+  },
+  "worker": {
+    "request": 2,
+    "pid": 60877,
+    "buffer": 1
+  },
+  "dependency_state": "copied installed Mason packages; no user installation changed",
+  "source_chunk_max_bytes": 20317,
+  "source_bytes": 158330,
+  "pure_scroll_source_messages": 0,
+  "pure_scroll_state_messages": 31,
+  "peak_rss": {
+    "host_kib": 104656,
+    "editor_kib": 50176,
+    "editor_pid": 60797,
+    "worker_pid": 60877,
+    "worker_pids": [
+      60811,
+      60877
+    ],
+    "worker_kib": 26512
+  },
+  "initial_rpc_heartbeat_ms": {
+    "samples": 2,
+    "max": 11.303292,
+    "p95": 11.303292,
+    "raw": [
+      11.303292,
+      0.116917
+    ]
+  },
+  "memory_sampling_ms": 100,
+  "memory_sampling_method": "macOS libproc TASKINFO and owned-child discovery; no subprocesses",
+  "measurement": "CPU canvas paint submission end; not GPU presentation/compositor timestamp",
+  "acceptance": {
+    "analysis_quiet": true,
+    "active_scroll": true,
+    "editor_slices": true,
+    "source_chunks": true,
+    "scroll_no_source": true,
+    "native_paint": true,
+    "scroll_latency": false,
+    "initial_cold": true,
+    "initial_warm": true,
+    "edit": true
+  }
+}
