@@ -57,6 +57,7 @@ sys.exit(23)
                        SPRITE_PANE='0')
             env.pop('NVIM', None)
             env.pop('VSVIM_NATIVE', None)
+            env.pop('VSVIM_SPRITE_SOURCE', None)
             base = ['-u', str(ROOT / 'init.lua')]
             for args, native in [(['a b.lua'], True), (['--headless', '+qa'], False),
                                  (['--version'], False), (['--embed'], False),
