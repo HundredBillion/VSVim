@@ -136,6 +136,33 @@ class FollowRegressions(unittest.TestCase):
         self.wait(lambda:self.editor.current.buffer[0]=='external')
         self.assertTrue(self.editor.exec_lua('return require("vsvim.follow").status().enabled'))
 
+    def test_follow_from_wipe_on_hide_sidebar_preserves_sidebar_and_focus(self):
+        self.file.write_text('main editor\n')
+        target = self.root / 'other.lua'
+        target.write_text('first\noriginal\n')
+        self.editor.command('edit ' + self.editor.funcs.fnameescape(str(self.file)))
+        editor_window = self.editor.current.window.handle
+        sidebar = self.editor.exec_lua("""
+            vim.cmd('topleft vsplit')
+            local win = vim.api.nvim_get_current_win()
+            local buf = vim.api.nvim_create_buf(false,true)
+            vim.api.nvim_win_set_buf(win,buf)
+            vim.bo[buf].buftype='nofile'
+            vim.bo[buf].bufhidden='wipe'
+            vim.bo[buf].filetype='svgtree'
+            vim.api.nvim_buf_set_lines(buf,0,-1,false,{'SVGTree project files'})
+            return {win=win,buf=buf}
+        """)
+        self.editor.command('VSVimFollowOn')
+        self.wait(lambda:self.editor.exec_lua('return require("vsvim.follow").status().ready'))
+        target.write_text('first\nexternal\n')
+        self.wait(lambda:self.editor.api.win_get_buf(editor_window).name==str(target))
+        self.assertTrue(self.editor.api.buf_is_valid(sidebar['buf']))
+        self.assertEqual(self.editor.api.win_get_buf(sidebar['win']).number,sidebar['buf'])
+        self.assertEqual(self.editor.api.buf_get_lines(sidebar['buf'],0,-1,False),['SVGTree project files'])
+        self.assertEqual(self.editor.current.window.handle,sidebar['win'])
+        self.assertTrue(self.editor.exec_lua('return require("vsvim.follow").status().enabled'))
+
     def tearDown(self):
         try:
             self.editor.command('qa!')
