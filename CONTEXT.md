@@ -59,7 +59,9 @@ change, without approving the proposal's remaining changes.
 _Avoid_: Proposal approval when only one hunk was approved
 
 **Following**:
-Navigation that tracks the selected coding agent's current known location.
+Navigation that tracks newly observed external file changes in the explorer project.
+Filesystem Follow does not identify the process or agent that changed a file.
+_Avoid_: Agent identity, exact agent cursor
 
 **Paused following**:
 A reading state in which agent activity continues to be tracked without

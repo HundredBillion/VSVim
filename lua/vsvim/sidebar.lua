@@ -8,6 +8,7 @@ function M.explorer(root, opts)
   local token = generation
   local tree = require('svgtree')
   root = root or tree.root() or require('scm.scope').current()
+  require('vsvim.follow').remember_root(root)
   require('scm').handoff(function()
     if token ~= generation then return end
     if opts.open then tree.open(root) else tree.toggle(root) end

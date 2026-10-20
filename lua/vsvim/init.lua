@@ -106,6 +106,7 @@ function M.setup()
   require('vsvim.lsp').setup()
   require('vsvim.navigation').setup()
   require('vsvim.editing').setup()
+  require('vsvim.follow').setup()
   require('vsvim.appearance').setup()
   require('vsvim.markdown').setup()
   local user = vim.fn.stdpath('config') .. '/user.lua'

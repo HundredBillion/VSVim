@@ -7,12 +7,13 @@ end
 function M.tabline() return require('vsvim.tabs').render() end
 
 function M.statusline()
-  if vim.bo.filetype == 'vsvim_welcome' then return '%#StatusLine#  VSVim%=%#Comment#Ready  ' end
+  local follow = require('vsvim.follow').statusline()
+  if vim.bo.filetype == 'vsvim_welcome' then return follow .. '%#StatusLine#  VSVim%=%#Comment#Ready  ' end
   local mode = vim.fn.mode():sub(1, 1)
   local label = ({ n = 'NORMAL', i = 'INSERT', v = 'VISUAL', V = 'VISUAL',
     ['\22'] = 'VISUAL', c = 'COMMAND', R = 'REPLACE', t = 'TERMINAL' })[mode] or 'NORMAL'
   local filetype = vim.bo.filetype ~= '' and vim.bo.filetype or 'Plain Text'
-  return '%#VSVimMode#  ' .. label .. '  %#StatusLine# %m%r%='
+  return follow .. '%#VSVimMode#  ' .. label .. '  %#StatusLine# %m%r%='
     .. 'Ln %l, Col %c   Spaces: ' .. vim.bo.shiftwidth .. '   '
     .. escape(vim.bo.fileencoding ~= '' and vim.bo.fileencoding or vim.o.encoding)
     .. '   ' .. escape(filetype) .. '  '

@@ -1,6 +1,6 @@
 # Follow external file changes
 
-Status: proposed implementation design; the external-change approach is approved.
+Status: approved and implemented on the feat/follow feature branches.
 
 ## Outcome
 
