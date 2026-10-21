@@ -57,18 +57,21 @@ function M.setup()
     {
       'HundredBillion/sprite.nvim',
       dir = vim.env.VSVIM_SPRITE_SOURCE,
-      commit = '6ae5a61330186f241bddd6a2f108203fd7e7d405',
+      commit = '98289a2330d85a4e8f17e65cd0806e0269f36a90',
       lazy = false,
     },
     {
       'HundredBillion/scm.nvim',
-      commit = 'c6946caa84c49054f37bf9097b7f59bcadf2bfa7',
+      dir = vim.env.VSVIM_SCM_SOURCE,
+      commit = '619cc429665bfbe56e87c4f83c2f3128c16b775b',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
       opts = {
         renderer = 'auto',
         on_explorer = function(root) require('vsvim.sidebar').explorer(root) end,
-        native = { colors = require('vsvim.theme').native_colors },
+        native = { colors = require('vsvim.theme').native_colors, mappings = {
+          [' af'] = function() require('vsvim.follow').toggle() end,
+        } },
       },
     },
     {
@@ -81,6 +84,7 @@ function M.setup()
         ['<C-b>'] = function() require('vsvim.sidebar').explorer() end,
         ['<Space>gs'] = function() require('vsvim.sidebar').scm() end,
         ['<C-S-g>'] = function() require('vsvim.sidebar').scm() end,
+        ['<Space>af'] = function() require('vsvim.follow').toggle() end,
       } } },
     },
   }, {

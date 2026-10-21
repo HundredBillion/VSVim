@@ -1,6 +1,11 @@
 local follow = require('follow')
 local M = setmetatable({}, {__index=follow})
 
+function M.statusline()
+  if vim.g.sprite_follow_native then return (' '):rep(13) end
+  return follow.statusline()
+end
+
 function M.setup()
   follow.setup({
     commands=false,
