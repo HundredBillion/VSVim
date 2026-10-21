@@ -38,13 +38,16 @@ local function config(plan, ctx)
   if ctx.server == 'rust_analyzer' then
     local settings = vim.tbl_get(plan.config, 'settings', 'rust-analyzer')
     if settings then
-      for _, scope in ipairs({ 'cargo', 'check' }) do
-        settings[scope] = settings[scope] or {}
-        local args = settings[scope].extraArgs or {}
-        for _, flag in ipairs({ '--locked', '--offline' }) do
-          if not vim.tbl_contains(args, flag) then table.insert(args, flag) end
-        end
-        settings[scope].extraArgs = args
+      settings.cargo = settings.cargo or {}
+      local args = settings.cargo.extraArgs or {}
+      for _, flag in ipairs({ '--locked', '--offline' }) do
+        if not vim.tbl_contains(args, flag) then table.insert(args, flag) end
+      end
+      settings.cargo.extraArgs = args
+      if settings.check and settings.check.extraArgs then
+        settings.check.extraArgs = vim.tbl_filter(function(arg)
+          return arg ~= '--locked' and arg ~= '--offline'
+        end, settings.check.extraArgs)
       end
     end
   end
@@ -261,7 +264,7 @@ local function rust(ctx, done)
         process.run({ rustup, 'which', 'rust-analyzer' }, { cwd = ctx.root, env = env }, function(bin, analyzer_err)
           if not bin then done(nil, analyzer_err); return end
           done(config({ runtime = 'Rust ' .. (toolchain ~= '' and toolchain or 'selected default'), config = {
-            cmd = { vim.trim(bin) }, cmd_env = env, settings = { ['rust-analyzer'] = { cargo = { sysrootSrc = src, extraArgs = { '--locked', '--offline' }, noDeps = rust_lock(ctx.root) == nil }, check = { extraArgs = { '--locked', '--offline' } } } } } }, ctx))
+            cmd = { vim.trim(bin) }, cmd_env = env, settings = { ['rust-analyzer'] = { cargo = { sysrootSrc = src, extraArgs = { '--locked', '--offline' }, noDeps = rust_lock(ctx.root) == nil } } } } }, ctx))
         end)
       end
       local function install()

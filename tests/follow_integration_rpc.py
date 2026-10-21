@@ -96,7 +96,7 @@ class FollowIntegration(unittest.TestCase):
         self.wait(lambda: self.footer().get('cells'))
         self.assertNotIn('follow', self.footer())
         text = ''.join(cell[0] * (cell[2] if len(cell) > 2 else 1) for cell in self.footer()['cells'])
-        self.assertIn('Follow Off', text)
+        self.assertIn('FOLLOW Off', text)
         self.nvim.command('VSVimFollowOn')
         self.wait(lambda: self.nvim.exec_lua("return require('vsvim.follow').status().ready"))
         self.target.write_text('one\nexternal fallback\nthree\n')
