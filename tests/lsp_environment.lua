@@ -131,12 +131,15 @@ assert(rust.config.settings['rust-analyzer'].cargo.noDeps == true)
 local before_lock = require('vsvim.lsp.environment').fingerprint(root, 'rust_analyzer')
 write(root .. '/Cargo.lock', {'version = 4'})
 assert(before_lock ~= require('vsvim.lsp.environment').fingerprint(root, 'rust_analyzer'), 'lock presence changes Rust environment')
-local configured = assert(resolve('rust_analyzer', {settings={['rust-analyzer']={cargo={extraArgs={'--features', 'editor'}}, check={extraArgs={'--all-targets'}}}}}))
+local configured = assert(resolve('rust_analyzer', {settings={['rust-analyzer']={cargo={extraArgs={'--features', 'editor'}}, check={extraArgs={'--all-targets', '--locked'}}}}}))
 assert(configured.config.settings['rust-analyzer'].cargo.noDeps == false, 'existing lock retains dependency discovery')
-for _, scope in ipairs({'cargo', 'check'}) do
-  local args = configured.config.settings['rust-analyzer'][scope].extraArgs
-  assert(vim.tbl_contains(args, '--locked') and vim.tbl_contains(args, '--offline'), 'explicit args retain project safeguards')
+local cargo_args = configured.config.settings['rust-analyzer'].cargo.extraArgs
+local check_args = configured.config.settings['rust-analyzer'].check.extraArgs
+for _, flag in ipairs({'--locked', '--offline'}) do
+  assert(vim.tbl_contains(cargo_args, flag), 'Cargo invocations retain project safeguards')
+  assert(not vim.tbl_contains(check_args, flag), 'check arguments must not duplicate Cargo arguments')
 end
+assert(vim.tbl_contains(check_args, '--all-targets'), 'explicit check arguments survive')
 assert(vim.tbl_contains(configured.config.settings['rust-analyzer'].cargo.extraArgs, '--features'))
 local nested = root .. '/workspace-member'; vim.fn.mkdir(nested, 'p')
 local member_before = require('vsvim.lsp.environment').fingerprint(nested, 'rust_analyzer')

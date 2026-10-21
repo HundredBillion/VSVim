@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FOLLOW icon study — prototype</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #111418;
+      color: #e5e9ee;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible { outline: 2px solid #90baff; outline-offset: 3px; }
+    .shell { max-width: 1160px; padding: 42px 28px 120px; margin: auto; }
+    .eyebrow { color: #82909e; font-size: 11px; font-weight: 750; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { font-size: clamp(30px, 5vw, 52px); letter-spacing: -.055em; line-height: 1.05; margin: 9px 0 10px; }
+    .lede { color: #abb6c0; font-size: 15px; max-width: 650px; line-height: 1.55; margin: 0 0 27px; }
+    .toolbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .segmented { display: inline-flex; padding: 3px; gap: 2px; border: 1px solid #343d48; border-radius: 9px; background: #1b2026; }
+    .segmented button { border: 0; background: none; color: #98a5b0; padding: 7px 11px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+    .segmented button[aria-pressed="true"] { background: #394657; color: #fff; }
+    .toolbar-label { color: #75828e; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; font-weight: 750; margin-right: 2px; }
+    .section-title { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 29px 0 12px; }
+    h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .13em; margin: 0; color: #9aa8b6; }
+    .hint { color: #6f7c88; font-size: 12px; }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(195px, 1fr)); gap: 12px; }
+    .option { text-align: left; min-height: 210px; padding: 17px; background: #1c2229; border: 1px solid #343c47; border-radius: 12px; color: inherit; transition: border-color .15s, background .15s, transform .15s; }
+    .option:hover { background: #232b34; transform: translateY(-2px); }
+    .option[aria-pressed="true"] { border-color: #76a8ec; background: #222d39; box-shadow: inset 0 0 0 1px #76a8ec44; }
+    .option-top { display: flex; justify-content: space-between; align-items: center; }
+    .option-id { color: #7f8e9c; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; }
+    .option-choice { color: #91beff; font-size: 11px; font-weight: 700; opacity: 0; }
+    .option[aria-pressed="true"] .option-choice { opacity: 1; }
+    .hero-icon { display: flex; height: 78px; align-items: center; justify-content: center; color: #78a7e9; }
+    .hero-icon svg { height: 56px; width: 56px; }
+    .hero-icon .wordmark { font-size: 25px; font-weight: 800; letter-spacing: .12em; }
+    .option-name { font-size: 16px; font-weight: 680; letter-spacing: -.02em; }
+    .option-desc { margin: 6px 0 0; color: #8f9ca9; font-size: 12px; line-height: 1.45; }
+    .option-foot { margin-top: 18px; padding-top: 10px; border-top: 1px solid #343c47; color: #a8b5c0; font-size: 11px; }
+    .footer-stage { border: 1px solid #38404a; background: #171b20; border-radius: 11px; overflow: hidden; }
+    .editor { min-height: 175px; padding: 18px 20px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; color: #8996a0; line-height: 1.9; }
+    .editor .number { display: inline-block; width: 24px; color: #55616e; }
+    .editor .code-key { color: #b593d9; }
+    .editor .code-string { color: #b1cc8a; }
+    .footer { height: 30px; display: flex; align-items: stretch; background: #24292f; border-top: 1px solid #3b444e; font-size: 12px; }
+    .follow-control { width: 139px; flex: none; border: 0; border-right: 1px solid #45484e; background: #24292f; color: #e5e9ee; padding: 0 9px; display: flex; gap: 7px; align-items: center; }
+    .follow-control:hover { background: #303943; }
+    .follow-control svg { height: 17px; width: 17px; flex: none; color: #5c8fd6; }
+    .follow-control .word { font-weight: 690; letter-spacing: .01em; }
+    .follow-control.no-icon { gap: 0; }
+    .follow-control.no-icon #footer-icon { display: none; }
+    .follow-control .dot { margin-left: auto; width: 5px; height: 5px; border-radius: 50%; background: #73c991; }
+    .footer-code { padding: 0 12px; display: flex; align-items: center; gap: 18px; color: #929ca6; overflow: hidden; white-space: nowrap; }
+    .footer-code span:last-child { margin-left: auto; }
+    .state-off .follow-control { color: #9a9ea6; }
+    .state-off .follow-control svg { color: #8e939a; }
+    .state-off .follow-control .dot { background: #777d84; }
+    .state-waiting .follow-control .dot { background: #5c8fd6; }
+    .light .footer-stage { background: #f9fafb; border-color: #c5ced7; }
+    .light .editor { color: #617080; }
+    .light .editor .number { color: #9ba6b1; }
+    .light .editor .code-key { color: #8557a7; }
+    .light .editor .code-string { color: #5b7c34; }
+    .light .footer, .light .follow-control { background: #edf0f3; border-color: #c5ced7; }
+    .light .follow-control { color: #2f4053; }
+    .light .footer-code { color: #637080; }
+    .light .state-off .follow-control { color: #7b858f; }
+    .scale-note { color: #75828e; font-size: 11px; padding: 9px 12px; text-align: right; }
+    .detail { display: grid; grid-template-columns: 170px 1fr; gap: 22px; align-items: center; padding: 20px; border: 1px solid #343d48; border-radius: 11px; background: #1c2229; }
+    .detail-art { display: flex; align-items: center; justify-content: center; min-height: 126px; border-radius: 8px; background: #151a20; color: #79a8ec; }
+    .detail-art svg { width: 86px; height: 86px; }
+    .detail-art .wordmark { font-size: 25px; font-weight: 800; letter-spacing: .12em; }
+    .detail h3 { font-size: 23px; margin: 0 0 8px; letter-spacing: -.03em; }
+    .detail p { color: #aab6c0; line-height: 1.55; margin: 0; font-size: 14px; }
+    .detail .status-note { font-size: 12px; color: #748391; margin-top: 14px; }
+    .switcher { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; align-items: center; padding: 7px; border-radius: 999px; background: #e8eef5; color: #223140; box-shadow: 0 12px 35px #0008; border: 1px solid #fff7; z-index: 10; white-space: nowrap; }
+    .switcher button { border: 0; border-radius: 50%; width: 30px; height: 30px; background: #d6e0ea; color: #223140; font-size: 20px; line-height: 1; }
+    .switcher span { min-width: 126px; text-align: center; font-size: 12px; font-weight: 750; }
+    @media (max-width: 620px) { .shell { padding: 28px 16px 100px; } .detail { grid-template-columns: 1fr; } .detail-art { min-height: 120px; } .footer-code span:nth-child(2) { display: none; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="eyebrow">Visual prototype · no production changes</div>
+    <h1>What should FOLLOW look like?</h1>
+    <p class="lede">A new set of directions, including a text-only control. Select one to see it in a Sprite-style editor footer. All labels use <strong>FOLLOW</strong>.</p>
+
+    <div class="toolbar">
+      <span class="toolbar-label">State</span>
+      <div class="segmented" id="state-controls" aria-label="FOLLOW state">
+        <button type="button" data-state="live" aria-pressed="true">Live</button>
+        <button type="button" data-state="waiting" aria-pressed="false">Waiting</button>
+        <button type="button" data-state="off" aria-pressed="false">Off</button>
+      </div>
+      <span class="toolbar-label" style="margin-left: 12px">Footer</span>
+      <div class="segmented" id="theme-controls" aria-label="Footer theme">
+        <button type="button" data-theme="dark" aria-pressed="true">Dark</button>
+        <button type="button" data-theme="light" aria-pressed="false">Light</button>
+      </div>
+    </div>
+
+    <div class="section-title"><h2>Directions</h2><span class="hint">Choose a card · use ← → to compare</span></div>
+    <div class="gallery" id="gallery"></div>
+
+    <div class="section-title"><h2>In context</h2><span class="hint">Footer shown near actual size</span></div>
+    <div class="footer-stage" id="stage">
+      <div class="editor">
+        <div><span class="number">24</span><span class="code-key">local</span> view = require(<span class="code-string">'svgtree'</span>)</div>
+        <div><span class="number">25</span>view.open(project_root)</div>
+        <div><span class="number">26</span><span class="code-key">if</span> follow.enabled <span class="code-key">then</span></div>
+        <div><span class="number">27</span>  view.reveal(current_file)</div>
+      </div>
+      <div class="footer state-live" id="footer">
+        <button class="follow-control" type="button" id="follow-control" aria-label="FOLLOW preview">
+          <span id="footer-icon"></span><span class="word">FOLLOW</span><span class="dot"></span>
+        </button>
+        <div class="footer-code"><span>NORMAL</span><span>UTF-8 · Lua</span><span>Ln 27, Col 18</span></div>
+      </div>
+      <div class="scale-note">Visual comparison only · native Sprite sizes are approximated</div>
+    </div>
+
+    <div class="section-title"><h2>Selected mark</h2><span class="hint">Large view for shape comparison</span></div>
+    <div class="detail">
+      <div class="detail-art" id="detail-art"></div>
+      <div><h3 id="detail-title"></h3><p id="detail-copy"></p><p class="status-note" id="detail-state"></p></div>
+    </div>
+  </main>
+  <div class="switcher" aria-label="Prototype variant switcher">
+    <button type="button" id="previous" aria-label="Previous icon">‹</button>
+    <span id="switcher-label"></span>
+    <button type="button" id="next" aria-label="Next icon">›</button>
+  </div>
+  <script>
+    const icons = [
+      {
+        key: "wordmark", number: "01", name: "No icon", description: "Let FOLLOW carry the control.",
+        rationale: "The all-capitals word becomes the mark. The status dot still shows whether FOLLOW is live, waiting, or off.",
+        svg: `<span class="wordmark">FOLLOW</span>`
+      },
+      {
+        key: "steps", number: "02", name: "Panther paws", description: "Two offset feline paw prints.",
+        rationale: "Broad, softly lobed pads and three rounded toes on each print give the mark a feline silhouette. No claws keep it calm at footer size.",
+        svg: `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><g fill="currentColor"><ellipse cx="3.8" cy="4.5" rx="1.1" ry="1.35" transform="rotate(-18 3.8 4.5)"/><ellipse cx="6.9" cy="3.6" rx="1.15" ry="1.45"/><ellipse cx="10" cy="4.5" rx="1.1" ry="1.35" transform="rotate(18 10 4.5)"/><path d="M3.4 9.7c0-1.4.7-2.7 1.9-2.8.8-.1 1.1.4 1.6.4s.8-.5 1.6-.4c1.2.1 1.9 1.4 1.9 2.8 0 1.7-1.5 2.7-3.5 2.7s-3.5-1-3.5-2.7Z"/><ellipse cx="13.8" cy="13.5" rx="1.1" ry="1.35" transform="rotate(-18 13.8 13.5)"/><ellipse cx="16.9" cy="12.6" rx="1.15" ry="1.45"/><ellipse cx="20" cy="13.5" rx="1.1" ry="1.35" transform="rotate(18 20 13.5)"/><path d="M13.4 18.7c0-1.4.7-2.7 1.9-2.8.8-.1 1.1.4 1.6.4s.8-.5 1.6-.4c1.2.1 1.9 1.4 1.9 2.8 0 1.7-1.5 2.7-3.5 2.7s-3.5-1-3.5-2.7Z"/></g></svg>`
+      },
+      {
+        key: "magnet", number: "03", name: "Magnet", description: "The editor is drawn to activity.",
+        rationale: "A magnet makes the relationship tangible: agent activity pulls the viewport toward its latest reported place.",
+        svg: `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4v9a7 7 0 0 0 14 0V4h-4v9a3 3 0 0 1-6 0V4H5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 8h4M15 8h4" stroke="currentColor" stroke-width="1.8"/><path d="m11 2 1-1m0 4 1 1" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>`
+      },
+      {
+        key: "handoff", number: "04", name: "Handoff", description: "One page coming forward.",
+        rationale: "Overlapping pages suggest the file the agent is touching moving into the foreground of your editor.",
+        svg: `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="12" height="14" rx="2" stroke="currentColor" stroke-width="1.8" opacity=".55"/><path d="M10 8h8a3 3 0 0 1 3 3v8a2 2 0 0 1-2 2h-9a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Z" fill="currentColor"/><path d="M12 12h5M12 15h5" stroke="#1c2229" stroke-width="1.5" stroke-linecap="round"/></svg>`
+      },
+      {
+        key: "pursuit", number: "05", name: "Pursuit", description: "Two staggered directions.",
+        rationale: "A compact pair of offset chevrons suggests one actor staying behind another. This is the most abstract and fastest-reading option.",
+        svg: `<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m3 6 6 6-6 6M11 3l9 9-9 9" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`
+      }
+    ];
+    const params = new URLSearchParams(location.search);
+    let selected = Math.max(0, icons.findIndex(icon => icon.key === params.get("variant")));
+    let state = "live";
+    let theme = "dark";
+    const gallery = document.getElementById("gallery");
+    gallery.innerHTML = icons.map(icon => `
+      <button type="button" class="option" data-key="${icon.key}" aria-pressed="false">
+        <div class="option-top"><span class="option-id">${icon.number} / ${icon.key.toUpperCase()}</span><span class="option-choice">SELECTED</span></div>
+        <div class="hero-icon">${icon.svg}</div>
+        <div class="option-name">${icon.name}</div>
+        <p class="option-desc">${icon.description}</p>
+        <div class="option-foot">FOLLOW · new direction</div>
+      </button>`).join("");
+    function render() {
+      const icon = icons[selected];
+      document.querySelectorAll(".option").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.key === icon.key)));
+      document.querySelectorAll("[data-state]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.state === state)));
+      document.querySelectorAll("[data-theme]").forEach(button => button.setAttribute("aria-pressed", String(button.dataset.theme === theme)));
+      document.getElementById("footer").className = `footer state-${state}`;
+      document.getElementById("stage").classList.toggle("light", theme === "light");
+      document.getElementById("follow-control").classList.toggle("no-icon", icon.key === "wordmark");
+      document.getElementById("footer-icon").innerHTML = icon.svg;
+      document.getElementById("detail-art").innerHTML = icon.svg;
+      document.getElementById("detail-title").textContent = icon.name;
+      document.getElementById("detail-copy").textContent = icon.rationale;
+      document.getElementById("detail-state").textContent = `Showing FOLLOW ${state.toUpperCase()} on a ${theme} footer.`;
+      document.getElementById("switcher-label").textContent = `${icon.number} · ${icon.name}`;
+      const url = new URL(location.href);
+      url.searchParams.set("variant", icon.key);
+      history.replaceState(null, "", url);
+    }
+    gallery.addEventListener("click", event => {
+      const card = event.target.closest(".option");
+      if (card) { selected = icons.findIndex(icon => icon.key === card.dataset.key); render(); }
+    });
+    document.getElementById("state-controls").addEventListener("click", event => {
+      if (event.target.dataset.state) { state = event.target.dataset.state; render(); }
+    });
+    document.getElementById("theme-controls").addEventListener("click", event => {
+      if (event.target.dataset.theme) { theme = event.target.dataset.theme; render(); }
+    });
+    function cycle(step) { selected = (selected + step + icons.length) % icons.length; render(); }
+    document.getElementById("previous").addEventListener("click", () => cycle(-1));
+    document.getElementById("next").addEventListener("click", () => cycle(1));
+    document.addEventListener("keydown", event => {
+      if (event.target.closest("input, textarea, [contenteditable]")) return;
+      if (event.key === "ArrowLeft") cycle(-1);
+      if (event.key === "ArrowRight") cycle(1);
+    });
+    render();
+  </script>
+</body>
+</html>
