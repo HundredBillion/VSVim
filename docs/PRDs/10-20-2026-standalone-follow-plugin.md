@@ -1,15 +1,18 @@
 # Standalone Follow plugin and optional Codex runtime
 
-Status: packaging proposal for review. The smaller-helper distribution choice
-is approved; this document defines the production implementation boundary.
+Status: approved 2026-10-21, including the harness-independent core and small
+adapter contract. The smaller-helper distribution uses installed Codex checks.
 
 ## Outcome
 
 Publish Follow as a standalone Neovim plugin, provisionally
 `HundredBillion/follow.nvim`. VSVim imports a pinned plugin revision and supplies
-its explorer root and existing controls. Users can follow real incoming Codex
-edits in VSVim without rebuilding Codex, changing their installed Codex, or
-giving the plugin model credentials.
+its explorer root and existing controls. The product goal is to support coding
+harnesses generally, including Codex, Claude Code, OpenCode, Pi, and Hermes.
+Codex is the first implementation and packaging target, not the plugin's
+identity or a dependency of its shared Follow behavior. Users can follow real
+incoming Codex edits in VSVim without rebuilding Codex, changing their installed
+Codex, or giving the plugin model credentials.
 
 The normal workflow becomes:
 
@@ -60,11 +63,35 @@ requests remain owned by Codex. The observer does not start turns, replace the
 selected model, lower approval settings, bypass folder trust, or override agent
 instructions. Prototype-only experiment overrides must be removed.
 
-The editor receives normalized snapshots and completion events. This keeps the
-display independent of Codex, while the first supported live source is Codex
-only. Add another harness adapter only after confirming that harness exposes
-the necessary partial tool input. No ACP bridge or generic adapter framework
-is required for this release.
+The shared core owns session selection, project boundaries, display, user
+takeover, and Off/On behavior. Harness-specific code owns event subscription,
+authentication through that harness, partial-edit interpretation, and any
+necessary launch integration. Neither the shared core nor VSVim imports Codex
+protocol types or assumes a Codex process, tool name, model, or configuration.
+
+Use a small adapter contract for session identity, canonical workspace roots,
+capabilities, snapshot updates, completion, and disconnect/error events.
+Updates identify their session, operation, file, text, and cursor position;
+operation identities are opaque to the shared core. Each adapter reconstructs
+its own harness's partial edits before sending snapshots. Codex thread/turn/
+item IDs remain inside its adapter. Adding another harness must not require
+changing VSVim's controls or copying the preview/navigation engine.
+
+The first live adapter is Codex. Subsequent adapters target Claude Code,
+OpenCode, Pi, and Hermes after inspecting each available event interface.
+Use ACP where it exposes the required edit stream; otherwise use the harness's
+native supported interface or a separately packaged integration. Do not require
+every harness to implement ACP or use the Codex launcher/runtime. Install each
+harness helper independently; using another adapter must not download Codex.
+
+Report capabilities honestly: live edits when partial edit events are
+available, saved-file navigation when only disk changes can be observed, and
+an explicit unavailable reason when neither integration is usable. Saved-file
+observation does not identify the responsible agent. The goal of broad harness
+support does not justify claiming live typing from a source that exposes only
+completed edits. No simulated typing is allowed. Build only the small adapter
+boundary and the Codex implementation initially, not a speculative framework
+or placeholder implementations for the other harnesses.
 
 ## Runtime assets and compatibility
 
@@ -139,6 +166,11 @@ observer, server, descriptors, and sockets. Stale descriptors are ignored.
 ## Acceptance checks
 
 - Existing Follow behavior and native/statusline controls pass after extraction.
+- Shared Follow code and VSVim integration contain no Codex protocol or runtime
+  dependency. A second test source can drive the same controls, project checks,
+  and preview lifecycle without installing or launching Codex.
+- Adapter capability reporting distinguishes real live updates from saved-file
+  navigation. Unsupported live sources never silently simulate typing.
 - No SVGTree content, native icons, or buffer-tab layout changes.
 - Clean installation from a local package works without any `/tmp` or developer
   absolute paths and without accessing global npm package internals.

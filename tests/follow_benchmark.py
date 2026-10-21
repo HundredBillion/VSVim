@@ -20,7 +20,7 @@ with tempfile.TemporaryDirectory(prefix='follow-benchmark-') as directory:
     target = project / 'src/049/4999.lua'
     editor = pynvim.attach('child', argv=[NVIM, '--embed', '--headless', '-u', 'NONE'])
     try:
-        editor.exec_lua('vim.opt.runtimepath:prepend(...); require("vsvim.follow").setup()', str(ROOT))
+        editor.exec_lua('vim.opt.runtimepath:prepend(...); if vim.env.VSVIM_FOLLOW_SOURCE then vim.opt.runtimepath:prepend(vim.env.VSVIM_FOLLOW_SOURCE) end; require("vsvim.follow").setup()', str(ROOT))
         editor.command('cd ' + editor.funcs.fnameescape(str(project)))
         start = time.monotonic()
         editor.command('VSVimFollowOn')

@@ -1,5 +1,6 @@
 local project = vim.fn.fnamemodify(debug.getinfo(1, 'S').source:sub(2), ':p:h:h')
 vim.opt.runtimepath:prepend(project)
+if vim.env.VSVIM_FOLLOW_SOURCE then vim.opt.runtimepath:prepend(vim.env.VSVIM_FOLLOW_SOURCE) end
 local root = vim.fn.tempname()
 vim.fn.mkdir(root .. '/src', 'p')
 root = vim.uv.fs_realpath(root)

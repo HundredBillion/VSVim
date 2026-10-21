@@ -104,6 +104,30 @@ class FollowIntegration(unittest.TestCase):
         self.nvim.exec_lua("VSVimFollowClick(0,1,'l','')")
         self.assertFalse(self.nvim.exec_lua("return require('vsvim.follow').status().enabled"))
 
+    def test_native_toggle_controls_live_preview(self):
+        self.launch()
+        self.wait(lambda: self.footer().get('follow') is not None)
+        self.host.send(dict(type='follow_action', action='toggle'))
+        self.wait(lambda: self.footer().get('follow', {}).get('ready'))
+
+        def preview(text):
+            return self.nvim.exec_lua(
+                "return require('vsvim.follow').preview(...)",
+                dict(path=str(self.target), text=text, cursor=[1, 3]))
+
+        self.assertTrue(preview('stream one'))
+        self.assertEqual(self.nvim.current.buffer[0], 'stream one')
+        self.host.send(dict(type='follow_action', action='toggle'))
+        self.wait(lambda: not self.footer().get('follow', {}).get('enabled', True))
+        self.assertFalse(preview('stream two'))
+        self.assertEqual(self.nvim.current.buffer[0], 'stream one')
+        self.host.send(dict(type='follow_action', action='toggle'))
+        self.wait(lambda: self.footer().get('follow', {}).get('ready'))
+        self.assertTrue(preview('stream three'))
+        self.assertEqual(self.nvim.current.buffer[0], 'stream three')
+        self.assertEqual(self.nvim.current.window.cursor, (1, 3))
+        self.assertEqual(self.target.read_text(), 'one\ntwo\nthree\n')
+
     def tearDown(self):
         if self.nvim:
             try:

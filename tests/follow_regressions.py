@@ -17,7 +17,7 @@ class FollowRegressions(unittest.TestCase):
         self.root = Path(self.temp.name).resolve()
         self.file = self.root / 'main.lua'
         self.editor = pynvim.attach('child', argv=[NVIM, '--embed', '--headless', '-u', 'NONE'])
-        self.editor.exec_lua('vim.opt.runtimepath:prepend(...); require("vsvim.follow").setup()', str(ROOT))
+        self.editor.exec_lua('vim.opt.runtimepath:prepend(...); if vim.env.VSVIM_FOLLOW_SOURCE then vim.opt.runtimepath:prepend(vim.env.VSVIM_FOLLOW_SOURCE) end; require("vsvim.follow").setup()', str(ROOT))
         self.editor.command('cd ' + self.editor.funcs.fnameescape(str(self.root)))
 
     def wait(self, predicate):
