@@ -141,6 +141,7 @@ class FollowRegressions(unittest.TestCase):
         target = self.root / 'other.lua'
         target.write_text('first\noriginal\n')
         self.editor.command('edit ' + self.editor.funcs.fnameescape(str(self.file)))
+        self.editor.command('badd ' + self.editor.funcs.fnameescape(str(target)))
         editor_window = self.editor.current.window.handle
         sidebar = self.editor.exec_lua("""
             vim.cmd('topleft vsplit')
