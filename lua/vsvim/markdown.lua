@@ -370,6 +370,10 @@ function provider.before_input(event)
     prefix = nil
     if chord == " g" then
       prefix = chord
+    elseif chord == " a" then
+      prefix = chord
+    elseif chord == " af" then
+      require("vsvim.follow").toggle()
     elseif chord == " e" then
       require("vsvim.sidebar").explorer()
     elseif chord == " gs" then

@@ -62,6 +62,15 @@ assert(not bridge.before_input({ type = "paste", text = "must not replace source
 assert(not bridge.before_input({ type = "input", key = "x" }))
 assert(bridge.before_input({ type = "input", key = ":" }))
 assert(bridge.before_input({ type = "input", key = "<D-s>" }))
+local follow_toggles = 0
+package.loaded["vsvim.follow"] = {
+  toggle = function() follow_toggles = follow_toggles + 1 end,
+}
+assert(not bridge.before_input({ type = "input", key = " " }))
+assert(not bridge.before_input({ type = "input", key = "a" }))
+assert(not bridge.before_input({ type = "input", key = "f" }))
+assert(follow_toggles == 1, "Space a f toggles Follow in Markdown preview")
+package.loaded["vsvim.follow"] = nil
 source.toggle()
 vim.cmd.undo()
 assert(not vim.api.nvim_get_current_line():find("unsaved", 1, true), "undo survives toggles")
