@@ -12,6 +12,9 @@ follow.setup()
 vim.cmd('VSVimFollowOn')
 assert(vim.wait(5000, function() return follow.status().ready end))
 assert(follow.preview({path=path, text='def greeting():\n    return "he', cursor={2,13}}))
+vim.g.sprite_follow_native=true
+assert(follow.statusline():find('LIVE',1,true),'native footer reports live preview')
+vim.g.sprite_follow_native=false
 assert(vim.api.nvim_get_current_line() == '    return "he', 'incoming text is displayed immediately')
 assert(vim.deep_equal(vim.api.nvim_win_get_cursor(0), {2,13}), 'cursor uses actual Neovim column')
 assert(not vim.bo.modifiable and not vim.bo.modified, 'preview is read-only')

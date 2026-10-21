@@ -1,4 +1,4 @@
-"""Measure real worker initialization, editor RPC responsiveness and edit latency."""
+"""Measure known-file startup, editor RPC responsiveness, and save latency."""
 import json
 import os
 from pathlib import Path
@@ -22,6 +22,7 @@ with tempfile.TemporaryDirectory(prefix='follow-benchmark-') as directory:
     try:
         editor.exec_lua('vim.opt.runtimepath:prepend(...); if vim.env.VSVIM_FOLLOW_SOURCE then vim.opt.runtimepath:prepend(vim.env.VSVIM_FOLLOW_SOURCE) end; require("vsvim.follow").setup()', str(ROOT))
         editor.command('cd ' + editor.funcs.fnameescape(str(project)))
+        editor.command('badd ' + editor.funcs.fnameescape(str(target)))
         start = time.monotonic()
         editor.command('VSVimFollowOn')
         samples = []

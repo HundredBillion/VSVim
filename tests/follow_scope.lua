@@ -19,8 +19,21 @@ assert(vim.wait(5000, function()
   return state.ready or not state.enabled and state.reason ~= nil
 end), 'Follow did not respond to Space a f')
 local state = follow.status()
-assert(state.enabled and state.ready and state.root == project_root,
-  'Space a f did not activate Follow for the open project: ' .. vim.inspect(state))
+assert(state.enabled and state.ready and state.root == (tree_root or project_root),
+  'Space a f did not activate Follow for the selected tree root: ' .. vim.inspect(state))
+if tree_root then
+  local selected = tree_root
+  tree_root = nil
+  local git_root = vim.fs.root
+  vim.fs.root = function() return project_root .. '/nested' end
+  vim.wait(500, function() return false end, 50)
+  assert(follow.status().root == selected,
+    'closing SVGTree lost its selected scope')
+  vim.fs.root = git_root
+end
+vim.g.sprite_follow_native = true
+assert(follow.statusline():find('WAITING',1,true), 'native footer shows waiting capability')
 follow.set_enabled(false)
+assert(not follow.statusline():find('WAITING',1,true), 'native footer clears capability while off')
 print('Follow scope shortcut passed')
 vim.cmd.qa({bang=true})

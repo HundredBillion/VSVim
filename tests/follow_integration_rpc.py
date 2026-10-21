@@ -1,4 +1,4 @@
-"""Exercise the real VSVim, worker and Sprite adapter with a socket host."""
+"""Exercise VSVim's Follow adapter and Sprite host with known files."""
 import os
 from pathlib import Path
 import shutil
@@ -66,6 +66,7 @@ class FollowIntegration(unittest.TestCase):
         self.wait(self.editor_socket.exists)
         self.nvim = pynvim.attach('socket', path=str(self.editor_socket))
         self.wait(lambda: self.nvim.current.buffer.name == str(self.first))
+        self.nvim.command('badd ' + self.nvim.funcs.fnameescape(str(self.target)))
 
     def footer(self):
         return next((message for message in reversed(self.host.messages) if message.get('type') == 'footer'), {})
@@ -80,7 +81,7 @@ class FollowIntegration(unittest.TestCase):
         started = time.monotonic()
         self.target.write_text('one\ntwo\nexternally changed\n')
         self.wait(lambda: self.nvim.current.buffer.name == str(self.target))
-        self.assertEqual(self.nvim.current.window.cursor, (3, 0))
+        self.assertEqual(self.nvim.current.window.cursor, (1, 0))
         self.assertEqual(self.nvim.current.buffer[2], 'externally changed')
         print(f'Native external-write-to-cursor: {(time.monotonic()-started)*1000:.0f} ms')
         self.assertTrue(self.nvim.exec_lua("return require('vsvim.follow').status().enabled"))
@@ -100,7 +101,7 @@ class FollowIntegration(unittest.TestCase):
         self.wait(lambda: self.nvim.exec_lua("return require('vsvim.follow').status().ready"))
         self.target.write_text('one\nexternal fallback\nthree\n')
         self.wait(lambda: self.nvim.current.buffer.name == str(self.target))
-        self.assertEqual(self.nvim.current.window.cursor, (2, 0))
+        self.assertEqual(self.nvim.current.window.cursor, (1, 0))
         self.nvim.exec_lua("VSVimFollowClick(0,1,'l','')")
         self.assertFalse(self.nvim.exec_lua("return require('vsvim.follow').status().enabled"))
 

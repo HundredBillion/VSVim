@@ -73,33 +73,34 @@ It refreshes after editor writes, focus return, terminal exit, or r. Full live
 PR diffs, deleted-file history and instant external-change watching await prism;
 this milestone lists repository changes using SCM's default-branch baseline.
 
-## Follow external changes
+## Follow coding agents
 
 Press **Space-a-f**, run `:VSVimFollowToggle`, or click **Follow** in the bottom
-status bar to follow externally saved changes. `:VSVimFollowOn` and
+status bar to follow agent file activity. `:VSVimFollowOn` and
 `:VSVimFollowOff` explicitly enable and disable it. Follow starts off.
+Run `:FollowSetup` once to select the normal agent commands to integrate;
+`:FollowStatus` explains whether Follow is waiting, showing live text, following
+reported locations, or watching known saved files.
 
-Follow watches the explorer project, including collapsed subdirectories. It
-opens changed files and positions the cursor at the last changed region in
-file order. New files open at line one. It works with any coding agent that
-writes local files, and also follows other external tools; disk notifications
-do not identify who made a change. Updates arrive after writes reach disk.
+Follow uses the selected SVGTree directory as its scope, including nested
+repositories. It opens files and lines reported by installed agent integrations.
+Codex can also show genuine partial edits with the moving cursor. Other
+integrations report their real file-tool boundaries. Without an active agent,
+saved-file fallback observes only already-open or previously reported files;
+disk changes alone cannot identify an agent. Follow does not inventory a broad
+project or disable at 20,000 files.
 Navigation, selection, or editing turns Follow off. Unsaved target buffers are
 preserved and a conflicting external change disables Follow with a notice.
-Re-enabling takes a fresh snapshot and waits for the next external write.
+Re-enabling waits for an active session or the next known-file save.
 
 Sprite hosts supporting `grid-follow-v1` show Zed's clickable crosshair. Older
 hosts and ordinary terminals show a clickable text control. No lualine plugin
 is required. Keep `VSVIM_SPRITE_SOURCE` pointed at the companion adapter checkout
 when testing unpublished native changes.
 
-Discovery and comparisons run in a separate Neovim process every 300 ms.
-Files above 1 MiB, binary files, symlinks, Git-ignored files, dependency/build
-folders (`node_modules`, `vendor`, `target`, `dist`, `build`, `.cache`,
-`__pycache__`, `.venv`, `venv`, `.worktrees`), Git metadata, and temporary files
-are excluded. Follow reports an error and disables if the project exceeds
-20,000 eligible files or 64 MiB of retained text. Non-Git traversal is bounded
-to 100,000 directory entries. Closing the explorer retains its project scope.
+Follow watches at most 256 known files for saved fallback. Binary files,
+symlinks, and files above 1 MiB are excluded. Closing the explorer retains its
+selected directory as Follow's scope.
 
 ## Go to definition and languages
 
