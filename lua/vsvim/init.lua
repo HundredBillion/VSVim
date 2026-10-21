@@ -57,7 +57,7 @@ function M.setup()
     {
       'HundredBillion/sprite.nvim',
       dir = vim.env.VSVIM_SPRITE_SOURCE,
-      commit = '98289a2330d85a4e8f17e65cd0806e0269f36a90',
+      commit = 'f471877979ab0c3aa43b4df5d476b5f46cd642e7',
       lazy = false,
     },
     {
