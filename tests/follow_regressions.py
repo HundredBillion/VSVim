@@ -1,4 +1,4 @@
-"""Verify Follow reloads timestamp-preserving writes, preserves undo and pauses on scroll."""
+"""Verify Follow reloads saves, preserves undo, and resumes after browsing."""
 import os
 from pathlib import Path
 import tempfile
@@ -61,7 +61,7 @@ class FollowRegressions(unittest.TestCase):
         self.assertEqual(self.editor.current.buffer[0],'line 0')
         self.assertGreater(old_sequence,0)
 
-    def test_scrolling_without_cursor_movement_disables_follow(self):
+    def test_scrolling_without_cursor_movement_keeps_follow(self):
         self.file.write_text(''.join(f'line {i}\n' for i in range(200)))
         self.open_follow()
         self.editor.command('VSVimFollowOff')
@@ -72,7 +72,10 @@ class FollowRegressions(unittest.TestCase):
         self.wait(lambda:self.editor.exec_lua('return require("vsvim.follow").status().ready'))
         self.editor.command('normal! ' + chr(5))
         self.assertEqual(self.editor.current.window.cursor,cursor)
-        self.wait(lambda:not self.editor.exec_lua('return require("vsvim.follow").status().enabled'))
+        self.assertTrue(self.editor.exec_lua('return require("vsvim.follow").status().enabled'))
+        self.file.write_text(self.file.read_text().replace('line 199\n','external\n'))
+        self.wait(lambda:self.editor.current.buffer[-1]=='external')
+        self.assertTrue(self.editor.exec_lua('return require("vsvim.follow").status().enabled'))
 
     def inject_at_read_completion(self, action):
         self.editor.exec_lua("""
@@ -104,13 +107,14 @@ class FollowRegressions(unittest.TestCase):
         self.wait(lambda:self.editor.exec_lua('return require("vsvim.follow").status().root')==str(new_root))
         self.assertEqual(self.editor.current.buffer[0],'original')
 
-    def test_manual_navigation_during_read_is_preserved(self):
+    def test_manual_navigation_during_read_resumes_at_update(self):
         self.file.write_text(''.join(f'line {i}\n' for i in range(200)))
         self.open_follow()
         self.inject_at_read_completion('vim.api.nvim_win_set_cursor(0,{50,0})')
         self.file.write_text(self.file.read_text().replace('line 199\n','external\n'))
-        self.wait(lambda:not self.editor.exec_lua('return require("vsvim.follow").status().enabled'))
-        self.assertEqual(self.editor.current.window.cursor,(50,0))
+        self.wait(lambda:self.editor.current.buffer[-1]=='external')
+        self.assertTrue(self.editor.exec_lua('return require("vsvim.follow").status().enabled'))
+        self.assertEqual(self.editor.current.window.cursor,(1,0))
 
     def test_command_entry_during_read_defers_instead_of_losing_change(self):
         self.file.write_text('original\n')
