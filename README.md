@@ -89,9 +89,11 @@ integrations report their real file-tool boundaries. Without an active agent,
 saved-file fallback observes only already-open or previously reported files;
 disk changes alone cannot identify an agent. Follow does not inventory a broad
 project or disable at 20,000 files.
-Navigation, selection, or editing turns Follow off. Unsaved target buffers are
-preserved and a conflicting external change disables Follow with a notice.
-Re-enabling waits for an active session or the next known-file save.
+Moving or scrolling within the followed file keeps Follow on; the next agent
+update jumps back to the new edit. Opening a different file, selecting text,
+or editing turns Follow off. Unsaved target buffers are preserved and a
+conflicting external change disables Follow with a notice. Re-enabling waits
+for an active session or the next known-file save.
 
 Sprite hosts supporting `grid-follow-v1` show Zed's clickable crosshair. Older
 hosts and ordinary terminals show a clickable text control. No lualine plugin
