@@ -48,7 +48,8 @@ function M.setup()
   vim.opt.runtimepath:prepend(manager)
   require('lazy').setup({
     { 'folke/lazy.nvim', commit = '85c7ff3711b730b4030d03144f6db6375044ae82' },
-    { 'HundredBillion/follow.nvim', dir = vim.env.VSVIM_FOLLOW_SOURCE, lazy = false },
+    { 'HundredBillion/follow.nvim', dir = vim.env.VSVIM_FOLLOW_SOURCE,
+      commit = 'dfcc206986913bad26194eab76c2102ad44f46f8', lazy = false },
     { 'neovim/nvim-lspconfig', commit = '45a3a444b710511c39abca3b60bb6e23a21e3de5', lazy = false },
     { 'mason-org/mason.nvim', commit = '2a6940af80375532e5e9e7c1f2fc6319a1b7a69d', lazy = false },
     { 'mason-org/mason-lspconfig.nvim', commit = '00b5473cca4db5b410ff4bae724e3b6e21f2687f', lazy = false,

@@ -1,6 +1,6 @@
 # Standalone Follow Plugin Technical Spec
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use dmi-superpowers:executing-plans to implement this TSP task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **For agentic workers:** REQUIRED SUB-SKILL: Use dmi-superpowers:executing-plans to implement this TSP task-by-task. Steps use checkbox (`- [x]`) syntax for tracking.
 
 **Goal:** Extract Follow into a standalone multi-harness Neovim plugin and provide a separately installable, compatible Codex helper.
 
@@ -48,22 +48,22 @@ a connection generation; callbacks from the previous generation cannot render.
 - Produces: `status()`, `set_enabled(bool)`, `toggle()`, `preview({path,text,cursor})`, `finish_preview()`, `set_root(path?)`, `remember_root(path)`, `native_snapshot()`, `statusline()`, `lualine()`.
 - Compatibility shim keeps the old command/click/key names and delegates to the one engine.
 
-- [ ] Run a standalone test before extraction and observe missing `follow` module.
+- [x] Run a standalone test before extraction and observe missing `follow` module.
   ```sh
   nvim --headless -u NONE -l tests/core.lua
   ```
   The test prepends only this repository, enables a temporary root, previews
   text, checks read-only content, turns Off, and asserts later text cannot render.
-- [ ] Move the tested engine and worker; replace SVGTree/markdown lookups with injected callbacks.
+- [x] Move the tested engine and worker; replace SVGTree/markdown lookups with injected callbacks.
   ```lua
   require('follow').setup({root=function() return vim.fn.getcwd() end})
   assert(require('follow').preview({path=path,text='received',cursor={1,3}}))
   ```
-- [ ] Preserve VSVim aliases and test them against the plugin through `VSVIM_FOLLOW_SOURCE`.
+- [x] Preserve VSVim aliases and test them against the plugin through `VSVIM_FOLLOW_SOURCE`.
   ```sh
   VSVIM_FOLLOW_SOURCE=/Users/davidlee/Projects/follow.nvim nvim --headless -u NONE -l tests/follow_stream.lua
   ```
-- [ ] Run existing saved-file and native tests; commit the extraction in each repository.
+- [x] Run existing saved-file and native tests; commit the extraction in each repository.
 
 ### Task 2: Add the shared local session protocol
 
@@ -76,13 +76,13 @@ a connection generation; callbacks from the previous generation cannot render.
 - Consumes JSONL messages `{type='snapshot',session,operation,path,text,cursor}` and `{type='complete',session,operation,path}`, `{type='status',reason}`, `{type='hello',...descriptor}`.
 - Produces `sessions.start(root, handlers)`, `sessions.stop()`, `sessions.select(id)`; callbacks `snapshot`, `complete`, `status`.
 
-- [ ] Reproduce failure with a non-Codex Node source publishing a real private Unix socket; Lua enables Follow before and after publication and reads snapshot messages.
+- [x] Reproduce failure with a non-Codex Node source publishing a real private Unix socket; Lua enables Follow before and after publication and reads snapshot messages.
   ```sh
   nvim --headless -u NONE -l tests/sessions.lua
   ```
-- [ ] Implement private descriptor discovery, live PID check, root match, generation-guarded framing, explicit multi-session selection, and bounded queues.
-- [ ] Verify Off/On reconnect, root changes, stale descriptors, mismatched session IDs, disconnect release, and a snapshot source with no Codex installation.
-- [ ] Add public source documentation and commit.
+- [x] Implement private descriptor discovery, live PID check, root match, generation-guarded framing, explicit multi-session selection, and bounded queues.
+- [x] Verify Off/On reconnect, root changes, stale descriptors, mismatched session IDs, disconnect release, and a snapshot source with no Codex installation.
+- [x] Add public source documentation and commit.
 
 ### Task 3: Package and install the optional compatible runtime
 
@@ -96,17 +96,17 @@ a connection generation; callbacks from the previous generation cannot render.
 - `follow-codex install --archive PATH --sha256 HASH` supports an independently built local release; plain install uses checked-in release metadata once published.
 - `:FollowInstall codex` invokes the installer asynchronously and reports its launcher path.
 
-- [ ] Write a failing Node test for an unsupported client and corrupt archive.
+- [x] Write a failing Node test for an unsupported client and corrupt archive.
   ```sh
   node --test tests/runtime.test.mjs
   ```
-- [ ] Implement platform/version/hash validation and protected archive extraction; package source/host/server notices and separate launcher scripts/dependency.
-- [ ] Package the existing built server and host through the actual packaging script, then install that archive into an isolated data directory.
+- [x] Implement platform/version/hash validation and protected archive extraction; package source/host/server notices and separate launcher scripts/dependency.
+- [x] Package the existing built server and host through the actual packaging script, then install that archive into an isolated data directory.
   ```sh
   python3 scripts/package-runtime.py --help
   node --test tests/runtime.test.mjs
   ```
-- [ ] Verify interrupted installs preserve the selected version, binaries remain outside Git, and the installed launcher runs after the plugin directory is copied elsewhere. Commit.
+- [x] Verify interrupted installs preserve the selected version, binaries remain outside Git, and the installed launcher runs after the plugin directory is copied elsewhere. Commit.
 
 ### Task 4: Implement the Codex launcher and adapter
 
@@ -119,13 +119,13 @@ a connection generation; callbacks from the previous generation cannot render.
 - `createSource({root,harness,runtimeDir})` advertises a private descriptor and exposes `publish(event)` / `close()` with bounded current-operation snapshots.
 - `follow-codex [--client PATH] [--] CODEX_ARGS` preserves terminal stdio and arguments; only the remote endpoint is supplied by the launcher.
 
-- [ ] Write a failing two-operation test: the second patch uses the first operation's saved output as baseline; title threads never select a coding session.
+- [x] Write a failing two-operation test: the second patch uses the first operation's saved output as baseline; title threads never select a coding session.
   ```sh
   node --test tests/codex.test.mjs tests/progress.test.mjs
   ```
-- [ ] Port exact-match patch reconstruction, native subscription, startup retries, and changed-text cursor calculation. Validate all paths and limits before reading or publishing.
-- [ ] Implement Unix transport, real terminal stdio, descriptor lifetime, signal forwarding, and graceful child cleanup; do not copy experiment trust/model/approval overrides.
-- [ ] Verify Add/Update, ambiguous-location fallback, unsupported changes, two turns, wrong-root events, bounded memory, and observer/model ownership. Commit.
+- [x] Port exact-match patch reconstruction, native subscription, startup retries, and changed-text cursor calculation. Validate all paths and limits before reading or publishing.
+- [x] Implement Unix transport, real terminal stdio, descriptor lifetime, signal forwarding, and graceful child cleanup; do not copy experiment trust/model/approval overrides.
+- [x] Verify Add/Update, ambiguous-location fallback, unsupported changes, two turns, wrong-root events, bounded memory, and observer/model ownership. Commit.
 
 ### Task 5: Validate the installed workflow and complete documentation
 
@@ -136,13 +136,33 @@ a connection generation; callbacks from the previous generation cannot render.
 **Interfaces:**
 - Public plugin import, supported install command, terminal launcher, source protocol, controls and health checks must match documentation.
 
-- [ ] Exercise a relocated plugin/runtime and a fake protocol server for deterministic CLI cleanup and argument-preservation checks.
+- [x] Exercise a relocated plugin/runtime and a fake protocol server for deterministic CLI cleanup and argument-preservation checks.
   ```sh
   npm test
   nvim --headless -u NONE -l tests/core.lua
   nvim --headless -u NONE -l tests/sessions.lua
   ```
-- [ ] Run VSVim's stream, saved-file, regression and native RPC checks using the local plugin override.
-- [ ] Run an isolated real terminal coding session with ordinary approvals, then a second turn; verify session discovery, horizontal cursor advances, final content equality and cleanup.
-- [ ] Record actual results and limitations. Obtain an independent whole-change review and resolve substantive findings.
-- [ ] Commit the plugin, pin VSVim to that commit with a local override available, and retain build artifacts outside Git. Remote publishing remains a separate action.
+- [x] Run VSVim's stream, saved-file, regression and native RPC checks using the local plugin override.
+- [x] Run an isolated real terminal coding session with ordinary approvals, then a second turn; verify session discovery, horizontal cursor advances, final content equality and cleanup.
+- [x] Record actual results and limitations. Obtain an independent whole-change review and resolve substantive findings.
+- [x] Commit the plugin, pin VSVim to that commit with a local override available, and retain build artifacts outside Git. Remote publishing remains a separate action.
+
+## Completion evidence (2026-10-21)
+
+Plugin commits: `833480b`, `8a9b298`, `650fc99`, `bdb9f9d`, `dfcc206`.
+VSVim extraction: `72bb3ff`; the import now pins plugin `dfcc206` and retains
+`VSVIM_FOLLOW_SOURCE` for local development. Until the remote is published, launch
+this worktree with `VSVIM_FOLLOW_SOURCE=/Users/davidlee/Projects/follow.nvim`.
+
+Fresh checks passed: 15 Node tests, standalone core and session suites, three
+lifecycle regressions, VSVim saved-file/stream suites, seven regressions and three
+native RPC tests. Installed real Codex acceptance exited 0: two operations, 243
+displayed updates, 191 horizontal advances, final buffer equal to saved file,
+Python exit 0 / six lines. Independent review findings resolved.
+
+Local helper installed at `~/.local/share/follow/bin/follow-codex`; the compatible
+client is checked explicitly. Local archive and sidecar are in plugin `dist/`,
+ignored by Git. See plugin `docs/execution/standalone-follow.md` for hashes,
+limitations and reproducible commands. No remote repository/release was published;
+automatic download metadata intentionally remains empty. Other live harness
+adapters remain future work, through the shared protocol.
