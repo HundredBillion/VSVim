@@ -48,6 +48,8 @@ function M.setup()
   vim.opt.runtimepath:prepend(manager)
   require('lazy').setup({
     { 'folke/lazy.nvim', commit = '85c7ff3711b730b4030d03144f6db6375044ae82' },
+    { 'HundredBillion/follow.nvim', dir = vim.env.VSVIM_FOLLOW_SOURCE,
+      commit = 'dfcc206986913bad26194eab76c2102ad44f46f8', lazy = false },
     { 'neovim/nvim-lspconfig', commit = '45a3a444b710511c39abca3b60bb6e23a21e3de5', lazy = false },
     { 'mason-org/mason.nvim', commit = '2a6940af80375532e5e9e7c1f2fc6319a1b7a69d', lazy = false },
     { 'mason-org/mason-lspconfig.nvim', commit = '00b5473cca4db5b410ff4bae724e3b6e21f2687f', lazy = false,
@@ -55,18 +57,21 @@ function M.setup()
     {
       'HundredBillion/sprite.nvim',
       dir = vim.env.VSVIM_SPRITE_SOURCE,
-      commit = '6ae5a61330186f241bddd6a2f108203fd7e7d405',
+      commit = '98289a2330d85a4e8f17e65cd0806e0269f36a90',
       lazy = false,
     },
     {
       'HundredBillion/scm.nvim',
-      commit = 'c6946caa84c49054f37bf9097b7f59bcadf2bfa7',
+      dir = vim.env.VSVIM_SCM_SOURCE,
+      commit = '619cc429665bfbe56e87c4f83c2f3128c16b775b',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
       opts = {
         renderer = 'auto',
         on_explorer = function(root) require('vsvim.sidebar').explorer(root) end,
-        native = { colors = require('vsvim.theme').native_colors },
+        native = { colors = require('vsvim.theme').native_colors, mappings = {
+          [' af'] = function() require('vsvim.follow').toggle() end,
+        } },
       },
     },
     {
@@ -79,6 +84,7 @@ function M.setup()
         ['<C-b>'] = function() require('vsvim.sidebar').explorer() end,
         ['<Space>gs'] = function() require('vsvim.sidebar').scm() end,
         ['<C-S-g>'] = function() require('vsvim.sidebar').scm() end,
+        ['<Space>af'] = function() require('vsvim.follow').toggle() end,
       } } },
     },
   }, {
@@ -106,6 +112,7 @@ function M.setup()
   require('vsvim.lsp').setup()
   require('vsvim.navigation').setup()
   require('vsvim.editing').setup()
+  require('vsvim.follow').setup()
   require('vsvim.appearance').setup()
   require('vsvim.markdown').setup()
   local user = vim.fn.stdpath('config') .. '/user.lua'

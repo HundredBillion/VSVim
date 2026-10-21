@@ -59,7 +59,22 @@ change, without approving the proposal's remaining changes.
 _Avoid_: Proposal approval when only one hunk was approved
 
 **Following**:
-Navigation that tracks the selected coding agent's current known location.
+Navigation that tracks newly observed external file changes in the explorer project.
+Filesystem Follow does not identify the process or agent that changed a file.
+_Avoid_: Agent identity, exact agent cursor
+
+**Live following**:
+Navigation and text preview driven by an identified coding session's incoming edits.
+The displayed cursor marks the current received edit position.
+_Avoid_: Simulated typing, filesystem attribution
+
+**Harness adapter**:
+An integration that translates one coding harness's activity into Follow sessions and edits.
+_Avoid_: Model provider, editor integration
+
+**Follow capability**:
+Whether a source provides incoming live edits, saved-file changes, or no usable activity.
+_Avoid_: Assuming every harness supports live typing
 
 **Paused following**:
 A reading state in which agent activity continues to be tracked without

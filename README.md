@@ -4,7 +4,7 @@ An independent Neovim distribution for reading and reviewing agent-written code.
 
 This development milestone provides isolated startup, a JetBrains Dark Theme
 theme, file tabs, status line, the svgtree explorer, and a Snacks-free SCM sidebar.
-PR review, agent following, and the reviewer conversation are not implemented yet.
+PR review and the reviewer conversation are not implemented yet.
 
 ## Run from a checkout
 
@@ -72,6 +72,34 @@ SCM uses a native Sprite dock when available and a normal split elsewhere.
 It refreshes after editor writes, focus return, terminal exit, or r. Full live
 PR diffs, deleted-file history and instant external-change watching await prism;
 this milestone lists repository changes using SCM's default-branch baseline.
+
+## Follow external changes
+
+Press **Space-a-f**, run `:VSVimFollowToggle`, or click **Follow** in the bottom
+status bar to follow externally saved changes. `:VSVimFollowOn` and
+`:VSVimFollowOff` explicitly enable and disable it. Follow starts off.
+
+Follow watches the explorer project, including collapsed subdirectories. It
+opens changed files and positions the cursor at the last changed region in
+file order. New files open at line one. It works with any coding agent that
+writes local files, and also follows other external tools; disk notifications
+do not identify who made a change. Updates arrive after writes reach disk.
+Navigation, selection, or editing turns Follow off. Unsaved target buffers are
+preserved and a conflicting external change disables Follow with a notice.
+Re-enabling takes a fresh snapshot and waits for the next external write.
+
+Sprite hosts supporting `grid-follow-v1` show Zed's clickable crosshair. Older
+hosts and ordinary terminals show a clickable text control. No lualine plugin
+is required. Keep `VSVIM_SPRITE_SOURCE` pointed at the companion adapter checkout
+when testing unpublished native changes.
+
+Discovery and comparisons run in a separate Neovim process every 300 ms.
+Files above 1 MiB, binary files, symlinks, Git-ignored files, dependency/build
+folders (`node_modules`, `vendor`, `target`, `dist`, `build`, `.cache`,
+`__pycache__`, `.venv`, `venv`, `.worktrees`), Git metadata, and temporary files
+are excluded. Follow reports an error and disables if the project exceeds
+20,000 eligible files or 64 MiB of retained text. Non-Git traversal is bounded
+to 100,000 directory entries. Closing the explorer retains its project scope.
 
 ## Go to definition and languages
 

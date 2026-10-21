@@ -1,0 +1,13 @@
+{
+  "agent_tool": "apply_patch",
+  "file": "/private/tmp/vsvim-follow-live-acceptance/main.lua",
+  "cursor": [
+    2,
+    0
+  ],
+  "text": [
+    "local original = true",
+    "return \"edited by the coding agent\""
+  ],
+  "passed": true
+}

@@ -1,0 +1,204 @@
+<!doctype html>
+<!-- PROTOTYPE: four Follow statusline treatments. Pick a direction before production work. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VSVim · Follow control studies</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page: #121418;
+      --panel: #1e1f22;
+      --side: #2b2d30;
+      --tab: #25272b;
+      --bar: #2b2d30;
+      --line: #3c3f44;
+      --text: #c7c9ce;
+      --muted: #90949c;
+      --blue: #5c8fd6;
+      --blue-soft: #334861;
+      --green: #73c991;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: var(--page); color: var(--text); font-family: var(--ui); }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible { outline: 2px solid #99bff1; outline-offset: 2px; }
+    .page { max-width: 1250px; margin: 0 auto; padding: 36px 32px 112px; }
+    .eyebrow { color: #7da6d6; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+    h1 { margin: 8px 0 8px; color: #f2f3f5; font-size: clamp(25px, 3vw, 36px); font-weight: 650; letter-spacing: -.035em; }
+    .intro { margin: 0; max-width: 760px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .topline { display: flex; justify-content: space-between; align-items: start; gap: 24px; margin-bottom: 28px; }
+    .state-toggle { flex: none; display: flex; align-items: center; gap: 10px; background: #202328; border: 1px solid #41454c; padding: 7px 8px 7px 14px; border-radius: 9px; color: #b9bdc4; font-size: 12px; }
+    .state-toggle button { border: 0; border-radius: 5px; padding: 6px 13px; background: #315b86; color: white; font-size: 12px; font-weight: 650; }
+    .stage-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 10px; }
+    .stage-heading h2 { margin: 0; color: #eceef1; font-size: 17px; font-weight: 600; }
+    .stage-heading span { color: var(--muted); font-size: 12px; }
+    .window { height: 435px; overflow: hidden; border: 1px solid #51545a; border-radius: 9px; box-shadow: 0 18px 55px #0007; background: var(--panel); position: relative; }
+    .tabs { position: absolute; left: 248px; top: 0; right: 0; height: 37px; display: flex; align-items: stretch; background: var(--tab); border-bottom: 1px solid #35383d; font-size: 12px; }
+    .tab { display: flex; align-items: center; gap: 8px; padding: 0 18px; border-right: 1px solid #35383d; color: #a6a9af; }
+    .tab.active { color: #eceff3; background: var(--panel); border-top: 2px solid #6697d3; padding-top: 0; }
+    .tree { position: absolute; top: 0; bottom: 0; left: 0; width: 248px; padding: 10px 0 40px; background: var(--side); border-right: 1px solid #3b3d42; font-size: 13px; white-space: nowrap; overflow: hidden; }
+    .tree-title { padding: 0 13px 12px; color: #a2a5ac; font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .tree-row { height: 28px; display: flex; align-items: center; gap: 8px; padding-right: 12px; color: #c0c3c9; }
+    .tree-row.selected { background: #3b3b39; }
+    .tree-row svg, .tab svg { width: 17px; height: 17px; flex: none; }
+    .twisty { display: inline-block; width: 10px; color: #93979d; font-size: 12px; }
+    .indent-0 { padding-left: 14px; } .indent-1 { padding-left: 31px; } .indent-2 { padding-left: 48px; }
+    .code { position: absolute; left: 248px; top: 37px; right: 0; bottom: 29px; padding: 19px 26px; font: 13px/24px var(--mono); white-space: pre; overflow: hidden; color: #c5c8ce; }
+    .ln { color: #646970; display: inline-block; width: 34px; text-align: right; margin-right: 22px; user-select: none; }
+    .kw { color: #cc93cb; } .fn { color: #77b7d8; } .str { color: #9ac587; } .dim { color: #8a8d92; }
+    .caret { border-left: 2px solid #c5c8ce; margin-left: -1px; animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    .status { position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; height: 29px; display: flex; align-items: stretch; background: var(--bar); border-top: 1px solid #3b3d42; color: #c6c8ce; font: 12px var(--ui); }
+    .follow-control { display: flex; align-items: center; border: 0; background: transparent; color: inherit; white-space: nowrap; font: 600 12px var(--ui); }
+    .follow-control svg { width: 17px; height: 17px; flex: none; }
+    .follow-control:hover { filter: brightness(1.16); }
+    .mode { height: 100%; display: inline-flex; align-items: center; padding: 0 12px; background: #005a95; color: white; font: 700 11px var(--ui); letter-spacing: .03em; }
+    .meta { display: flex; gap: 19px; align-items: center; padding: 0 14px; margin-left: auto; color: #b0b3ba; font-size: 11px; }
+    .control-a { gap: 7px; padding: 0 13px 0 10px; border-right: 1px solid #45484e; }
+    .control-a svg { fill: var(--blue); }
+    .control-a .on { color: #e5e9ee; } .control-a .off { color: #9a9ea6; }
+    .control-a .indicator { width: 5px; height: 5px; border-radius: 50%; background: var(--green); margin-left: 4px; }
+    .control-a.is-off .indicator { background: #777d84; }
+    .control-b { gap: 7px; padding: 0 13px; background: #314f6a; color: #f1f6fc; }
+    .control-b.is-off { background: #34383d; color: #abb0b8; }
+    .control-b svg { fill: #a8d0ff; } .control-b.is-off svg { fill: #8a9099; }
+    .control-b .key { margin-left: 3px; color: #b8cfe9; font: 10px var(--mono); }
+    .control-b.is-off .key { color: #888e96; }
+    .control-c { position: relative; width: 37px; justify-content: center; padding: 0; border-right: 1px solid #45484e; }
+    .control-c svg { width: 20px; height: 20px; fill: var(--blue); }
+    .control-c.is-off svg { fill: #8e939a; }
+    .control-c .beacon { position: absolute; width: 5px; height: 5px; border-radius: 50%; background: var(--green); right: 5px; top: 4px; box-shadow: 0 0 0 2px var(--bar); }
+    .control-c.is-off .beacon { background: #858a92; }
+    .control-d { gap: 8px; padding: 0 13px; font-weight: 550; }
+    .control-d svg { fill: #7da6d6; }
+    .control-d.is-off svg { fill: #888e96; }
+    .control-d strong { color: #8ccea3; font-weight: 650; }
+    .control-d.is-off strong { color: #989da5; }
+    .divider { width: 1px; margin: 5px 0; background: #4a4d53; }
+    .details { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr); gap: 24px; margin-top: 20px; }
+    .detail-card { min-height: 135px; background: #1b1d21; border: 1px solid #35393f; border-radius: 9px; padding: 17px 19px; }
+    .detail-card h3 { margin: 0 0 8px; color: #e8eaf0; font-size: 13px; font-weight: 650; }
+    .detail-card p { margin: 0; color: #a2a6ae; font-size: 13px; line-height: 1.5; }
+    .detail-card .preview { display: flex; align-items: center; gap: 18px; margin-top: 17px; }
+    .zoom { background: var(--bar); height: 46px; min-width: 190px; display: inline-flex; align-items: center; border: 1px solid #51555b; border-radius: 5px; overflow: hidden; transform-origin: left center; }
+    .zoom .follow-control { height: 100%; font-size: 15px; }
+    .zoom .follow-control svg { width: 22px; height: 22px; }
+    .zoom .control-c { width: 48px; }
+    .zoom .control-c .beacon { right: 7px; top: 8px; }
+    .note { color: #858a93; font-size: 11px; line-height: 1.45; }
+    .rail { position: fixed; z-index: 10; left: 50%; bottom: 18px; transform: translateX(-50%); display: flex; align-items: center; gap: 7px; padding: 6px; background: #0e1116; border: 1px solid #59606b; border-radius: 10px; box-shadow: 0 12px 30px #0009; }
+    .rail button { border: 0; border-radius: 6px; color: #e9ecf2; background: #262d36; padding: 8px 11px; font-size: 12px; }
+    .rail button:hover { background: #37475b; }
+    .rail .variant-name { min-width: 184px; color: #d6dce4; font-size: 12px; font-weight: 600; text-align: center; }
+    .rail .count { color: #8d95a0; font: 11px var(--mono); padding: 0 5px; }
+    @media (max-width: 760px) {
+      .page { padding: 24px 14px 110px; }
+      .topline { flex-direction: column; }
+      .window { height: 390px; }
+      .tree { width: 160px; }
+      .tabs, .code { left: 160px; }
+      .tree-row { font-size: 11px; }
+      .details { grid-template-columns: 1fr; }
+      .meta span:not(:first-child) { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute">
+    <symbol id="folder" viewBox="0 0 64 64"><path d="M6 16q0-5 5-5h13l6 6h24q5 0 5 5v25q0 5-5 5H11q-5 0-5-5Z" fill="#5C8FD6"/></symbol>
+    <symbol id="file" viewBox="0 0 64 64"><rect x="8" y="6" width="48" height="52" rx="9" fill="#90A4AE"/><circle cx="32" cy="34" r="5" fill="#fff"/></symbol>
+    <symbol id="python" viewBox="0 0 64 64"><rect x="8" y="6" width="48" height="52" rx="9" fill="#4B8BBE"/><text x="32" y="40" font-family="Helvetica,Arial,sans-serif" font-size="22" font-weight="700" fill="#FFD43B" text-anchor="middle">py</text></symbol>
+    <symbol id="icon-a" viewBox="0 0 64 64"><path d="M8 20V10q0-3 3-3h12v8h-8v8H8Zm48 0h-7v-5h-8V7h12q3 0 3 3ZM8 44h7v5h8v8H11q-3 0-3-3Zm48 0v10q0 3-3 3H41v-8h8v-5ZM30 18l18 14-18 14v-9H19V27h11Z"/></symbol>
+    <symbol id="icon-b" viewBox="0 0 64 64"><path d="M8 31 26 17v9h16q10 0 14 10-7-5-14-5H26v9ZM8 49l18-14v9h16q10 0 14 10-7-5-14-5H26v9Z"/></symbol>
+    <symbol id="icon-c" viewBox="0 0 64 64"><path d="M32 5c15 0 25 12 25 27S47 59 32 59 7 47 7 32 17 5 32 5Zm0 10c-9 0-17 8-17 17s8 17 17 17 17-8 17-17-8-17-17-17Z"/><path d="M30 18h4v12h12v4H34v12h-4V34H18v-4h12Z"/></symbol>
+    <symbol id="icon-d" viewBox="0 0 64 64"><path d="M9 15q0-6 6-6h11v8H17v9H9Zm38-6h2q6 0 6 6v11h-8v-9h-9V9ZM9 38h8v9h9v8H15q-6 0-6-6Zm38 0h8v11q0 6-6 6H38v-8h9Z"/><path d="m25 23 17 9-17 9v-7H18v-4h7Z"/></symbol>
+  </svg>
+  <main class="page">
+    <div class="topline">
+      <div>
+        <div class="eyebrow">VSVim / design study / throwaway prototype</div>
+        <h1>Follow, at statusline size</h1>
+        <p class="intro">Four directions with filled SVG shapes inspired by SVGTree’s icon set. Each sits over the explorer in a realistic VSVim frame. Use the arrows to compare and click the Follow control to preview its state.</p>
+      </div>
+      <div class="state-toggle"><span id="state-caption">State: On</span><button id="state-button" type="button">Show Off</button></div>
+    </div>
+    <div class="stage-heading"><h2 id="variant-heading"></h2><span>Actual statusbar height: 29 px</span></div>
+    <section class="window" aria-label="VSVim statusline preview">
+      <aside class="tree">
+        <div class="tree-title">EXPLORER · FOLLOW</div>
+        <div class="tree-row indent-0"><span class="twisty">⌄</span><svg><use href="#folder"/></svg>follow_demo</div>
+        <div class="tree-row indent-1"><span class="twisty">⌄</span><svg><use href="#folder"/></svg>src</div>
+        <div class="tree-row indent-2 selected"><span class="twisty"></span><svg><use href="#python"/></svg>methods.py</div>
+        <div class="tree-row indent-2"><span class="twisty"></span><svg><use href="#file"/></svg>README.md</div>
+        <div class="tree-row indent-1"><span class="twisty">›</span><svg><use href="#folder"/></svg>tests</div>
+      </aside>
+      <div class="tabs"><div class="tab active"><svg><use href="#python"/></svg>methods.py</div><div class="tab"><svg><use href="#file"/></svg>README.md</div></div>
+      <div class="code"><span class="ln">1</span><span class="kw">def</span> <span class="fn">greet</span>(name: str) -&gt; str:
+<span class="ln">2</span>    <span class="kw">return</span> <span class="str">f"Hello, {name}!"</span>
+<span class="ln">3</span>
+<span class="ln">4</span><span class="kw">def</span> <span class="fn">square</span>(value: int) -&gt; int:
+<span class="ln">5</span>    <span class="kw">return</span> value * value<span class="caret"> </span>
+<span class="ln">6</span>
+<span class="ln">7</span><span class="dim"># Watching Codex edit this file</span></div>
+      <footer class="status"><div id="follow-slot"></div><span class="mode">NORMAL</span><span class="meta"><span>Ln 5, Col 25</span><span>Spaces: 4</span><span>Python</span></span></footer>
+    </section>
+    <section class="details">
+      <div class="detail-card"><h3 id="detail-title"></h3><p id="detail-copy"></p><div class="preview"><div class="zoom" id="zoom"></div><span class="note">2× view for inspecting<br>the shape and lettering</span></div></div>
+      <div class="detail-card"><h3>What this preview tests</h3><p>Shape, spacing, label wording, and readability next to SVGTree’s blue file icons. The current statusline is a Neovim grid; exact SVG and system-font rendering would require a native Sprite control. The preview does not change Follow behavior.</p></div>
+    </section>
+  </main>
+  <nav class="rail" aria-label="Prototype variants">
+    <button id="previous" type="button" aria-label="Previous design">←</button>
+    <span class="variant-name" id="variant-name"></span>
+    <button id="next" type="button" aria-label="Next design">→</button>
+    <span class="count" id="variant-count"></span>
+  </nav>
+  <script>
+    const variants = [
+      { key: 'A', title: 'Reticle + label', copy: 'The compact Follow label and live-state dot from A, now paired with C’s focus reticle in SVGTree blue.', icon: 'icon-c', className: 'control-a', label: on => `<span class="${on ? 'on' : 'off'}">Follow</span><span class="indicator"></span>` },
+      { key: 'B', title: 'Activity ribbon', copy: 'A stronger active treatment. Two forward strokes imply following movement, and the shortcut stays visible without a second badge.', icon: 'icon-b', className: 'control-b', label: on => `<span>${on ? 'Following' : 'Follow'}</span><span class="key">SPC A F</span>` },
+      { key: 'C', title: 'Quiet icon', copy: 'The smallest footprint. A focus reticle and beacon fit when the statusline should stay calm; hover or focus reveals the full name.', icon: 'icon-c', className: 'control-c', label: () => '<span class="beacon"></span>' },
+      { key: 'D', title: 'Follow status', copy: 'A compact icon with a plain-language state. “Watching edits” says what the control is doing instead of merely reporting On.', icon: 'icon-d', className: 'control-d', label: on => `<span>Follow</span><span class="divider"></span><strong>${on ? 'Watching edits' : 'Paused'}</strong>` },
+    ];
+    const params = new URLSearchParams(location.search);
+    let index = Math.max(0, variants.findIndex(item => item.key === (params.get('variant') || 'A').toUpperCase()));
+    let enabled = true;
+    const $ = id => document.getElementById(id);
+    function control(variant) {
+      const label = `Follow is ${enabled ? 'on' : 'off'}; click to toggle`;
+      return `<button type="button" class="follow-control ${variant.className}${enabled ? '' : ' is-off'}" title="${label}" aria-label="${label}" aria-pressed="${enabled}"><svg aria-hidden="true"><use href="#${variant.icon}"/></svg>${variant.label(enabled)}</button>`;
+    }
+    function render() {
+      const variant = variants[index];
+      const markup = control(variant);
+      $('variant-heading').textContent = `${variant.key} — ${variant.title}`;
+      $('detail-title').textContent = `${variant.key} / ${variant.title}`;
+      $('detail-copy').textContent = variant.copy;
+      $('variant-name').textContent = `${variant.key} — ${variant.title}`;
+      $('variant-count').textContent = `${index + 1} / ${variants.length}`;
+      $('state-caption').textContent = `State: ${enabled ? 'On' : 'Off'}`;
+      $('state-button').textContent = `Show ${enabled ? 'Off' : 'On'}`;
+      $('follow-slot').innerHTML = markup;
+      $('zoom').innerHTML = markup;
+      document.querySelectorAll('.follow-control').forEach(button => button.addEventListener('click', toggle));
+      params.set('variant', variant.key);
+      history.replaceState(null, '', `${location.pathname}?${params.toString()}`);
+    }
+    function toggle() { enabled = !enabled; render(); }
+    function cycle(step) { index = (index + step + variants.length) % variants.length; render(); }
+    $('state-button').addEventListener('click', toggle);
+    $('previous').addEventListener('click', () => cycle(-1));
+    $('next').addEventListener('click', () => cycle(1));
+    document.addEventListener('keydown', event => {
+      if (event.target.closest('button, input, textarea, [contenteditable]')) return;
+      if (event.key === 'ArrowLeft') cycle(-1);
+      if (event.key === 'ArrowRight') cycle(1);
+    });
+    render();
+  </script>
+</body>
+</html>
