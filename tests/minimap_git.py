@@ -124,6 +124,16 @@ class MinimapGit(unittest.TestCase):
         self.nvim.exec_lua("_G.stop=require('vsvim.minimap.git').watch(0,function(r) _G.result=r end)")
         self.wait([{'start': 1, 'end': 3, 'kind': 'added'}])
         self.assertIsNone(self.nvim.exec_lua('return _G.result.error'))
+        self.nvim.exec_lua("""
+          _G.poll_calls=0
+          local system=vim.system
+          vim.system=function(args,...)
+            if args[1]=='git' then _G.poll_calls=_G.poll_calls+1 end
+            return system(args,...)
+          end
+        """)
+        self.nvim.exec_lua('vim.wait(2300)')
+        self.assertEqual(self.nvim.exec_lua('return _G.poll_calls'), 2)
 
     def test_head_baseline_survives_save_stage(self):
         self.nvim.current.buffer[1] = 'TWO'
@@ -169,6 +179,42 @@ class MinimapGit(unittest.TestCase):
         self.git('add', '.')
         self.commit()
         self.wait([])
+
+    def test_idle_fallback_uses_one_git_check(self):
+        self.nvim.exec_lua("""
+          _G.poll_calls=0
+          local system=vim.system
+          vim.system=function(args,...)
+            if args[1]=='git' then _G.poll_calls=_G.poll_calls+1 end
+            return system(args,...)
+          end
+        """)
+        self.nvim.exec_lua('vim.wait(2300)')
+        self.assertEqual(self.nvim.exec_lua('return _G.poll_calls'), 1)
+
+    def test_unborn_fallback_reports_corrupt_ref(self):
+        unborn = self.repo / 'unborn-corrupt'
+        unborn.mkdir()
+        subprocess.check_call(['git', '-C', str(unborn), 'init', '-q'])
+        self.nvim.exec_lua('_G.stop(); _G.result=nil')
+        self.nvim.command('file ' + self.nvim.funcs.fnameescape(str(unborn / 'new.txt')))
+        self.nvim.exec_lua("""
+          _G.original_fs_event=vim.uv.new_fs_event
+          vim.uv.new_fs_event=function()
+            return {start=function() return nil,'disabled' end, close=function() end}
+          end
+          _G.stop=require('vsvim.minimap.git').watch(0,function(r) _G.result=r end)
+        """)
+        self.wait([{'start': 1, 'end': 3, 'kind': 'added'}])
+        self.nvim.exec_lua('vim.uv.new_fs_event=_G.original_fs_event')
+        ref = subprocess.check_output(['git', '-C', str(unborn),
+                                       'symbolic-ref', 'HEAD']).decode().strip()
+        target = unborn / '.git' / ref
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text('invalid reference\n')
+        self.nvim.exec_lua('vim.wait(2500)')
+        self.assertTrue(self.nvim.exec_lua('return _G.result.error ~= nil'),
+                        self.nvim.exec_lua('return _G.result'))
 
     def test_worktree_git_directory(self):
         linked = self.repo / 'linked'
