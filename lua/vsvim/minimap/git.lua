@@ -3,7 +3,7 @@ local MAX_BYTES=64*1024*1024
 function M.watch(buffer, on_change)
   buffer=buffer==0 and vim.api.nvim_get_current_buf() or buffer
   local stopped, serial, running=false,0,nil
-  local watchers, baseline, head, root, gitdir, common={},nil,nil,nil,nil,nil
+  local watchers, baseline, head, root, gitdir, common, symbolic_head={},nil,nil,nil,nil,nil,nil
   local filename=vim.api.nvim_buf_get_name(buffer)
   local timer=vim.uv.new_timer()
   local debounce=vim.uv.new_timer()
@@ -101,7 +101,8 @@ function M.watch(buffer, on_change)
       local relative=vim.fs.relpath(root,name)
       if not relative then failure('File is outside Git worktree'); return end
       run({'git','-C',root,'symbolic-ref','-q','HEAD'},token,function(sym)
-        watch_paths(sym and sym.code==0 and vim.trim(sym.stdout) or nil)
+        symbolic_head=sym and sym.code==0 and vim.trim(sym.stdout) or nil
+        watch_paths(symbolic_head)
         run({'git','-C',root,'rev-parse','--verify','HEAD'},token,function(rev,rev_err)
           if not rev then failure(rev_err); return end
           if rev.code~=0 then
@@ -128,6 +129,21 @@ function M.watch(buffer, on_change)
       end)
     end)
   end
+  local function poll_head()
+    if not valid() or running then return end
+    if not root or baseline==nil then refresh(); return end
+    serial=serial+1
+    local token=serial
+    run({'git','-C',root,'rev-parse','--verify','HEAD'},token,function(rev)
+      if not rev then refresh(); return end
+      if head==nil then
+        if rev.code==0 or not symbolic_head then refresh(); return end
+        run({'git','-C',root,'show-ref','--exists',symbolic_head},token,function(exists)
+          if not exists or exists.code~=2 then refresh() end
+        end)
+      elseif rev.code~=0 or vim.trim(rev.stdout)~=head then refresh() end
+    end)
+  end
   vim.api.nvim_buf_attach(buffer,false,{
     on_lines=function() if stopped then return true end; schedule(false) end,
     on_detach=function() vim.schedule(function() if stop then stop() end end) end,
@@ -146,7 +162,7 @@ function M.watch(buffer, on_change)
     if vim.api.nvim_get_current_buf()==buffer then schedule(false) end
   end})
   vim.api.nvim_create_autocmd('FocusGained',{group=group,callback=function() schedule(true) end})
-  timer:start(2000,2000,vim.schedule_wrap(function() if valid() then schedule(true) end end))
+  timer:start(2000,2000,vim.schedule_wrap(poll_head))
   refresh()
   stop=function()
     if stopped then return end
