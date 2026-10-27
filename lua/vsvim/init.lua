@@ -49,7 +49,7 @@ function M.setup()
   require('lazy').setup({
     { 'folke/lazy.nvim', commit = '85c7ff3711b730b4030d03144f6db6375044ae82' },
     { 'HundredBillion/follow.nvim', dir = vim.env.VSVIM_FOLLOW_SOURCE,
-      commit = 'b292f7abeec48d4727631126e5291924cce4f373', lazy = false },
+      commit = 'a666da1596adef7d7d83e147a50890ead2851a4d', lazy = false },
     { 'neovim/nvim-lspconfig', commit = '45a3a444b710511c39abca3b60bb6e23a21e3de5', lazy = false },
     { 'mason-org/mason.nvim', commit = '2a6940af80375532e5e9e7c1f2fc6319a1b7a69d', lazy = false },
     { 'mason-org/mason-lspconfig.nvim', commit = '00b5473cca4db5b410ff4bae724e3b6e21f2687f', lazy = false,
@@ -76,7 +76,7 @@ function M.setup()
     },
     {
       'HundredBillion/svgtree.nvim',
-      commit = 'b1781a04d6147292ccd240cac8b73f6b31c679e3',
+      commit = '3fdaf3be76b777077d16c5ac8d2babf7641be7f5',
       lazy = false,
       dependencies = { 'HundredBillion/sprite.nvim' },
       opts = { native = { colors = require('vsvim.theme').native_colors, mappings = {
