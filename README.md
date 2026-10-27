@@ -10,7 +10,10 @@ PR review and the reviewer conversation are not implemented yet.
 
 Install Neovim 0.13 nightly and Git, then run `./bin/vsvim` from this checkout.
 The launcher uses `nvim-nightly`; set `VSVIM_NVIM` to an alternate nightly executable.
-The first launch downloads pinned plugins. Later launches reuse them.
+The first launch downloads plugins. Later launches reuse them.
+Follow, sprite.nvim, and scm.nvim track `main`; svgtree.nvim tracks `master`.
+Run `:Lazy update` to fetch updates, then restart VSVim to load them.
+Third-party dependencies remain pinned to specific commits.
 The launcher can also be placed on PATH through a symlink to `bin/vsvim`.
 
 VSVim uses the `vsvim` Neovim application namespace and leaves the ordinary
@@ -234,7 +237,7 @@ use the full width, while the editor text stays beside the minimap. Commands
 and messages can cover the bar. Older hosts retain the ordinary statusline.
 
 The native minimap requires a Sprite host advertising `grid-minimap-v1`.
-VSVim pins the published sprite.nvim commit containing the matching adapter.
+VSVim tracks sprite.nvim's `main` branch for the matching adapter.
 The tested host feature branch is published for review; use a build containing
 the revision below and open a new Sprite process. Development checks use
 isolated copies, leaving installed plugins unchanged.
@@ -263,9 +266,10 @@ selection checks live in `tests/minimap_source.lua`, `tests/minimap_git.py`, and
 `tests/minimap_selection_rpc.py`.
 
 Run `python3 -m unittest discover -s tests -p '*_test.py'` with Neovim nightly
-and Git on PATH. Integration checks download pinned plugins into a temporary
-profile, verify the explorer and user overrides, then check cached startup
-without Git. They do not use your normal Neovim configuration.
+and Git on PATH. Integration checks download plugins into a temporary
+profile, verify branch revisions, pinned dependencies, the explorer and user
+overrides, then check cached startup without Git. They do not use your normal
+Neovim configuration.
 Use `VSVIM_NVIM=/path/to/nvim` to select an actual nightly binary.
 See [performance evidence and reproduction](docs/performance.md) for the
 Explorer benchmark and plugin job-count checks.
@@ -273,8 +277,9 @@ Explorer benchmark and plugin job-count checks.
 Tested locally on macOS with Neovim `0.13.0-dev-761+g0639f6e41a`. Linux runtime
 validation has not run. Native Sprite startup was exercised, but screenshot
 comparison is still pending because macOS denied window capture.
-Plugin revisions are fixed in the distribution; `:Lazy sync` preserves those
-revisions. Updates to bundled versions ship as changes to VSVim's pins.
+`:Lazy update` advances Follow, sprite.nvim, svgtree.nvim, and scm.nvim to their
+configured branches without a VSVim release. The local lockfile records installed
+revisions; `:Lazy restore` returns plugins to those recorded revisions.
 
 Lua support includes Neovim's annotated API library, so `gd` and Cmd/Super-click
 on calls such as `vim.api.nvim_get_hl` resolve to their Lua API declarations.

@@ -11,10 +11,13 @@ PINS = {
     'nvim-lspconfig': '45a3a444b710511c39abca3b60bb6e23a21e3de5',
     'mason.nvim': '2a6940af80375532e5e9e7c1f2fc6319a1b7a69d',
     'mason-lspconfig.nvim': '00b5473cca4db5b410ff4bae724e3b6e21f2687f',
-    'scm.nvim': 'c6946caa84c49054f37bf9097b7f59bcadf2bfa7',
     'lazy.nvim': '85c7ff3711b730b4030d03144f6db6375044ae82',
-    'sprite.nvim': '6ae5a61330186f241bddd6a2f108203fd7e7d405',
-    'svgtree.nvim': 'b1781a04d6147292ccd240cac8b73f6b31c679e3',
+}
+BRANCHES = {
+    'follow.nvim': 'main',
+    'sprite.nvim': 'main',
+    'svgtree.nvim': 'master',
+    'scm.nvim': 'main',
 }
 
 
@@ -23,7 +26,8 @@ class IntegrationTest(unittest.TestCase):
         with tempfile.TemporaryDirectory(prefix='vsvim-integration-') as directory:
             root = Path(directory)
             env = dict(os.environ, VSVIM_NVIM=NIGHTLY)
-            env.pop('VSVIM_SPRITE_SOURCE', None)
+            for name in ('VSVIM_SPRITE_SOURCE', 'VSVIM_FOLLOW_SOURCE', 'VSVIM_SCM_SOURCE'):
+                env.pop(name, None)
             for kind in ('CONFIG', 'DATA', 'STATE', 'CACHE'):
                 env[f'XDG_{kind}_HOME'] = str(root / kind.lower())
             config = root / 'config/vsvim'
@@ -53,6 +57,13 @@ class IntegrationTest(unittest.TestCase):
                     ['git', '-C', str(root / 'data/vsvim/lazy' / name),
                      'rev-parse', 'HEAD'], text=True).strip()
                 self.assertEqual(actual, commit, name)
+            for name, branch in BRANCHES.items():
+                plugin = root / 'data/vsvim/lazy' / name
+                actual = subprocess.check_output(
+                    ['git', '-C', str(plugin), 'rev-parse', 'HEAD'], text=True).strip()
+                expected = subprocess.check_output(
+                    ['git', '-C', str(plugin), 'rev-parse', 'origin/' + branch], text=True).strip()
+                self.assertEqual(actual, expected, name)
             import json
             scm_script = str(ROOT / 'tests/scm.lua')
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(scm_script) +
