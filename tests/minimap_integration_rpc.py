@@ -17,12 +17,14 @@ import unittest
 import pynvim
 
 ROOT = Path(__file__).resolve().parents[1]
-NVIM = os.environ.get('VSVIM_NVIM', '/Users/davidlee/.local/nvim-nightly/bin/nvim')
+NVIM = os.environ.get('VSVIM_NVIM', shutil.which('nvim-nightly') or shutil.which('nvim'))
 SPRITE = Path(os.environ.get('VSVIM_SPRITE_SOURCE', ROOT.parent / 'sprite.nvim'))
 CACHE = Path(os.environ.get('VSVIM_PLUGIN_CACHE', Path.home() / '.local/share/vsvim/lazy'))
 
 
 class Host:
+    pane = 'f00d:0'
+
     def __init__(self, path, features):
         self.features, self.messages, self.connection = features, [], None
         self.socket = socket.socket(socket.AF_UNIX)
@@ -46,6 +48,9 @@ class Host:
         try:
             with client.makefile('rb') as stream:
                 first = json.loads(stream.readline().split(b' ', 1)[1])
+                if first.get('pane') != self.pane:
+                    client.sendall(b'{"type":"refused","reason":"pane address mismatch"}\n')
+                    return
                 if first['type'] == 'capabilities':
                     client.sendall((json.dumps(dict(type='capabilities', version=1,
                                                    eligible=True, features=[], limits={})) + '\n').encode())
@@ -76,13 +81,33 @@ class Host:
         self.socket.close()
 
 
+class HostProtocolTest(unittest.TestCase):
+    def test_discovery_requires_the_complete_pane_address(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / 'host.sock'
+            host = Host(path, [])
+            try:
+                for pane in (Host.pane, 0, '0', 'other-window:0', None):
+                    with self.subTest(pane=pane), socket.socket(socket.AF_UNIX) as client:
+                        client.settimeout(2)
+                        client.connect(str(path))
+                        request = dict(type='capabilities', version=1, pane=pane,
+                                       owner_pid=os.getpid(), return_target='terminal')
+                        client.sendall(('testkey ' + json.dumps(request) + '\n').encode())
+                        with client.makefile('rb') as stream:
+                            reply = json.loads(stream.readline())
+                        self.assertEqual(reply['type'], 'capabilities' if pane == Host.pane else 'refused')
+            finally:
+                host.close()
+
+
 class MinimapIntegration(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.profile = tempfile.TemporaryDirectory(prefix='vsvim-minimap-plugins-')
         cls.plugins = Path(cls.profile.name) / 'lazy'
         for name in ('lazy.nvim', 'nvim-lspconfig', 'mason.nvim', 'mason-lspconfig.nvim',
-                     'sprite.nvim', 'svgtree.nvim', 'scm.nvim'):
+                     'sprite.nvim', 'svgtree.nvim', 'scm.nvim', 'follow.nvim'):
             source = SPRITE if name == 'sprite.nvim' else CACHE / name
             if not source.is_dir():
                 raise RuntimeError(f'Missing plugin cache: {source}')
@@ -172,7 +197,7 @@ vim.defer_fn(observe,20)
         path = Path(tempfile.mktemp(prefix='vsvim-mm-', suffix='.sock', dir='/tmp'))
         self.socket_path = path
         self.host = Host(path, features)
-        env = dict(self.env, SPRITE_SURFACE_SOCKET=str(path), SPRITE_SURFACE_KEY='testkey', SPRITE_PANE='1')
+        env = dict(self.env, SPRITE_SURFACE_SOCKET=str(path), SPRITE_SURFACE_KEY='testkey', SPRITE_PANE=Host.pane)
         self.log = (self.root / 'adapter.log').open('w')
         self.process = subprocess.Popen([NVIM, '-l', str(SPRITE / 'lua/sprite/adapter.lua'),
                                          '-u', str(self.init), str(self.file)],

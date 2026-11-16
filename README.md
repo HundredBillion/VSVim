@@ -16,6 +16,13 @@ Run `:Lazy update` to fetch updates, then restart VSVim to load them.
 Third-party dependencies remain pinned to specific commits.
 The launcher can also be placed on PATH through a symlink to `bin/vsvim`.
 
+Native editing and sidebars require Sprite Terminal 0.6.0+ and `sprite.nvim`
+v0.5.0+ (or current `main`). After upgrading Sprite, update the companion
+plugins with `:Lazy update sprite.nvim svgtree.nvim scm.nvim` and restart
+VSVim. An older adapter rejects Sprite's window-qualified pane address,
+causing the native editor and sidebars to fall back to terminal rendering.
+The launcher preserves the full `SPRITE_PANE` address supplied by Sprite.
+
 VSVim uses the `vsvim` Neovim application namespace and leaves the ordinary
 `nvim` configuration in place. Run `:echo stdpath('config')` to find VSVim's
 configuration directory. Create `user.lua` there for settings loaded after defaults.

@@ -32,7 +32,7 @@ class FollowIntegration(unittest.TestCase):
             self.env[f'XDG_{name}_HOME'] = str(self.base / name.lower())
         plugins = self.base / 'data/vsvim/lazy'
         for name in ('lazy.nvim', 'nvim-lspconfig', 'mason.nvim', 'mason-lspconfig.nvim',
-                     'sprite.nvim', 'svgtree.nvim', 'scm.nvim'):
+                     'sprite.nvim', 'svgtree.nvim', 'scm.nvim', 'follow.nvim'):
             source = ADAPTER if name == 'sprite.nvim' else CACHE / name
             shutil.copytree(source, plugins / name, ignore=shutil.ignore_patterns('.git', '.worktrees'))
         self.env['VSVIM_SPRITE_SOURCE'] = str(plugins / 'sprite.nvim')
@@ -59,7 +59,7 @@ class FollowIntegration(unittest.TestCase):
         if native:
             features.append('grid-follow-v1')
         self.host = Host(self.socket, features)
-        env = dict(self.env, SPRITE_SURFACE_SOCKET=str(self.socket), SPRITE_SURFACE_KEY='test', SPRITE_PANE='1')
+        env = dict(self.env, SPRITE_SURFACE_SOCKET=str(self.socket), SPRITE_SURFACE_KEY='test', SPRITE_PANE=Host.pane)
         env.pop('NVIM', None)
         self.process = subprocess.Popen([str(ROOT / 'bin/vsvim'), '--listen', str(self.editor_socket), str(self.first)],
                                         cwd=self.project, env=env, stdout=self.log, stderr=self.log)
