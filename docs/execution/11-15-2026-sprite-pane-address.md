@@ -27,3 +27,10 @@ transport ResourceWarnings in the passing Markdown suite.
 The native VSVim profiles previously omitted required follow.nvim and attempted
 a network install during startup. Copying the cached dependency into those
 isolated profiles made their startup deterministic.
+
+Remote CI initially caught a relative dependency-path bug in the new SVGTree
+test: changing to the fixture project invalidated its runtimepath entry.
+Both consumer tests now normalize the API checkout before changing cwd.
+The failure reproduced locally, the full SVGTree suite passes with a relative
+path after the fix, and independent focused review reran both consumer tests.
+Adapter CI passed all six OS/version matrix jobs plus format and protocol.
