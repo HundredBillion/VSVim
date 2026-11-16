@@ -23,7 +23,7 @@ class MarkdownIntegration(unittest.TestCase):
         cls.profile = tempfile.TemporaryDirectory(prefix='vsvim-markdown-plugins-')
         cls.plugins = Path(cls.profile.name) / 'lazy'
         for name in ('lazy.nvim', 'nvim-lspconfig', 'mason.nvim', 'mason-lspconfig.nvim',
-                     'sprite.nvim', 'svgtree.nvim', 'scm.nvim'):
+                     'sprite.nvim', 'svgtree.nvim', 'scm.nvim', 'follow.nvim'):
             source = SPRITE if name == 'sprite.nvim' else CACHE / name
             shutil.copytree(source, cls.plugins / name, ignore=shutil.ignore_patterns('.git'))
 
@@ -65,7 +65,7 @@ class MarkdownIntegration(unittest.TestCase):
         if supported:
             features.append('grid-markdown-v1')
         self.host = Host(self.socket, features)
-        env = dict(self.env, SPRITE_SURFACE_SOCKET=str(self.socket), SPRITE_SURFACE_KEY='test-only', SPRITE_PANE='1')
+        env = dict(self.env, SPRITE_SURFACE_SOCKET=str(self.socket), SPRITE_SURFACE_KEY='test-only', SPRITE_PANE=Host.pane)
         env.pop('NVIM', None)
         self.log = (self.root / 'adapter.log').open('w')
         self.process = subprocess.Popen([str(ROOT / 'bin/vsvim'), '--listen', str(self.editor_socket), str(self.file)],

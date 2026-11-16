@@ -50,11 +50,11 @@ sys.exit(23)
             adapter.parent.mkdir(parents=True)
             adapter.write_text('')
             executable = root / 'nightly'
-            executable.write_text('#!/usr/bin/env python3\nimport json,sys\nprint(json.dumps(sys.argv[1:]))\n')
+            executable.write_text('#!/usr/bin/env python3\nimport json,os,sys\nassert os.environ["SPRITE_PANE"] == "f00d:0"\nprint(json.dumps(sys.argv[1:]))\n')
             executable.chmod(0o755)
             env = dict(os.environ, VSVIM_NVIM=str(executable), XDG_DATA_HOME=str(root),
                        SPRITE_SURFACE_SOCKET='/test/socket', SPRITE_SURFACE_KEY='test-only',
-                       SPRITE_PANE='0')
+                       SPRITE_PANE='f00d:0')
             env.pop('NVIM', None)
             env.pop('VSVIM_NATIVE', None)
             env.pop('VSVIM_SPRITE_SOURCE', None)
