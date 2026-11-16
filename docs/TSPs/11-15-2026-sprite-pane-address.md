@@ -54,5 +54,5 @@ Depends on: Tasks 1 and 2.
 - [x] Replace numeric environment fixtures with complete pane addresses and make the shared Python fake host reject wrong/missing addresses.
 - [x] Assert the launcher forwards SPRITE_PANE unchanged; run launcher and native integration suites.
 - [x] Update guidance for Sprite 0.6+, current adapter, and updating all companion plugins.
-- [ ] Independently review all four branches; fix substantive findings and rerun affected checks.
-- [ ] Push branches and create linked PRs. Fast-forward the clean installed adapter to upstream main; leave running editors to restart naturally.
+- [x] Independently review all four branches; fix substantive findings and rerun affected checks.
+- [x] Push branches and create linked PRs. Fast-forward the clean installed adapter to upstream main; leave running editors to restart naturally.
