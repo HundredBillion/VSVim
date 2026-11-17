@@ -19,9 +19,10 @@ The extension specifies no font. With no VS Code font override, macOS uses
 Menlo 12; Linux uses Droid Sans Mono 14 with monospace fallback. Sprite owns the
 native grid font through `[surface_font]`; `[font]` controls the terminal, including
 Neovim running as an ordinary terminal program. The bundled `extras/sprite-jb.toml`
-uses Menlo 12 for both sections. Native editor rows use a 1.65 line-height ratio
-(20-pixel rows) for more breathing room; terminal rows use 1.5 (18 pixels).
-Choose an installed monospace family on Linux.
+uses JetBrains Mono 12 for native editor text and Menlo 12 for the terminal.
+Both use a 1.5 line-height ratio (18-pixel rows), the spacing VS Code uses on
+macOS. Sprite falls back to its default monospace family when JetBrains Mono is
+not installed. Choose an installed monospace family on Linux.
 
 To change native editor text independently, edit `[surface_font]` and reload
 Sprite's configuration. Removing the entire section makes native grids inherit

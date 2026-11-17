@@ -3,10 +3,13 @@ family = "Menlo"
 size = 12
 line_height = 1.5
 
+# Code in VSVim's native editor. Sprite uses its default monospace family when
+# JetBrains Mono is not installed.
 [surface_font]
-family = "Menlo"
+family = "JetBrains Mono"
 size = 12
-line_height = 1.65
+# VS Code on macOS spaces lines at 1.5 times the font size.
+line_height = 1.5
 
 [colors]
 background = "#1e1f22"

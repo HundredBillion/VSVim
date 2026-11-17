@@ -195,7 +195,8 @@ The default `vsvim-one-dark` syntax palette follows Zed’s One Dark: purple
 keywords, blue functions, teal types, green strings, and red properties. It uses
 the existing charcoal editor and gray sidebars. See [One Dark syntax](docs/themes/one-dark.md)
 and [window colors and font setup](docs/themes/jb-theme.md).
-For the matching Menlo 12 font in Sprite, launch with
+For the matching fonts in Sprite (JetBrains Mono 12 for code at VS Code's 1.5
+line spacing, Menlo 12 for the terminal), launch with
 `sprite --config extras/sprite-jb.toml -e ./bin/vsvim` from this checkout.
 Sprite builds advertising `grid-tabs-v1` show 35-pixel native file tabs with
 SVGTree's SVG icons and the JB palette. Click a tab to select its buffer; click
