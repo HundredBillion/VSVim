@@ -4,6 +4,7 @@ function M.setup()
   require('vsvim.minimap.query_config').observe()
   vim.g.loaded_netrw = 1
   vim.g.loaded_netrwPlugin = 1
+  vim.g.loaded_nvim_dir_plugin = true
   vim.g.mapleader = ' '
   vim.g.maplocalleader = '\\'
   vim.opt.number = true
