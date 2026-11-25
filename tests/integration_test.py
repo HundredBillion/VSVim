@@ -109,6 +109,10 @@ class IntegrationTest(unittest.TestCase):
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(tab_order) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
             self.assertIn('VSVim tab ordering passed', output)
+            tab_close = str(ROOT / 'tests/tab_close.lua')
+            output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(tab_close) +
+                            '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')
+            self.assertIn('VSVim tab close passed', output)
             one_dark = str(ROOT / 'tests/one_dark.lua')
             output = launch('+lua local ok,e=pcall(dofile,' + json.dumps(one_dark) +
                             '); if not ok then print(e); vim.cmd("cquit 1") end', '+qa!')

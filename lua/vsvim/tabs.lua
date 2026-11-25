@@ -112,9 +112,18 @@ function M.select(buffer, _, button)
     last_editor_buffer=buffer
   end
 end
+-- Whether Neovim is already asking the user something, such as the save
+-- prompt `:qa` opens. A native tab click reaches Neovim over RPC even then,
+-- and a second prompt would open on top of the first: both wait for keys, and
+-- the editor is not drawn again until both are answered.
+local function asking()
+  local mode=vim.api.nvim_get_mode().mode:sub(1,1)
+  return mode=='c' or mode=='r'
+end
 function M.close(buffer, _, button)
   if button and button~='l' then return end
   if not vim.api.nvim_buf_is_valid(buffer) then return end
+  if asking() then return end
   local function remove(force)
     local previous_hidden=vim.bo[buffer].bufhidden
     vim.bo[buffer].bufhidden='hide'
